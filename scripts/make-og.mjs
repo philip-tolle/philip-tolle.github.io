@@ -31,4 +31,21 @@ await sharp(bg)
   .jpeg({ quality: 88 })
   .toFile('public/og.jpg');
 
-console.log('og.jpg erzeugt');
+// Favicon: runder Logo-Ausschnitt auf transparentem Grund
+const FAV = 64;
+const favMask = Buffer.from(
+  `<svg width="${FAV}" height="${FAV}"><circle cx="${FAV / 2}" cy="${FAV / 2}" r="${FAV / 2}" fill="#fff"/></svg>`
+);
+await sharp('src/assets/nc-logo.png')
+  .resize(Math.round(FAV * 1.58), Math.round(FAV * 1.58), { fit: 'cover' })
+  .extract({
+    left: Math.round((FAV * 1.58 - FAV) / 2),
+    top: Math.round((FAV * 1.58 - FAV) / 2),
+    width: FAV,
+    height: FAV,
+  })
+  .composite([{ input: favMask, blend: 'dest-in' }])
+  .png()
+  .toFile('public/favicon.png');
+
+console.log('og.jpg und favicon.png erzeugt');

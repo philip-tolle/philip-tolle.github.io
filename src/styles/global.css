@@ -49,6 +49,7 @@ p{margin-bottom:1rem}
 .ornament{display:flex;align-items:center;justify-content:center;gap:1.2rem;margin:0 auto 1.8rem}
 .ornament::before,.ornament::after{content:"";height:1px;width:clamp(2.5rem,9vw,5.5rem);
   background:var(--hairline)}
+.ornament__dot{width:.5rem;height:.5rem;border-radius:50%;background:var(--wood)}
 
 /* ---------- Seiten-Akzentfarbe ---------- */
 main{--acc:var(--green)}
@@ -64,6 +65,9 @@ main.acc-amber{--acc:var(--amber)}
 .header__in{display:flex;align-items:center;justify-content:space-between;
   padding:1.05rem clamp(1.2rem,5vw,3rem);max-width:1320px;margin:0 auto}
 .logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.logo__mark{width:34px;height:34px;border-radius:50%;overflow:hidden;flex:none;
+  box-shadow:0 2px 8px rgba(62,50,34,.28),0 0 12px rgba(229,162,84,.25)}
+.logo__mark img{width:100%;height:100%;object-fit:cover;transform:scale(1.58)}
 .logo__word{font-family:var(--disp);font-size:1.35rem;color:var(--ink);letter-spacing:.02em}
 .nav{display:none}
 .nav a{font-family:var(--body);font-weight:500;font-size:.92rem;color:var(--dim);
