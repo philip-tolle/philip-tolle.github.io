@@ -50,53 +50,35 @@ import roboter from '../assets/roboter.png';
     </div>
   </div>
 
-  <!-- FLOOR 3: Claim -->
-  <div class="floor">
-    <div class="wrap wrap--menu" style="text-align:center">
-      <div class="ornament reveal" aria-hidden="true">
-        <span class="ornament__dot"></span>
-      </div>
-      <p class="claim reveal">Menschliche Kompetenz.<span class="z2">Digitale Kraft.</span></p>
-      <p class="voice reveal" style="max-width:26em;margin:0 auto">KI-Beratung, Bildung &amp; Begleitung für das Gastgewerbe in Mainfranken.</p>
-      <div class="btnrow reveal" style="justify-content:center">
-        <a href="/kontakt/" class="btn">Kostenloses Erstgespräch</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- FLOOR 4: Modellrechnung -->
+  <!-- FLOOR 3: Konzept & Geschichte -->
   <div class="floor--auto floor">
     <div class="wrap">
-      <p class="eyebrow reveal">Modellrechnung</p>
-      <h2 class="reveal">Was wäre bei Ihnen möglich?</h2>
-      <p class="lead reveal">Stellen Sie Ihren Betrieb ein — wir rechnen unsere Modellwerte auf Ihre Größe um. Ein erster Anhaltspunkt, kein Versprechen.</p>
-      <div class="calc">
-        <div class="calc__panel reveal">
-          <div class="ctl">
-            <label for="c-rooms">Zimmer im Haus <output id="o-rooms" for="c-rooms">65 Zimmer</output></label>
-            <input type="range" id="c-rooms" min="20" max="150" step="5" value="65">
-          </div>
-          <div class="ctl">
-            <label for="c-adr">Durchschnittlicher Zimmerpreis <output id="o-adr" for="c-adr">120 EUR</output></label>
-            <input type="range" id="c-adr" min="80" max="250" step="5" value="120">
-          </div>
-          <p class="calc__note">Jeder Betrieb ist anders. Wo Ihre Hebel wirklich liegen, klären wir im Erstgespräch — auch für Restaurants ohne Zimmer.</p>
+      <p class="eyebrow reveal" style="--acc:var(--wood)">Das Konzept</p>
+      <h2 class="reveal">Bildung, Beratung, Umsetzung — ein Kreislauf.</h2>
+      <p class="lead reveal">NextCourse ist aus über 15 Jahren im Gastgewerbe entstanden — aus der Beobachtung, dass dieser Beruf von Menschen lebt, die gerne Gastgeber sind, während zu viel ihrer Kraft in Verwaltung versickert. Deshalb verbinden wir drei Dinge, die sonst getrennt angeboten werden:</p>
+      <div class="steps reveal stagger">
+        <div class="step">
+          <span class="step__num" aria-hidden="true">01</span>
+          <div><h3>Lernen</h3>
+          <p>In der Akademie bauen Gastgeber, Teams und Quereinsteiger Wissen auf — praxisnah, mit KI-Modul in jedem Kurs.</p></div>
         </div>
-        <div class="bill reveal" aria-live="polite">
-          <p class="bill__head">Ihre Modellrechnung</p>
-          <div class="bl"><b>KI-Telefonassistent</b><span class="dots"></span><span id="r-tel">+77.000 EUR</span></div>
-          <div class="bl"><b>Revenue Management</b><span class="dots"></span><span id="r-rev">+93.000 EUR</span></div>
-          <div class="bl"><b>Digitale Dienstplanung</b><span class="dots"></span><span id="r-plan">+28.000 EUR</span></div>
-          <div class="bl"><b>Workflow-Automatisierung</b><span class="dots"></span><span id="r-flow">+18.000 EUR</span></div>
-          <div class="bl"><b>Wareneinsatzoptimierung</b><span class="dots"></span><span id="r-ware">+14.000 EUR</span></div>
-          <div class="bl bl--sum"><b>Jahreseffekt</b><span class="dots"></span><span id="r-sum">+230.000 EUR</span></div>
-          <p class="bill__fine" id="r-note">Für 65 Zimmer bei 120 EUR Zimmerpreis — gerundet.</p>
+        <div class="step">
+          <span class="step__num" aria-hidden="true">02</span>
+          <div><h3>Umsetzen</h3>
+          <p>Im Consulting bringen wir Digitalisierung und KI in den Betrieb — klar umrissene Projekte mit messbarem Ergebnis.</p></div>
+        </div>
+        <div class="step">
+          <span class="step__num" aria-hidden="true">03</span>
+          <div><h3>Dranbleiben</h3>
+          <p>Mit Begleitung und Support bleibt das Wissen im Haus — und eingeführte Systeme laufen weiter.</p></div>
         </div>
       </div>
+      <blockquote class="quote reveal">„Wir nutzen die Herzlichkeit des Gastgebers und verstärken sie durch die Intelligenz der KI.“<br><span class="small faint" style="font-style:normal">Philip Tolle, Gründer</span></blockquote>
+      <a class="arrowlink reveal" href="/ueber/">Mehr über NextCourse</a>
     </div>
   </div>
 
-  <!-- FLOOR 5: Abschluss -->
+  <!-- FLOOR 4: Abschluss -->
   <div class="floor">
     <div class="wrap wrap--menu" style="text-align:center">
       <div class="robothero reveal">
@@ -160,39 +142,4 @@ import roboter from '../assets/roboter.png';
   heroLogo.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); spinAndGo(); }
   });
-
-  /* ---------- ROI-Kalkulator ---------- */
-  const BASE_ROOMS = 65, BASE_ADR = 120;
-  const ITEMS = [
-    { id: 'r-tel', base: 77000, mode: 'rev' },
-    { id: 'r-rev', base: 93000, mode: 'rev' },
-    { id: 'r-plan', base: 28000, mode: 'ops' },
-    { id: 'r-flow', base: 18000, mode: 'ops' },
-    { id: 'r-ware', base: 14000, mode: 'ops' },
-  ];
-  const slRooms = document.getElementById('c-rooms') as HTMLInputElement;
-  const slAdr = document.getElementById('c-adr') as HTMLInputElement;
-  function fmtEur(v: number) {
-    return '+' + (Math.round(v / 1000) * 1000).toLocaleString('de-DE') + ' EUR';
-  }
-  function calc() {
-    const rooms = parseInt(slRooms.value, 10);
-    const adr = parseInt(slAdr.value, 10);
-    const fRev = (rooms * adr) / (BASE_ROOMS * BASE_ADR);
-    const fOps = rooms / BASE_ROOMS;
-    let sum = 0;
-    ITEMS.forEach((it) => {
-      const v = it.base * (it.mode === 'rev' ? fRev : fOps);
-      sum += v;
-      document.getElementById(it.id)!.textContent = fmtEur(v);
-    });
-    document.getElementById('r-sum')!.textContent = fmtEur(sum);
-    document.getElementById('o-rooms')!.textContent = rooms + ' Zimmer';
-    document.getElementById('o-adr')!.textContent = adr + ' EUR';
-    document.getElementById('r-note')!.textContent =
-      'Für ' + rooms + ' Zimmer bei ' + adr + ' EUR Zimmerpreis — gerundet.';
-  }
-  slRooms.addEventListener('input', calc);
-  slAdr.addEventListener('input', calc);
-  calc();
 </script>
