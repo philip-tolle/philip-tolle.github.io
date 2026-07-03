@@ -123,19 +123,26 @@ main.acc-amber{--acc:var(--amber)}
 .floor.hero{align-items:center;justify-content:center;padding:6.5rem 0 3rem}
 .heroLogo{--gx:50%;--gy:35%;
   width:min(74vw,540px);aspect-ratio:1;border-radius:50%;overflow:hidden;
-  margin:0 auto;position:relative;cursor:default;
-  box-shadow:var(--glow),0 34px 80px rgba(62,50,34,.22),
-    inset 0 1px 0 rgba(255,255,255,.8);
+  margin:0 auto;position:relative;cursor:pointer;
+  box-shadow:var(--glow),0 34px 80px rgba(62,50,34,.22);
   transition:transform .15s ease-out;will-change:transform}
-.heroLogo img{width:100%;height:100%;object-fit:cover;transform:scale(1.55)}
-.heroLogo::before{content:"";position:absolute;inset:0;border-radius:50%;
-  border:1px solid rgba(255,255,255,.6);pointer-events:none;z-index:2}
+.heroLogo img{width:100%;height:100%;object-fit:cover;transform:scale(1.58)}
 .heroLogo::after{content:"";position:absolute;inset:0;border-radius:50%;z-index:1;
   background:radial-gradient(circle at var(--gx) var(--gy),
     rgba(255,255,255,.36),rgba(255,255,255,0) 44%);
   pointer-events:none}
 @keyframes heroin{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
 .heroLogo{animation:heroin 1.1s cubic-bezier(.2,.7,.3,1) both}
+@keyframes coinspin{
+  from{transform:perspective(900px) rotateY(0)}
+  to{transform:perspective(900px) rotateY(720deg)}
+}
+.heroLogo.is-spinning{animation:coinspin 1.15s cubic-bezier(.32,.05,.25,1) both}
+.heroWord{font-family:var(--disp);font-weight:400;color:var(--ink);
+  font-size:clamp(2.3rem,7vw,4rem);letter-spacing:.045em;line-height:1.1;
+  margin:2.4rem auto 0;max-width:none}
+.heroSub{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--dim);
+  font-size:clamp(1.05rem,2.4vw,1.3rem);margin:.6rem auto 0;max-width:30em}
 .scrollhint{display:flex;flex-direction:column;align-items:center;gap:.5rem;margin:3rem auto 0}
 .scrollhint .bar{width:1px;height:58px;background:var(--line);overflow:hidden;position:relative}
 .scrollhint .bar::after{content:"";position:absolute;top:-40%;left:0;width:100%;
@@ -173,9 +180,36 @@ main.acc-amber{--acc:var(--amber)}
   .scrollhint .bar::after{animation:none}
   .blob--g,.blob--b,.blob--a{animation:none}
   .heroLogo{animation:none;transition:none}
+  .heroLogo.is-spinning{animation:none}
   .robothero img{animation:none}
   .btn:hover{transform:none}
 }
+
+/* ---------- Die Weiche: Consulting / Akademie ---------- */
+.fork{display:grid;gap:1.6rem;margin-top:2.6rem}
+@media(min-width:860px){.fork{grid-template-columns:1fr 1fr;gap:2rem}}
+.forkcard{--facc:var(--green);display:flex;flex-direction:column;align-items:center;
+  text-align:center;text-decoration:none;color:var(--ink);position:relative;
+  background:var(--glass);border:1px solid var(--glass-edge);border-radius:24px;
+  padding:clamp(2.4rem,5vw,3.4rem) clamp(1.4rem,3.5vw,2.6rem);
+  backdrop-filter:blur(18px) saturate(1.5);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95),
+    inset 0 0 0 1px rgba(255,255,255,.28);
+  transition:transform .25s,box-shadow .25s,background .25s}
+.forkcard:hover{transform:translateY(-5px);background:rgba(255,255,255,.45);
+  box-shadow:var(--shadow),var(--glow),inset 0 1px 0 rgba(255,255,255,.95)}
+.forkcard--akademie{--facc:var(--blue)}
+.forkcard__aud{font-family:var(--body);font-weight:500;font-size:.76rem;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--facc);margin-bottom:1.1rem}
+.forkcard h3{font-size:clamp(2rem,5.5vw,2.9rem);margin-bottom:.7rem;transition:color .25s}
+.forkcard:hover h3{color:var(--facc)}
+.forkcard .voice{font-size:clamp(1.1rem,2.4vw,1.3rem);max-width:22em;margin:0 auto}
+.forkcard__list{list-style:none;margin:1.4rem auto .4rem;max-width:22em;width:100%}
+.forkcard__list li{padding:.55rem 0;font-size:.95rem;color:var(--dim);
+  font-family:var(--body);letter-spacing:.02em}
+.forkcard__list li+li{border-top:1px solid var(--line)}
+.forkcard .gang__go{color:var(--facc);margin-top:auto;padding-top:1.2rem}
 
 /* ---------- Drei Bereiche ---------- */
 .menuhead{text-align:center;margin-bottom:1.2rem}

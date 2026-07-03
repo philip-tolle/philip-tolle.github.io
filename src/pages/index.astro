@@ -11,16 +11,55 @@ import roboter from '../assets/roboter.png';
     <span class="deco deco--amber" style="width:400px;height:400px;right:6%;top:10%" aria-hidden="true"></span>
     <span class="deco deco--green" style="width:340px;height:340px;left:2%;bottom:8%" aria-hidden="true"></span>
     <div class="wrap" style="text-align:center">
-      <h1 class="sr-only">NextCourse — Menschliche Kompetenz. Digitale Kraft.</h1>
-      <div class="heroLogo" id="heroLogo">
+      <div class="heroLogo" id="heroLogo" role="button" tabindex="0"
+        aria-label="Zur Auswahl: Consulting oder Akademie">
         <Image src={logo} alt="NextCourse Logo — Wellen und Pfeil aus warmem Holz, hinterleuchtet"
           width={1080} format="webp" quality={82} loading="eager" />
       </div>
+      <h1 class="heroWord">NextCourse<span class="sr-only"> — KI-Beratung, Bildung und Begleitung für das Gastgewerbe in Mainfranken</span></h1>
+      <p class="heroSub">Menschliche Kompetenz. Digitale Kraft.</p>
       <div class="scrollhint" aria-hidden="true"><span class="bar"></span></div>
     </div>
   </div>
 
-  <!-- FLOOR 2: Claim -->
+  <!-- FLOOR 2: Die Weiche — Consulting oder Akademie -->
+  <div class="floor" id="wahl">
+    <span class="deco deco--green" style="width:440px;height:440px;left:-4%;top:18%" aria-hidden="true"></span>
+    <span class="deco deco--blue" style="width:420px;height:420px;right:-4%;bottom:10%" aria-hidden="true"></span>
+    <span class="deco deco--amber" style="width:320px;height:320px;right:14%;top:-2%" aria-hidden="true"></span>
+    <div class="wrap">
+      <div class="menuhead">
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Zwei Wege</p>
+        <h2 class="reveal">Was führt Sie zu uns?</h2>
+      </div>
+      <div class="fork">
+        <a class="forkcard reveal" href="/consulting/">
+          <p class="forkcard__aud">Für Betriebe &amp; Unternehmer</p>
+          <h3>Consulting</h3>
+          <p class="voice">Digitalisierung und KI, die im Betrieb ankommen.</p>
+          <ul class="forkcard__list">
+            <li>Beratung &amp; Pilotprojekte</li>
+            <li>Begleitung &amp; Support</li>
+            <li>Flying Academy — Schulungen bei Ihnen im Haus</li>
+          </ul>
+          <span class="gang__go">Zum Consulting</span>
+        </a>
+        <a class="forkcard forkcard--akademie reveal" href="/akademie/">
+          <p class="forkcard__aud">Für alle, die weiterkommen wollen</p>
+          <h3>Akademie</h3>
+          <p class="voice">Weiterbildung aus der Praxis — mit KI-Modul in jedem Kurs.</p>
+          <ul class="forkcard__list">
+            <li>KI-Grundlagen für Gastgeber &amp; KMU</li>
+            <li>AEVO-Vorbereitung &amp; Barista</li>
+            <li>AZAV-geförderte Kurse — in Vorbereitung</li>
+          </ul>
+          <span class="gang__go">Zur Akademie</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOOR 3: Claim -->
   <div class="floor">
     <div class="wrap wrap--menu" style="text-align:center">
       <div class="ornament reveal" aria-hidden="true">
@@ -35,36 +74,6 @@ import roboter from '../assets/roboter.png';
       <p class="voice reveal" style="max-width:26em;margin:0 auto">KI-Beratung, Bildung &amp; Begleitung für das Gastgewerbe in Mainfranken.</p>
       <div class="btnrow reveal" style="justify-content:center">
         <a href="/kontakt/" class="btn">Kostenloses Erstgespräch</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- FLOOR 3: Drei Bereiche -->
-  <div class="floor">
-    <span class="deco deco--green" style="width:420px;height:420px;left:-3%;top:26%" aria-hidden="true"></span>
-    <span class="deco deco--blue" style="width:400px;height:400px;right:-3%;top:52%" aria-hidden="true"></span>
-    <span class="deco deco--amber" style="width:360px;height:360px;right:8%;bottom:-4%" aria-hidden="true"></span>
-    <div class="wrap wrap--menu">
-      <div class="menuhead">
-        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Was wir tun</p>
-        <h2 class="reveal">Drei Bereiche, ein Ziel</h2>
-      </div>
-      <div class="gangs reveal stagger">
-        <a class="gang gang--1" data-num="01" href="/beratung/">
-          <h3>Beratung</h3>
-          <p class="voice">Digitalisierung, die im Betrieb ankommt.</p>
-          <span class="gang__go">Zur Beratung</span>
-        </a>
-        <a class="gang gang--2" data-num="02" href="/kurse/">
-          <h3>Kurse</h3>
-          <p class="voice">Praxisnahe Weiterbildung — mit KI-Modul in jedem Format.</p>
-          <span class="gang__go">Zu den Kursen</span>
-        </a>
-        <a class="gang gang--3" data-num="03" href="/begleitung/">
-          <h3>Begleitung</h3>
-          <p class="voice">Damit Wissen im Haus bleibt und Systeme laufen.</p>
-          <span class="gang__go">Zur Begleitung</span>
-        </a>
       </div>
     </div>
   </div>
@@ -122,11 +131,14 @@ import roboter from '../assets/roboter.png';
 <script>
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Hero-Logo: kräftiger Tilt + wandernder Lichtreflex ---------- */
+  /* ---------- Hero-Logo: Tilt + Lichtreflex + Münzdrehung ---------- */
   const heroFloor = document.querySelector('.floor.hero') as HTMLElement;
   const heroLogo = document.getElementById('heroLogo')!;
+  let spinning = false;
+
   if (heroFloor && heroLogo && window.matchMedia('(pointer:fine)').matches && !reduced) {
     heroFloor.addEventListener('pointermove', (e) => {
+      if (spinning) { return; }
       const r = heroFloor.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - .5;
       const y = (e.clientY - r.top) / r.height - .5;
@@ -136,11 +148,34 @@ import roboter from '../assets/roboter.png';
       heroLogo.style.setProperty('--gy', (38 + y * 46).toFixed(1) + '%');
     });
     heroFloor.addEventListener('pointerleave', () => {
+      if (spinning) { return; }
       heroLogo.style.transform = '';
       heroLogo.style.setProperty('--gx', '50%');
       heroLogo.style.setProperty('--gy', '35%');
     });
   }
+
+  function spinAndGo() {
+    const target = document.getElementById('wahl');
+    if (reduced || spinning) {
+      target?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+      return;
+    }
+    spinning = true;
+    heroLogo.style.transform = '';
+    heroLogo.classList.add('is-spinning');
+    setTimeout(() => { target?.scrollIntoView({ behavior: 'smooth' }); }, 550);
+    const stop = () => {
+      heroLogo.classList.remove('is-spinning');
+      spinning = false;
+    };
+    heroLogo.addEventListener('animationend', stop, { once: true });
+    setTimeout(stop, 1500);
+  }
+  heroLogo.addEventListener('click', spinAndGo);
+  heroLogo.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); spinAndGo(); }
+  });
 
   /* ---------- ROI-Kalkulator ---------- */
   const BASE_ROOMS = 65, BASE_ADR = 120;

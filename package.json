@@ -9,6 +9,7 @@
     "preview": "node node_modules/astro/astro.js preview"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "@fontsource/cormorant-garamond": "^5.2.5",
     "@fontsource/jost": "^5.2.5",
     "@fontsource/marcellus": "^5.2.5",
