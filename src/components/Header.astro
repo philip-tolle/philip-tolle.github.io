@@ -1,0 +1,69 @@
+---
+const links = [
+  { href: '/', label: 'Start', overlayLabel: 'Start' },
+  { href: '/beratung/', label: 'Beratung', overlayLabel: 'Beratung' },
+  { href: '/kurse/', label: 'Kurse', overlayLabel: 'Kurse' },
+  { href: '/begleitung/', label: 'Begleitung', overlayLabel: 'Begleitung' },
+  { href: '/ueber/', label: 'Über', overlayLabel: 'Über NextCourse' },
+  { href: '/kontakt/', label: 'Kontakt', overlayLabel: 'Kontakt' },
+];
+const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isActive = (href: string) => (href.replace(/\/+$/, '') || '/') === current;
+---
+<header class="header" id="header">
+  <div class="header__in">
+    <a href="/" class="logo" aria-label="NextCourse Startseite">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <path d="M3 12 C 9 8, 15 14, 21 10" fill="none" stroke="#B9885C" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M3 18 C 9 14, 15 20, 21 16" fill="none" stroke="#B9885C" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M3 24 C 9 20, 15 26, 21 22" fill="none" stroke="#B9885C" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M23 9 L 31 17 L 23 25" fill="none" stroke="#E5A254" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo__word">NextCourse</span>
+    </a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class:list={[isActive(l.href) && 'is-active']}
+          aria-current={isActive(l.href) ? 'page' : undefined}
+        >{l.label}</a>
+      ))}
+    </nav>
+    <button class="burger" aria-expanded="false" aria-label="Menü öffnen" aria-controls="overlay">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="overlay" id="overlay">
+  {links.map((l) => (
+    <a
+      href={l.href}
+      class:list={[isActive(l.href) && 'is-active']}
+      aria-current={isActive(l.href) ? 'page' : undefined}
+    >{l.overlayLabel}</a>
+  ))}
+</div>
+
+<script>
+  const burger = document.querySelector('.burger') as HTMLButtonElement;
+  const overlay = document.getElementById('overlay')!;
+
+  function setMenu(open: boolean) {
+    overlay.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  burger.addEventListener('click', () => {
+    setMenu(!overlay.classList.contains('open'));
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) {
+      setMenu(false);
+      burger.focus();
+    }
+  });
+</script>

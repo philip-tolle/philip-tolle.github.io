@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Kontakt — NextCourse"
+  description="Kostenloses Erstgespräch: per Telefon oder bei Ihnen im Haus. NextCourse — KI-Beratung für das Gastgewerbe in Würzburg und Mainfranken."
+>
+  <div class="pagehead">
+    <div class="wrap">
+      <p class="eyebrow">Kontakt</p>
+      <h1>Lernen wir uns kennen.</h1>
+      <p class="lead">Kostenlos, unverbindlich, per Telefon oder bei Ihnen im Haus.</p>
+    </div>
+  </div>
+
+  <div class="floor--auto floor">
+    <div class="wrap result">
+      <form class="form reveal" id="contactform" novalidate>
+        <div class="field"><label for="f-name">Name *</label>
+          <input id="f-name" type="text" autocomplete="name" required aria-describedby="e-name">
+          <p class="err" id="e-name">Bitte geben Sie Ihren Namen an.</p></div>
+        <div class="field"><label for="f-betrieb">Betrieb</label>
+          <input id="f-betrieb" type="text" autocomplete="organization"></div>
+        <div class="field"><label for="f-mail">E-Mail *</label>
+          <input id="f-mail" type="email" autocomplete="email" required aria-describedby="e-mail">
+          <p class="err" id="e-mail">Bitte geben Sie eine gültige E-Mail-Adresse an.</p></div>
+        <div class="field"><label for="f-tel">Telefon (optional)</label>
+          <input id="f-tel" type="tel" autocomplete="tel"></div>
+        <div class="field"><label for="f-msg">Ihre Nachricht *</label>
+          <textarea id="f-msg" rows="5" required aria-describedby="e-msg"></textarea>
+          <p class="err" id="e-msg">Bitte schreiben Sie kurz, worum es geht.</p></div>
+        <div class="check" id="dsfield"><input type="checkbox" id="f-ds" aria-describedby="e-ds">
+          <span>Ich habe die <a href="/datenschutz/">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage einverstanden. *
+          <span class="err" id="e-ds"><br>Bitte bestätigen Sie die Datenschutzerklärung.</span></span></div>
+        <div><button type="submit" class="btn">Anfrage senden</button></div>
+        <p class="formnote" id="formnote" role="status">Das Formular ist noch nicht angebunden. Schreiben Sie uns gerne direkt an <a href="mailto:tolle@nextcourse-academy.de">tolle@nextcourse-academy.de</a>.</p>
+      </form>
+      <div class="reveal">
+        <h3 style="margin-bottom:.7rem">Direkt</h3>
+        <p class="dim">E-Mail: <a href="mailto:tolle@nextcourse-academy.de" style="color:var(--green);font-weight:500">tolle@nextcourse-academy.de</a><br>
+        Standort: Würzburg — im Einsatz in Mainfranken und Umgebung</p>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<script>
+  document.getElementById('contactform')!.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let ok = true;
+    function flag(fieldEl: Element | null, bad: boolean) {
+      fieldEl?.classList.toggle('has-err', bad);
+      if (bad) { ok = false; }
+    }
+    const name = document.getElementById('f-name') as HTMLInputElement;
+    const mail = document.getElementById('f-mail') as HTMLInputElement;
+    const msg = document.getElementById('f-msg') as HTMLTextAreaElement;
+    const ds = document.getElementById('f-ds') as HTMLInputElement;
+    flag(name.closest('.field'), name.value.trim() === '');
+    flag(mail.closest('.field'), !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail.value.trim()));
+    flag(msg.closest('.field'), msg.value.trim() === '');
+    flag(document.getElementById('dsfield'), !ds.checked);
+    const note = document.getElementById('formnote')!;
+    if (ok) {
+      note.classList.add('is-visible');
+    } else {
+      note.classList.remove('is-visible');
+      const firstErr = document.querySelector('.has-err input, .has-err textarea') as HTMLElement | null;
+      if (firstErr) { firstErr.focus(); }
+    }
+  });
+</script>
