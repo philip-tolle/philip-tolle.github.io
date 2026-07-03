@@ -17,6 +17,7 @@ body{font-family:var(--body);font-weight:400;color:var(--ink);font-size:17.5px;
   line-height:1.7;background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img,svg,canvas{display:block;max-width:100%}
 a{color:var(--ink)}
+a,button,input,label{touch-action:manipulation}
 h1,h2,h3{font-family:var(--disp);font-weight:400;color:var(--ink);
   line-height:1.12;letter-spacing:.005em}
 p{margin-bottom:1rem}
@@ -143,7 +144,11 @@ main.acc-amber{--acc:var(--amber)}
   margin:2.4rem auto 0;max-width:none}
 .heroSub{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--dim);
   font-size:clamp(1.05rem,2.4vw,1.3rem);margin:.6rem auto 0;max-width:30em}
-.scrollhint{display:flex;flex-direction:column;align-items:center;gap:.5rem;margin:3rem auto 0}
+.scrollhint{display:flex;flex-direction:column;align-items:center;gap:.7rem;margin:3rem auto 0;
+  width:max-content;text-decoration:none}
+.scrollhint .hintword{font-family:var(--body);font-weight:500;font-size:.68rem;
+  letter-spacing:.32em;text-transform:uppercase;color:var(--faint);transition:color .25s}
+.scrollhint:hover .hintword{color:var(--wood)}
 .scrollhint .bar{width:1px;height:58px;background:var(--line);overflow:hidden;position:relative}
 .scrollhint .bar::after{content:"";position:absolute;top:-40%;left:0;width:100%;
   height:40%;background:var(--wood);animation:drop 2.2s ease-in-out infinite}
@@ -162,6 +167,7 @@ main.acc-amber{--acc:var(--amber)}
 .btn::after{content:"→";transition:transform .18s}
 .btn:hover{transform:translateY(-2px);box-shadow:var(--glow)}
 .btn:hover::after{transform:translateX(4px)}
+.btn:active{transform:translateY(0) scale(.98)}
 .btn--line{background:rgba(255,255,255,.4);color:var(--green);
   border:1px solid rgba(51,96,79,.35);backdrop-filter:blur(8px);box-shadow:none}
 .btn--line:hover{border-color:var(--green);box-shadow:none}
@@ -186,8 +192,13 @@ main.acc-amber{--acc:var(--amber)}
 }
 
 /* ---------- Die Weiche: Consulting / Akademie ---------- */
-.fork{display:grid;gap:1.6rem;margin-top:2.6rem}
+.fork{display:grid;gap:1.6rem;margin-top:2.6rem;position:relative}
 @media(min-width:860px){.fork{grid-template-columns:1fr 1fr;gap:2rem}}
+.fork__or{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;
+  width:3.6rem;height:3.6rem;border-radius:50%;display:grid;place-items:center;
+  background:var(--paper);border:1px solid var(--hairline);
+  font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--wood);
+  box-shadow:0 8px 24px rgba(62,50,34,.14);pointer-events:none}
 .forkcard{--facc:var(--green);display:flex;flex-direction:column;align-items:center;
   text-align:center;text-decoration:none;color:var(--ink);position:relative;
   background:var(--glass);border:1px solid var(--glass-edge);border-radius:24px;
@@ -199,6 +210,7 @@ main.acc-amber{--acc:var(--amber)}
   transition:transform .25s,box-shadow .25s,background .25s}
 .forkcard:hover{transform:translateY(-5px);background:rgba(255,255,255,.45);
   box-shadow:var(--shadow),var(--glow),inset 0 1px 0 rgba(255,255,255,.95)}
+.forkcard:active{transform:translateY(-2px) scale(.99)}
 .forkcard--akademie{--facc:var(--blue)}
 .forkcard__aud{font-family:var(--body);font-weight:500;font-size:.76rem;
   letter-spacing:.28em;text-transform:uppercase;color:var(--facc);margin-bottom:1.1rem}
