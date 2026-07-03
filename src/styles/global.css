@@ -4,7 +4,7 @@
   --green:#33604F; --blue:#3F5E7E; --amber:#B0690F;
   --amber-soft:#E5A254; --wood:#B9885C;
   --line:rgba(38,34,27,.12); --hairline:rgba(185,136,92,.4);
-  --glass:rgba(255,255,255,.3); --glass-edge:rgba(255,255,255,.8);
+  --glass:rgba(255,255,255,.44); --glass-edge:rgba(255,255,255,.85);
   --glow:0 0 70px rgba(229,162,84,.28);
   --shadow:0 24px 60px rgba(62,50,34,.10);
   --disp:'Marcellus',Georgia,serif;
@@ -24,21 +24,8 @@ p{margin-bottom:1rem}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
   overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-/* ---------- Atmosphäre: Lichtflecken + Wellenfeld ---------- */
+/* ---------- Atmosphäre: Wellenfeld ---------- */
 #ambient{position:fixed;inset:0;z-index:0;pointer-events:none}
-.blob{position:fixed;border-radius:50%;filter:blur(75px);z-index:0;pointer-events:none;opacity:.7}
-.blob--g{width:48vw;height:48vw;left:-12vw;top:-10vw;
-  background:radial-gradient(circle,rgba(51,96,79,.18),transparent 68%)}
-.blob--b{width:42vw;height:42vw;right:-14vw;top:22vh;
-  background:radial-gradient(circle,rgba(63,94,126,.16),transparent 68%)}
-.blob--a{width:54vw;height:54vw;left:18vw;bottom:-22vw;
-  background:radial-gradient(circle,rgba(229,162,84,.2),transparent 68%)}
-@keyframes drift1{from{transform:translate(0,0)}to{transform:translate(4vw,3vh)}}
-@keyframes drift2{from{transform:translate(0,0)}to{transform:translate(-3vw,4vh)}}
-@keyframes drift3{from{transform:translate(0,0)}to{transform:translate(3vw,-3vh)}}
-.blob--g{animation:drift1 26s ease-in-out infinite alternate}
-.blob--b{animation:drift2 32s ease-in-out infinite alternate}
-.blob--a{animation:drift3 28s ease-in-out infinite alternate}
 .site{position:relative;z-index:2}
 .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1.2rem,5vw,3rem)}
 .wrap--menu{max-width:840px}
@@ -112,10 +99,6 @@ main.acc-amber{--acc:var(--amber)}
 .floor{min-height:100svh;display:flex;align-items:center;position:relative;padding:7rem 0 4rem}
 .floor--auto{min-height:0;padding:clamp(4rem,10vw,7rem) 0}
 .floor .wrap{width:100%;position:relative;z-index:1}
-.deco{position:absolute;border-radius:50%;pointer-events:none;filter:blur(30px);z-index:0}
-.deco--amber{background:radial-gradient(circle,rgba(229,162,84,.3),transparent 66%)}
-.deco--green{background:radial-gradient(circle,rgba(51,96,79,.24),transparent 66%)}
-.deco--blue{background:radial-gradient(circle,rgba(63,94,126,.22),transparent 66%)}
 .floor h1{font-size:clamp(2.5rem,8.5vw,5.2rem);max-width:12em}
 .floor h2{font-size:clamp(1.9rem,6vw,3.4rem);max-width:15em;margin-bottom:1.3rem}
 .lead{font-size:clamp(1.02rem,2.3vw,1.22rem);max-width:34em;color:var(--dim);font-weight:400}
@@ -217,38 +200,15 @@ main.acc-amber{--acc:var(--amber)}
 .forkcard h3{font-size:clamp(2rem,5.5vw,2.9rem);margin-bottom:.7rem;transition:color .25s}
 .forkcard:hover h3{color:var(--facc)}
 .forkcard .voice{font-size:clamp(1.1rem,2.4vw,1.3rem);max-width:22em;margin:0 auto}
-.forkcard__list{list-style:none;margin:1.4rem auto .4rem;max-width:22em;width:100%}
-.forkcard__list li{padding:.55rem 0;font-size:.95rem;color:var(--dim);
-  font-family:var(--body);letter-spacing:.02em}
-.forkcard__list li+li{border-top:1px solid var(--line)}
-.forkcard .gang__go{color:var(--facc);margin-top:auto;padding-top:1.2rem}
+.forkcard__go{display:inline-flex;align-items:center;gap:.5rem;margin-top:auto;
+  padding-top:1.6rem;font-family:var(--body);font-weight:500;letter-spacing:.04em;
+  font-size:.95rem;color:var(--facc)}
+.forkcard__go::after{content:"→";color:var(--wood);transition:transform .2s}
+.forkcard:hover .forkcard__go::after{transform:translateX(5px)}
 
-/* ---------- Drei Bereiche ---------- */
+/* ---------- Sektionsköpfe ---------- */
 .menuhead{text-align:center;margin-bottom:1.2rem}
 .menuhead h2{max-width:none;margin-bottom:.7rem}
-.gangs{background:var(--glass);backdrop-filter:blur(18px) saturate(1.2);
-  border:1px solid var(--glass-edge);border-radius:24px;box-shadow:var(--shadow);
-  overflow:hidden;margin-top:2.2rem}
-.gang{display:block;text-align:center;text-decoration:none;color:var(--ink);
-  padding:clamp(2.2rem,6vw,3.2rem) clamp(1rem,4vw,2.5rem);position:relative;
-  overflow:hidden;transition:background .25s}
-.gang::before{content:attr(data-num);position:absolute;top:50%;left:1.5%;
-  transform:translateY(-50%);font-family:var(--disp);line-height:1;
-  font-size:clamp(6rem,16vw,10rem);
-  color:color-mix(in srgb,var(--gacc,var(--green)) 13%,transparent);
-  pointer-events:none}
-.gang+.gang{border-top:1px solid var(--line)}
-.gang:hover{background:rgba(255,255,255,.5)}
-.gang h3{font-size:clamp(1.9rem,5.5vw,3rem);margin-bottom:.7rem;transition:color .25s}
-.gang:hover h3{color:var(--gacc,var(--green))}
-.gang .voice{max-width:30em;margin:0 auto .4rem;font-size:clamp(1.15rem,2.6vw,1.4rem)}
-.gang__go{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;
-  font-family:var(--body);font-weight:500;letter-spacing:.04em;font-size:.95rem;color:var(--green)}
-.gang__go::after{content:"→";color:var(--wood);transition:transform .2s}
-.gang:hover .gang__go::after{transform:translateX(5px)}
-.gang--1{--gacc:var(--green)}
-.gang--2{--gacc:var(--blue)}
-.gang--3{--gacc:var(--amber)}
 
 /* ---------- Modellrechnung / Kalkulator ---------- */
 .bill{background:var(--glass);backdrop-filter:blur(18px) saturate(1.2);
