@@ -262,14 +262,66 @@ main.acc-amber{--acc:var(--amber)}
 .robothero img{position:relative;width:100%;height:auto;animation:bob 5.5s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6%)}}
 
-/* ---------- Konzept-Schritte ---------- */
-.steps{border-top:1px solid var(--line);margin-top:2.4rem}
-.step{display:grid;grid-template-columns:auto 1fr;gap:.2rem 1.6rem;
-  padding:1.6rem 0;border-bottom:1px solid var(--line)}
-.step__num{font-family:var(--serif);font-style:italic;color:var(--wood);
-  font-size:1.5rem;line-height:1.3;min-width:2.4rem}
-.step h3{font-size:clamp(1.3rem,3.5vw,1.7rem);margin-bottom:.35rem}
-.step p{margin:0;color:var(--dim);max-width:42em}
+/* ---------- Konzept: Kartenstapel ---------- */
+.deck{position:relative;max-width:520px;min-height:360px;margin:3.4rem auto 0}
+.deckcard{position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:.4rem;text-align:center;
+  background:rgba(255,255,255,.6);border:1px solid var(--glass-edge);border-radius:24px;
+  backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95);
+  padding:2.2rem 1.8rem;cursor:pointer;font-family:var(--body);color:var(--ink);
+  transition:transform .55s cubic-bezier(.3,.7,.3,1),box-shadow .3s;will-change:transform}
+.deckcard[data-pos="0"]{transform:none;z-index:3}
+.deckcard[data-pos="1"]{transform:translate(16px,16px) rotate(1.7deg);z-index:2}
+.deckcard[data-pos="2"]{transform:translate(32px,30px) rotate(-1.5deg);z-index:1}
+.deckcard[data-pos="1"],.deckcard[data-pos="2"]{box-shadow:0 14px 34px rgba(62,50,34,.09)}
+.deckcard:focus-visible{z-index:4}
+.deckcard__art{width:96px;color:var(--wood);opacity:.65;margin-bottom:.4rem}
+.deckcard__num{font-family:var(--serif);font-style:italic;color:var(--wood);font-size:1.15rem}
+.deckcard h3{font-size:clamp(1.7rem,4.5vw,2.3rem)}
+.deckcard .voice{font-size:clamp(1.05rem,2.2vw,1.2rem);max-width:20em;margin:0}
+.deckcard__hint{margin-top:.9rem;font-weight:500;font-size:.82rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--faint);transition:color .25s}
+.deckcard[data-pos="0"]:hover .deckcard__hint{color:var(--green)}
+.deck__dots{display:flex;justify-content:center;gap:.9rem;margin-top:1.4rem;
+  position:relative;z-index:4}
+.deck__dots button{width:.85rem;height:.85rem;min-width:0;border-radius:50%;border:1px solid var(--wood);
+  background:transparent;cursor:pointer;padding:0;transition:background .25s,transform .25s}
+.deck__dots button[aria-current="true"]{background:var(--wood);transform:scale(1.15)}
+
+/* ---------- Konzept: Overlay ---------- */
+.stepdialog{border:1px solid var(--glass-edge);border-radius:24px;padding:0;
+  width:min(92vw,600px);background:rgba(251,249,245,.92);
+  backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);
+  box-shadow:0 40px 90px rgba(38,34,27,.3)}
+.stepdialog::backdrop{background:rgba(38,34,27,.38);backdrop-filter:blur(5px)}
+.stepdialog[open]{animation:dialogin .35s cubic-bezier(.2,.7,.3,1)}
+@keyframes dialogin{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+.stepdialog__in{padding:clamp(2rem,5vw,3rem)}
+.stepdialog__close{position:absolute;top:.9rem;right:.9rem;width:44px;height:44px;
+  border:0;background:none;cursor:pointer;font-size:1.5rem;line-height:1;color:var(--dim);
+  border-radius:50%;transition:color .2s,background .2s}
+.stepdialog__close:hover{color:var(--ink);background:rgba(38,34,27,.06)}
+.stepdialog h3{font-size:clamp(1.7rem,4.5vw,2.4rem);margin:.2rem 0 1rem}
+.stepdialog .deckcard__num{font-size:1.05rem}
+.stepdialog p{color:var(--dim)}
+.stepdialog .modell{margin:1.4rem 0 0;padding:1.1rem 1.3rem;border-left:2px solid var(--wood);
+  background:rgba(229,162,84,.08);border-radius:0 12px 12px 0;color:var(--ink);font-size:.98rem}
+@media(prefers-reduced-motion:reduce){
+  .deckcard{transition:none}
+  .stepdialog[open]{animation:none}
+}
+
+/* ---------- Gründungsgeschichte ---------- */
+.storybox{display:flex;align-items:center;gap:1.4rem;margin-top:2.4rem;max-width:560px;
+  background:var(--glass);border:1px solid var(--glass-edge);border-radius:18px;
+  backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95);
+  padding:1.4rem 1.6rem}
+.storybox__play{flex:none;width:3.4rem;height:3.4rem;border-radius:50%;
+  border:1px solid var(--hairline);display:grid;place-items:center;color:var(--wood);
+  background:var(--paper)}
+.storybox p{margin:0;font-size:.95rem;color:var(--dim)}
 
 /* ---------- Zeilen-Listen ---------- */
 .rows{border-top:1px solid var(--line);margin-top:2.2rem}
