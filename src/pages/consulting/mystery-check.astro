@@ -24,19 +24,6 @@ import Base from '../../layouts/Base.astro';
         <div class="trio__cell"><span class="trio__big">5–10 Maßnahmen</span><span class="trio__sub">priorisiert &amp; sofort umsetzbar</span></div>
       </div>
 
-      <!-- Erkennen Sie sich wieder? -->
-      <div class="mcsection reveal">
-        <p class="eyebrow eyebrow--c" style="--acc:var(--wood)">Erkennen Sie sich wieder?</p>
-        <div class="qgrid">
-          <p class="qitem">Findet ein Gast schnell, was er sucht?</p>
-          <p class="qitem">Wirkt die Website so klar und gastfreundlich wie der Betrieb selbst?</p>
-          <p class="qitem">Werden Anfragen schnell, freundlich und verbindlich beantwortet?</p>
-          <p class="qitem">Passen Erwartung und tatsächliches Erlebnis zusammen?</p>
-          <p class="qitem">Werden Service- und Verkaufspotenziale genutzt?</p>
-          <p class="qitem">Wird Feedback aktiv aufgenommen oder dem Zufall überlassen?</p>
-        </div>
-      </div>
-
       <!-- Ablauf: interaktiver Stepper -->
       <div class="mcsection reveal">
         <p class="eyebrow eyebrow--c" style="--acc:var(--wood)">So läuft es ab</p>
@@ -169,15 +156,6 @@ import Base from '../../layouts/Base.astro';
   .mcsection__hint{text-align:center;font-family:var(--serif);font-style:italic;
     color:var(--faint);font-size:1.1rem;margin:-.4rem 0 1.8rem}
 
-  /* Fragen */
-  .qgrid{display:grid;gap:.4rem 2.5rem;max-width:900px;margin:0 auto}
-  @media(min-width:760px){.qgrid{grid-template-columns:1fr 1fr}}
-  .qitem{display:flex;gap:.9rem;align-items:baseline;margin:0;padding:.85rem 0;
-    border-bottom:1px solid var(--line);font-family:var(--serif);
-    font-size:1.2rem;line-height:1.4;color:var(--dim)}
-  .qitem::before{content:"„";font-style:italic;font-size:2rem;line-height:.6;
-    color:var(--wood);opacity:.6;flex:none}
-
   /* Stepper */
   .stepper{position:relative;display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap}
   .stepper__track{position:absolute;top:2.7rem;left:8%;right:8%;height:1px;
@@ -201,6 +179,7 @@ import Base from '../../layouts/Base.astro';
     border-radius:22px;padding:clamp(1.8rem,4vw,2.6rem);
     backdrop-filter:blur(14px);box-shadow:var(--shadow)}
   .stepdetail article{display:flex;gap:1.8rem;align-items:flex-start;animation:stepin .35s ease both}
+  .stepdetail article[hidden]{display:none}
   @keyframes stepin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
   .stepdetail__num{font-family:var(--serif);font-style:italic;font-weight:500;
     font-size:clamp(3rem,7vw,4.4rem);line-height:.8;color:var(--wood);flex:none}
