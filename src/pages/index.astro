@@ -63,7 +63,7 @@ import roboter from '../assets/roboter.png';
       </div>
 
       <div class="deck reveal" id="deck">
-        <button class="deckcard" data-step="lernen" data-pos="0" aria-haspopup="dialog">
+        <button class="deckcard" data-step="lernen" aria-haspopup="dialog">
           <svg class="deckcard__art" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M50 14 C 38 6, 22 6, 14 12 L14 46 C 22 40, 38 40, 50 48"/>
             <path d="M50 14 C 62 6, 78 6, 86 12 L86 46 C 78 40, 62 40, 50 48"/>
@@ -74,7 +74,7 @@ import roboter from '../assets/roboter.png';
           <p class="voice">Wissen, das man am nächsten Tag benutzt.</p>
           <span class="deckcard__hint">Mehr erfahren</span>
         </button>
-        <button class="deckcard" data-step="umsetzen" data-pos="1" aria-haspopup="dialog">
+        <button class="deckcard" data-step="umsetzen" aria-haspopup="dialog">
           <svg class="deckcard__art" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M8 42 C 24 28, 40 48, 56 36 C 64 30, 70 26, 78 22"/>
             <path d="M70 14 L82 20 L74 31"/>
@@ -84,7 +84,7 @@ import roboter from '../assets/roboter.png';
           <p class="voice">Projekte, die man am Monatsende misst.</p>
           <span class="deckcard__hint">Mehr erfahren</span>
         </button>
-        <button class="deckcard" data-step="dranbleiben" data-pos="2" aria-haspopup="dialog">
+        <button class="deckcard" data-step="dranbleiben" aria-haspopup="dialog">
           <svg class="deckcard__art" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M32 14 A 24 20 0 0 1 70 20"/>
             <path d="M64 10 L72 21 L58 24"/>
@@ -96,11 +96,6 @@ import roboter from '../assets/roboter.png';
           <p class="voice">Systeme, die auch nächstes Jahr noch laufen.</p>
           <span class="deckcard__hint">Mehr erfahren</span>
         </button>
-      </div>
-      <div class="deck__dots" role="group" aria-label="Karte wählen">
-        <button type="button" data-dot="0" aria-label="Karte 1: Lernen" aria-current="true"></button>
-        <button type="button" data-dot="1" aria-label="Karte 2: Umsetzen"></button>
-        <button type="button" data-dot="2" aria-label="Karte 3: Dranbleiben"></button>
       </div>
       <a class="scrollhint" href="#geschichte" aria-label="Weiter zur Gründungsgeschichte">
         <span class="hintword">Entdecken</span><span class="bar" aria-hidden="true"></span>
@@ -224,34 +219,9 @@ import roboter from '../assets/roboter.png';
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); spinAndGo(); }
   });
 
-  /* ---------- Konzept-Kartenstapel ---------- */
+  /* ---------- Konzept-Karten: Klick öffnet das Overlay ---------- */
   const deck = document.getElementById('deck')!;
   const cards = Array.from(deck.querySelectorAll<HTMLButtonElement>('.deckcard'));
-  const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('.deck__dots button'));
-  let order = [0, 1, 2];
-
-  function applyOrder() {
-    order.forEach((cardIdx, pos) => { cards[cardIdx].dataset.pos = String(pos); });
-    dots.forEach((d, i) => {
-      d.setAttribute('aria-current', i === order[0] ? 'true' : 'false');
-    });
-  }
-  function cycle() {
-    order.push(order.shift()!);
-    applyOrder();
-  }
-  function bringToFront(cardIdx: number) {
-    while (order[0] !== cardIdx) { order.push(order.shift()!); }
-    applyOrder();
-  }
-
-  /* Drüberfahren blättert zur nächsten Karte (nur Maus, nicht Touch) */
-  if (window.matchMedia('(hover:hover) and (pointer:fine)').matches && !reduced) {
-    deck.addEventListener('pointerenter', () => cycle());
-  }
-  dots.forEach((d, i) => d.addEventListener('click', () => bringToFront(i)));
-
-  /* Klick öffnet das Overlay mit der Begründung */
   const dialog = document.getElementById('stepdialog') as HTMLDialogElement;
   const panels = Array.from(dialog.querySelectorAll<HTMLElement>('[data-panel]'));
   cards.forEach((card) => {
