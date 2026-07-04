@@ -340,14 +340,14 @@ a.offercard:hover h3{color:var(--facc)}
 .offercard .forkcard__go{margin-top:auto;padding-top:1.1rem}
 
 /* ---------- Consulting: die Kurslinie ---------- */
-.kurs{position:relative;margin-top:3.4rem;padding:1.5rem 0 .5rem}
+.kurs{position:relative;margin-top:2.2rem;padding:2.6rem 0}
 .kurs__line{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);
   width:130px;height:100%;overflow:visible;pointer-events:none}
 .kurs__path{stroke:var(--wood);stroke-width:2;fill:none;opacity:.8;
   filter:drop-shadow(0 0 7px rgba(229,162,84,.5))}
-.station{position:relative;padding-top:4.8rem;margin-bottom:3.4rem}
+.station{position:relative;margin-bottom:2.8rem}
 .station:last-of-type{margin-bottom:0}
-.station__num{position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:2;
+.station__num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;
   width:3.2rem;height:3.2rem;border-radius:50%;display:grid;place-items:center;
   background:var(--paper);border:1px solid var(--hairline);
   font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--wood);
@@ -356,15 +356,13 @@ a.offercard:hover h3{color:var(--facc)}
 .station__links{display:flex;flex-direction:column;gap:.15rem;margin-top:.3rem}
 .station__links .arrowlink{margin-top:.6rem}
 @media(min-width:860px){
-  .station{display:grid;grid-template-columns:1fr 1fr;column-gap:6.5rem}
+  .station{display:grid;grid-template-columns:1fr 1fr;column-gap:7rem}
   .station:nth-of-type(odd) .station__card{grid-column:2;justify-self:start}
-  .station:nth-of-type(even) .station__card{grid-column:1;justify-self:end;text-align:right}
-  .station:nth-of-type(even) .station__card .chips{justify-content:flex-end}
-  .station:nth-of-type(even) .station__card .arrowlink{flex-direction:row-reverse}
+  .station:nth-of-type(even) .station__card{grid-column:1;justify-self:end}
 }
 @media(max-width:859px){
   .kurs__line{left:26px;transform:none;width:56px}
-  .station__num{left:26px}
+  .station__num{left:26px;transform:translate(-50%,-50%)}
   .station__card{margin-left:64px;max-width:none}
 }
 .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
