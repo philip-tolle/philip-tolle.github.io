@@ -147,6 +147,26 @@ const orgSchema = JSON.stringify({
   window.addEventListener('scroll', headerScroll, { passive: true });
   headerScroll();
 
+  /* ---------- Münzen: Tilt + wandernder Lichtreflex ---------- */
+  if (window.matchMedia('(hover:hover) and (pointer:fine)').matches && !reduced) {
+    document.querySelectorAll<HTMLElement>('.coin[data-tilt]').forEach((coin) => {
+      coin.addEventListener('pointermove', (e) => {
+        const r = coin.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - .5;
+        const y = (e.clientY - r.top) / r.height - .5;
+        coin.style.transform = 'perspective(600px) rotateX(' + (-y * 10).toFixed(2) +
+          'deg) rotateY(' + (x * 10).toFixed(2) + 'deg)';
+        coin.style.setProperty('--gx', (50 + x * 46).toFixed(1) + '%');
+        coin.style.setProperty('--gy', (38 + y * 46).toFixed(1) + '%');
+      });
+      coin.addEventListener('pointerleave', () => {
+        coin.style.transform = '';
+        coin.style.setProperty('--gx', '50%');
+        coin.style.setProperty('--gy', '35%');
+      });
+    });
+  }
+
   /* ---------- Fußzeile: Jahr ---------- */
   const year = document.getElementById('year');
   if (year) { year.textContent = String(new Date().getFullYear()); }

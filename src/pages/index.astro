@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import logo from '../assets/nc-logo.png';
 import roboter from '../assets/roboter.png';
+import philip from '../assets/philip.png';
 ---
 <Base
   title="NextCourse — Bildungs-, Beratungs- und Umsetzungspartner für das Gastgewerbe"
@@ -35,12 +36,22 @@ import roboter from '../assets/roboter.png';
       <div class="fork">
         <span class="fork__or" aria-hidden="true">oder</span>
         <a class="forkcard reveal" href="/consulting/">
+          <span class="coin" style="--coin:118px;margin-bottom:1.1rem" aria-hidden="true">
+            <Image src={roboter} alt="" width={280} format="webp" quality={80} />
+          </span>
           <p class="forkcard__aud">Für Betriebe &amp; Unternehmer</p>
           <h3>Consulting</h3>
           <p class="voice">Digitalisierung und KI, die im Betrieb ankommen.</p>
           <span class="forkcard__go">Zum Consulting</span>
         </a>
         <a class="forkcard forkcard--akademie reveal" href="/akademie/">
+          <span class="coin coin--art" style="--coin:118px;margin-bottom:1.1rem" aria-hidden="true">
+            <svg viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M50 14 C 38 6, 22 6, 14 12 L14 46 C 22 40, 38 40, 50 48"/>
+              <path d="M50 14 C 62 6, 78 6, 86 12 L86 46 C 78 40, 62 40, 50 48"/>
+              <path d="M50 14 L50 48"/>
+            </svg>
+          </span>
           <p class="forkcard__aud">Für alle, die weiterkommen wollen</p>
           <h3>Akademie</h3>
           <p class="voice">Kurse, die man morgen im Betrieb spürt.</p>
@@ -137,6 +148,9 @@ import roboter from '../assets/roboter.png';
         <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Die Gründungsgeschichte</p>
         <h2 class="reveal">Angefangen hat alles in Neuseeland.</h2>
         <p class="lead reveal">Warum NextCourse? Die Antwort beginnt am anderen Ende der Welt. Die ganze Geschichte erzählt Philip hier bald selbst — zum Anhören.</p>
+      </div>
+      <div class="coin reveal" data-tilt style="--coin:150px;margin:2.4rem auto 0">
+        <Image src={philip} alt="Philip Tolle, Gründer von NextCourse" width={360} format="webp" quality={82} />
       </div>
       <div class="storybox reveal">
         <span class="storybox__play" aria-hidden="true">
