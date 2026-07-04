@@ -321,6 +321,42 @@ main.acc-amber{--acc:var(--amber)}
   background:var(--paper)}
 .storybox p{margin:0;font-size:.95rem;color:var(--dim)}
 
+/* ---------- Leistungs-Karten (Consulting/Akademie) ---------- */
+.offers{display:grid;gap:1.6rem;margin-top:2.6rem}
+@media(min-width:760px){.offers{grid-template-columns:1fr 1fr}}
+.offercard{--facc:var(--acc,var(--green));display:flex;flex-direction:column;gap:.55rem;
+  background:var(--glass);border:1px solid var(--glass-edge);border-radius:20px;
+  padding:1.9rem 1.7rem;text-decoration:none;color:var(--ink);
+  backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95);
+  transition:transform .25s,box-shadow .25s}
+a.offercard:hover{transform:translateY(-4px);
+  box-shadow:var(--shadow),var(--glow),inset 0 1px 0 rgba(255,255,255,.95)}
+a.offercard:active{transform:translateY(-1px) scale(.995)}
+.offercard h3{font-size:clamp(1.4rem,3.5vw,1.8rem);transition:color .25s}
+a.offercard:hover h3{color:var(--facc)}
+.offercard p{margin:0;color:var(--dim);font-size:.97rem}
+.offercard .forkcard__go{margin-top:auto;padding-top:1.1rem}
+
+/* ---------- Angebots-Unterseite: Layout + Zeitleiste ---------- */
+.offer{display:grid;gap:2.8rem;align-items:start}
+@media(min-width:960px){.offer{grid-template-columns:1fr 360px;gap:4rem}}
+.offer__aside{position:static}
+@media(min-width:960px){.offer__aside{position:sticky;top:6.5rem}}
+.offer h2{font-size:clamp(1.6rem,4vw,2.2rem);margin-top:2.8rem}
+.offer h2:first-child{margin-top:0}
+.tl{list-style:none;margin-top:1.8rem;position:relative}
+.tl::before{content:"";position:absolute;left:.42rem;top:.6rem;bottom:.6rem;width:1px;
+  background:var(--hairline)}
+.tl li{position:relative;padding:0 0 1.7rem 2.3rem}
+.tl li:last-child{padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:0;top:.4rem;width:.9rem;height:.9rem;
+  border-radius:50%;background:var(--paper);border:1px solid var(--wood)}
+.tl h3{font-size:clamp(1.15rem,3vw,1.45rem);margin-bottom:.25rem}
+.tl h3 .tl__num{font-family:var(--serif);font-style:italic;color:var(--wood);
+  font-size:.95em;margin-right:.5rem}
+.tl p{margin:0;color:var(--dim);max-width:38em}
+
 /* ---------- Zeilen-Listen ---------- */
 .rows{border-top:1px solid var(--line);margin-top:2.2rem}
 .row{padding:1.7rem 0;border-bottom:1px solid var(--line);transition:padding-left .25s}

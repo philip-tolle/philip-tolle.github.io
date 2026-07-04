@@ -10,7 +10,10 @@ const links = [
   { href: '/kontakt/', label: 'Kontakt', overlayLabel: 'Kontakt' },
 ];
 const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
-const isActive = (href: string) => (href.replace(/\/+$/, '') || '/') === current;
+const isActive = (href: string) => {
+  const h = href.replace(/\/+$/, '') || '/';
+  return h === current || (h !== '/' && current.startsWith(h + '/'));
+};
 ---
 <header class="header" id="header">
   <div class="header__in">
