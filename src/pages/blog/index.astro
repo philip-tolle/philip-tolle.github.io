@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const fmt = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base
+  title="Blog — NextCourse"
+  description="KI, Digitalisierung und Weiterbildung für das Gastgewerbe — praxisnah erklärt. Der NextCourse-Blog für Hoteliers, Gastronomen und alle, die weiterkommen wollen."
+>
+  <div class="pagehead">
+    <div class="wrap">
+      <p class="eyebrow">Blog</p>
+      <h1>Wissen für Gastgeber.</h1>
+      <p class="lead">KI, Digitalisierung und Weiterbildung im Gastgewerbe — praxisnah statt paragraphenlastig.</p>
+    </div>
+  </div>
+
+  <div class="floor--auto floor" style="padding-top:1rem">
+    <div class="wrap" style="max-width:840px">
+      <div class="postlist reveal stagger">
+        {posts.map((post) => (
+          <a class="offercard" href={`/blog/${post.id}/`}>
+            <p class="postmeta">
+              <time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time>
+              {post.data.tags.map((t) => <span class="chip">{t}</span>)}
+            </p>
+            <h2 class="postcard__title">{post.data.title}</h2>
+            <p>{post.data.description}</p>
+            <span class="forkcard__go">Weiterlesen</span>
+          </a>
+        ))}
+      </div>
+      {posts.length === 0 && (
+        <p class="dim" style="text-align:center;margin-top:3rem">Die ersten Artikel erscheinen in Kürze.</p>
+      )}
+    </div>
+  </div>
+</Base>
