@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
+import philip from '../../assets/philip.png';
 ---
 <Base
   title="Mystery Check — NextCourse Consulting"
@@ -109,6 +111,61 @@ import Base from '../../layouts/Base.astro';
         </div>
       </div>
 
+      <!-- Der Blick dahinter -->
+      <div class="mcsection reveal" style="text-align:center">
+        <p class="eyebrow eyebrow--c" style="--acc:var(--wood)">Der Blick dahinter</p>
+        <h2 style="max-width:none;font-size:clamp(1.7rem,4.5vw,2.4rem)">Ich sehe, was Gästen auffällt — und Betrieben entgeht.</h2>
+        <div class="coin" data-tilt style="--coin:140px;margin:2rem auto 0">
+          <Image src={philip} alt="Philip Tolle, Gründer von NextCourse" width={340} format="webp" quality={82} />
+        </div>
+        <p class="voice" style="max-width:30em;margin:1.8rem auto 0">Ich habe ADHS. Im Alltag heißt das: Mein Kopf macht keine Pausen. Im Mystery Check heißt es: Ihrem Betrieb entgeht nichts.</p>
+        <div class="traits">
+          <div class="trait">
+            <span class="coin coin--art" style="--coin:88px" aria-hidden="true">
+              <svg viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 30 C 30 12, 70 12, 86 30 C 70 48, 30 48, 14 30 Z"/>
+                <circle cx="50" cy="30" r="9"/>
+              </svg>
+            </span>
+            <h3>Details, die auffallen</h3>
+            <p>Der schiefe Aushang, die müde Begrüßung, der Moment zu lang in der Warteschleife — ich sehe es, ohne zu suchen.</p>
+          </div>
+          <div class="trait">
+            <span class="coin coin--art" style="--coin:88px" aria-hidden="true">
+              <svg viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="22" cy="16" r="4"/><circle cx="78" cy="12" r="4"/>
+                <circle cx="34" cy="46" r="4"/><circle cx="70" cy="42" r="4"/>
+                <path d="M26 18 L74 14 M25 19 L32 42 M37 44 L66 42 M74 16 L71 38"/>
+              </svg>
+            </span>
+            <h3>Verbindungen sehen</h3>
+            <p>Mein Kopf verknüpft ständig — was an der Rezeption beginnt, endet oft in der Küche. Solche Zusammenhänge bleiben anderen verborgen.</p>
+          </div>
+          <div class="trait">
+            <span class="coin coin--art" style="--coin:88px" aria-hidden="true">
+              <svg viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="50" cy="30" r="22"/><circle cx="50" cy="30" r="11"/>
+                <circle cx="50" cy="30" r="2.5" fill="currentColor"/>
+                <path d="M50 2 L50 8 M50 52 L50 58 M22 30 L28 30 M72 30 L78 30"/>
+              </svg>
+            </span>
+            <h3>Hyperfokus</h3>
+            <p>Wenn ich in Ihrem Betrieb bin, bin ich ganz da — stundenlang, mit voller Aufmerksamkeit für jede Kleinigkeit.</p>
+          </div>
+          <div class="trait">
+            <span class="coin coin--art" style="--coin:88px" aria-hidden="true">
+              <svg viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M50 52 C 20 34, 24 10, 42 12 C 48 13, 50 18, 50 20 C 50 18, 52 13, 58 12 C 76 10, 80 34, 50 52 Z"/>
+                <path d="M32 30 L42 30 L46 22 L52 38 L56 30 L68 30"/>
+              </svg>
+            </span>
+            <h3>Gespür für Menschen</h3>
+            <p>Stimmungen bei Gästen und im Team spüre ich oft, bevor sie jemand ausspricht.</p>
+          </div>
+        </div>
+        <p class="small faint" style="max-width:34em;margin:2rem auto 0">ADHS ist keine Schwäche — es ist der Grund, warum dieser Check anders ist als jede Checkliste.</p>
+      </div>
+
       <!-- Das bekommen Sie -->
       <div class="mcsection reveal">
         <p class="eyebrow eyebrow--c" style="--acc:var(--wood)">Das bekommen Sie</p>
@@ -193,6 +250,14 @@ import Base from '../../layouts/Base.astro';
     background:transparent;border:1px solid rgba(38,34,27,.3);color:var(--dim);transition:all .2s}
   .stepnav button:last-child{background:var(--wood);border-color:var(--wood);color:var(--paper)}
   .stepnav button:disabled{opacity:.35;cursor:default}
+
+  /* Der Blick dahinter */
+  .traits{display:grid;gap:1.8rem 1.4rem;margin-top:2.6rem;text-align:center}
+  @media(min-width:700px){.traits{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1000px){.traits{grid-template-columns:repeat(4,1fr)}}
+  .trait{display:flex;flex-direction:column;align-items:center;gap:.6rem}
+  .trait h3{font-size:1.1rem;margin-top:.4rem}
+  .trait p{margin:0;font-size:.88rem;line-height:1.55;color:var(--faint);max-width:24em}
 
   /* Ampel */
   .legend{display:flex;justify-content:center;gap:1.6rem;flex-wrap:wrap;margin-bottom:1.4rem;
