@@ -264,38 +264,39 @@ main.acc-amber{--acc:var(--amber)}
 .robothero img{position:relative;width:100%;height:auto;animation:bob 5.5s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6%)}}
 
-/* ---------- Idee: große Zahlen ---------- */
-.ideestats{display:grid;gap:2rem;margin:3rem auto 0;max-width:920px;text-align:center}
-@media(min-width:720px){.ideestats{grid-template-columns:1fr 1px 1fr 1px 1fr;gap:0 2.4rem;align-items:center}}
-.ideestats__div{display:none}
-@media(min-width:720px){.ideestats__div{display:block;width:1px;height:5.5rem;
-  background:var(--hairline);justify-self:center}}
-.ideestat__n{display:block;font-family:var(--disp);font-size:clamp(2.8rem,7vw,4.6rem);
-  line-height:.95;color:var(--ink);font-variant-numeric:tabular-nums}
-.ideestat__n b{color:var(--amber-soft);font-weight:400;font-size:.62em;vertical-align:top}
-.ideestat__l{display:block;margin-top:.7rem;font-size:.92rem;color:var(--dim)}
-.ideestat__s{display:block;margin-top:.15rem;font-size:.78rem;color:var(--faint)}
+/* ---------- Idee: Problem links, Lösung rechts ---------- */
+.idee2{display:grid;gap:3.5rem;margin-top:2.2rem}
+@media(min-width:1020px){.idee2{grid-template-columns:1.15fr 1px 1fr;gap:0 3.5rem;
+  align-items:center}}
+.idee2__div{display:none}
+@media(min-width:1020px){.idee2__div{display:block;width:1px;align-self:stretch;
+  background:linear-gradient(180deg,transparent,var(--hairline) 25%,var(--hairline) 75%,transparent)}}
+.idee2__kicker{font-size:1rem;color:var(--dim);margin:0 0 1.6rem;max-width:34em}
+.idee2__kicker b{color:var(--ink);font-weight:500}
+.idee2__antwort{font-family:var(--disp);font-size:clamp(1.35rem,2.7vw,1.75rem);
+  line-height:1.28;color:var(--ink);margin:.7rem 0 0;max-width:19em}
+.idee2__kern{margin:1.5rem auto 0;text-align:center;font-family:var(--serif);
+  font-style:italic;color:var(--faint);font-size:1.02rem;max-width:26em}
 
-/* ---------- Idee: Drei Kräfte → Zeit ---------- */
-.forces{margin:4rem auto 0;max-width:680px}
-.forces__label{text-align:center;font-family:var(--body);font-weight:500;font-size:.72rem;
-  letter-spacing:.3em;text-transform:uppercase;color:var(--faint);margin-bottom:1.4rem}
-.forces__stage{position:relative;height:230px}
+.forces__stage{position:relative;height:250px;max-width:640px}
 .forces__stage svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .forces__stage svg path{stroke:rgba(138,114,80,.5);stroke-width:1.9;fill:none;
   transition:stroke .3s,stroke-width .3s}
 .forces__stage[data-active="0"] path:nth-of-type(1),
 .forces__stage[data-active="1"] path:nth-of-type(2),
 .forces__stage[data-active="2"] path:nth-of-type(3){stroke:var(--wood);stroke-width:2.8}
-.forces__pill{position:absolute;left:0;width:238px;display:flex;align-items:center;
-  min-height:44px;padding:.65rem 1.1rem;border-radius:13px;cursor:default;
+.forces__pill{position:absolute;left:0;width:250px;display:flex;flex-direction:column;
+  align-items:flex-start;gap:.1rem;min-height:56px;padding:.6rem 1.05rem;
+  border-radius:13px;cursor:default;justify-content:center;
   background:rgba(255,255,255,.6);border:1px solid var(--glass-edge);
-  font-size:.94rem;color:var(--ink);transition:all .28s;
-  box-shadow:0 2px 10px -8px rgba(150,120,80,.3)}
+  transition:all .28s;box-shadow:0 2px 10px -8px rgba(150,120,80,.3)}
+.forces__pill span{font-size:.92rem;font-weight:500;color:var(--ink)}
+.forces__pill b{font-weight:400;font-size:.78rem;color:var(--amber);
+  font-variant-numeric:tabular-nums}
 .forces__pill:hover{background:rgba(185,136,92,.13);border-color:rgba(185,136,92,.55);
   box-shadow:0 14px 30px -18px rgba(150,110,60,.5)}
-.forces__node{position:absolute;right:0;top:50%;transform:translateY(-50%);width:200px;
-  text-align:center;padding:1.4rem 1.1rem;border-radius:18px;background:var(--ink);
+.forces__node{position:absolute;right:0;top:50%;transform:translateY(-50%);width:190px;
+  text-align:center;padding:1.4rem 1rem;border-radius:18px;background:var(--ink);
   box-shadow:0 22px 50px -26px rgba(60,45,25,.65)}
 .forces__node span{display:block;font-size:.64rem;letter-spacing:.24em;
   text-transform:uppercase;color:rgba(229,162,84,.75)}
@@ -303,21 +304,16 @@ main.acc-amber{--acc:var(--amber)}
   font-size:2.1rem;line-height:1;color:#F4ECDD}
 .forces__node span:last-child{color:#B3A894;text-transform:none;letter-spacing:.02em;
   font-size:.76rem}
-.forces__foot{margin-top:1.3rem;min-height:3.2rem;text-align:center}
-.forces__base{margin:0;font-size:.92rem;line-height:1.6;color:var(--faint);max-width:36em;
-  margin-inline:auto}
-.forces__detail{margin:.4rem 0 0;font-family:var(--serif);font-style:italic;
-  font-size:1.15rem;color:var(--amber)}
 @media(max-width:719px){
   .forces__stage{height:auto;position:static;display:flex;flex-direction:column;
-    gap:.7rem;align-items:center}
+    gap:.7rem;align-items:center;max-width:none}
   .forces__stage svg{display:none}
-  .forces__pill{position:static;width:100%;max-width:340px;justify-content:center}
+  .forces__pill{position:static;width:100%;max-width:360px;align-items:center;text-align:center}
   .forces__node{position:static;transform:none;margin-top:.8rem}
 }
 
 /* ---------- Konzept: Kartenstapel zum Umblättern ---------- */
-.deck{position:relative;max-width:520px;min-height:420px;margin:3rem auto 0;cursor:pointer}
+.deck{position:relative;max-width:420px;min-height:350px;margin:1.8rem auto 0;cursor:pointer}
 .deckcard{position:absolute;inset:0;display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:.4rem;text-align:center;
   background:rgba(255,255,255,.72);border:1px solid var(--glass-edge);border-radius:24px;
@@ -333,7 +329,7 @@ main.acc-amber{--acc:var(--amber)}
 .deckcard[data-pos="1"],.deckcard[data-pos="2"]{box-shadow:0 14px 34px rgba(62,50,34,.09)}
 .deckcard.is-leaving{transform:perspective(1000px) translateX(-46%) rotateY(-70deg);
   opacity:0;z-index:4}
-.deckcard__art{width:88px;color:var(--wood);opacity:.65;margin-bottom:.4rem}
+.deckcard__art{width:72px;color:var(--wood);opacity:.65;margin-bottom:.3rem}
 .deckcard__num{font-family:var(--serif);font-style:italic;color:var(--wood);font-size:1.15rem}
 .deckcard h3{font-size:clamp(1.7rem,4.5vw,2.1rem)}
 .deckcard .voice{font-size:clamp(1.05rem,2.2vw,1.15rem);max-width:20em;margin:0}

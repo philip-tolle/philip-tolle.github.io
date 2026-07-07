@@ -61,59 +61,41 @@ import philip from '../assets/philip.png';
         <h2 class="reveal">Das Gastgewerbe hat kein Wissensproblem. Es hat ein Zeitproblem.</h2>
       </div>
 
-      <div class="ideestats reveal">
-        <div class="ideestat">
-          <span class="ideestat__n" data-count="6">6</span>
-          <span class="ideestat__l">Verlustjahre in Folge</span>
-          <span class="ideestat__s">im deutschen Gastgewerbe</span>
-        </div>
-        <span class="ideestats__div" aria-hidden="true"></span>
-        <div class="ideestat">
-          <span class="ideestat__n" data-count="50000" data-suffix="+">50.000<b>+</b></span>
-          <span class="ideestat__l">unbesetzte Stellen</span>
-          <span class="ideestat__s">Hände fehlen an allen Ecken</span>
-        </div>
-        <span class="ideestats__div" aria-hidden="true"></span>
-        <div class="ideestat">
-          <span class="ideestat__n" data-count="70" data-prefix="≈ " data-suffix=" %">≈ 70 %</span>
-          <span class="ideestat__l">der Prozesse laufen analog</span>
-          <span class="ideestat__s">Papier, Zuruf, Bauchgefühl</span>
-        </div>
-      </div>
-
-      <div class="forces reveal">
-        <p class="forces__label">Drei Kräfte — sie verstärken sich gegenseitig</p>
-        <div class="forces__stage" id="forces">
-          <svg viewBox="0 0 640 230" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <marker id="ncArrow" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
-                <path d="M0,0 L8,4.5 L0,9 z" fill="rgba(138,114,80,.5)"/>
-              </marker>
-            </defs>
-            <path d="M243,44 C330,44 360,90 430,113" marker-end="url(#ncArrow)"/>
-            <path d="M243,115 C330,115 360,115 430,115" marker-end="url(#ncArrow)"/>
-            <path d="M243,186 C330,186 360,140 430,117" marker-end="url(#ncArrow)"/>
-          </svg>
-          <div class="forces__pill" data-f="0" style="top:22px">Fachkräftemangel</div>
-          <div class="forces__pill" data-f="1" style="top:93px">Digitalisierungsrückstand</div>
-          <div class="forces__pill" data-f="2" style="top:164px">EU AI Act &amp; neue Pflichten</div>
-          <div class="forces__node">
-            <span>Es kostet vor allem</span>
-            <b>Zeit</b>
-            <span>die im Betrieb fehlt</span>
+      <div class="idee2">
+        <div class="reveal">
+          <p class="idee2__kicker"><b>Sechs Verlustjahre in Folge</b> — und drei Kräfte, die sich gegenseitig verstärken:</p>
+          <div class="forces__stage" id="forces">
+            <svg viewBox="0 0 640 250" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <marker id="ncArrow" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
+                  <path d="M0,0 L8,4.5 L0,9 z" fill="rgba(138,114,80,.5)"/>
+                </marker>
+              </defs>
+              <path d="M255,38 C340,38 370,95 435,120" marker-end="url(#ncArrow)"/>
+              <path d="M255,125 C340,125 370,125 435,125" marker-end="url(#ncArrow)"/>
+              <path d="M255,212 C340,212 370,155 435,130" marker-end="url(#ncArrow)"/>
+            </svg>
+            <div class="forces__pill" data-f="0" style="top:10px">
+              <span>Fachkräftemangel</span><b>50.000+ unbesetzte Stellen</b>
+            </div>
+            <div class="forces__pill" data-f="1" style="top:97px">
+              <span>Digitalisierungsrückstand</span><b>≈ 70 % analoge Prozesse</b>
+            </div>
+            <div class="forces__pill" data-f="2" style="top:184px">
+              <span>EU AI Act &amp; neue Pflichten</span><b>gelten ab August 2026</b>
+            </div>
+            <div class="forces__node">
+              <span>Es kostet vor allem</span>
+              <b>Zeit</b>
+              <span>die im Betrieb fehlt</span>
+            </div>
           </div>
         </div>
-        <div class="forces__foot" aria-live="polite">
-          <p class="forces__base" id="forces-base">Fachkräftemangel, Digitalisierungsrückstand und neue Pflichten treffen nicht nacheinander ein — sie verstärken sich gegenseitig.</p>
-          <p class="forces__detail" data-f="0" hidden>„Zu wenige Hände für immer mehr Aufgaben.“</p>
-          <p class="forces__detail" data-f="1" hidden>„Analoge Abläufe kosten jeden Tag aufs Neue Zeit.“</p>
-          <p class="forces__detail" data-f="2" hidden>„Neue Anforderungen — aber keine freie Kapazität.“</p>
-        </div>
-      </div>
-
-      <p class="voice reveal" style="max-width:26em;margin:3.5rem auto 0;text-align:center">„Technologie übernimmt die Last. Menschen gestalten das Erlebnis. NextCourse macht beides möglich.“</p>
-
-      <div class="deck reveal" id="deck">
+        <span class="idee2__div" aria-hidden="true"></span>
+        <div class="reveal" style="text-align:center">
+          <p class="eyebrow eyebrow--c" style="--acc:var(--wood)">Deshalb: NextCourse</p>
+          <p class="idee2__antwort" style="margin-left:auto;margin-right:auto">Kein Kursanbieter. Keine klassische Beratung. Sondern beides — als ein Kreislauf:</p>
+          <div class="deck" id="deck">
         <div class="deckcard" data-step="lernen" data-pos="0">
           <svg class="deckcard__art" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M50 14 C 38 6, 22 6, 14 12 L14 46 C 22 40, 38 40, 50 48"/>
@@ -147,15 +129,18 @@ import philip from '../assets/philip.png';
           <p class="voice">Systeme, die auch nächstes Jahr noch laufen.</p>
           <button class="deckcard__more" data-step="dranbleiben" aria-haspopup="dialog">Mehr erfahren</button>
         </div>
-      </div>
-      <div class="deck__controls">
-        <button class="deck__next" id="decknext" aria-label="Nächste Karte des Stapels zeigen">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 12 a9 9 0 1 0 3.5 -7"/>
-            <path d="M3 3 v6 h6"/>
-          </svg>
-          Weiterblättern
-        </button>
+          </div>
+          <div class="deck__controls">
+            <button class="deck__next" id="decknext" aria-label="Nächste Karte des Stapels zeigen">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 12 a9 9 0 1 0 3.5 -7"/>
+                <path d="M3 3 v6 h6"/>
+              </svg>
+              Weiterblättern
+            </button>
+          </div>
+          <p class="idee2__kern">„Technologie übernimmt die Last. Menschen gestalten das Erlebnis.“</p>
+        </div>
       </div>
       <a class="scrollhint" href="#geschichte" aria-label="Weiter zur Gründungsgeschichte">
         <span class="hintword">Entdecken</span><span class="bar" aria-hidden="true"></span>
@@ -278,48 +263,11 @@ import philip from '../assets/philip.png';
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); spinAndGo(); }
   });
 
-  /* ---------- Idee: Zahlen zählen hoch ---------- */
-  const fmt = new Intl.NumberFormat('de-DE');
-  document.querySelectorAll<HTMLElement>('.ideestat__n[data-count]').forEach((el) => {
-    const target = parseInt(el.dataset.count!, 10);
-    const prefix = el.dataset.prefix || '';
-    const suffix = el.dataset.suffix || '';
-    const render = (v: number) => {
-      el.innerHTML = prefix + fmt.format(v) + (suffix === '+' ? '<b>+</b>' : suffix);
-    };
-    if (reduced) { render(target); return; }
-    const statIo = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) { return; }
-        statIo.unobserve(el);
-        const t0 = performance.now();
-        const dur = 1500;
-        const tick = (t: number) => {
-          const p = Math.min((t - t0) / dur, 1);
-          render(Math.round(target * (1 - Math.pow(1 - p, 3))));
-          if (p < 1) { requestAnimationFrame(tick); }
-        };
-        requestAnimationFrame(tick);
-      });
-    }, { threshold: .5 });
-    statIo.observe(el);
-  });
-
   /* ---------- Idee: Drei Kräfte → Zeit ---------- */
   const forces = document.getElementById('forces')!;
-  const forcesBase = document.getElementById('forces-base')!;
-  const forceDetails = Array.from(document.querySelectorAll<HTMLElement>('.forces__detail'));
   document.querySelectorAll<HTMLElement>('.forces__pill').forEach((pill) => {
-    pill.addEventListener('pointerenter', () => {
-      forces.dataset.active = pill.dataset.f;
-      forcesBase.hidden = true;
-      forceDetails.forEach((d) => { d.hidden = d.dataset.f !== pill.dataset.f; });
-    });
-    pill.addEventListener('pointerleave', () => {
-      delete forces.dataset.active;
-      forcesBase.hidden = false;
-      forceDetails.forEach((d) => { d.hidden = true; });
-    });
+    pill.addEventListener('pointerenter', () => { forces.dataset.active = pill.dataset.f; });
+    pill.addEventListener('pointerleave', () => { delete forces.dataset.active; });
   });
 
   /* ---------- Kartenstapel: Umblättern + Overlay ---------- */
