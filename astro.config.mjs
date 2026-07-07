@@ -4,7 +4,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // Vorläufige Adresse (GitHub Pages) — beim Domain-Anschluss auf die echte Domain ändern
-  site: 'https://philip-tolle.github.io',
+  site: 'https://www.next-course.de',
   integrations: [sitemap()],
 });

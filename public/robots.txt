@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://philip-tolle.github.io/sitemap-index.xml
+Sitemap: https://www.next-course.de/sitemap-index.xml
