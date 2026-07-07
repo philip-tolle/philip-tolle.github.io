@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+
+const faqs = [
+  {
+    q: 'Was kostet das Erstgespräch?',
+    a: 'Nichts. Das Erstgespräch ist kostenlos und unverbindlich — am Telefon oder bei Ihnen im Haus. Danach entscheiden Sie in Ruhe, ob und wie es weitergeht.',
+  },
+  {
+    q: 'Für wen ist NextCourse gedacht?',
+    a: 'Für inhabergeführte Hotels mit 20 bis 150 Zimmern, für die gehobene Individualgastronomie — und für alle Menschen, die sich für die Zukunft des Gastgewerbes weiterbilden wollen, vom Team-Mitglied bis zum Quereinsteiger.',
+  },
+  {
+    q: 'Betrifft der EU AI Act auch meinen Betrieb?',
+    a: 'Sehr wahrscheinlich ja. KI steckt heute in vielen alltäglichen Werkzeugen — vom Buchungssystem über die Preisgestaltung bis zur Telefonanlage. Die Verordnung verlangt unter anderem, dass Mitarbeiter im Umgang mit KI geschult sind. Der EU AI Act Quick-Check zeigt Ihnen in kurzer Zeit, was konkret zu tun ist.',
+  },
+  {
+    q: 'Ich habe kein Technik-Vorwissen — ist das ein Problem?',
+    a: 'Nein, im Gegenteil: Genau dafür gibt es NextCourse. Wir erklären praxisnah statt paragraphenlastig und bauen alles so auf, dass es im Betriebsalltag funktioniert — nicht nur auf dem Papier.',
+  },
+  {
+    q: 'Was ist ein Bildungsgutschein und wer bekommt ihn?',
+    a: 'Der Bildungsgutschein ist ein Förderinstrument der Agentur für Arbeit (§ 81 SGB III): Er übernimmt bis zu 100 Prozent der Kurskosten, vor allem für Arbeitssuchende. Beschäftigte können über das Qualifizierungsgeld (§ 82 SGB III) gefördert werden — der Arbeitgeber stellt den Antrag. Auf unserer Förderung-Seite erklären wir beide Wege.',
+  },
+  {
+    q: 'Sind die Kurse schon AZAV-gefördert buchbar?',
+    a: 'Noch nicht — die AZAV-Zertifizierung ist in Vorbereitung, der erste geförderte Lehrgang („Führen & Kommunizieren mit KI“) ist für Ende 2026 geplant. Unsere Kurse ohne Förderung — KI-Grundlagen, AEVO-Vorbereitung und Barista — sind bereits buchbar.',
+  },
+  {
+    q: 'In welcher Region arbeitet NextCourse?',
+    a: 'Vor Ort in Würzburg, Mainfranken und Bayern — mit der Flying Academy kommen wir direkt in Ihren Betrieb. Vieles geht außerdem remote, etwa Beratungsgespräche und Teile des Quick-Checks.',
+  },
+  {
+    q: 'Wie schnell sehe ich Ergebnisse?',
+    a: 'Pilotprojekte sind bewusst klein geschnitten und messbar — der KI-Telefonassistent liefert zum Beispiel den schnellsten spürbaren Effekt. Wie groß die Hebel in Ihrem Haus sind, zeigt unsere Modellrechnung am Referenzbetrieb.',
+  },
+  {
+    q: 'Was unterscheidet NextCourse von anderen Beratungen?',
+    a: 'Drei Dinge: Wir kommen selbst aus der Branche (über 13 Jahre Gastgewerbe, vom Sternerestaurant bis zur Restaurantleitung). Wir verbinden Bildung, Umsetzung und laufende Begleitung zu einem Kreislauf, statt nur ein Gutachten abzugeben. Und in jedem unserer Kurse steckt ein KI-Modul — als einziger Anbieter spezifisch für das Gastgewerbe.',
+  },
+  {
+    q: 'Wie läuft der Mystery Check ab, ohne dass mein Team es merkt?',
+    a: 'Wir vereinbaren nur einen Zeitraum — der genaue Termin bleibt geheim, auch für Ihr Team. Der Besuch ist diskret und wohlwollend: Es geht um Abläufe und Gästeerlebnis, nicht um die Kontrolle einzelner Mitarbeiter.',
+  },
+];
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+});
+---
+<Base
+  title="Häufige Fragen — NextCourse"
+  description="Antworten auf die häufigsten Fragen zu NextCourse: Kosten, EU AI Act, Bildungsgutschein und Förderung, Region, Ablauf von Beratung und Kursen."
+>
+  <script type="application/ld+json" set:html={faqSchema} slot="head" />
+  <div class="pagehead" style="min-height:38svh">
+    <div class="wrap">
+      <p class="eyebrow">Häufige Fragen</p>
+      <h1>Kurz beantwortet.</h1>
+      <p class="lead">Die Fragen, die uns am häufigsten gestellt werden — ehrlich beantwortet. Ihre fehlt? <a href="/kontakt/" style="color:var(--green);font-weight:500">Stellen Sie sie uns direkt.</a></p>
+    </div>
+  </div>
+
+  <div class="floor--auto floor" style="padding-top:1rem">
+    <div class="wrap" style="max-width:840px">
+      <div class="faq reveal">
+        {faqs.map((f) => (
+          <details class="faqrow">
+            <summary>
+              <span>{f.q}</span>
+              <b aria-hidden="true">+</b>
+            </summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+      <div class="btnrow reveal" style="justify-content:center;margin-top:3rem">
+        <a href="/kontakt/" class="btn">Kostenloses Erstgespräch</a>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .faq{display:flex;flex-direction:column;gap:.6rem}
+  .faqrow{background:rgba(255,255,255,.6);border:1px solid var(--glass-edge);
+    border-radius:15px;overflow:hidden;transition:background .25s,border-color .25s}
+  .faqrow[open]{background:rgba(185,136,92,.09);border-color:rgba(185,136,92,.4)}
+  .faqrow summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    padding:1.05rem 1.4rem;cursor:pointer;list-style:none;
+    font-family:var(--body);font-weight:500;font-size:1rem;color:var(--ink)}
+  .faqrow summary::-webkit-details-marker{display:none}
+  .faqrow summary b{width:22px;text-align:center;font-size:1.25rem;font-weight:300;
+    color:var(--wood);flex:none;transition:transform .25s}
+  .faqrow[open] summary b{transform:rotate(45deg)}
+  .faqrow p{margin:0;padding:0 1.4rem 1.2rem;color:var(--dim);line-height:1.65}
+</style>

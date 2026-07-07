@@ -1,0 +1,77 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const massnahmen = [
+  {
+    name: 'KI-Telefonassistent',
+    invest: '3.900 €',
+    effekt: '+77.000 €',
+    wie: '24/7 erreichbar, kein verpasster Anruf mehr: Die Direktbuchungsquote steigt um 15 %, die Rezeption gewinnt rund zwei Stunden pro Tag.',
+  },
+  {
+    name: 'Revenue Management',
+    invest: '4.900 €',
+    effekt: '+93.000 €',
+    wie: 'Der größte Hebel: Dynamische Preisgestaltung und Auslastungsoptimierung heben die Belegung um 8–12 Prozentpunkte.',
+  },
+  {
+    name: 'Dienstplanoptimierung',
+    invest: '4.900 €',
+    effekt: '+28.000 €',
+    wie: 'Automatische Schichtplanung, arbeitszeitgesetz-konform — Überstunden sinken um rund 20 %.',
+  },
+  {
+    name: 'Workflow-Automatisierung',
+    invest: '4.900 €',
+    effekt: '+18.000 €',
+    wie: 'Rechnungsstellung, Check-in und Check-out, Housekeeping-Koordination — automatisiert statt abgetippt.',
+  },
+  {
+    name: 'Wareneinsatzoptimierung',
+    invest: '5.900 €',
+    effekt: '+14.000 €',
+    wie: 'Bestandsmanagement und automatischer Lieferantenvergleich — der Schwund sinkt um rund 30 %.',
+  },
+];
+---
+<Base
+  title="Der Referenzbetrieb — Was fünf KI-Bausteine bewegen — NextCourse"
+  description="Modellrechnung an einem realistischen Referenzbetrieb (65 Zimmer, 1,6 Mio. € Umsatz): Fünf KI-Bausteine, 22.000 € Investition, rund 230.000 € Jahreseffekt — ROI über 700 %."
+>
+  <div class="pagehead">
+    <div class="wrap">
+      <p class="eyebrow">Consulting · Der Referenzbetrieb</p>
+      <h1>Was fünf Bausteine in einem Haus bewegen.</h1>
+      <p class="lead">Ein Hotel, 65 Zimmer, 1,6 Millionen Euro Jahresumsatz — durchgerechnet mit allen fünf Pilotbausteinen. Ein realistisches Modell, offen aufgeschlüsselt: keine Kundengeschichte, kein Versprechen, sondern die Rechnung, die wir jedem Erstgespräch zugrunde legen.</p>
+    </div>
+  </div>
+
+  <div class="floor--auto floor" style="padding-top:1rem">
+    <div class="wrap" style="max-width:840px">
+      <div class="postlist reveal stagger">
+        {massnahmen.map((m) => (
+          <div class="offercard">
+            <h3>{m.name}</h3>
+            <p>{m.wie}</p>
+            <div class="bl" style="margin-top:.4rem"><b>Investition</b><span class="dots"></span><span>{m.invest}</span></div>
+            <div class="bl"><b>Jahreseffekt</b><span class="dots"></span><span style="color:var(--green);font-weight:500">{m.effekt}</span></div>
+          </div>
+        ))}
+      </div>
+
+      <div class="bill reveal" style="margin-top:2.6rem">
+        <p class="bill__head">Die Summe</p>
+        <div class="bl"><b>Gesamtinvestition</b><span class="dots"></span><span>22.000 €</span></div>
+        <div class="bl bl--sum"><b>Jahreseffekt</b><span class="dots"></span><span>+230.000 €</span></div>
+        <p class="bill__fine">Return on Investment: über 700 % im ersten Jahr. Modellwerte — Ihr Betrieb, Ihre Zahlen: Das klären wir im Erstgespräch.</p>
+      </div>
+
+      <div style="text-align:center;margin-top:2.6rem" class="reveal">
+        <a class="arrowlink" href="/consulting/#modellrechnung">Rechnen Sie Ihr Haus: die Modellrechnung</a>
+      </div>
+      <div class="btnrow reveal" style="justify-content:center;margin-top:1.6rem">
+        <a href="/kontakt/" class="btn">Kostenloses Erstgespräch</a>
+      </div>
+    </div>
+  </div>
+</Base>
