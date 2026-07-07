@@ -265,20 +265,20 @@ main.acc-amber{--acc:var(--amber)}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6%)}}
 
 /* ---------- Idee: Problem links, Lösung rechts ---------- */
-.idee2{display:grid;gap:3.5rem;margin-top:2.2rem}
+.idee2{display:grid;gap:3.5rem;margin-top:2.6rem}
 @media(min-width:1020px){.idee2{grid-template-columns:1.15fr 1px 1fr;gap:0 3.5rem;
-  align-items:center}}
+  align-items:start}}
 .idee2__div{display:none}
 @media(min-width:1020px){.idee2__div{display:block;width:1px;align-self:stretch;
   background:linear-gradient(180deg,transparent,var(--hairline) 25%,var(--hairline) 75%,transparent)}}
-.idee2__kicker{font-size:1rem;color:var(--dim);margin:0 0 1.6rem;max-width:34em}
+.idee2__kicker{font-size:1rem;color:var(--dim);margin:.5rem auto 1.8rem;max-width:34em}
 .idee2__kicker b{color:var(--ink);font-weight:500}
 .idee2__antwort{font-family:var(--disp);font-size:clamp(1.35rem,2.7vw,1.75rem);
   line-height:1.28;color:var(--ink);margin:.7rem 0 0;max-width:19em}
 .idee2__kern{margin:1.5rem auto 0;text-align:center;font-family:var(--serif);
   font-style:italic;color:var(--faint);font-size:1.02rem;max-width:26em}
 
-.forces__stage{position:relative;height:250px;max-width:640px}
+.forces__stage{position:relative;height:250px;max-width:640px;margin:0 auto;text-align:left}
 .forces__stage svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .forces__stage svg path{stroke:rgba(138,114,80,.5);stroke-width:1.9;fill:none;
   transition:stroke .3s,stroke-width .3s}
@@ -313,7 +313,9 @@ main.acc-amber{--acc:var(--amber)}
 }
 
 /* ---------- Konzept: Kartenstapel zum Umblättern ---------- */
-.deck{position:relative;max-width:420px;min-height:350px;margin:1.8rem auto 0;cursor:pointer}
+.deck{position:relative;max-width:420px;min-height:400px;margin:1.8rem auto 0;
+  cursor:pointer;transform:translateX(-14px)}
+@media(max-width:719px){.deck{transform:none}}
 .deckcard{position:absolute;inset:0;display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:.4rem;text-align:center;
   background:rgba(255,255,255,.72);border:1px solid var(--glass-edge);border-radius:24px;
@@ -338,7 +340,8 @@ main.acc-amber{--acc:var(--amber)}
   letter-spacing:.04em;font-size:.95rem;color:var(--green);padding:.4rem .2rem}
 .deckcard__more::after{content:"→";color:var(--wood);transition:transform .2s}
 .deckcard__more:hover::after{transform:translateX(4px)}
-.deck__controls{display:flex;justify-content:center;margin-top:1.3rem}
+.deck__controls{display:flex;justify-content:center;margin-top:2.2rem;
+  position:relative;z-index:4}
 .deck__next{display:inline-flex;align-items:center;gap:.55rem;background:none;
   border:1px solid var(--hairline);border-radius:999px;padding:.5em 1.3em;cursor:pointer;
   font-family:var(--body);font-weight:500;font-size:.85rem;letter-spacing:.1em;
