@@ -30,9 +30,10 @@ unter Windows zerbricht. Nach einem Umzug in einen Pfad ohne `&` wäre auch `ast
 
 ## Offene Punkte vor Livegang
 
-- [ ] Echte Fotos (Porträt auf „Über“)
-- [ ] Impressumsdaten (Adresse, HRB, Telefon)
-- [ ] Datenschutzerklärung (Generator/Anwalt)
-- [ ] Formular-Backend (aktuell nur Hinweis mit Mail-Adresse)
-- [ ] LinkedIn-Link im Footer
-- [ ] Deployment: GitHub-Repo + IONOS Deploy Now
+- [x] Porträt auf „Über“ (weitere Fotos folgen)
+- [x] Impressumsdaten (Adresse, HRB, Telefon)
+- [x] Datenschutzerklärung (vor Domain-Livegang nochmal gegen Generator/Anwalt prüfen)
+- [x] Formular-Backend (FormSubmit — Aktivierungslink in Philips Postfach bestätigen!)
+- [ ] LinkedIn-Link im Footer (URL fehlt noch)
+- [x] Deployment: GitHub Pages (https://philip-tolle.github.io, Auto-Deploy bei Push)
+- [ ] Domain anschließen (dann: site-URL in astro.config + robots.txt + Formular-_next ändern)
