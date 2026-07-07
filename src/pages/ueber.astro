@@ -25,27 +25,49 @@ import philip from '../assets/philip.png';
     </div>
   </div>
 
-  <!-- Philip -->
+  <!-- Philip: Profilkarte mit Umdreh-Foto -->
   <div class="floor--auto floor">
-    <div class="wrap about">
-      <div class="reveal">
-        <Image src={philip} alt="Philip Tolle — Gründer und Geschäftsführer von NextCourse"
-          width={720} format="webp" quality={85} class="portrait-img" />
-      </div>
-      <div>
-        <p class="lead reveal">Ich bin Philip Tolle — gelernter Hotelfachmann, Restaurantmeister (IHK), staatlich geprüfter Betriebswirt und seit über 13 Jahren im Gastgewerbe zuhause: vom Commis Sommelier in der Traube Tonbach (3 Michelin-Sterne) bis zum Restaurantleiter internationaler Häuser. NextCourse ist meine Antwort auf eine einfache Beobachtung: Dieser Beruf lebt von Menschen, die gerne Gastgeber sind — und zu viel ihrer Kraft versickert in Verwaltung.</p>
-        <blockquote class="quote reveal">„Wir nutzen die Herzlichkeit des Gastgebers und verstärken sie durch die Intelligenz der KI.“</blockquote>
-        <p class="dim reveal" style="margin-top:1.6rem">Und noch etwas gehört zu mir: Ich habe ADHS — einen Kopf, der Details, Verbindungen und Stimmungen wahrnimmt, die anderen entgehen. Warum das eine Stärke ist, zeigt sich am deutlichsten im <a href="/consulting/mystery-check/" style="color:var(--green);font-weight:500">Mystery Check</a>.</p>
-        <ul class="quali reveal stagger" style="margin-top:2.4rem">
-          <li>Gelernter Hotelfachmann</li>
-          <li>Staatlich geprüfter Restaurantmeister (IHK)</li>
-          <li>Staatlich geprüfter Betriebswirt für Hotellerie &amp; Gastronomie</li>
-          <li>Sommelier</li>
-          <li>Ausbildereignung (IHK)</li>
-          <li>Barista Skills Foundation</li>
-        </ul>
-        <div class="btnrow reveal">
-          <a href="/kontakt/" class="btn">Lernen wir uns kennen</a>
+    <div class="wrap">
+      <div class="profilkarte reveal">
+        <div class="flip" id="flip" role="button" tabindex="0" aria-pressed="false"
+          aria-label="Foto umdrehen: Stationen und Abschlüsse von Philip Tolle">
+          <div class="flip__inner">
+            <div class="flip__front">
+              <Image src={philip} alt="Philip Tolle — Gründer und Geschäftsführer von NextCourse"
+                width={720} format="webp" quality={85} />
+              <span class="flip__hint" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 12 a9 9 0 1 0 3.5 -7"/>
+                  <path d="M3 3 v6 h6"/>
+                </svg>
+              </span>
+            </div>
+            <div class="flip__back">
+              <h3>Stationen &amp; Abschlüsse</h3>
+              <ul class="quali quali--flip">
+                <li>Gelernter Hotelfachmann</li>
+                <li>Staatlich geprüfter Restaurantmeister (IHK)</li>
+                <li>Staatlich geprüfter Betriebswirt für Hotellerie &amp; Gastronomie</li>
+                <li>Sommelier</li>
+                <li>Ausbildereignung (IHK)</li>
+                <li>Barista Skills Foundation</li>
+              </ul>
+              <span class="flip__hint" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 12 a9 9 0 1 0 3.5 -7"/>
+                  <path d="M3 3 v6 h6"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="profilkarte__text">
+          <p class="lead">Ich bin Philip Tolle — gelernter Hotelfachmann, Restaurantmeister (IHK), staatlich geprüfter Betriebswirt und seit über 13 Jahren im Gastgewerbe zuhause: vom Commis Sommelier in der Traube Tonbach (3 Michelin-Sterne) bis zum Restaurantleiter internationaler Häuser. NextCourse ist meine Antwort auf eine einfache Beobachtung: Dieser Beruf lebt von Menschen, die gerne Gastgeber sind — und zu viel ihrer Kraft versickert in Verwaltung.</p>
+          <blockquote class="quote">„Wir nutzen die Herzlichkeit des Gastgebers und verstärken sie durch die Intelligenz der KI.“</blockquote>
+          <p class="dim" style="margin-top:1.4rem">Und noch etwas gehört zu mir: Ich habe ADHS — einen Kopf, der Details, Verbindungen und Stimmungen wahrnimmt, die anderen entgehen. Warum das eine Stärke ist, zeigt sich am deutlichsten im <a href="/consulting/mystery-check/" style="color:var(--green);font-weight:500">Mystery Check</a>.</p>
+          <div class="btnrow" style="margin-top:1.8rem">
+            <a href="/kontakt/" class="btn">Lernen wir uns kennen</a>
+          </div>
         </div>
       </div>
     </div>
@@ -129,9 +151,59 @@ import philip from '../assets/philip.png';
 
 <style>
   .quali--not li::before{background:var(--faint)}
+
+  /* Profilkarte */
+  .profilkarte{display:grid;gap:2.2rem;align-items:start;
+    background:var(--glass);border:1px solid var(--glass-edge);border-radius:24px;
+    backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);
+    box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95);
+    padding:clamp(1.6rem,4vw,2.8rem)}
+  @media(min-width:880px){.profilkarte{grid-template-columns:320px 1fr;gap:3rem}}
+  .profilkarte__text .lead{font-size:clamp(1rem,2.1vw,1.12rem)}
+
+  /* Umdreh-Foto */
+  .flip{perspective:1200px;cursor:pointer;max-width:320px;margin:0 auto;width:100%;
+    border-radius:18px}
+  .flip__inner{position:relative;aspect-ratio:3/4;
+    transform-style:preserve-3d;transition:transform .75s cubic-bezier(.3,.1,.25,1)}
+  .flip[aria-pressed="true"] .flip__inner{transform:rotateY(180deg)}
+  .flip__front,.flip__back{position:absolute;inset:0;backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;border-radius:18px;overflow:hidden;
+    border:1px solid var(--glass-edge);box-shadow:0 14px 34px rgba(62,50,34,.14)}
+  .flip__front img{width:100%;height:100%;object-fit:cover}
+  .flip__back{transform:rotateY(180deg);padding:1.6rem 1.4rem;
+    display:flex;flex-direction:column;
+    background:
+      repeating-linear-gradient(transparent 0, transparent calc(1.7rem - 1px),
+        rgba(185,136,92,.12) calc(1.7rem - 1px), rgba(185,136,92,.12) 1.7rem),
+      var(--paper2)}
+  .flip__back h3{font-size:1.25rem;margin-bottom:.6rem}
+  .quali--flip{margin-top:0}
+  .quali--flip li{padding:.62rem 0 .62rem 1.6rem;font-size:.88rem}
+  .quali--flip li::before{top:1.05rem}
+  .flip__hint{position:absolute;right:.9rem;bottom:.9rem;width:44px;height:44px;
+    border-radius:50%;display:grid;place-items:center;color:var(--wood);
+    background:rgba(247,244,239,.92);border:1px solid var(--hairline);
+    box-shadow:0 6px 18px rgba(62,50,34,.22);transition:transform .25s}
+  .flip:hover .flip__hint{transform:rotate(-45deg)}
+  .flip:focus-visible{outline:2px solid var(--green);outline-offset:4px}
+  @media(prefers-reduced-motion:reduce){
+    .flip__inner{transition:none}
+  }
 </style>
 
 <script>
+  /* Profilkarte: Foto umdrehen */
+  const flip = document.getElementById('flip')!;
+  function toggleFlip() {
+    const flipped = flip.getAttribute('aria-pressed') === 'true';
+    flip.setAttribute('aria-pressed', flipped ? 'false' : 'true');
+  }
+  flip.addEventListener('click', toggleFlip);
+  flip.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFlip(); }
+  });
+
   /* Ziele zählen hoch, wenn sie ins Bild kommen */
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fmt = new Intl.NumberFormat('de-DE');
