@@ -476,6 +476,45 @@ a.offercard:hover h3{color:var(--facc)}
   border-radius:12px;padding:1rem 1.2rem;font-size:.95rem;color:var(--ink)}
 .formnote.is-visible{display:block}
 
+/* ---------- Akademie: Karteikarten ---------- */
+.kartei{display:grid;gap:2.4rem 2rem;margin-top:3.4rem}
+@media(min-width:820px){.kartei{grid-template-columns:1fr 1fr}}
+.karteikarte{position:relative;display:flex;flex-direction:column;gap:.5rem;
+  background:
+    repeating-linear-gradient(transparent 0, transparent calc(1.7rem - 1px),
+      rgba(185,136,92,.10) calc(1.7rem - 1px), rgba(185,136,92,.10) 1.7rem),
+    rgba(255,255,255,.62);
+  border:1px solid var(--glass-edge);border-radius:4px 18px 18px 18px;
+  padding:2rem 1.8rem 1.8rem;text-decoration:none;color:var(--ink);
+  backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95);
+  transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s}
+.kartei .karteikarte:nth-child(odd){transform:rotate(-.7deg)}
+.kartei .karteikarte:nth-child(even){transform:rotate(.6deg) translateY(8px)}
+.karteikarte:hover{transform:translateY(-6px) rotate(0);z-index:2;
+  box-shadow:var(--shadow),var(--glow),inset 0 1px 0 rgba(255,255,255,.95)}
+.karteikarte__tab{position:absolute;top:-1.45rem;left:1.2rem;
+  background:var(--paper2);border:1px solid var(--glass-edge);border-bottom:0;
+  border-radius:10px 10px 0 0;padding:.32em 1.1em;
+  font-family:var(--body);font-weight:500;font-size:.72rem;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.karteikarte__status{position:absolute;top:1.1rem;right:1.2rem;
+  font-family:var(--body);font-weight:500;font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--green);
+  border:1px solid rgba(51,96,79,.35);border-radius:999px;padding:.25em .8em;
+  background:rgba(255,255,255,.6)}
+.karteikarte__status--geplant{color:var(--blue);border-color:rgba(63,94,126,.35)}
+.karteikarte h2{font-size:clamp(1.5rem,3.8vw,2rem);max-width:none;margin:.4rem 0 0;
+  padding-right:6.5rem;transition:color .25s}
+.karteikarte:hover h2{color:var(--blue)}
+.karteikarte .voice{font-size:1.1rem;margin:0}
+.karteikarte__kurz{margin:.4rem 0 0;font-size:.95rem;color:var(--dim)}
+.karteikarte .chips{margin-top:.9rem}
+.karteikarte .forkcard__go{margin-top:auto;padding-top:1.2rem}
+@media(prefers-reduced-motion:reduce){
+  .kartei .karteikarte{transform:none;transition:none}
+}
+
 /* ---------- Blog ---------- */
 .postlist{display:grid;gap:1.6rem}
 .postmeta{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:0;

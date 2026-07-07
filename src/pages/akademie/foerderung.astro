@@ -18,7 +18,47 @@ import Base from '../../layouts/Base.astro';
   <div class="floor--auto floor" style="padding-top:1rem">
     <div class="wrap" style="max-width:960px">
 
-      <div class="offers reveal stagger">
+      <!-- Förder-Kompass -->
+      <div class="kompass reveal" id="foerderkompass">
+        <p class="eyebrow eyebrow--c" style="--acc:var(--wood)">Der Förder-Kompass</p>
+        <p class="kompass__hint">Eine Frage genügt: Wo stehen Sie gerade?</p>
+        <div class="kompass__options" role="group" aria-label="Ihre Situation wählen">
+          <button data-weg="bildungsgutschein">
+            <span class="kompass__icon" aria-hidden="true">
+              <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="30" cy="20" r="9"/><path d="M12 50 C 14 38, 46 38, 48 50"/></svg>
+            </span>
+            Ich bin arbeitssuchend
+          </button>
+          <button data-weg="qcg">
+            <span class="kompass__icon" aria-hidden="true">
+              <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="22" width="36" height="26" rx="4"/><path d="M22 22 v-5 a4 4 0 0 1 4 -4 h8 a4 4 0 0 1 4 4 v5"/></svg>
+            </span>
+            Ich bin angestellt
+          </button>
+          <button data-weg="betrieb">
+            <span class="kompass__icon" aria-hidden="true">
+              <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 50 V26 L30 12 L50 26 V50"/><path d="M24 50 V36 h12 v14"/></svg>
+            </span>
+            Ich führe einen Betrieb
+          </button>
+        </div>
+        <div class="kompass__result" aria-live="polite">
+          <div data-weg="bildungsgutschein" hidden>
+            <h3>Ihr Weg: der Bildungsgutschein.</h3>
+            <p>Die Agentur für Arbeit kann bis zu <strong>100 % der Kurskosten</strong> übernehmen. Sprechen Sie mit Ihrer Arbeitsvermittlung — oder mit uns, dann bereiten wir das Gespräch gemeinsam vor. Die vier Schritte dorthin stehen direkt unter diesem Kompass.</p>
+          </div>
+          <div data-weg="qcg" hidden>
+            <h3>Ihr Weg: das Qualifizierungsgeld.</h3>
+            <p>Ihr Arbeitgeber stellt den Antrag, die Agentur für Arbeit fördert — je nach Betriebsgröße bis zu <strong>100 %</strong>. Sprechen Sie Ihren Chef an, oder lassen Sie uns das übernehmen: Im Erstgespräch klären wir, wie Ihr Betrieb den Antrag stellt.</p>
+          </div>
+          <div data-weg="betrieb" hidden>
+            <h3>Für Sie gibt es zwei Hebel.</h3>
+            <p>Ihr <strong>Team</strong> können Sie über das Qualifizierungsgeld bis zu 100 % gefördert weiterbilden lassen. Und für Sie selbst: Seminare und die Flying Academy sind sofort buchbar — im Erstgespräch rechnen wir durch, was sich für Ihren Betrieb lohnt.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="offers reveal stagger" style="margin-top:4rem">
         <div class="offercard">
           <p class="forkcard__aud" style="--facc:var(--blue)">Für Arbeitssuchende</p>
           <h3>Der Bildungsgutschein</h3>
@@ -65,4 +105,42 @@ import Base from '../../layouts/Base.astro';
 
 <style>
   .mcsection{margin-top:3rem}
+  .kompass{text-align:center}
+  .kompass__hint{font-family:var(--serif);font-style:italic;color:var(--faint);
+    font-size:1.1rem;margin:-.4rem 0 1.8rem}
+  .kompass__options{display:grid;gap:1rem;max-width:820px;margin:0 auto}
+  @media(min-width:700px){.kompass__options{grid-template-columns:repeat(3,1fr)}}
+  .kompass__options button{display:flex;flex-direction:column;align-items:center;gap:.8rem;
+    padding:1.6rem 1rem;border-radius:20px;cursor:pointer;
+    background:rgba(255,255,255,.6);border:1px solid var(--glass-edge);
+    font-family:var(--body);font-weight:500;font-size:.98rem;color:var(--ink);
+    transition:all .25s ease}
+  .kompass__options button:hover{transform:translateY(-3px)}
+  .kompass__options button[aria-pressed="true"]{background:rgba(63,94,126,.1);
+    border-color:rgba(63,94,126,.5);box-shadow:0 16px 36px -18px rgba(63,94,126,.4)}
+  .kompass__icon{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+    background:var(--paper2);border:1px solid var(--hairline);color:var(--wood)}
+  .kompass__icon svg{width:30px;height:30px}
+  .kompass__options button[aria-pressed="true"] .kompass__icon{background:var(--blue);
+    border-color:var(--blue);color:var(--paper)}
+  .kompass__result > div{max-width:680px;margin:1.6rem auto 0;padding:1.8rem 2rem;
+    background:rgba(255,255,255,.6);border:1px solid rgba(63,94,126,.35);border-radius:20px;
+    animation:kompassin .35s ease both;text-align:center}
+  @keyframes kompassin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .kompass__result h3{font-size:clamp(1.3rem,3.5vw,1.7rem);margin-bottom:.5rem}
+  .kompass__result p{margin:0;color:var(--dim);line-height:1.65}
+  @media(prefers-reduced-motion:reduce){.kompass__result > div{animation:none}}
 </style>
+
+<script>
+  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('.kompass__options button'));
+  const results = Array.from(document.querySelectorAll<HTMLElement>('.kompass__result > div'));
+  buttons.forEach((btn) => {
+    btn.setAttribute('aria-pressed', 'false');
+    btn.addEventListener('click', () => {
+      const weg = btn.dataset.weg;
+      buttons.forEach((b) => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      results.forEach((r) => { r.hidden = r.dataset.weg !== weg; });
+    });
+  });
+</script>

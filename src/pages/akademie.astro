@@ -1,5 +1,9 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+
+const kurse = (await getCollection('kurse'))
+  .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
 ---
 <Base
   title="Akademie — NextCourse"
@@ -14,19 +18,28 @@ import Base from '../layouts/Base.astro';
     </div>
   </div>
 
-  <div class="floor--auto floor">
+  <div class="floor--auto floor" style="padding-top:1rem">
     <div class="wrap">
-      <div class="rows reveal stagger">
-        <div class="row"><h3>KI-Grundlagen für Gastgeber &amp; KMU</h3>
-          <p>Ein Tag, der Ordnung ins Thema bringt — praxisnah statt paragraphenlastig. Erfüllt nebenbei die Schulungspflicht aus Artikel 4 des EU AI Act.</p></div>
-        <div class="row"><h3>AEVO-Vorbereitungskurs</h3>
-          <p>Der Weg zum Ausbilderschein (IHK), kompakt vorbereitet.</p></div>
-        <div class="row"><h3>Barista-Kurs</h3>
-          <p>Handwerk, das man schmeckt — für Teams und Kaffeeliebhaber.</p></div>
-        <div class="row"><h3>Führen &amp; Kommunizieren mit KI</h3>
-          <p>Unser erster geförderter Lehrgang (AZAV): 2–3 Monate, bis zu 100 % finanziert über Bildungsgutschein oder Qualifizierungsgeld — Start geplant Ende 2026.</p></div>
+      <div class="kartei reveal stagger">
+        {kurse.map((kurs) => (
+          <a class="karteikarte" href={`/akademie/${kurs.id}/`}>
+            <span class="karteikarte__tab">{kurs.data.kategorie}</span>
+            <span class:list={['karteikarte__status', kurs.data.status === 'geplant' && 'karteikarte__status--geplant']}>
+              {kurs.data.status === 'buchbar' ? 'Buchbar' : 'In Planung'}
+            </span>
+            <h2>{kurs.data.title}</h2>
+            <p class="voice">„{kurs.data.botschaft}“</p>
+            <p class="karteikarte__kurz">{kurs.data.kurz}</p>
+            <div class="chips">
+              <span class="chip">{kurs.data.dauer}</span>
+              <span class="chip">{kurs.data.foerderung}</span>
+            </div>
+            <span class="forkcard__go" style="--facc:var(--blue)">Zum Kurs</span>
+          </a>
+        ))}
       </div>
-      <p class="dim reveal" style="margin-top:1.5rem">In jedem Kurs steckt ein verpflichtendes KI-Modul — als einziger Anbieter spezifisch für das Gastgewerbe. Die Inhalte werden alle 12–18 Monate aktualisiert, und über unser Consulting-Netzwerk vermitteln wir Absolventen direkt in die Praxis. Weitere geförderte Lehrgänge (System- &amp; Change-Manager Gastgewerbe, KI-gestützter Guest-Relation-Manager) folgen 2027/2028.</p>
+
+      <p class="dim reveal" style="margin-top:2.6rem;max-width:44em">In jedem Kurs steckt ein verpflichtendes KI-Modul — als einziger Anbieter spezifisch für das Gastgewerbe. Die Inhalte werden alle 12–18 Monate aktualisiert, und über unser Consulting-Netzwerk vermitteln wir Absolventen direkt in die Praxis. Weitere geförderte Lehrgänge (System- &amp; Change-Manager Gastgewerbe, KI-gestützter Guest-Relation-Manager) folgen 2027/2028.</p>
       <a class="arrowlink reveal" href="/akademie/foerderung/">Förderung: Wer zahlt was?</a>
       <div class="btnrow reveal">
         <a href="/kontakt/" class="btn">Kostenloses Erstgespräch</a>
