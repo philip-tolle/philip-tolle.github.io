@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Seite nicht gefunden — NextCourse" description="Diese Seite existiert nicht (mehr).">
+  <meta name="robots" content="noindex" slot="head" />
+  <div class="pagehead" style="min-height:50svh">
+    <span class="ghostglyph" aria-hidden="true">404</span>
+    <div class="wrap">
+      <p class="eyebrow">Seite nicht gefunden</p>
+      <h1>Dieser Weg führt ins Leere.</h1>
+      <p class="lead">Die Adresse existiert nicht (mehr) — aber von hier kommen Sie überall hin.</p>
+      <div class="btnrow">
+        <a href="/" class="btn">Zur Startseite</a>
+        <a href="/kontakt/" class="btn btn--line">Kontakt aufnehmen</a>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .ghostglyph{font-size:clamp(9rem,26vw,20rem)}
+</style>

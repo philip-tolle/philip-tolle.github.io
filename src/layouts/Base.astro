@@ -33,9 +33,10 @@ const orgSchema = JSON.stringify({
   url: Astro.site?.toString(),
   logo: ogImage.toString(),
   email: 'tolle@nextcourse-academy.de',
+  telephone: '+49 151 20220983',
   slogan: 'Menschliche Kompetenz. Digitale Kraft.',
   description: 'Bildungs-, Beratungs- und Umsetzungspartner für das deutsche Gastgewerbe: KI-Beratung, Kurse und Begleitung aus Würzburg.',
-  address: { '@type': 'PostalAddress', addressLocality: 'Würzburg', addressCountry: 'DE' },
+  address: { '@type': 'PostalAddress', streetAddress: 'Karmelitenstraße 24', postalCode: '97070', addressLocality: 'Würzburg', addressCountry: 'DE' },
   areaServed: 'Mainfranken',
   founder: { '@type': 'Person', name: 'Philip Tolle' },
 });

@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import roboter from '../assets/roboter.png';
+---
+<Base title="Danke — NextCourse" description="Ihre Nachricht ist unterwegs.">
+  <meta name="robots" content="noindex" slot="head" />
+  <div class="floor">
+    <div class="wrap wrap--menu" style="text-align:center">
+      <div class="robothero">
+        <Image src={roboter} alt="" width={420} format="webp" quality={82} />
+      </div>
+      <h1 style="max-width:none;font-size:clamp(2rem,6vw,3.4rem)">Danke — Ihre Nachricht ist unterwegs.</h1>
+      <p class="voice" style="max-width:26em;margin:1.2rem auto 0">Wir melden uns in der Regel innerhalb eines Werktags. Wenn es eilt: <a href="tel:+4915120220983" style="color:var(--green)">+49 151 20220983</a>.</p>
+      <div class="btnrow" style="justify-content:center">
+        <a href="/" class="btn btn--line">Zurück zur Startseite</a>
+      </div>
+    </div>
+  </div>
+</Base>

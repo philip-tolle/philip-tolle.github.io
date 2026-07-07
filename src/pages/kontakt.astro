@@ -15,29 +15,34 @@ import Base from '../layouts/Base.astro';
 
   <div class="floor--auto floor">
     <div class="wrap result">
-      <form class="form reveal" id="contactform" novalidate>
+      <form class="form reveal" id="contactform" novalidate
+        action="https://formsubmit.co/tolle@nextcourse-academy.de" method="POST">
+        <input type="hidden" name="_subject" value="Neue Anfrage über die NextCourse-Website">
+        <input type="hidden" name="_next" value="https://philip-tolle.github.io/danke/">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="field"><label for="f-name">Name *</label>
-          <input id="f-name" type="text" autocomplete="name" required aria-describedby="e-name">
+          <input id="f-name" name="Name" type="text" autocomplete="name" required aria-describedby="e-name">
           <p class="err" id="e-name">Bitte geben Sie Ihren Namen an.</p></div>
         <div class="field"><label for="f-betrieb">Betrieb</label>
-          <input id="f-betrieb" type="text" autocomplete="organization"></div>
+          <input id="f-betrieb" name="Betrieb" type="text" autocomplete="organization"></div>
         <div class="field"><label for="f-mail">E-Mail *</label>
-          <input id="f-mail" type="email" autocomplete="email" required aria-describedby="e-mail">
+          <input id="f-mail" name="E-Mail" type="email" autocomplete="email" required aria-describedby="e-mail">
           <p class="err" id="e-mail">Bitte geben Sie eine gültige E-Mail-Adresse an.</p></div>
         <div class="field"><label for="f-tel">Telefon (optional)</label>
-          <input id="f-tel" type="tel" autocomplete="tel"></div>
+          <input id="f-tel" name="Telefon" type="tel" autocomplete="tel"></div>
         <div class="field"><label for="f-msg">Ihre Nachricht *</label>
-          <textarea id="f-msg" rows="5" required aria-describedby="e-msg"></textarea>
+          <textarea id="f-msg" name="Nachricht" rows="5" required aria-describedby="e-msg"></textarea>
           <p class="err" id="e-msg">Bitte schreiben Sie kurz, worum es geht.</p></div>
-        <div class="check" id="dsfield"><input type="checkbox" id="f-ds" aria-describedby="e-ds">
+        <div class="check" id="dsfield"><input type="checkbox" id="f-ds" name="Datenschutz-Zustimmung" value="ja" aria-describedby="e-ds">
           <span>Ich habe die <a href="/datenschutz/">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage einverstanden. *
           <span class="err" id="e-ds"><br>Bitte bestätigen Sie die Datenschutzerklärung.</span></span></div>
         <div><button type="submit" class="btn">Anfrage senden</button></div>
-        <p class="formnote" id="formnote" role="status">Das Formular ist noch nicht angebunden. Schreiben Sie uns gerne direkt an <a href="mailto:tolle@nextcourse-academy.de">tolle@nextcourse-academy.de</a>.</p>
       </form>
       <div class="reveal">
         <h3 style="margin-bottom:.7rem">Direkt</h3>
-        <p class="dim">E-Mail: <a href="mailto:tolle@nextcourse-academy.de" style="color:var(--green);font-weight:500">tolle@nextcourse-academy.de</a><br>
+        <p class="dim">Telefon: <a href="tel:+4915120220983" style="color:var(--green);font-weight:500">+49 151 20220983</a><br>
+        E-Mail: <a href="mailto:tolle@nextcourse-academy.de" style="color:var(--green);font-weight:500">tolle@nextcourse-academy.de</a><br>
         Standort: Würzburg — im Einsatz in Mainfranken und Umgebung</p>
       </div>
     </div>
@@ -45,8 +50,8 @@ import Base from '../layouts/Base.astro';
 </Base>
 
 <script>
-  document.getElementById('contactform')!.addEventListener('submit', (e) => {
-    e.preventDefault();
+  const form = document.getElementById('contactform') as HTMLFormElement;
+  form.addEventListener('submit', (e) => {
     let ok = true;
     function flag(fieldEl: Element | null, bad: boolean) {
       fieldEl?.classList.toggle('has-err', bad);
@@ -60,11 +65,8 @@ import Base from '../layouts/Base.astro';
     flag(mail.closest('.field'), !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail.value.trim()));
     flag(msg.closest('.field'), msg.value.trim() === '');
     flag(document.getElementById('dsfield'), !ds.checked);
-    const note = document.getElementById('formnote')!;
-    if (ok) {
-      note.classList.add('is-visible');
-    } else {
-      note.classList.remove('is-visible');
+    if (!ok) {
+      e.preventDefault();
       const firstErr = document.querySelector('.has-err input, .has-err textarea') as HTMLElement | null;
       if (firstErr) { firstErr.focus(); }
     }
