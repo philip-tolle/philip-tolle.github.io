@@ -675,7 +675,7 @@ a.offercard:hover .postcard__title{color:var(--facc)}
 .pagehead--art .pagehead__bg{object-position:center top;
   filter:contrast(.9) brightness(1.05) blur(.6px);
   animation:bannerZoom 13s cubic-bezier(.22,.5,.24,1) both}
-@keyframes bannerZoom{from{transform:scale(1.055)}to{transform:scale(1)}}
+@keyframes bannerZoom{from{transform:scale(1)}to{transform:scale(1.055)}}
 @media(prefers-reduced-motion:reduce){.pagehead--art .pagehead__bg{animation:none}}
 .pagehead--art::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:
