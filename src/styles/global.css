@@ -581,6 +581,8 @@ a.offercard:hover h3{color:var(--facc)}
 .karteikarte__kurz{margin:.4rem 0 0;font-size:.95rem;color:var(--dim)}
 .karteikarte .chips{margin-top:.9rem}
 .karteikarte .forkcard__go{margin-top:auto;padding-top:1.2rem}
+.karteikarte__icon{color:var(--wood);margin-bottom:-.15rem}
+.station__icon{color:var(--wood);margin-bottom:.15rem}
 @media(prefers-reduced-motion:reduce){
   .kartei .karteikarte{transform:none;transition:none}
 }

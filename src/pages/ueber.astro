@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 import philip from '../assets/philip.png';
 ---
 <Base
@@ -78,16 +79,16 @@ import philip from '../assets/philip.png';
     <div class="wrap">
       <p class="eyebrow reveal" style="--acc:var(--wood)">Wofür wir stehen</p>
       <h2 class="reveal">Fünf Werte, die jede Beratung und jede Schulung prägen.</h2>
-      <div class="rows reveal stagger">
-        <div class="row"><h3>Herzlichkeit vor Automation</h3>
+      <div class="rows rows--icons reveal stagger">
+        <div class="row"><h3><Icon name="herzlichkeit" size={32} />Herzlichkeit vor Automation</h3>
           <p>Technologie darf den Menschen entlasten — aber nie die Haltung des Gastgebers ersetzen. Menschlichkeit bleibt unser Maßstab.</p></div>
-        <div class="row"><h3>Befähigung statt Abhängigkeit</h3>
+        <div class="row"><h3><Icon name="befaehigung" size={32} />Befähigung statt Abhängigkeit</h3>
           <p>Wir bauen Menschen und Betriebe, die souveräner werden — nicht abhängiger.</p></div>
-        <div class="row"><h3>Exzellenz ohne Perfektionismus</h3>
+        <div class="row"><h3><Icon name="exzellenz" size={32} />Exzellenz ohne Perfektionismus</h3>
           <p>Sorgfältig, hochwertig, verantwortungsvoll — und trotzdem handlungsfähig. Wir verbessern lieber sichtbar als endlos zu feilen.</p></div>
-        <div class="row"><h3>Nachhaltigkeit in der Umsetzung</h3>
+        <div class="row"><h3><Icon name="nachhaltigkeit" size={32} />Nachhaltigkeit in der Umsetzung</h3>
           <p>Lösungen müssen langfristig tragen: wirtschaftlich, menschlich und organisatorisch.</p></div>
-        <div class="row"><h3>Mut zur Veränderung</h3>
+        <div class="row"><h3><Icon name="mut" size={32} />Mut zur Veränderung</h3>
           <p>Wir gehen voran, probieren aus, lernen sichtbar — und nehmen andere auf diesem Weg mit.</p></div>
       </div>
     </div>
@@ -151,6 +152,10 @@ import philip from '../assets/philip.png';
 
 <style>
   .quali--not li::before{background:var(--faint)}
+
+  /* Werte mit edlen Icons statt Punkt */
+  .rows--icons .row h3::before{display:none}
+  .rows--icons .row h3 :global(.ico){color:var(--wood);flex:none}
 
   /* Profilkarte */
   .profilkarte{display:grid;gap:2.2rem;align-items:start;

@@ -1,9 +1,17 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 
 const kurse = (await getCollection('kurse'))
   .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
+
+const kursIcon: Record<string, string> = {
+  'ki-grundlagen': 'ki',
+  'aevo': 'ausbildung',
+  'barista': 'barista',
+  'fuehren-mit-ki': 'beratung',
+};
 ---
 <Base
   title="Akademie — NextCourse"
@@ -27,6 +35,7 @@ const kurse = (await getCollection('kurse'))
             <span class:list={['karteikarte__status', kurs.data.status === 'geplant' && 'karteikarte__status--geplant']}>
               {kurs.data.status === 'buchbar' ? 'Buchbar' : 'In Planung'}
             </span>
+            <Icon name={kursIcon[kurs.id] ?? 'lernen'} size={40} class="karteikarte__icon" />
             <h2>{kurs.data.title}</h2>
             <p class="voice">„{kurs.data.botschaft}“</p>
             <p class="karteikarte__kurz">{kurs.data.kurz}</p>
