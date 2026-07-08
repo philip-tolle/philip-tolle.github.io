@@ -688,3 +688,7 @@ a.offercard:hover .postcard__title{color:var(--facc)}
     linear-gradient(180deg,rgba(247,244,239,.26) 0%,rgba(247,244,239,.22) 28%,
       rgba(247,244,239,.5) 44%,rgba(247,244,239,.82) 58%,rgba(247,244,239,.97) 70%,
       var(--paper) 84%)}
+@media(max-width:640px){
+  .pagehead--art{min-height:64svh}
+  .acc-blue .pagehead--art .pagehead__bg{object-position:95% top}
+}
