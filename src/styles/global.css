@@ -266,7 +266,7 @@ main.acc-amber{--acc:var(--amber)}
 
 /* ---------- Idee: Problem links, Lösung rechts ---------- */
 .idee2{display:grid;gap:3.5rem;margin-top:2.6rem}
-@media(min-width:1020px){.idee2{grid-template-columns:1.15fr 1px 1fr;gap:0 3.5rem;
+@media(min-width:1020px){.idee2{grid-template-columns:1fr 1px 1fr;gap:0 3.5rem;
   align-items:start}}
 .idee2__div{display:none}
 @media(min-width:1020px){.idee2__div{display:block;width:1px;align-self:stretch;
