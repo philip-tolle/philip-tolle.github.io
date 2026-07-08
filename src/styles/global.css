@@ -180,39 +180,43 @@ main.acc-amber{--acc:var(--amber)}
 }
 
 /* ---------- Die Weiche: Consulting / Akademie ---------- */
-.fork{display:grid;gap:3.8rem;margin-top:4.2rem;position:relative}
+.fork{display:grid;gap:1.8rem;margin-top:2.6rem;position:relative}
 @media(min-width:860px){.fork{grid-template-columns:1fr 1fr;gap:2rem}}
 .fork__or{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;
   width:3.6rem;height:3.6rem;border-radius:50%;display:grid;place-items:center;
   background:var(--paper);border:1px solid var(--hairline);
   font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--wood);
   box-shadow:0 8px 24px rgba(62,50,34,.14);pointer-events:none}
-.forkcard{--facc:var(--green);display:flex;flex-direction:column;align-items:flex-start;
-  text-align:left;text-decoration:none;color:var(--ink);position:relative;
-  background:var(--glass);border:1px solid var(--glass-edge);border-radius:22px;
-  padding:clamp(3.7rem,5vw,4.4rem) clamp(1.6rem,3.2vw,2.2rem) clamp(1.7rem,3.4vw,2.4rem);
-  backdrop-filter:blur(18px) saturate(1.5);
-  -webkit-backdrop-filter:blur(18px) saturate(1.5);
-  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95),
-    inset 0 0 0 1px rgba(255,255,255,.28);
-  transition:transform .25s,box-shadow .25s,background .25s}
-.forkcard:hover{transform:translateY(-5px);background:rgba(255,255,255,.45);
-  box-shadow:var(--shadow),var(--glow),inset 0 1px 0 rgba(255,255,255,.95)}
-.forkcard:active{transform:translateY(-2px) scale(.99)}
+.forkcard{--facc:var(--green);position:relative;isolation:isolate;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;
+  text-align:left;text-decoration:none;color:var(--ink);
+  min-height:clamp(330px,34vw,405px);
+  border:1px solid var(--glass-edge);border-radius:22px;
+  padding:clamp(1.7rem,3vw,2.4rem);
+  box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s}
 .forkcard--akademie{--facc:var(--blue);align-items:flex-end;text-align:right}
+.forkcard__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:center 28%;z-index:-2;
+  filter:contrast(.9) brightness(1.04) blur(.3px);
+  transition:transform .7s cubic-bezier(.2,.6,.2,1)}
+.forkcard--akademie .forkcard__img{object-position:84% 26%}
+.forkcard::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(247,244,239,.16) 0%,rgba(247,244,239,.32) 42%,
+    rgba(247,244,239,.72) 66%,rgba(247,244,239,.95) 86%,var(--paper) 100%)}
+.forkcard:hover{transform:translateY(-5px);box-shadow:var(--shadow),var(--glow)}
+.forkcard:hover .forkcard__img{transform:scale(1.06)}
+.forkcard:active{transform:translateY(-2px)}
 .forkcard__aud{font-family:var(--body);font-weight:500;font-size:.76rem;
-  letter-spacing:.28em;text-transform:uppercase;color:var(--facc);margin-bottom:1.1rem}
+  letter-spacing:.28em;text-transform:uppercase;color:var(--facc);margin-bottom:.9rem}
+.forkcard .forkcard__aud{margin:.9rem 0 0}
 .forkcard h3{font-size:clamp(1.7rem,4.2vw,2.3rem);margin-bottom:.5rem;transition:color .25s}
 .forkcard:hover h3{color:var(--facc)}
 .forkcard .voice{font-size:clamp(1.02rem,2.2vw,1.2rem);max-width:24em;margin:0}
-.forkcard__go{display:inline-flex;align-items:center;gap:.5rem;margin-top:auto;
-  padding-top:1.6rem;font-family:var(--body);font-weight:500;letter-spacing:.04em;
+.forkcard__go{display:inline-flex;align-items:center;gap:.5rem;margin-top:0;
+  padding-top:1.1rem;font-family:var(--body);font-weight:500;letter-spacing:.04em;
   font-size:.95rem;color:var(--facc)}
 .forkcard__go::after{content:"→";color:var(--wood);transition:transform .2s}
 .forkcard:hover .forkcard__go::after{transform:translateX(5px)}
-.coin.forkcard__coin{position:absolute;top:-3.3rem;left:1.8rem;--coin:104px;cursor:pointer;z-index:2}
-.forkcard--akademie .forkcard__coin{left:auto;right:1.8rem}
-.coin.is-spinning{animation:coinspin 1.9s cubic-bezier(.34,.08,.28,1)}
 
 /* ---------- Sektionsköpfe ---------- */
 .menuhead{text-align:center;margin-bottom:1.2rem}
@@ -669,7 +673,8 @@ a.offercard:hover .postcard__title{color:var(--facc)}
 /* Kupferstich-Banner: kein Entsättigungs-Filter, nur Cremeschleier + Auslauf */
 .pagehead--art{position:relative;overflow:hidden;isolation:isolate;min-height:100svh;
   padding-bottom:clamp(3.4rem,6vw,5.5rem)}
-.pagehead--art h1{color:#4a3826}
+.pagehead--art h1{color:#4a3826;transition:color .3s;cursor:default}
+.pagehead--art h1:hover{color:var(--acc)}
 .pagehead--art .lead{color:#6b5946}
 .pagehead--art .eyebrow{color:#7a5b3e}
 .pagehead--art .pagehead__bg{object-position:center top;
