@@ -180,17 +180,17 @@ main.acc-amber{--acc:var(--amber)}
 }
 
 /* ---------- Die Weiche: Consulting / Akademie ---------- */
-.fork{display:grid;gap:1.6rem;margin-top:2.6rem;position:relative}
+.fork{display:grid;gap:3.8rem;margin-top:4.2rem;position:relative}
 @media(min-width:860px){.fork{grid-template-columns:1fr 1fr;gap:2rem}}
 .fork__or{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;
   width:3.6rem;height:3.6rem;border-radius:50%;display:grid;place-items:center;
   background:var(--paper);border:1px solid var(--hairline);
   font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--wood);
   box-shadow:0 8px 24px rgba(62,50,34,.14);pointer-events:none}
-.forkcard{--facc:var(--green);display:flex;flex-direction:column;align-items:center;
-  text-align:center;text-decoration:none;color:var(--ink);position:relative;
-  background:var(--glass);border:1px solid var(--glass-edge);border-radius:24px;
-  padding:clamp(2.4rem,5vw,3.4rem) clamp(1.4rem,3.5vw,2.6rem);
+.forkcard{--facc:var(--green);display:flex;flex-direction:column;align-items:flex-start;
+  text-align:left;text-decoration:none;color:var(--ink);position:relative;
+  background:var(--glass);border:1px solid var(--glass-edge);border-radius:22px;
+  padding:clamp(3.7rem,5vw,4.4rem) clamp(1.6rem,3.2vw,2.2rem) clamp(1.7rem,3.4vw,2.4rem);
   backdrop-filter:blur(18px) saturate(1.5);
   -webkit-backdrop-filter:blur(18px) saturate(1.5);
   box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95),
@@ -199,17 +199,20 @@ main.acc-amber{--acc:var(--amber)}
 .forkcard:hover{transform:translateY(-5px);background:rgba(255,255,255,.45);
   box-shadow:var(--shadow),var(--glow),inset 0 1px 0 rgba(255,255,255,.95)}
 .forkcard:active{transform:translateY(-2px) scale(.99)}
-.forkcard--akademie{--facc:var(--blue)}
+.forkcard--akademie{--facc:var(--blue);align-items:flex-end;text-align:right}
 .forkcard__aud{font-family:var(--body);font-weight:500;font-size:.76rem;
   letter-spacing:.28em;text-transform:uppercase;color:var(--facc);margin-bottom:1.1rem}
-.forkcard h3{font-size:clamp(2rem,5.5vw,2.9rem);margin-bottom:.7rem;transition:color .25s}
+.forkcard h3{font-size:clamp(1.7rem,4.2vw,2.3rem);margin-bottom:.5rem;transition:color .25s}
 .forkcard:hover h3{color:var(--facc)}
-.forkcard .voice{font-size:clamp(1.1rem,2.4vw,1.3rem);max-width:22em;margin:0 auto}
+.forkcard .voice{font-size:clamp(1.02rem,2.2vw,1.2rem);max-width:24em;margin:0}
 .forkcard__go{display:inline-flex;align-items:center;gap:.5rem;margin-top:auto;
   padding-top:1.6rem;font-family:var(--body);font-weight:500;letter-spacing:.04em;
   font-size:.95rem;color:var(--facc)}
 .forkcard__go::after{content:"→";color:var(--wood);transition:transform .2s}
 .forkcard:hover .forkcard__go::after{transform:translateX(5px)}
+.coin.forkcard__coin{position:absolute;top:-3.3rem;left:1.8rem;--coin:104px;cursor:pointer;z-index:2}
+.forkcard--akademie .forkcard__coin{left:auto;right:1.8rem}
+.coin.is-spinning{animation:coinspin 1.9s cubic-bezier(.34,.08,.28,1)}
 
 /* ---------- Sektionsköpfe ---------- */
 .menuhead{text-align:center;margin-bottom:1.2rem}

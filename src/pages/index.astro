@@ -3,6 +3,9 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import logo from '../assets/nc-logo.png';
 import philip from '../assets/philip.png';
+import motivConsulting from '../assets/motiv-consulting.png';
+import motivAkademie from '../assets/motiv-akademie.png';
+import motivNeuseeland from '../assets/motiv-neuseeland.png';
 ---
 <Base
   title="NextCourse — Bildungs-, Beratungs- und Umsetzungspartner für das Gastgewerbe"
@@ -35,12 +38,18 @@ import philip from '../assets/philip.png';
       <div class="fork">
         <span class="fork__or" aria-hidden="true">oder</span>
         <a class="forkcard reveal" href="/consulting/">
+          <span class="coin forkcard__coin" data-tilt style="--coin:104px">
+            <Image src={motivConsulting} alt="Kupferstich einer Hand, die ein Zahnrad dreht, mit aufsteigendem Pfeil" width={240} format="webp" quality={82} />
+          </span>
           <p class="forkcard__aud">Für Betriebe &amp; Unternehmer</p>
           <h3>Consulting</h3>
           <p class="voice">Digitalisierung und KI, die im Betrieb ankommen.</p>
           <span class="forkcard__go">Zum Consulting</span>
         </a>
         <a class="forkcard forkcard--akademie reveal" href="/akademie/">
+          <span class="coin forkcard__coin" data-tilt style="--coin:104px">
+            <Image src={motivAkademie} alt="Kupferstich eines aufgeschlagenen Buchs mit strahlendem Stern" width={240} format="webp" quality={82} />
+          </span>
           <p class="forkcard__aud">Für alle, die weiterkommen wollen</p>
           <h3>Akademie</h3>
           <p class="voice">Kurse, die man morgen im Betrieb spürt.</p>
@@ -183,6 +192,9 @@ import philip from '../assets/philip.png';
   <!-- FLOOR 3b: Gründungsgeschichte -->
   <div class="floor--auto floor" id="geschichte">
     <div class="wrap">
+      <div class="coin reveal" data-tilt style="--coin:128px;margin:0 auto 1.6rem">
+        <Image src={motivNeuseeland} alt="Kupferstich einer sich entrollenden Farnspirale (Koru)" width={280} format="webp" quality={82} />
+      </div>
       <div class="menuhead">
         <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Die Gründungsgeschichte</p>
         <h2 class="reveal">Angefangen hat alles in Neuseeland.</h2>
@@ -320,5 +332,22 @@ import philip from '../assets/philip.png';
   dialog.querySelector('.stepdialog__close')!.addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', (e) => {
     if (e.target === dialog) { dialog.close(); }
+  });
+
+  /* ---------- Weiche-Münzen: Klick = Münzdrehung, dann zur Seite ---------- */
+  document.querySelectorAll<HTMLElement>('.forkcard__coin').forEach((coin) => {
+    const card = coin.closest('a');
+    if (!card) { return; }
+    coin.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const href = card.getAttribute('href')!;
+      if (reduced || coin.classList.contains('is-spinning')) {
+        window.location.href = href;
+        return;
+      }
+      coin.classList.add('is-spinning');
+      setTimeout(() => { window.location.href = href; }, 950);
+    });
   });
 </script>
