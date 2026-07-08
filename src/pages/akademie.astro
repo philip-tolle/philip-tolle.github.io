@@ -1,7 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
+import bannerAkademie from '../assets/banner-akademie.png';
 
 const kurse = (await getCollection('kurse'))
   .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
@@ -18,11 +20,12 @@ const kursIcon: Record<string, string> = {
   description="Weiterbildung für das Gastgewerbe in Würzburg: KI-Grundlagen (EU AI Act Art. 4), AEVO-Vorbereitung, Barista-Kurs und der AZAV-Lehrgang Führen & Kommunizieren mit KI — bis zu 100 % gefördert über Bildungsgutschein."
   accent="blue"
 >
-  <div class="pagehead">
+  <div class="pagehead pagehead--art">
+    <Image class="pagehead__bg" src={bannerAkademie} alt="" width={1600} format="webp" quality={78} loading="eager" />
     <div class="wrap">
       <p class="eyebrow">Akademie</p>
-      <h1>Wer heute im Gastgewerbe arbeitet, arbeitet morgen mit KI.</h1>
-      <p class="lead">Weiterbildung aus der Praxis — und in jedem Format steckt ein KI-Modul.</p>
+      <h1>Weiterbildung, die wirkt.</h1>
+      <p class="lead">Aus der Praxis fürs Gastgewerbe — und in jedem Format steckt ein KI-Modul.</p>
     </div>
   </div>
 

@@ -1,20 +1,23 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
+import bannerConsulting from '../assets/banner-consulting-v2.png';
 ---
 <Base
   title="Consulting — NextCourse"
   description="KI- und Digitalisierungsberatung für inhabergeführte Hotels und gehobene Individualgastronomie in Mainfranken: Quick-Check, Mystery Check, Pilotprojekte, Begleitung und Flying Academy."
 >
-  <div class="pagehead">
+  <div class="pagehead pagehead--art">
+    <Image class="pagehead__bg" src={bannerConsulting} alt="" width={1600} format="webp" quality={78} loading="eager" />
     <div class="wrap">
       <p class="eyebrow">Consulting</p>
-      <h1>Digitalisierung, die im Betrieb ankommt.</h1>
+      <h1>Beratung, die ankommt.</h1>
       <p class="lead">Für inhabergeführte Hotels und gehobene Individualgastronomie in Mainfranken.</p>
     </div>
   </div>
 
-  <div class="floor--auto floor">
+  <div class="floor--auto floor" style="padding-top:clamp(3rem,6vw,4.5rem)">
     <div class="wrap">
       <div class="menuhead">
         <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">So arbeiten wir</p>
