@@ -199,7 +199,7 @@ main.acc-amber{--acc:var(--amber)}
   object-position:center 28%;z-index:-2;
   filter:contrast(.9) brightness(1.04) blur(.3px);
   transition:transform .7s cubic-bezier(.2,.6,.2,1)}
-.forkcard--akademie .forkcard__img{object-position:84% 26%}
+.forkcard--akademie .forkcard__img{object-position:54% 24%}
 .forkcard::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:linear-gradient(180deg,rgba(247,244,239,.16) 0%,rgba(247,244,239,.32) 42%,
     rgba(247,244,239,.72) 66%,rgba(247,244,239,.95) 86%,var(--paper) 100%)}
@@ -690,5 +690,5 @@ a.offercard:hover .postcard__title{color:var(--facc)}
       var(--paper) 84%)}
 @media(max-width:640px){
   .pagehead--art{min-height:64svh}
-  .acc-blue .pagehead--art .pagehead__bg{object-position:95% top}
+  .acc-blue .pagehead--art .pagehead__bg{object-position:68% top}
 }
