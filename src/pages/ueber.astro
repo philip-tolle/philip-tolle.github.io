@@ -84,14 +84,23 @@ import motivNeuseeland from '../assets/motiv-neuseeland.png';
       <div class="menuhead">
         <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Die Gründungsgeschichte</p>
         <h2 class="reveal">Angefangen hat alles in Neuseeland.</h2>
-        <p class="lead reveal">Warum NextCourse? Die Antwort beginnt am anderen Ende der Welt. Die ganze Geschichte erzählt Philip hier bald selbst — zum Anhören.</p>
+        <p class="lead reveal">Warum NextCourse? Die Antwort beginnt am anderen Ende der Welt — und reicht bis heute. Hören Sie sich die Gründungsgeschichte an.</p>
       </div>
-      <div class="storybox reveal">
-        <span class="storybox__play" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M5 3.5 L14 9 L5 14.5 Z"/></svg>
-        </span>
-        <p>Die Geschichte zum Anhören — folgt in Kürze.</p>
+      <div class="audioplayer reveal">
+        <button class="audioplayer__btn" type="button" aria-label="Gründungsgeschichte abspielen">
+          <svg class="audioplayer__i-play" width="18" height="18" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true"><path d="M5 3.5 L14 9 L5 14.5 Z"/></svg>
+          <svg class="audioplayer__i-pause" width="16" height="16" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true" hidden><rect x="4" y="3" width="3.5" height="12" rx="1"/><rect x="10.5" y="3" width="3.5" height="12" rx="1"/></svg>
+        </button>
+        <div class="audioplayer__body">
+          <div class="audioplayer__top">
+            <span class="audioplayer__title">Die Gründungsgeschichte</span>
+            <span class="audioplayer__time"><span class="audioplayer__cur">0:00</span> / <span class="audioplayer__dur">–:––</span></span>
+          </div>
+          <div class="audioplayer__bar"><span class="audioplayer__fill"></span></div>
+        </div>
+        <audio preload="metadata" src="/audio/gruendungsgeschichte.mp3"></audio>
       </div>
+      <p class="audioplayer__note small faint reveal">Vorgelesen von einer KI-Stimme — die Geschichte ist echt.</p>
     </div>
   </div>
 
@@ -213,6 +222,24 @@ import motivNeuseeland from '../assets/motiv-neuseeland.png';
     box-shadow:0 6px 18px rgba(62,50,34,.22);transition:transform .25s}
   .flip:hover .flip__hint{transform:rotate(-45deg)}
   .flip:focus-visible{outline:2px solid var(--green);outline-offset:4px}
+  /* Audio-Player Gründungsgeschichte */
+  .audioplayer{display:flex;align-items:center;gap:1.2rem;margin:2.4rem auto 0;max-width:520px;
+    background:var(--glass);border:1px solid var(--glass-edge);border-radius:18px;
+    backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);
+    box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95);padding:1.2rem 1.5rem}
+  .audioplayer__btn{flex:none;width:3.4rem;height:3.4rem;border-radius:50%;cursor:pointer;
+    border:1px solid var(--hairline);display:grid;place-items:center;color:var(--wood);
+    background:var(--paper);transition:transform .2s,box-shadow .2s}
+  .audioplayer__btn:hover{transform:scale(1.05);box-shadow:var(--glow)}
+  .audioplayer__body{flex:1;min-width:0}
+  .audioplayer__top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.6rem}
+  .audioplayer__title{font-family:var(--body);font-weight:500;font-size:.95rem;color:var(--ink)}
+  .audioplayer__time{font-size:.78rem;color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .audioplayer__bar{height:6px;border-radius:999px;background:var(--paper2);cursor:pointer;
+    position:relative;overflow:hidden;border:1px solid var(--hairline)}
+  .audioplayer__fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--wood);border-radius:999px}
+  .audioplayer__note{text-align:center;margin:.9rem auto 0;max-width:520px}
+
   @media(prefers-reduced-motion:reduce){
     .flip__inner{transition:none}
   }
@@ -253,4 +280,40 @@ import motivNeuseeland from '../assets/motiv-neuseeland.png';
     }, { threshold: .5 });
     io.observe(el);
   });
+
+  /* Audio-Player der Gründungsgeschichte */
+  const ap = document.querySelector<HTMLElement>('.audioplayer');
+  if (ap) {
+    const audio = ap.querySelector('audio')!;
+    const btn = ap.querySelector<HTMLButtonElement>('.audioplayer__btn')!;
+    const iPlay = ap.querySelector<HTMLElement>('.audioplayer__i-play')!;
+    const iPause = ap.querySelector<HTMLElement>('.audioplayer__i-pause')!;
+    const fill = ap.querySelector<HTMLElement>('.audioplayer__fill')!;
+    const curEl = ap.querySelector<HTMLElement>('.audioplayer__cur')!;
+    const durEl = ap.querySelector<HTMLElement>('.audioplayer__dur')!;
+    const bar = ap.querySelector<HTMLElement>('.audioplayer__bar')!;
+    const fmtT = (s: number) => {
+      if (!isFinite(s)) { return '–:––'; }
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return m + ':' + String(sec).padStart(2, '0');
+    };
+    btn.addEventListener('click', () => { if (audio.paused) { audio.play(); } else { audio.pause(); } });
+    audio.addEventListener('play', () => { iPlay.hidden = true; iPause.hidden = false; btn.setAttribute('aria-label', 'Gründungsgeschichte pausieren'); });
+    audio.addEventListener('pause', () => { iPlay.hidden = false; iPause.hidden = true; btn.setAttribute('aria-label', 'Gründungsgeschichte abspielen'); });
+    audio.addEventListener('loadedmetadata', () => { durEl.textContent = fmtT(audio.duration); });
+    if (audio.readyState >= 1) { durEl.textContent = fmtT(audio.duration); }
+    audio.addEventListener('timeupdate', () => {
+      const p = audio.duration ? audio.currentTime / audio.duration : 0;
+      fill.style.width = (p * 100) + '%';
+      curEl.textContent = fmtT(audio.currentTime);
+    });
+    audio.addEventListener('ended', () => { fill.style.width = '0%'; curEl.textContent = '0:00'; });
+    bar.addEventListener('click', (e) => {
+      if (!isFinite(audio.duration)) { return; }
+      const r = bar.getBoundingClientRect();
+      const p = Math.min(Math.max((e.clientX - r.left) / r.width, 0), 1);
+      audio.currentTime = p * audio.duration;
+    });
+  }
 </script>

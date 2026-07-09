@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import BlogCover from '../../components/BlogCover.astro';
+import bannerBlog from '../../assets/banner-blog.png';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -11,7 +13,8 @@ const fmt = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'long', ye
   title="Blog — NextCourse"
   description="KI, Digitalisierung und Weiterbildung für das Gastgewerbe — praxisnah erklärt. Der NextCourse-Blog für Hoteliers, Gastronomen und alle, die weiterkommen wollen."
 >
-  <div class="pagehead">
+  <div class="pagehead pagehead--art">
+    <Image class="pagehead__bg" src={bannerBlog} alt="" width={1600} format="webp" quality={78} loading="eager" />
     <div class="wrap">
       <p class="eyebrow">Blog</p>
       <h1>Wissen für Gastgeber.</h1>
@@ -45,6 +48,10 @@ const fmt = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'long', ye
 </Base>
 
 <style>
+  /* Blog-Banner: moderat hoch, Blog-Szene im Blick */
+  .pagehead--art{min-height:62svh}
+  .pagehead--art .pagehead__bg{object-position:center 40%}
+
   .postcard{padding:0;overflow:hidden}
   .postcard__cover{display:block;aspect-ratio:16/10;overflow:hidden}
   .postcard__main{display:flex;flex-direction:column;gap:.55rem;padding:1.7rem 1.8rem}
