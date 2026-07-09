@@ -149,15 +149,16 @@ main.acc-amber{--acc:var(--amber)}
 /* ---------- Buttons ---------- */
 .btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--amber-soft);
   color:#241C10;font-family:var(--body);font-weight:500;font-size:1rem;letter-spacing:.04em;
-  padding:.95em 1.9em;border-radius:999px;border:0;cursor:pointer;
-  text-decoration:none;transition:transform .18s,box-shadow .18s}
+  padding:.95em 1.9em;border-radius:999px;border:1px solid transparent;cursor:pointer;
+  text-decoration:none;transition:transform .18s,box-shadow .18s,background .2s,color .2s,border-color .2s}
 .btn::after{content:"→";transition:transform .18s}
-.btn:hover{transform:translateY(-2px);box-shadow:var(--glow)}
+.btn:hover{transform:translateY(-3px);box-shadow:var(--glow),0 16px 30px -14px rgba(150,110,60,.55)}
 .btn:hover::after{transform:translateX(4px)}
 .btn:active{transform:translateY(0) scale(.98)}
 .btn--line{background:rgba(255,255,255,.4);color:var(--green);
   border:1px solid rgba(51,96,79,.35);backdrop-filter:blur(8px);box-shadow:none}
-.btn--line:hover{border-color:var(--green);box-shadow:none}
+.btn--line:hover{background:var(--green);color:var(--paper);border-color:var(--green);
+  transform:translateY(-3px);box-shadow:0 16px 32px -14px rgba(51,96,79,.5)}
 .btnrow{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.2rem}
 .arrowlink{font-family:var(--body);font-weight:500;letter-spacing:.04em;color:var(--green);
   text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;margin-top:1.4rem}
