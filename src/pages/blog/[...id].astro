@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import BlogCover from '../../components/BlogCover.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -33,6 +34,14 @@ const articleSchema = JSON.stringify({
     </div>
   </div>
 
+  {post.data.cover && (
+    <div class="wrap" style="max-width:840px">
+      <div class="articlecover reveal">
+        <BlogCover post={post} width={880} />
+      </div>
+    </div>
+  )}
+
   <div class="floor--auto floor" style="padding-top:1.5rem">
     <div class="wrap" style="max-width:840px">
       <article class="prose reveal">
@@ -45,3 +54,9 @@ const articleSchema = JSON.stringify({
     </div>
   </div>
 </Base>
+
+<style>
+  .articlecover{aspect-ratio:16/8;border-radius:20px;overflow:hidden;margin-top:.4rem;
+    border:1px solid var(--glass-edge);box-shadow:var(--shadow)}
+  @media(max-width:640px){.articlecover{aspect-ratio:16/10}}
+</style>

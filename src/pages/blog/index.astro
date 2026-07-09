@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import BlogCover from '../../components/BlogCover.astro';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -22,14 +23,17 @@ const fmt = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'long', ye
     <div class="wrap" style="max-width:840px">
       <div class="postlist reveal stagger">
         {posts.map((post) => (
-          <a class="offercard" href={`/blog/${post.id}/`}>
-            <p class="postmeta">
-              <time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time>
-              {post.data.tags.map((t) => <span class="chip">{t}</span>)}
-            </p>
-            <h2 class="postcard__title">{post.data.title}</h2>
-            <p>{post.data.description}</p>
-            <span class="forkcard__go">Weiterlesen</span>
+          <a class="offercard postcard" href={`/blog/${post.id}/`}>
+            <span class="postcard__cover"><BlogCover post={post} width={560} /></span>
+            <span class="postcard__main">
+              <p class="postmeta">
+                <time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time>
+                {post.data.tags.map((t) => <span class="chip">{t}</span>)}
+              </p>
+              <h2 class="postcard__title">{post.data.title}</h2>
+              <p>{post.data.description}</p>
+              <span class="forkcard__go">Weiterlesen</span>
+            </span>
           </a>
         ))}
       </div>
@@ -39,3 +43,14 @@ const fmt = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'long', ye
     </div>
   </div>
 </Base>
+
+<style>
+  .postcard{padding:0;overflow:hidden}
+  .postcard__cover{display:block;aspect-ratio:16/10;overflow:hidden}
+  .postcard__main{display:flex;flex-direction:column;gap:.55rem;padding:1.7rem 1.8rem}
+  @media(min-width:640px){
+    .postcard{display:grid;grid-template-columns:clamp(220px,34%,320px) 1fr;align-items:stretch}
+    .postcard__cover{aspect-ratio:auto;height:100%;min-height:100%;
+      border-right:1px solid var(--line)}
+  }
+</style>

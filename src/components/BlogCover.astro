@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  width?: number;
+}
+const { post, width = 640 } = Astro.props;
+const cover = post.data.cover;
+const alt = post.data.coverAlt ?? '';
+---
+{cover ? (
+  <Image src={cover} alt={alt} width={width} format="webp" quality={78} class="blogcover" loading="lazy" />
+) : (
+  <span class="blogcover blogcover--empty" aria-hidden="true">
+    <svg viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 40 C 26 20, 40 20, 52 34 C 62 46, 76 46, 90 24"/>
+    </svg>
+  </span>
+)}

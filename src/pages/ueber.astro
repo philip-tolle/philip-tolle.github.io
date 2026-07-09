@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import philip from '../assets/philip.png';
+import motivNeuseeland from '../assets/motiv-neuseeland.png';
 ---
 <Base
   title="Über NextCourse — Aus der Branche. Für die Branche."
@@ -70,6 +71,26 @@ import philip from '../assets/philip.png';
             <a href="/kontakt/" class="btn">Lernen wir uns kennen</a>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gründungsgeschichte -->
+  <div class="floor--auto floor" id="geschichte">
+    <div class="wrap">
+      <div class="coin reveal" data-tilt style="--coin:128px;margin:0 auto 1.6rem">
+        <Image src={motivNeuseeland} alt="Kupferstich einer sich entrollenden Farnspirale (Koru)" width={280} format="webp" quality={82} />
+      </div>
+      <div class="menuhead">
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Die Gründungsgeschichte</p>
+        <h2 class="reveal">Angefangen hat alles in Neuseeland.</h2>
+        <p class="lead reveal">Warum NextCourse? Die Antwort beginnt am anderen Ende der Welt. Die ganze Geschichte erzählt Philip hier bald selbst — zum Anhören.</p>
+      </div>
+      <div class="storybox reveal">
+        <span class="storybox__play" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M5 3.5 L14 9 L5 14.5 Z"/></svg>
+        </span>
+        <p>Die Geschichte zum Anhören — folgt in Kürze.</p>
       </div>
     </div>
   </div>
