@@ -240,20 +240,20 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
         <h2 class="reveal">Was gerade bei uns läuft.</h2>
       </div>
       <div class="news reveal stagger">
-        <a class="offercard newscard" href="/consulting/pilotprojekte/">
+        <a class="offercard newscard newscard--neu" href="/consulting/pilotprojekte/">
           <span class="newscard__kick newscard__kick--neu">Neu</span>
           <h3>KI-Bausteine zum Festpreis</h3>
           <p>Fünf Pilotprojekte — vom Telefonassistenten bis zur Wareneinsatzoptimierung — jetzt als eigene Übersicht.</p>
           <span class="forkcard__go">Pilotprojekte ansehen</span>
         </a>
-        <a class="offercard newscard" href="/kontakt/">
+        <a class="offercard newscard newscard--termin" href="/kontakt/">
           <span class="newscard__kick newscard__kick--termin">Termin</span>
           <h3>KI-Praxisstart: das erste Seminar</h3>
           <p>Unser erstes KI-Seminar fürs Gastgewerbe. Die Plätze sind begrenzt.</p>
           <span class="newscard__hl">3. August 2026</span>
           <span class="forkcard__go">Platz anfragen</span>
         </a>
-        <a class="offercard newscard" href="/consulting/mystery-check/">
+        <a class="offercard newscard newscard--angebot" href="/consulting/mystery-check/">
           <span class="newscard__kick newscard__kick--angebot">Angebot</span>
           <h3>Mystery Check zum Pilotpreis</h3>
           <p>Ihren Betrieb mit den Augen der Gäste sehen — als Einstieg ins Consulting.</p>
@@ -315,10 +315,19 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
   /* Neuigkeiten & Angebote */
   .news{display:grid;gap:1.6rem;margin-top:2.4rem}
   @media(min-width:820px){.news{grid-template-columns:repeat(3,1fr)}}
-  .newscard{align-items:flex-start}
+  .newscard{align-items:flex-start;--nc:var(--wood);
+    transition:transform .25s,box-shadow .25s,background .25s,border-color .25s}
+  .newscard--neu{--nc:var(--green);--nc-tint:rgba(51,96,79,.09);--nc-bd:rgba(51,96,79,.5);--nc-sh:rgba(51,96,79,.4)}
+  .newscard--termin{--nc:var(--blue);--nc-tint:rgba(63,94,126,.1);--nc-bd:rgba(63,94,126,.5);--nc-sh:rgba(63,94,126,.42)}
+  .newscard--angebot{--nc:var(--amber);--nc-tint:rgba(176,105,15,.09);--nc-bd:rgba(176,105,15,.5);--nc-sh:rgba(176,105,15,.4)}
+  .offercard.newscard:hover{background:var(--nc-tint);border-color:var(--nc-bd);
+    box-shadow:0 18px 42px -20px var(--nc-sh),inset 0 1px 0 rgba(255,255,255,.9)}
+  .offercard.newscard:hover h3{color:var(--nc)}
+  .newscard:hover .newscard__kick{background:var(--nc);border-color:var(--nc);color:var(--paper)}
   .newscard__kick{align-self:flex-start;font-family:var(--body);font-weight:500;font-size:.72rem;
     letter-spacing:.16em;text-transform:uppercase;padding:.3em .9em;border-radius:999px;
-    border:1px solid var(--hairline);color:var(--wood);background:rgba(255,255,255,.55);margin-bottom:.3rem}
+    border:1px solid var(--hairline);color:var(--wood);background:rgba(255,255,255,.55);margin-bottom:.3rem;
+    transition:background .25s,border-color .25s,color .25s}
   .newscard__kick--neu{color:var(--green);border-color:rgba(51,96,79,.4)}
   .newscard__kick--termin{color:var(--blue);border-color:rgba(63,94,126,.4)}
   .newscard__kick--angebot{color:var(--amber);border-color:rgba(176,105,15,.4)}
