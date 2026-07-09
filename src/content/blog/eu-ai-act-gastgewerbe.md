@@ -3,8 +3,8 @@ title: "EU AI Act im Gastgewerbe: Was Hoteliers und Gastronomen jetzt wissen mü
 description: "KI steckt längst in Buchungssystemen, Preisgestaltung und Telefonassistenten. Der EU AI Act bringt dafür neue Pflichten — dieser Überblick zeigt, was Betriebe wirklich betrifft und womit Sie anfangen sollten."
 pubDate: 2026-07-04
 tags: ["EU AI Act", "KI im Gastgewerbe"]
-cover: ../../assets/roboter.png
-coverAlt: "Kupferstich eines freundlichen Roboters — Sinnbild für KI im Gastgewerbe"
+cover: ../../assets/blog-eu-ai-act.png
+coverAlt: "Illustration im Kupferstich-Stil: ein Hotelier mit Tablet, das EU-AI-Act-Gesetzbuch und die drei Pflichten des AI Act im Gastgewerbe"
 ---
 
 Wenn in Ihrem Betrieb ein Buchungssystem Preise vorschlägt, ein Telefonassistent Anrufe

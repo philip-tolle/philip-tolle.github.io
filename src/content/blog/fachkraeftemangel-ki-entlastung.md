@@ -3,8 +3,8 @@ title: "Fachkräftemangel im Gastgewerbe: Wo KI wirklich entlastet — und wo ni
 description: "Volle Häuser, weniger Hände: Der Fachkräftemangel ist real. KI ersetzt keine Gastgeber — aber sie kann die Verwaltung übernehmen, die heute zu viel Kraft frisst. Ein ehrlicher Blick, wo Technologie im Betrieb Zeit zurückgibt."
 pubDate: 2026-07-09
 tags: ["Fachkräftemangel", "KI im Gastgewerbe"]
-cover: ../../assets/motiv-akademie.png
-coverAlt: "Kupferstich eines aufgeschlagenen Buchs, aus dem Licht aufsteigt — Sinnbild für Wissen und den Weg nach vorn"
+cover: ../../assets/blog-fachkraeftemangel.png
+coverAlt: "Illustration im Kupferstich-Stil: ein Hotel, umgeben von Verwaltungsaufgaben wie Dienstplan, Rechnungen und Anrufen, die eine KI im Hintergrund übernimmt"
 ---
 
 Der Fachkräftemangel ist keine Prognose mehr, sondern Alltag. Zehntausende Stellen im
