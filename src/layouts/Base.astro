@@ -175,37 +175,56 @@ const orgSchema = JSON.stringify({
     });
   }
 
-  /* ---------- Kurslinie: Linie zeichnet sich + Holzlogo gleitet mit ---------- */
+  /* ---------- Kurslinie: Holzlogo rastet an der aktiven Station ein ---------- */
   document.querySelectorAll<HTMLElement>('.kurs').forEach((kurs) => {
     const path = kurs.querySelector('.kurs__path') as SVGPathElement | null;
     const svg = kurs.querySelector('.kurs__line') as SVGSVGElement | null;
     const pen = kurs.querySelector('.kurs__pen') as HTMLElement | null;
-    if (!path || !svg) { return; }
+    const markers = Array.from(kurs.querySelectorAll<HTMLElement>('.station__num, .station__node'));
+    if (!path || !svg || !markers.length) { return; }
     const len = path.getTotalLength();
     path.style.strokeDasharray = String(len);
-    const place = (p: number) => {
-      const c = Math.max(0, Math.min(1, p));
-      path.style.strokeDashoffset = String(len * (1 - c));
+
+    let stops: { x: number; y: number; fill: number }[] = [];
+    let top = { x: 0, y: 0, fill: 0 };
+    const measure = () => {
+      const kr = kurs.getBoundingClientRect();
+      const sr = svg.getBoundingClientRect();
+      top = { x: (sr.left - kr.left) + (65 / 130) * sr.width, y: 0, fill: 0 };
+      stops = markers.map((mk) => {
+        const mr = mk.getBoundingClientRect();
+        return {
+          x: mr.left + mr.width / 2 - kr.left,
+          y: mr.top + mr.height / 2 - kr.top,
+          fill: kr.height ? (mr.top + mr.height / 2 - kr.top) / kr.height : 0,
+        };
+      });
+    };
+    const apply = (pos: { x: number; y: number; fill: number }) => {
       if (pen) {
-        const pt = path.getPointAtLength(len * c);
-        const sr = svg.getBoundingClientRect();
-        const kr = kurs.getBoundingClientRect();
-        const x = (sr.left - kr.left) + (pt.x / 130) * sr.width;
-        const y = (sr.top - kr.top) + (pt.y / 1600) * sr.height;
-        pen.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) translate(-50%,-50%)';
+        pen.style.transform = 'translate(' + pos.x.toFixed(1) + 'px,' + pos.y.toFixed(1) + 'px) translate(-50%,-50%)';
         pen.style.opacity = '1';
       }
-      kurs.classList.toggle('kurs--done', c >= 0.985);
+      path.style.strokeDashoffset = String(len * (1 - Math.min(1, pos.fill)));
     };
-    if (reduced) { place(1); return; }
     const update = () => {
-      const r = kurs.getBoundingClientRect();
-      const passed = Math.min(Math.max(window.innerHeight * 0.62 - r.top, 0), r.height);
-      place(r.height ? passed / r.height : 0);
+      const kr = kurs.getBoundingClientRect();
+      const ref = window.innerHeight * 0.45;
+      let active = -1;
+      stops.forEach((p, i) => { if (kr.top + p.y <= ref) { active = i; } });
+      apply(active >= 0 ? stops[active] : top);
+      kurs.classList.toggle('kurs--done', active >= stops.length - 1);
     };
-    window.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
-    window.addEventListener('resize', () => requestAnimationFrame(update), { passive: true });
+
+    measure();
+    if (reduced) { apply(stops[stops.length - 1] || top); return; }
+    // erste Platzierung ohne Transition, damit das Logo nicht aus der Ecke einschwebt
+    if (pen) { pen.style.transition = 'none'; }
     update();
+    if (pen) { void pen.offsetWidth; pen.style.transition = ''; }
+    window.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+    window.addEventListener('resize', () => { measure(); update(); }, { passive: true });
+    window.addEventListener('load', () => { measure(); update(); });
   });
 
   /* ---------- Fußzeile: Jahr ---------- */

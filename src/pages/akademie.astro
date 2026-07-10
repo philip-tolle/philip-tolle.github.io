@@ -37,14 +37,11 @@ const bereiche = [
 
       <div class="kurs" id="kurs">
         <svg class="kurs__line" viewBox="0 0 130 1600" preserveAspectRatio="none" aria-hidden="true">
-          <path class="kurs__track" d="M65 0 C 105 140, 25 280, 65 420 C 105 560, 25 700, 65 840 C 105 980, 25 1120, 65 1260 C 100 1380, 35 1500, 65 1600"/>
-          <path class="kurs__path" d="M65 0 C 105 140, 25 280, 65 420 C 105 560, 25 700, 65 840 C 105 980, 25 1120, 65 1260 C 100 1380, 35 1500, 65 1600"/>
+          <path class="kurs__track" d="M65 0 L65 1600"/>
+          <path class="kurs__path" d="M65 0 L65 1600"/>
         </svg>
         <div class="kurs__pen">
-          <span class="kurs__logo"><Image src={logo} alt="" width={108} format="webp" quality={82} loading="eager" /></span>
-          <svg class="kurs__penarrow" width="22" height="13" viewBox="0 0 26 16" aria-hidden="true">
-            <path d="M3 3 L13 13 L23 3" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <span class="kurs__logo"><Image src={logo} alt="" width={120} format="webp" quality={82} loading="eager" /></span>
         </div>
         {bereiche.map((b) => (
           <div class="station">
