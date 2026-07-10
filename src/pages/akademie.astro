@@ -149,16 +149,3 @@ const bereiche = [
   @keyframes deckin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   @media(prefers-reduced-motion:reduce){.deckoffer{animation:none}}
 </style>
-
-<script>
-  document.querySelectorAll<HTMLButtonElement>('.deckblatt[aria-controls]').forEach((btn) => {
-    const panel = document.getElementById(btn.getAttribute('aria-controls') as string);
-    if (!panel) { return; }
-    btn.addEventListener('click', () => {
-      const open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
-      panel.hidden = open;
-      window.dispatchEvent(new Event('resize'));
-    });
-  });
-</script>

@@ -223,6 +223,18 @@ const orgSchema = JSON.stringify({
     window.addEventListener('load', () => { measure(); onScroll(); });
   });
 
+  /* ---------- Deckblätter: Angebote aufklappen ---------- */
+  document.querySelectorAll<HTMLButtonElement>('.deckblatt[aria-controls]').forEach((btn) => {
+    const panel = document.getElementById(btn.getAttribute('aria-controls') as string);
+    if (!panel) { return; }
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      panel.hidden = open;
+      window.dispatchEvent(new Event('resize'));
+    });
+  });
+
   /* ---------- Fußzeile: Jahr ---------- */
   const year = document.getElementById('year');
   if (year) { year.textContent = String(new Date().getFullYear()); }

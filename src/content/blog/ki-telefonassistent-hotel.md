@@ -56,7 +56,7 @@ Hotel mit 65 Zimmern — ist der Telefonassistent der Baustein mit dem schnellst
   einer überschaubaren, klar umrissenen Einführung.
 
 Was bei Ihrem Haus möglich ist, hängt von Ihrer Größe und Ihren Abläufen ab. Genau das ist
-der Grund, warum wir solche Bausteine als [Pilotprojekt zum Festpreis](/consulting/pilotprojekte/)
+der Grund, warum wir solche Bausteine als [Implementierungsprojekt zum Festpreis](/consulting/implementierungsprojekte/)
 umsetzen: klar abgegrenzt, messbar und ohne den laufenden Betrieb lahmzulegen.
 
 ## Der ehrliche erste Schritt

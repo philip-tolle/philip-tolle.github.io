@@ -38,7 +38,7 @@ Der Nutzen liegt selten im Spektakulären, sondern im Wiederkehrenden:
   laufen im Hintergrund, statt Feierabende zu kosten.
 
 Das sind keine Zukunftsvisionen, sondern die Bausteine, die wir heute als
-[Pilotprojekte zum Festpreis](/consulting/pilotprojekte/) umsetzen.
+[Implementierungsprojekte zum Festpreis](/consulting/implementierungsprojekte/) umsetzen.
 
 ## Wo KI nichts zu suchen hat
 
