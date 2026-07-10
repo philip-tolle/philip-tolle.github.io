@@ -175,56 +175,52 @@ const orgSchema = JSON.stringify({
     });
   }
 
-  /* ---------- Kurslinie: Holzlogo rastet an der aktiven Station ein ---------- */
+  /* ---------- Kurslinie: Holzlogo läuft weich auf Viewport-Mitte mit ---------- */
   document.querySelectorAll<HTMLElement>('.kurs').forEach((kurs) => {
     const path = kurs.querySelector('.kurs__path') as SVGPathElement | null;
     const svg = kurs.querySelector('.kurs__line') as SVGSVGElement | null;
     const pen = kurs.querySelector('.kurs__pen') as HTMLElement | null;
-    const markers = Array.from(kurs.querySelectorAll<HTMLElement>('.station__num, .station__node'));
-    if (!path || !svg || !markers.length) { return; }
+    if (!path || !svg || !pen) { return; }
     const len = path.getTotalLength();
     path.style.strokeDasharray = String(len);
 
-    let stops: { x: number; y: number; fill: number }[] = [];
-    let top = { x: 0, y: 0, fill: 0 };
+    let lineX = 0;
+    let sectionH = 1;
     const measure = () => {
       const kr = kurs.getBoundingClientRect();
       const sr = svg.getBoundingClientRect();
-      top = { x: (sr.left - kr.left) + (65 / 130) * sr.width, y: 0, fill: 0 };
-      stops = markers.map((mk) => {
-        const mr = mk.getBoundingClientRect();
-        return {
-          x: mr.left + mr.width / 2 - kr.left,
-          y: mr.top + mr.height / 2 - kr.top,
-          fill: kr.height ? (mr.top + mr.height / 2 - kr.top) / kr.height : 0,
-        };
-      });
+      lineX = (sr.left - kr.left) + (65 / 130) * sr.width;
+      sectionH = kr.height || 1;
     };
-    const apply = (pos: { x: number; y: number; fill: number }) => {
-      if (pen) {
-        pen.style.transform = 'translate(' + pos.x.toFixed(1) + 'px,' + pos.y.toFixed(1) + 'px) translate(-50%,-50%)';
-        pen.style.opacity = '1';
-      }
-      path.style.strokeDashoffset = String(len * (1 - Math.min(1, pos.fill)));
+    const applyY = (y: number) => {
+      pen.style.transform = 'translate(' + lineX.toFixed(1) + 'px,' + y.toFixed(1) + 'px) translate(-50%,-50%)';
+      path.style.strokeDashoffset = String(len * (1 - Math.min(1, y / sectionH)));
     };
-    const update = () => {
+
+    let targetY = 0;
+    let curY = 0;
+    let raf: number | null = null;
+    let started = false;
+    const tick = () => {
+      curY += (targetY - curY) * 0.16;
+      if (Math.abs(targetY - curY) < 0.4) { curY = targetY; applyY(curY); raf = null; return; }
+      applyY(curY);
+      raf = requestAnimationFrame(tick);
+    };
+    const onScroll = () => {
       const kr = kurs.getBoundingClientRect();
-      const ref = window.innerHeight * 0.45;
-      let active = -1;
-      stops.forEach((p, i) => { if (kr.top + p.y <= ref) { active = i; } });
-      apply(active >= 0 ? stops[active] : top);
-      kurs.classList.toggle('kurs--done', active >= stops.length - 1);
+      targetY = Math.max(0, Math.min(sectionH, window.innerHeight / 2 - kr.top));
+      pen.style.opacity = '1';
+      if (!started) { started = true; curY = targetY; applyY(curY); return; }
+      if (raf === null) { raf = requestAnimationFrame(tick); }
     };
 
     measure();
-    if (reduced) { apply(stops[stops.length - 1] || top); return; }
-    // erste Platzierung ohne Transition, damit das Logo nicht aus der Ecke einschwebt
-    if (pen) { pen.style.transition = 'none'; }
-    update();
-    if (pen) { void pen.offsetWidth; pen.style.transition = ''; }
-    window.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
-    window.addEventListener('resize', () => { measure(); update(); }, { passive: true });
-    window.addEventListener('load', () => { measure(); update(); });
+    onScroll();
+    if (reduced) { return; }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => { measure(); onScroll(); }, { passive: true });
+    window.addEventListener('load', () => { measure(); onScroll(); });
   });
 
   /* ---------- Fußzeile: Jahr ---------- */

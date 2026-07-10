@@ -455,11 +455,9 @@ a.offercard:hover h3{color:var(--facc)}
   width:130px;height:100%;overflow:visible;pointer-events:none}
 .kurs__track{stroke:rgba(38,34,27,.12);stroke-width:2;fill:none}
 .kurs__path{stroke:var(--acc);stroke-width:2.4;fill:none;opacity:.9;
-  filter:drop-shadow(0 1px 4px rgba(62,50,34,.12));
-  transition:stroke-dashoffset .55s cubic-bezier(.4,.05,.2,1)}
+  filter:drop-shadow(0 1px 4px rgba(62,50,34,.12))}
 .kurs__pen{position:absolute;top:0;left:0;z-index:4;width:60px;height:60px;
-  opacity:0;will-change:transform;pointer-events:none;
-  transition:transform .55s cubic-bezier(.4,.05,.2,1),opacity .4s ease}
+  opacity:0;will-change:transform;pointer-events:none;transition:opacity .4s ease}
 .kurs__pen::after{content:"";position:absolute;top:calc(100% - 5px);left:50%;
   transform:translateX(-50%);width:0;height:0;z-index:-1;
   border-left:8px solid transparent;border-right:8px solid transparent;
