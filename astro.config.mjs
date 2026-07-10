@@ -6,4 +6,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://www.next-course.de',
   integrations: [sitemap()],
+  redirects: {
+    '/consulting/pilotprojekte/': '/consulting/implementierungsprojekte/',
+  },
 });
