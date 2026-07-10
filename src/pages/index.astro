@@ -210,7 +210,7 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
                 aria-hidden={marquee && i >= posts.length ? 'true' : undefined}
                 tabindex={marquee && i >= posts.length ? -1 : undefined}
               >
-                <span class="bandcard__cover"><BlogCover post={post} width={420} /></span>
+                <span class="bandcard__cover cover-frame"><BlogCover post={post} width={420} /></span>
                 <span class="bandcard__body">
                   <time class="bandcard__date" datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time>
                   <span class="bandcard__title">{post.data.title}</span>
@@ -305,7 +305,7 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
     box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s;
     backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4)}
   .bandcard:hover{transform:translateY(-5px);box-shadow:var(--shadow),var(--glow)}
-  .bandcard__cover{display:block;aspect-ratio:3/2;overflow:hidden;border-bottom:1px solid var(--line)}
+  .bandcard__cover{display:block;aspect-ratio:3/2;overflow:hidden}
   .bandcard__body{display:flex;flex-direction:column;gap:.4rem;padding:1.2rem 1.4rem 1.5rem}
   .bandcard__date{font-size:.76rem;letter-spacing:.06em;color:var(--faint)}
   .bandcard__title{font-family:var(--disp);font-size:1.18rem;line-height:1.25;color:var(--ink);

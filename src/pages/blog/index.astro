@@ -27,7 +27,7 @@ const fmt = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'long', ye
       <div class="postlist reveal stagger">
         {posts.map((post) => (
           <a class="offercard postcard" href={`/blog/${post.id}/`}>
-            <span class="postcard__cover"><BlogCover post={post} width={560} /></span>
+            <span class="postcard__cover cover-frame"><BlogCover post={post} width={560} /></span>
             <span class="postcard__main">
               <p class="postmeta">
                 <time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time>
@@ -52,7 +52,7 @@ const fmt = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'long', ye
   .postlist{grid-template-columns:1fr;gap:1.8rem}
   @media(min-width:700px){.postlist{grid-template-columns:1fr 1fr}}
   .postcard{padding:0;overflow:hidden}
-  .postcard__cover{display:block;aspect-ratio:16/9;overflow:hidden;border-bottom:1px solid var(--line)}
+  .postcard__cover{display:block;aspect-ratio:16/9;overflow:hidden}
   .postcard__main{display:flex;flex-direction:column;gap:.5rem;padding:1.35rem 1.5rem 1.55rem}
   .postcard__title{font-size:clamp(1.2rem,2.6vw,1.5rem)}
   .postcard__main > p:not(.postmeta){font-size:.92rem;line-height:1.55;

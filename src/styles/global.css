@@ -627,6 +627,14 @@ a.offercard:hover .postcard__title{color:var(--facc)}
 .blogcover--empty{display:grid;place-items:center;color:var(--wood);
   background:radial-gradient(circle at 50% 30%,#FFFDF8,var(--paper2))}
 .blogcover--empty svg{width:42%;opacity:.45}
+/* Weicher Creme-Schleier auf Cover-Bildern (wie bei den Seiten-Bannern) */
+.cover-frame{position:relative}
+.cover-frame::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:linear-gradient(180deg,
+    rgba(247,244,239,.12) 0%,
+    rgba(247,244,239,0) 24%,
+    rgba(247,244,239,0) 60%,
+    rgba(247,244,239,.5) 100%)}
 
 /* ---------- Über ---------- */
 .about{display:grid;gap:2.6rem;align-items:start;margin-top:2.6rem}
