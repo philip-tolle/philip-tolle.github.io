@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import bannerConsulting from '../assets/banner-consulting-v4.png';
+import logo from '../assets/nc-logo.png';
 ---
 <Base
   title="Consulting — NextCourse"
@@ -27,12 +28,15 @@ import bannerConsulting from '../assets/banner-consulting-v4.png';
 
       <div class="kurs" id="kurs">
         <svg class="kurs__line" viewBox="0 0 130 1600" preserveAspectRatio="none" aria-hidden="true">
+          <path class="kurs__track" d="M65 0 C 105 140, 25 280, 65 420 C 105 560, 25 700, 65 840 C 105 980, 25 1120, 65 1260 C 100 1380, 35 1500, 65 1600"/>
           <path class="kurs__path" d="M65 0 C 105 140, 25 280, 65 420 C 105 560, 25 700, 65 840 C 105 980, 25 1120, 65 1260 C 100 1380, 35 1500, 65 1600"/>
         </svg>
-        <span class="kurs__start" aria-hidden="true"></span>
-        <svg class="kurs__arrow" width="26" height="16" viewBox="0 0 26 16" aria-hidden="true">
-          <path d="M3 2 L13 13 L23 2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <div class="kurs__pen">
+          <span class="kurs__logo"><Image src={logo} alt="" width={108} format="webp" quality={82} loading="eager" /></span>
+          <svg class="kurs__penarrow" width="22" height="13" viewBox="0 0 26 16" aria-hidden="true">
+            <path d="M3 3 L13 13 L23 3" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
         <div class="station">
           <span class="station__num" aria-hidden="true">01</span>
           <div class="offercard station__card reveal">
@@ -174,28 +178,6 @@ import bannerConsulting from '../assets/banner-consulting-v4.png';
 
 <script>
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ---------- Kurslinie: zeichnet sich beim Scrollen ---------- */
-  const kursPath = document.querySelector('.kurs__path') as SVGPathElement | null;
-  const kurs = document.getElementById('kurs');
-  if (kursPath && kurs) {
-    const len = kursPath.getTotalLength();
-    kursPath.style.strokeDasharray = String(len);
-    if (reduced) {
-      kursPath.style.strokeDashoffset = '0';
-      kurs.classList.add('kurs--done');
-    } else {
-      const update = () => {
-        const r = kurs.getBoundingClientRect();
-        const passed = Math.min(Math.max(window.innerHeight * 0.75 - r.top, 0), r.height);
-        const p = passed / r.height;
-        kursPath.style.strokeDashoffset = String(len * (1 - p));
-        if (p >= 0.98) { kurs.classList.add('kurs--done'); }
-      };
-      window.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
-      update();
-    }
-  }
 
   /* ---------- Ergebniszahlen zählen hoch ---------- */
   const fmt = new Intl.NumberFormat('de-DE');

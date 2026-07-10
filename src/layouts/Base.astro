@@ -175,6 +175,39 @@ const orgSchema = JSON.stringify({
     });
   }
 
+  /* ---------- Kurslinie: Linie zeichnet sich + Holzlogo gleitet mit ---------- */
+  document.querySelectorAll<HTMLElement>('.kurs').forEach((kurs) => {
+    const path = kurs.querySelector('.kurs__path') as SVGPathElement | null;
+    const svg = kurs.querySelector('.kurs__line') as SVGSVGElement | null;
+    const pen = kurs.querySelector('.kurs__pen') as HTMLElement | null;
+    if (!path || !svg) { return; }
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = String(len);
+    const place = (p: number) => {
+      const c = Math.max(0, Math.min(1, p));
+      path.style.strokeDashoffset = String(len * (1 - c));
+      if (pen) {
+        const pt = path.getPointAtLength(len * c);
+        const sr = svg.getBoundingClientRect();
+        const kr = kurs.getBoundingClientRect();
+        const x = (sr.left - kr.left) + (pt.x / 130) * sr.width;
+        const y = (sr.top - kr.top) + (pt.y / 1600) * sr.height;
+        pen.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) translate(-50%,-50%)';
+        pen.style.opacity = '1';
+      }
+      kurs.classList.toggle('kurs--done', c >= 0.985);
+    };
+    if (reduced) { place(1); return; }
+    const update = () => {
+      const r = kurs.getBoundingClientRect();
+      const passed = Math.min(Math.max(window.innerHeight * 0.62 - r.top, 0), r.height);
+      place(r.height ? passed / r.height : 0);
+    };
+    window.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+    window.addEventListener('resize', () => requestAnimationFrame(update), { passive: true });
+    update();
+  });
+
   /* ---------- Fußzeile: Jahr ---------- */
   const year = document.getElementById('year');
   if (year) { year.textContent = String(new Date().getFullYear()); }

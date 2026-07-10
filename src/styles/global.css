@@ -449,26 +449,32 @@ a.offercard:hover h3{color:var(--facc)}
 .offercard p{margin:0;color:var(--dim);font-size:.97rem}
 .offercard .forkcard__go{margin-top:auto;padding-top:1.1rem}
 
-/* ---------- Consulting: die Kurslinie ---------- */
+/* ---------- Kurslinie: Linie + gleitendes Logo (Consulting grün / Academy blau) ---------- */
 .kurs{position:relative;margin-top:2.2rem;padding:2.6rem 0}
 .kurs__line{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);
   width:130px;height:100%;overflow:visible;pointer-events:none}
-.kurs__path{stroke:var(--wood);stroke-width:2;fill:none;opacity:.8;
-  filter:drop-shadow(0 0 7px rgba(229,162,84,.5))}
-.kurs__start{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);z-index:2;
-  width:14px;height:14px;border-radius:50%;background:var(--wood);
-  box-shadow:0 0 0 5px rgba(229,162,84,.22),0 0 16px rgba(229,162,84,.55)}
-.kurs__arrow{position:absolute;bottom:-6px;left:50%;transform:translate(-50%,10px);z-index:2;
-  color:var(--wood);opacity:0;transition:opacity .6s,transform .6s;
-  filter:drop-shadow(0 0 6px rgba(229,162,84,.5))}
-.kurs--done .kurs__arrow{opacity:1;transform:translate(-50%,0)}
+.kurs__track{stroke:rgba(38,34,27,.12);stroke-width:2;fill:none}
+.kurs__path{stroke:var(--acc);stroke-width:2.4;fill:none;opacity:.9;
+  filter:drop-shadow(0 1px 4px rgba(62,50,34,.12))}
+.kurs__pen{position:absolute;top:0;left:0;z-index:4;width:54px;height:54px;
+  opacity:0;will-change:transform;pointer-events:none}
+.kurs__logo{display:block;width:54px;height:54px;border-radius:50%;overflow:hidden;
+  background:var(--paper);border:1px solid var(--glass-edge);
+  box-shadow:0 6px 18px rgba(62,50,34,.28),0 0 18px rgba(229,162,84,.3)}
+.kurs__logo img{width:100%;height:100%;object-fit:cover;transform:scale(1.58)}
+.kurs__penarrow{position:absolute;top:calc(100% + 3px);left:50%;transform:translateX(-50%);
+  color:var(--acc);filter:drop-shadow(0 1px 3px rgba(62,50,34,.2))}
 .station{position:relative;margin-bottom:2.8rem}
 .station:last-of-type{margin-bottom:0}
 .station__num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;
   width:3.2rem;height:3.2rem;border-radius:50%;display:grid;place-items:center;
   background:var(--paper);border:1px solid var(--hairline);
-  font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--wood);
+  font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--acc);
   box-shadow:0 8px 24px rgba(62,50,34,.14)}
+.station__num svg{width:26px;height:26px}
+.station__node{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;
+  width:1rem;height:1rem;border-radius:50%;background:var(--acc);
+  box-shadow:0 0 0 5px var(--paper),0 6px 14px rgba(62,50,34,.2)}
 .station__card{max-width:470px}
 .station__links{display:flex;flex-direction:column;gap:.15rem;margin-top:.3rem}
 .station__links .arrowlink{margin-top:.6rem}
@@ -479,10 +485,10 @@ a.offercard:hover h3{color:var(--facc)}
 }
 @media(max-width:859px){
   .kurs__line{left:0;transform:none;width:52px}
-  .kurs__start,.kurs__arrow{left:26px}
-  .station__num{left:26px;transform:translate(-50%,-50%)}
+  .station__num,.station__node{left:26px;transform:translate(-50%,-50%)}
   .station__card{margin-left:64px;max-width:none}
 }
+@media(prefers-reduced-motion:reduce){.kurs__pen{opacity:1}}
 .chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
 .chip{border:1px solid var(--hairline);border-radius:999px;padding:.3em .85em;
   font-size:.84rem;color:var(--dim);background:rgba(255,255,255,.55);white-space:nowrap}

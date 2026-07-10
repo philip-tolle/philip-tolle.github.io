@@ -1,19 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import bannerAkademie from '../assets/banner-akademie-v4.png';
+import logo from '../assets/nc-logo.png';
 
-const kurse = (await getCollection('kurse'))
-  .sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
-
-const kursIcon: Record<string, string> = {
-  'ki-grundlagen': 'ki',
-  'aevo': 'ausbildung',
-  'barista': 'barista',
-  'fuehren-mit-ki': 'beratung',
-};
+const bereiche = [
+  { icon: 'ki', title: 'Seminar', text: 'Kompakter Einstieg an einem Tag — KI-Grundlagen fürs Team, erfüllt die Schulungspflicht (EU AI Act Art. 4).', href: '/akademie/ki-grundlagen/', link: 'Zum KI-Grundlagen-Seminar' },
+  { icon: 'ausbildung', title: 'Kurs', text: 'Mehrtägige Qualifizierung mit Abschluss — zum Beispiel die AEVO-Vorbereitung für angehende Ausbilder.', href: '/akademie/aevo/', link: 'Zum AEVO-Kurs' },
+  { icon: 'gastlichkeit', title: 'Flying Academy', text: 'Wir kommen zu Ihnen: Inhouse-Schulung im eigenen Betrieb, ganz ohne eigenen Kursraum.', href: '/kontakt/', link: 'Inhouse anfragen' },
+  { icon: 'befaehigung', title: 'Workshop', text: 'Fokussierte Praxis zu einem Thema, hands-on — auch als Team-Event, zum Beispiel Barista.', href: '/akademie/barista/', link: 'Zum Barista-Workshop' },
+  { icon: 'lernen', title: 'Lehrgang · AZAV', text: 'Geförderte Lehrgänge über Bildungsgutschein — bis zu 100 % bezahlt (in Vorbereitung).', href: '/akademie/fuehren-mit-ki/', link: 'Zum AZAV-Lehrgang' },
+];
 ---
 <Base
   title="Akademie — NextCourse"
@@ -29,31 +27,43 @@ const kursIcon: Record<string, string> = {
     </div>
   </div>
 
-  <div class="floor--auto floor" style="padding-top:1rem">
+  <div class="floor--auto floor" style="padding-top:clamp(3rem,6vw,4.5rem)">
     <div class="wrap">
-      <div class="kartei reveal stagger">
-        {kurse.map((kurs) => (
-          <a class="karteikarte" href={`/akademie/${kurs.id}/`}>
-            <span class="karteikarte__tab">{kurs.data.kategorie}</span>
-            <span class:list={['karteikarte__status', kurs.data.status === 'geplant' && 'karteikarte__status--geplant']}>
-              {kurs.data.status === 'buchbar' ? 'Buchbar' : 'In Planung'}
-            </span>
-            <Icon name={kursIcon[kurs.id] ?? 'lernen'} size={40} class="karteikarte__icon" />
-            <h2>{kurs.data.title}</h2>
-            <p class="voice">„{kurs.data.botschaft}“</p>
-            <p class="karteikarte__kurz">{kurs.data.kurz}</p>
-            <div class="chips">
-              <span class="chip">{kurs.data.dauer}</span>
-              <span class="chip">{kurs.data.foerderung}</span>
+      <div class="menuhead">
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">So lernen Sie bei uns</p>
+        <h2 class="reveal">Fünf Formate, ein Ziel.</h2>
+        <p class="lead reveal">Vom Kurztag bis zum geförderten Lehrgang — jedes Format mit KI-Modul, spezifisch fürs Gastgewerbe.</p>
+      </div>
+
+      <div class="kurs" id="kurs">
+        <svg class="kurs__line" viewBox="0 0 130 1600" preserveAspectRatio="none" aria-hidden="true">
+          <path class="kurs__track" d="M65 0 C 105 140, 25 280, 65 420 C 105 560, 25 700, 65 840 C 105 980, 25 1120, 65 1260 C 100 1380, 35 1500, 65 1600"/>
+          <path class="kurs__path" d="M65 0 C 105 140, 25 280, 65 420 C 105 560, 25 700, 65 840 C 105 980, 25 1120, 65 1260 C 100 1380, 35 1500, 65 1600"/>
+        </svg>
+        <div class="kurs__pen">
+          <span class="kurs__logo"><Image src={logo} alt="" width={108} format="webp" quality={82} loading="eager" /></span>
+          <svg class="kurs__penarrow" width="22" height="13" viewBox="0 0 26 16" aria-hidden="true">
+            <path d="M3 3 L13 13 L23 3" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        {bereiche.map((b) => (
+          <div class="station">
+            <span class="station__node" aria-hidden="true"></span>
+            <div class="offercard station__card reveal">
+              <Icon name={b.icon} size={34} class="station__icon" />
+              <h3>{b.title}</h3>
+              <p>{b.text}</p>
+              <a class="arrowlink" href={b.href}>{b.link}</a>
             </div>
-            <span class="forkcard__go" style="--facc:var(--blue)">Zum Kurs</span>
-          </a>
+          </div>
         ))}
       </div>
 
-      <p class="dim reveal" style="margin-top:2.6rem;max-width:44em">In jedem Kurs steckt ein verpflichtendes KI-Modul — als einziger Anbieter spezifisch für das Gastgewerbe. Die Inhalte werden alle 12–18 Monate aktualisiert, und über unser Consulting-Netzwerk vermitteln wir Absolventen direkt in die Praxis. Weitere geförderte Lehrgänge (System- &amp; Change-Manager Gastgewerbe, KI-gestützter Guest-Relation-Manager) folgen 2027/2028.</p>
-      <a class="arrowlink reveal" href="/akademie/foerderung/">Förderung: Wer zahlt was?</a>
-      <div class="btnrow reveal">
+      <p class="dim reveal" style="max-width:44em;margin:3.4rem auto 0;text-align:center">In jedem Format steckt ein verpflichtendes KI-Modul — als einziger Anbieter spezifisch für das Gastgewerbe. Die Inhalte werden alle 12–18 Monate aktualisiert, und über unser Consulting-Netzwerk vermitteln wir Absolventen direkt in die Praxis. Weitere geförderte Lehrgänge (System- &amp; Change-Manager Gastgewerbe, KI-gestützter Guest-Relation-Manager) folgen 2027/2028.</p>
+      <div class="reveal" style="text-align:center;margin-top:1.4rem">
+        <a class="arrowlink" href="/akademie/foerderung/">Förderung: Wer zahlt was?</a>
+      </div>
+      <div class="btnrow reveal" style="justify-content:center;margin-top:1.6rem">
         <a href="/kontakt/" class="btn">Kostenloses Erstgespräch</a>
       </div>
     </div>
