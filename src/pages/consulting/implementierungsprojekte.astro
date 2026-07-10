@@ -38,11 +38,18 @@ const bausteine = [
     effekt: '+14.000 €',
     tag: 'Auch Gastronomie',
   },
+  {
+    icon: 'ki',
+    name: 'CorporateLLM',
+    text: 'Ihr Betriebswissen in einem sicheren, unternehmenseigenen KI-Assistenten: Wissen, Prozesse und Kommunikation an einem Ort — der Ausbau, wenn die ersten Bausteine laufen.',
+    effekt: '',
+    tag: 'Ausbaustufe',
+  },
 ];
 ---
 <Base
   title="Implementierungsprojekte — NextCourse Consulting"
-  description="Implementierungsprojekte von NextCourse: klar umrissene KI-Projekte zum Festpreis — messbar, in Wochen statt Monaten und ohne den laufenden Betrieb lahmzulegen. Fünf Bausteine vom KI-Telefonassistenten bis zur Wareneinsatzoptimierung."
+  description="Implementierungsprojekte von NextCourse: klar umrissene KI-Projekte zum Festpreis — messbar, in Wochen statt Monaten und ohne den laufenden Betrieb lahmzulegen. Sechs Bausteine vom KI-Telefonassistenten bis zum CorporateLLM."
 >
   <div class="pagehead">
     <span class="ghostglyph" aria-hidden="true">%</span>
@@ -58,15 +65,15 @@ const bausteine = [
 
       <!-- Kennzahlen-Trio -->
       <div class="trio reveal">
-        <div class="trio__cell"><span class="trio__big">5 Bausteine</span><span class="trio__sub">vom Telefon bis zum Wareneinsatz</span></div>
+        <div class="trio__cell"><span class="trio__big">6 Bausteine</span><span class="trio__sub">vom Telefonassistenten bis zum CorporateLLM</span></div>
         <div class="trio__cell"><span class="trio__big">Fester Preis</span><span class="trio__sub">vorab vereinbart, keine offene Rechnung</span></div>
         <div class="trio__cell"><span class="trio__big">Messbar</span><span class="trio__sub">Wirkung in Zahlen, nicht in Versprechen</span></div>
       </div>
 
-      <!-- Die fünf Bausteine -->
+      <!-- Die sechs Bausteine -->
       <div class="mcsection reveal">
-        <p class="eyebrow eyebrow--c" style="--acc:var(--wood)">Die fünf Bausteine</p>
-        <p class="mcsection__hint">Jeder wirkt für sich — und baut auf dem vorherigen auf.</p>
+        <p class="eyebrow eyebrow--c" style="--acc:var(--wood)">Die sechs Bausteine</p>
+        <p class="mcsection__hint">Fünf wirken jeder für sich — der sechste baut auf ihnen auf.</p>
         <div class="bsteine stagger">
           {bausteine.map((b) => (
             <div class="bstein reveal">
@@ -76,7 +83,11 @@ const bausteine = [
                 <p>{b.text}</p>
               </div>
               <div class="bstein__meta">
-                <span class="bstein__effekt">{b.effekt}<small>pro Jahr*</small></span>
+                {b.effekt ? (
+                  <span class="bstein__effekt">{b.effekt}<small>pro Jahr*</small></span>
+                ) : (
+                  <span class="bstein__open">Umfang &amp; Preis im Erstgespräch</span>
+                )}
                 {b.tag && <span class="bstein__tag">{b.tag}</span>}
               </div>
             </div>
@@ -95,7 +106,7 @@ const bausteine = [
         <div class="stats reveal" style="margin-top:2.4rem">
           <div class="stat">
             <span class="stat__n" data-count="22000" data-suffix=" EUR">22.000 EUR</span>
-            <span class="stat__l">Erstinvestition — alle fünf Bausteine</span>
+            <span class="stat__l">Erstinvestition — die fünf Referenz-Bausteine</span>
           </div>
           <div class="stat">
             <span class="stat__n" data-count="230000" data-prefix="+" data-suffix=" EUR">+230.000 EUR</span>
@@ -195,7 +206,7 @@ const bausteine = [
         <div class="fixgrid">
           <div class="fixcell">
             <span class="fixcell__k">Fester Umfang</span>
-            <p>Ein Baustein, klar abgegrenzt. Kein Feature-Wildwuchs, kein „das machen wir auch noch schnell".</p>
+            <p>Ein Baustein, klar abgegrenzt. Kein Feature-Wildwuchs, kein „das machen wir auch noch schnell“.</p>
           </div>
           <div class="fixcell">
             <span class="fixcell__k">Fester Preis</span>
@@ -235,18 +246,7 @@ const bausteine = [
 </Base>
 
 <style>
-  /* Kennzahlen-Trio */
-  .trio{display:grid;gap:1px;background:var(--hairline);border:1px solid var(--hairline);
-    border-radius:18px;overflow:hidden;max-width:820px;margin:0 auto}
-  @media(min-width:700px){.trio{grid-template-columns:1fr 1fr 1fr}}
-  .trio__cell{background:rgba(255,255,255,.6);padding:1.6rem 1.2rem;text-align:center;
-    display:flex;flex-direction:column;gap:.25rem}
-  .trio__big{font-family:var(--disp);font-size:clamp(1.5rem,3.5vw,2.1rem);color:var(--wood)}
-  .trio__sub{font-size:.85rem;color:var(--faint);letter-spacing:.02em}
-
-  .mcsection{margin-top:clamp(4rem,9vw,6rem)}
-  .mcsection__hint{text-align:center;font-family:var(--serif);font-style:italic;
-    color:var(--faint);font-size:1.1rem;margin:-.4rem 0 1.8rem}
+  /* Blaupausen-Bausteine (Trio, Stepper, ctabox, Abgrenzung) liegen in global.css */
 
   /* Bausteine-Liste */
   .bsteine{display:flex;flex-direction:column;gap:.9rem;max-width:840px;margin:0 auto}
@@ -270,6 +270,7 @@ const bausteine = [
   .bstein__tag{font-family:var(--body);font-weight:500;font-size:.72rem;letter-spacing:.12em;
     text-transform:uppercase;color:var(--wood);border:1px solid var(--hairline);
     border-radius:999px;padding:.25em .8em;background:rgba(255,255,255,.55)}
+  .bstein__open{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--dim)}
   @media(min-width:620px){
     .bstein{grid-template-columns:auto 1fr auto}
     .bstein__ico{grid-row:1 / span 2}
@@ -279,44 +280,6 @@ const bausteine = [
   }
   .bsteine__note{max-width:44em;margin:1.4rem auto .4rem;text-align:center;
     font-size:.82rem;line-height:1.6;color:var(--faint)}
-
-  /* Stepper */
-  .stepper{position:relative;display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap}
-  .stepper__track{position:absolute;top:2.7rem;left:8%;right:8%;height:1px;
-    background:var(--hairline);z-index:0}
-  .stepbtn{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;
-    gap:.6rem;width:clamp(120px,17vw,180px);padding:1.3rem .8rem;border-radius:18px;
-    cursor:pointer;background:rgba(255,255,255,.6);border:1px solid var(--glass-edge);
-    font-family:var(--body);transition:all .28s ease}
-  .stepbtn__num{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
-    background:var(--paper2);border:1px solid var(--hairline);font-family:var(--serif);
-    font-style:italic;font-size:1.25rem;color:var(--wood);transition:all .28s ease}
-  .stepbtn__label{font-size:.85rem;font-weight:500;color:var(--dim);text-align:center;
-    transition:color .28s}
-  .stepbtn[aria-current="true"]{background:rgba(185,136,92,.12);border-color:rgba(185,136,92,.55);
-    box-shadow:0 16px 36px -18px rgba(150,110,60,.5)}
-  .stepbtn[aria-current="true"] .stepbtn__num{background:var(--wood);border-color:var(--wood);color:var(--paper)}
-  .stepbtn[aria-current="true"] .stepbtn__label{color:var(--ink)}
-  .stepbtn:hover{transform:translateY(-2px)}
-
-  .stepdetail{margin-top:1.4rem;background:rgba(255,255,255,.6);border:1px solid var(--glass-edge);
-    border-radius:22px;padding:clamp(1.8rem,4vw,2.6rem);
-    backdrop-filter:blur(14px);box-shadow:var(--shadow)}
-  .stepdetail article{display:flex;gap:1.8rem;align-items:flex-start;animation:stepin .35s ease both}
-  .stepdetail article[hidden]{display:none}
-  @keyframes stepin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-  .stepdetail__num{font-family:var(--serif);font-style:italic;font-weight:500;
-    font-size:clamp(3rem,7vw,4.4rem);line-height:.8;color:var(--wood);flex:none}
-  .stepdetail h3{font-size:clamp(1.4rem,3.5vw,1.9rem);margin-bottom:.5rem}
-  .stepdetail p{margin:0;color:var(--dim);line-height:1.65}
-  .stepdetail__foot{margin-top:1.6rem;padding-top:1.3rem;border-top:1px solid var(--line);
-    display:flex;align-items:center;justify-content:space-between;gap:1rem}
-  .stepdetail__count{font-size:.75rem;letter-spacing:.26em;text-transform:uppercase;color:var(--faint)}
-  .stepnav{display:flex;gap:.6rem}
-  .stepnav button{width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:1.1rem;
-    background:transparent;border:1px solid rgba(38,34,27,.3);color:var(--dim);transition:all .2s}
-  .stepnav button:last-child{background:var(--wood);border-color:var(--wood);color:var(--paper)}
-  .stepnav button:disabled{opacity:.35;cursor:default}
 
   /* Festpreis-Logik */
   .fixgrid{display:grid;gap:1px;background:var(--hairline);border:1px solid var(--hairline);
@@ -333,46 +296,13 @@ const bausteine = [
   .rate b{font-family:var(--disp);font-weight:400;font-size:clamp(1.3rem,3.5vw,1.8rem);color:var(--wood)}
   .rate span{font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);text-align:center}
 
-  /* CTA-Box */
-  .ctabox{margin-top:clamp(4rem,9vw,5.5rem);background:var(--ink);border-radius:26px;
-    padding:clamp(2.6rem,6vw,3.8rem) clamp(1.6rem,5vw,3.5rem);text-align:center;
-    box-shadow:0 40px 90px -50px rgba(60,45,25,.7)}
-  .ctabox__eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
-    color:rgba(229,162,84,.75);margin:0}
-  .ctabox h3{margin:1.1rem auto 0;max-width:15em;font-size:clamp(1.8rem,4.5vw,2.5rem);
-    line-height:1.12;color:#F4ECDD}
-  .ctabox__note{margin:1.4rem 0 0;font-size:.82rem;letter-spacing:.04em;color:#8F8574;line-height:1.7}
-
-  .abgrenzung{margin:2.4rem auto 0;max-width:46em;text-align:center;
-    font-size:.85rem;line-height:1.65;color:var(--faint)}
-
   @media(prefers-reduced-motion:reduce){
-    .stepdetail article{animation:none}
     .bstein{transition:none}
   }
 </style>
 
 <script>
-  /* ---------- Stepper ---------- */
-  const btns = Array.from(document.querySelectorAll<HTMLButtonElement>('.stepbtn'));
-  const panels = Array.from(document.querySelectorAll<HTMLElement>('.stepdetail article'));
-  const count = document.getElementById('stepcount')!;
-  const prev = document.getElementById('stepprev') as HTMLButtonElement;
-  const next = document.getElementById('stepnext') as HTMLButtonElement;
-  let current = 0;
-
-  function showStep(i: number) {
-    current = Math.max(0, Math.min(panels.length - 1, i));
-    btns.forEach((b, k) => b.setAttribute('aria-current', k === current ? 'true' : 'false'));
-    panels.forEach((p, k) => { p.hidden = k !== current; });
-    count.textContent = 'Schritt 0' + (current + 1) + ' / 05';
-    prev.disabled = current === 0;
-    next.disabled = current === panels.length - 1;
-  }
-  btns.forEach((b) => b.addEventListener('click', () => showStep(parseInt(b.dataset.step!, 10))));
-  prev.addEventListener('click', () => showStep(current - 1));
-  next.addEventListener('click', () => showStep(current + 1));
-  showStep(0);
+  /* Stepper-JS liegt global in Base.astro */
 
   /* ---------- Ergebniszahlen zählen hoch ---------- */
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

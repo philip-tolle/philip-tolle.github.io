@@ -77,6 +77,12 @@ const orgSchema = JSON.stringify({
 
 <a class="skiplink" href="#main">Zum Inhalt springen</a>
 
+<noscript><style is:inline>
+  /* Ohne JS: Stepper-Schritte und Ampel-Antworten vollständig anzeigen */
+  .stepdetail article[hidden]{display:flex}
+  .ampelrow p[hidden]{display:block}
+</style></noscript>
+
 <div class="site">
   <Header />
   <main id="main" class:list={[accent !== 'green' && `acc-${accent}`]}>
@@ -232,6 +238,52 @@ const orgSchema = JSON.stringify({
       btn.setAttribute('aria-expanded', open ? 'false' : 'true');
       panel.hidden = open;
       window.dispatchEvent(new Event('resize'));
+    });
+  });
+
+  /* ---------- Angebotsseiten: Stepper ---------- */
+  const stepBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('.stepbtn'));
+  const stepPanels = Array.from(document.querySelectorAll<HTMLElement>('.stepdetail article'));
+  const stepCount = document.getElementById('stepcount');
+  const stepPrev = document.getElementById('stepprev') as HTMLButtonElement | null;
+  const stepNext = document.getElementById('stepnext') as HTMLButtonElement | null;
+  if (stepBtns.length && stepPanels.length && stepCount && stepPrev && stepNext) {
+    let current = 0;
+    const pad = (n: number) => String(n).padStart(2, '0');
+    const showStep = (i: number) => {
+      current = Math.max(0, Math.min(stepPanels.length - 1, i));
+      stepBtns.forEach((b, k) => b.setAttribute('aria-current', k === current ? 'true' : 'false'));
+      stepPanels.forEach((p, k) => { p.hidden = k !== current; });
+      stepCount.textContent = 'Schritt ' + pad(current + 1) + ' / ' + pad(stepPanels.length);
+      /* aria-disabled statt disabled: ein fokussierter Button darf den Fokus nicht verlieren */
+      stepPrev.setAttribute('aria-disabled', current === 0 ? 'true' : 'false');
+      stepNext.setAttribute('aria-disabled', current === stepPanels.length - 1 ? 'true' : 'false');
+    };
+    stepBtns.forEach((b) => b.addEventListener('click', () => showStep(parseInt(b.dataset.step!, 10))));
+    stepPrev.addEventListener('click', () => showStep(current - 1));
+    stepNext.addEventListener('click', () => showStep(current + 1));
+    showStep(0);
+  }
+
+  /* ---------- Angebotsseiten: Ampel-Akkordeon (eine Zeile offen) ---------- */
+  const ampelRows = Array.from(document.querySelectorAll<HTMLElement>('.ampelrow'));
+  ampelRows.forEach((row) => {
+    const btn = row.querySelector('button')!;
+    const panel = row.querySelector('p')!;
+    btn.addEventListener('click', () => {
+      const willOpen = panel.hidden;
+      ampelRows.forEach((r) => {
+        r.classList.remove('is-open');
+        r.querySelector('p')!.hidden = true;
+        r.querySelector('button')!.setAttribute('aria-expanded', 'false');
+        r.querySelector('.ampelrow__right b')!.textContent = '+';
+      });
+      if (willOpen) {
+        row.classList.add('is-open');
+        panel.hidden = false;
+        btn.setAttribute('aria-expanded', 'true');
+        row.querySelector('.ampelrow__right b')!.textContent = '–';
+      }
     });
   });
 

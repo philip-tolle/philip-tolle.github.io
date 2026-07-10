@@ -2,7 +2,7 @@
 title: "KI-Telefonassistent im Hotel: Warum kein Anruf mehr verloren gehen muss"
 description: "Jeder verpasste Anruf ist eine verpasste Buchung. Ein KI-Telefonassistent nimmt rund um die Uhr an, beantwortet Standardfragen und entlastet die Rezeption — was er wirklich kann, was er bewusst nicht ist und wo der Nutzen liegt."
 pubDate: 2026-07-08
-tags: ["KI im Gastgewerbe", "Pilotprojekte"]
+tags: ["KI im Gastgewerbe", "Implementierungsprojekte"]
 cover: ../../assets/blog-telefonassistent.png
 coverAlt: "Illustration im Kupferstich-Stil: wartende Gäste an einer belebten Hotelrezeption und ein ruhiger KI-Telefonassistent mit Headset"
 ---
