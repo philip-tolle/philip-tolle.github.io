@@ -35,6 +35,6 @@ unter Windows zerbricht. Nach einem Umzug in einen Pfad ohne `&` wäre auch `ast
 - [x] Datenschutzerklärung (vor Domain-Livegang nochmal gegen Generator/Anwalt prüfen)
 - [x] Formular-Backend (FormSubmit — aktiviert und getestet)
 - [x] Terminbuchung (Cal.com-Link: https://cal.com/philip-tolle-yxp7ih/erstgesprach)
-- [ ] LinkedIn-Link im Footer (URL fehlt noch)
+- [x] LinkedIn-Link im Footer (https://www.linkedin.com/in/philiptolle/, auch als sameAs in den strukturierten Daten)
 - [x] Deployment: GitHub Pages (https://philip-tolle.github.io, Auto-Deploy bei Push)
 - [ ] Domain anschließen (dann: site-URL in astro.config + robots.txt + Formular-_next ändern)

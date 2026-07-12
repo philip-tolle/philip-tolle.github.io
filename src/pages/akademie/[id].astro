@@ -16,7 +16,7 @@ const courseSchema = JSON.stringify({
   '@type': 'Course',
   name: d.title,
   description: d.kurz,
-  provider: { '@type': 'Organization', name: 'NextCourse', sameAs: 'https://philip-tolle.github.io/' },
+  provider: { '@type': 'Organization', name: 'NextCourse', sameAs: Astro.site?.toString() },
   availableLanguage: 'de',
 });
 ---
