@@ -1,0 +1,124 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import logo from '../assets/nc-logo.png';
+
+const stationen = [
+  { num: '01', icon: 'gespraech', title: 'Kostenloses Erstgespräch', text: '30 Minuten: Welche Aufgaben bleiben bei Ihnen regelmäßig liegen — und lohnt sich externe Entlastung überhaupt? Ehrlich, ohne Verkaufsdruck.', href: '/kontakt/', link: 'Gespräch vereinbaren' },
+  { num: '02', icon: 'zeit', title: 'Operation Sprint', text: 'Der 30-Tage-Einstieg: klar begrenzter Umfang, echte Ergebnisse — danach entscheiden Sie in Ruhe, ob mehr daraus wird.', href: '/kontakt/', link: 'Sprint anfragen' },
+  { num: '03', icon: 'kreislauf', title: 'Ihr Desk', text: 'Wiederkehrende Aufgaben, Monat für Monat zuverlässig erledigt — im festen Monatspaket.', id: 'desks', offers: [
+    { title: 'F&B Desk', text: 'Wochen-, Saison- und Aktionskarten, Tischpläne, Aufsteller und Bankettunterlagen — pünktlich, auf Ihrer Vorlage.', href: '/kontakt/' },
+    { title: 'Content Desk', text: 'Redaktionsplan, Beiträge und Stories für Instagram und Facebook — getextet, gestaltet, veröffentlicht.', href: '/kontakt/' },
+  ] },
+  { num: '04', icon: 'gastlichkeit', title: 'Operation Partner', text: 'Beide Desks plus flexible Projektstunden und Saisonplanung — Ihre externe Fachabteilung für F&B, Content und Projekte.', href: '/kontakt/', link: 'Partner besprechen' },
+  { num: '05', icon: 'ziel', title: 'Hotelprojekte', text: 'Saisonkampagnen, Weihnachtsgeschenke, Mitarbeiterfeste, Gäste- und Bankettmappen — klar umrissene Projekte, wenn Sie sie brauchen.', href: '/kontakt/', link: 'Projekt besprechen' },
+];
+---
+<Base
+  title="Operation — NextCourse"
+  description="NextCourse Operation ist die externe operative Fachabteilung für inhabergeführte Hotels in Mainfranken: Speise- und Bankettunterlagen, Social-Media-Content, Saisonkampagnen und Hotelprojekte — planbar im Monatspaket, umgesetzt mit Hotellerie-Erfahrung."
+  accent="amber"
+>
+  <div class="pagehead">
+    <span class="ghostglyph" aria-hidden="true">&amp;</span>
+    <div class="wrap">
+      <p class="eyebrow">NextCourse Operation</p>
+      <h1>Entlastung, die anpackt.</h1>
+      <p class="lead">Die externe Fachabteilung für inhabergeführte Hotels: Karten, Content und Projekte — aus der Hotellerie, zum planbaren Festpreis.</p>
+    </div>
+  </div>
+
+  <div class="floor--auto floor" style="padding-top:clamp(3rem,6vw,4.5rem)">
+    <div class="wrap">
+      <div class="menuhead">
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">So entlasten wir</p>
+        <h2 class="reveal">Ihr nächster Kurs — vom ersten Gespräch zur externen Fachabteilung.</h2>
+        <p class="lead reveal">Aufgaben, die im Tagesgeschäft liegen bleiben: übernommen mit Hotellerie-Erfahrung, festen Abläufen und Paketen, die Sie kalkulieren können.</p>
+      </div>
+
+      <div class="kurs" id="kurs">
+        <svg class="kurs__line" viewBox="0 0 130 1600" preserveAspectRatio="none" aria-hidden="true">
+          <path class="kurs__track" d="M65 0 L65 1600"/>
+          <path class="kurs__path" d="M65 0 L65 1600"/>
+        </svg>
+        <div class="kurs__pen">
+          <span class="kurs__logo"><Image src={logo} alt="" width={120} format="webp" quality={82} loading="eager" /></span>
+        </div>
+        {stationen.map((s) => (
+          <div class="station">
+            <span class="station__num" aria-hidden="true">{s.num}</span>
+            {s.offers ? (
+              <>
+                <button type="button" class="offercard station__card deckblatt reveal" aria-expanded="false" aria-controls={`off-${s.id}`}>
+                  <Icon name={s.icon} size={38} class="station__icon" />
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
+                  <span class="deckblatt__toggle">Angebote ansehen
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  </span>
+                </button>
+                <div class="deckoffers" id={`off-${s.id}`} hidden>
+                  {s.offers.map((o) => (
+                    <a class="deckoffer" href={o.href}>
+                      <h4>{o.title}</h4>
+                      <p>{o.text}</p>
+                      <span class="forkcard__go">Mehr erfahren</span>
+                    </a>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <a class="offercard station__card deckblatt reveal" href={s.href}>
+                <Icon name={s.icon} size={38} class="station__icon" />
+                <h3>{s.title}</h3>
+                <p>{s.text}</p>
+                <span class="forkcard__go">{s.link}</span>
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Abgrenzung: Was Operation ist — und was nicht -->
+  <div class="floor--auto floor">
+    <div class="wrap" style="max-width:860px">
+      <div class="menuhead">
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Damit wir uns richtig verstehen</p>
+        <h2 class="reveal">Was Operation ist — und was nicht.</h2>
+      </div>
+      <div class="vsrows stagger">
+        <div class="vs reveal"><span class="vs__not">Keine Social-Media-Agentur.</span><span class="vs__but">Eine externe Fachabteilung, die Hotellerie von innen kennt.</span></div>
+        <div class="vs reveal"><span class="vs__not">Kein Grafikservice.</span><span class="vs__but">Karten und Unterlagen mit dem Wissen, was an Rezeption, Tresen und Pass wirklich zählt.</span></div>
+        <div class="vs reveal"><span class="vs__not">Keine neue Software.</span><span class="vs__but">Erledigte Aufgaben — die Automatisierung arbeitet bei uns im Hintergrund, nicht bei Ihnen.</span></div>
+        <div class="vs reveal"><span class="vs__not">Keine zusätzliche Stelle.</span><span class="vs__but">Verlässliche Fachkapazität — genau im Umfang, den Ihr Haus braucht.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Claim & Abschluss -->
+  <div class="floor">
+    <div class="wrap wrap--menu" style="text-align:center">
+      <div class="ornament reveal" aria-hidden="true">
+        <span class="ornament__dot"></span>
+      </div>
+      <p class="claim reveal">Erledigt.<span class="z2">Nicht vertagt.</span></p>
+      <p class="voice reveal" style="max-width:26em;margin:0 auto">Operative Entlastung für Hotels in Mainfranken — planbar, fachlich, verlässlich.</p>
+      <div class="btnrow reveal" style="justify-content:center">
+        <a href="/kontakt/" class="btn">Kostenloses Erstgespräch</a>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  /* Abgrenzungszeilen: „Keine X. Sondern Y." */
+  .vsrows{display:flex;flex-direction:column;margin:1.6rem auto 0}
+  .vs{display:grid;gap:.15rem 2rem;padding:1.15rem .2rem;border-bottom:1px solid var(--line)}
+  .vs:first-child{border-top:1px solid var(--line)}
+  @media(min-width:700px){.vs{grid-template-columns:1fr 1.5fr;align-items:baseline}}
+  .vs__not{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--faint)}
+  .vs__but{color:var(--dim);line-height:1.6}
+</style>

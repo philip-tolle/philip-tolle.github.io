@@ -24,27 +24,26 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
   <div class="floor hero">
     <div class="wrap" style="text-align:center">
       <div class="heroLogo" id="heroLogo" role="button" tabindex="0"
-        aria-label="Zur Auswahl: Consulting oder Akademie">
+        aria-label="Zur Auswahl: Consulting, Academy oder Operation">
         <Image src={logo} alt="NextCourse Logo — Wellen und Pfeil aus warmem Holz, hinterleuchtet"
           width={1080} format="webp" quality={82} loading="eager" />
       </div>
       <h1 class="heroWord">NextCourse<span class="sr-only"> — Bildungs-, Beratungs- und Umsetzungspartner für das deutsche Gastgewerbe</span></h1>
       <p class="heroSub">Der Bildungs-, Beratungs- und Umsetzungspartner<br>für das deutsche Gastgewerbe.</p>
-      <a class="scrollhint" href="#wahl" aria-label="Weiter zur Auswahl Consulting oder Akademie">
+      <a class="scrollhint" href="#wahl" aria-label="Weiter zur Auswahl der drei Bereiche">
         <span class="hintword">Entdecken</span><span class="bar" aria-hidden="true"></span>
       </a>
     </div>
   </div>
 
-  <!-- FLOOR 2: Die Weiche — Consulting oder Akademie -->
+  <!-- FLOOR 2: Die Weiche — Consulting, Academy oder Operation -->
   <div class="floor" id="wahl">
     <div class="wrap">
       <div class="menuhead">
-        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Zwei Wege</p>
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Drei Wege</p>
         <h2 class="reveal">Was führt Sie zu uns?</h2>
       </div>
       <div class="fork">
-        <span class="fork__or" aria-hidden="true">oder</span>
         <a class="forkcard reveal" href="/consulting/">
           <Image class="forkcard__img" src={bannerConsulting} alt="" width={760} format="webp" quality={72} />
           <h3>NextCourse Consulting</h3>
@@ -56,6 +55,12 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
           <h3>NextCourse Academy</h3>
           <p class="voice">Kurse, die man morgen im Betrieb spürt.</p>
           <p class="forkcard__aud">Für alle, die weiterkommen wollen</p>
+        </a>
+        <a class="forkcard forkcard--operation reveal" href="/operation/">
+          <span class="forkcard__ghost" aria-hidden="true">&amp;</span>
+          <h3>NextCourse Operation</h3>
+          <p class="voice">Wir übernehmen, was im Tagesgeschäft liegen bleibt.</p>
+          <p class="forkcard__aud">Für Häuser mit mehr Aufgaben als Zeit</p>
         </a>
       </div>
       <a class="scrollhint" href="#idee" aria-label="Weiter zur Idee hinter NextCourse">
@@ -185,8 +190,8 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
         <span class="deckcard__num">03 · Dranbleiben</span>
         <h3>Die meisten Projekte scheitern nicht am Start — sondern am dritten Monat.</h3>
         <p>Damit Wissen im Haus bleibt und eingeführte Systeme weiterlaufen, braucht es jemanden, der dranbleibt. Genau das unterscheidet einen Partner von einem Anbieter.</p>
-        <p class="modell">Bei NextCourse ist das die <b>Begleitung</b>: digitales Betriebshandbuch, laufender Support, Monitoring.</p>
-        <a class="arrowlink" href="/consulting/">Zum Consulting</a>
+        <p class="modell">Bei NextCourse ist das <b>Operation</b>: die externe Fachabteilung, die wiederkehrende Aufgaben Monat für Monat übernimmt.</p>
+        <a class="arrowlink" href="/operation/">Zu Operation</a>
       </article>
     </div>
   </dialog>
