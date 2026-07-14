@@ -17,26 +17,50 @@ const stationen = [
 ---
 <Base
   title="Operation — NextCourse"
-  description="NextCourse Operation übernimmt, was im Hotelalltag liegen bleibt: Speise- und Bankettkarten, Social Media, Feste, Geschenke und Mappen — für inhabergeführte Hotels in Mainfranken, zuverlässig zum festen Monatspreis."
+  description="NextCourse Operation entlastet Ihre Mitarbeiter: repetitive Aufgaben & Backoffice, digitale Gästekommunikation & Marketing, einmalige Projekte ohne eigene Abteilung — zuverlässig und gewissenhaft zum Festpreis. Für Hotels und Gastgeber in Mainfranken."
   accent="amber"
 >
   <div class="pagehead">
     <span class="ghostglyph" aria-hidden="true">&amp;</span>
     <div class="wrap">
       <p class="eyebrow">NextCourse Operation</p>
-      <h1>Wir übernehmen, was liegen bleibt.</h1>
-      <p class="lead">Speisekarten, Social Media, Bankettunterlagen, Feste: NextCourse Operation erledigt die Aufgaben, für die im Hotelalltag niemand Zeit hat — zuverlässig, zum festen Monatspreis.</p>
+      <h1>Effiziente Entlastung mit Wert.</h1>
+      <p class="lead">NextCourse Operation entlastet Ihre Mitarbeiter und erledigt Aufgaben und Projekte, für die im Geschäftsalltag niemand Zeit hat — zuverlässig &amp; gewissenhaft zum Festpreis.</p>
     </div>
   </div>
 
-  <!-- Das übernehmen wir: Sofort-Überblick -->
+  <!-- Das übernehmen wir: drei Bereiche mit Beispielen -->
   <div class="floor--auto floor" style="padding-top:1rem">
-    <div class="wrap" style="max-width:1020px">
-      <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Das übernehmen wir</p>
-      <div class="trio reveal">
-        <div class="trio__cell"><span class="trio__big">Speise- &amp; Bankettkarten</span><span class="trio__sub">von der Wochenkarte bis zum Tischplan</span></div>
-        <div class="trio__cell"><span class="trio__big">Instagram &amp; Facebook</span><span class="trio__sub">geplant, gestaltet, veröffentlicht</span></div>
-        <div class="trio__cell"><span class="trio__big">Feste, Geschenke &amp; Mappen</span><span class="trio__sub">Projekte mit Anfang, Ende und Festpreis</span></div>
+    <div class="wrap" style="max-width:1060px">
+      <h2 class="sr-only">Das übernehmen wir</h2>
+      <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">Das übernehmen wir</p>
+      <div class="ub stagger">
+        <div class="ubcell reveal">
+          <h3>Repetitive Aufgaben &amp; Backoffice</h3>
+          <ul>
+            <li><Icon name="karte" size={22} /><span>Erstellung von Tages- &amp; Menükarten, druckfertig</span></li>
+            <li><Icon name="mappe" size={22} /><span>Erstellung und Pflege von Gästemappen &amp; Infomaterial</span></li>
+            <li><Icon name="vorlage" size={22} /><span>Erstellung von Vorlagen &amp; Templates</span></li>
+            <li><Icon name="analyse" size={22} /><span>Vorbereitung von Unterlagen, Präsentationen, Listen &amp; Analysen</span></li>
+          </ul>
+        </div>
+        <div class="ubcell reveal">
+          <h3>Digitale Gästekommunikation &amp; Marketing</h3>
+          <ul>
+            <li><Icon name="tablet" size={22} /><span>Betreuung digitaler Gästemappen</span></li>
+            <li><Icon name="senden" size={22} /><span>Newsletter &amp; Social-Media-Inhalte — geplant, gestaltet, veröffentlicht</span></li>
+            <li><Icon name="globus" size={22} /><span>Pflege der Website und anderer Kanäle</span></li>
+            <li><Icon name="bewertung" size={22} /><span>Verwaltung von Gästefeedback</span></li>
+          </ul>
+        </div>
+        <div class="ubcell reveal">
+          <h3>Einmalige Projekte ohne Abteilung</h3>
+          <ul>
+            <li><Icon name="fest" size={22} /><span>Planung interner Teamevents — vom Sommerfest bis zur Weihnachtsfeier</span></li>
+            <li><Icon name="handbuch" size={22} /><span>Erstellung von Leitfäden &amp; Betriebshandbüchern</span></li>
+            <li><Icon name="geschenk" size={22} /><span>Planung von Gastgeschenken &amp; Co.</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -128,6 +152,17 @@ const stationen = [
 </Base>
 
 <style>
+  /* „Das übernehmen wir": drei Bereiche mit Beispiel-Listen */
+  .ub{display:grid;gap:1px;background:var(--hairline);border:1px solid var(--hairline);
+    border-radius:20px;overflow:hidden}
+  @media(min-width:840px){.ub{grid-template-columns:repeat(3,1fr)}}
+  .ubcell{background:rgba(255,255,255,.6);padding:1.8rem 1.6rem}
+  .ubcell h3{font-size:1.22rem;margin-bottom:1.1rem;line-height:1.25}
+  .ubcell ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.85rem}
+  .ubcell li{display:flex;gap:.7rem;align-items:flex-start;font-size:.92rem;
+    color:var(--dim);line-height:1.5}
+  .ubcell li :global(.ico){flex:none;color:var(--wood);margin-top:.05rem}
+
   /* Produktname klein unter dem Klartext-Titel */
   .pname{display:block;font-family:var(--body);font-weight:500;font-size:.68rem;
     letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-top:.35rem}
