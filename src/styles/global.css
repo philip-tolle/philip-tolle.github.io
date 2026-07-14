@@ -144,7 +144,7 @@ main.acc-amber{--acc:var(--amber);--acc-rgb:176,105,15}
 /* ---------- Claim ---------- */
 .claim{font-family:var(--disp);font-size:clamp(2.2rem,6.8vw,4.4rem);line-height:1.14;
   max-width:none;text-align:center;margin-bottom:1.2rem}
-.claim .z2{color:var(--green);display:block}
+.claim .z2{color:var(--acc);display:block}
 
 /* ---------- Buttons ---------- */
 .btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--amber-soft);

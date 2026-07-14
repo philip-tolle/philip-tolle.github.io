@@ -140,21 +140,6 @@ const stationen = [
     </div>
   </div>
 
-  <!-- Abgrenzung: Was Operation ist — und was nicht -->
-  <div class="floor--auto floor">
-    <div class="wrap" style="max-width:860px">
-      <div class="menuhead">
-        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Damit wir uns richtig verstehen</p>
-        <h2 class="reveal">Was Operation ist — und was nicht.</h2>
-      </div>
-      <div class="vsrows stagger">
-        <div class="vs reveal"><span class="vs__not">Keine Social-Media-Agentur.</span><span class="vs__but">Wir kommen aus der Hotellerie — Restaurant, Bankett, Rezeption.</span></div>
-        <div class="vs reveal"><span class="vs__not">Keine neue Software.</span><span class="vs__but">Sie bekommen fertige Ergebnisse, keinen Login.</span></div>
-        <div class="vs reveal"><span class="vs__not">Keine zusätzliche Stelle.</span><span class="vs__but">Fachkapazität genau im Umfang, den Ihr Haus braucht.</span></div>
-      </div>
-    </div>
-  </div>
-
   <!-- Claim & Abschluss -->
   <div class="floor">
     <div class="wrap wrap--menu" style="text-align:center">
@@ -164,7 +149,7 @@ const stationen = [
       <p class="claim reveal">Erledigt.<span class="z2">Nicht vertagt.</span></p>
       <p class="voice reveal" style="max-width:26em;margin:0 auto">Entlastung für Hotels in Mainfranken — planbar, fachlich, verlässlich.</p>
       <div class="btnrow reveal" style="justify-content:center">
-        <a href="/kontakt/" class="btn">Kostenloses Erstgespräch</a>
+        <a href="/kontakt/" class="btn btn--line btn--amber">Kostenloses Erstgespräch</a>
       </div>
     </div>
   </div>
@@ -231,11 +216,4 @@ const stationen = [
   .wenn{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--wood);
     margin:.65rem 0 0}
 
-  /* Abgrenzungszeilen: „Keine X. Sondern Y." */
-  .vsrows{display:flex;flex-direction:column;margin:1.6rem auto 0}
-  .vs{display:grid;gap:.15rem 2rem;padding:1.15rem .2rem;border-bottom:1px solid var(--line)}
-  .vs:first-child{border-top:1px solid var(--line)}
-  @media(min-width:700px){.vs{grid-template-columns:1fr 1.5fr;align-items:baseline}}
-  .vs__not{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--faint)}
-  .vs__but{color:var(--dim);line-height:1.6}
 </style>
