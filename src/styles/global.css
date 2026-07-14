@@ -320,10 +320,9 @@ main.acc-amber{--acc:var(--amber);--acc-rgb:176,105,15}
 .zeitmuenze{position:absolute;right:6px;top:50%;transform:translateY(-50%);
   width:182px;height:182px;border-radius:50%;display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:.2rem;text-align:center;padding:1rem;
-  background:radial-gradient(circle at 50% 30%,rgba(255,255,255,.94),rgba(255,255,255,.55));
+  background:radial-gradient(circle at 50% 30%,#FFFEFA,#F2ECE1);
   border:1px solid rgba(185,136,92,.55);
-  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95)}
 .zeitmuenze::before{content:"";position:absolute;inset:7px;border-radius:50%;
   border:1px solid rgba(185,136,92,.3);pointer-events:none}
 .zeitmuenze span{display:block;font-size:.6rem;letter-spacing:.22em;
@@ -355,21 +354,36 @@ main.acc-amber{--acc:var(--amber);--acc-rgb:176,105,15}
 .deck{position:relative;max-width:420px;min-height:284px;margin:1.8rem auto 0;
   cursor:pointer;transform:translateX(-14px)}
 @media(max-width:719px){.deck{transform:none}}
-.deckcard{position:absolute;inset:0;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:.4rem;text-align:center;
-  background:rgba(255,255,255,.72);border:1px solid var(--glass-edge);border-radius:24px;
-  backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);
-  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95);
-  padding:2.4rem 1.8rem;font-family:var(--body);color:var(--ink);
+.deckcard{position:absolute;inset:0;cursor:pointer;perspective:1400px;
   transform-origin:left center;
-  transition:transform .5s cubic-bezier(.3,.1,.25,1),opacity .5s,box-shadow .3s;
+  transition:transform .5s cubic-bezier(.3,.1,.25,1),opacity .5s;
   will-change:transform}
 .deckcard[data-pos="0"]{transform:none;z-index:3}
 .deckcard[data-pos="1"]{transform:translate(16px,16px) rotate(1.6deg);z-index:2}
 .deckcard[data-pos="2"]{transform:translate(32px,30px) rotate(-1.4deg);z-index:1}
-.deckcard[data-pos="1"],.deckcard[data-pos="2"]{box-shadow:0 14px 34px rgba(62,50,34,.09)}
 .deckcard.is-leaving{transform:perspective(1000px) translateX(-46%) rotateY(-70deg);
   opacity:0;z-index:4}
+/* Flip: Vorder-/Rückseite (Muster der Über-Seite) */
+.deckcard__inner{position:absolute;inset:0;transform-style:preserve-3d;
+  transition:transform .75s cubic-bezier(.3,.1,.25,1)}
+.deckcard.is-flipped .deckcard__inner{transform:rotateY(180deg)}
+.deckcard__face{position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:.4rem;text-align:center;
+  background:rgba(255,255,255,.72);border:1px solid var(--glass-edge);border-radius:24px;
+  backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95);
+  padding:2.2rem 1.8rem;font-family:var(--body);color:var(--ink);
+  backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.deckcard__face--back{transform:rotateY(180deg)}
+.deckcard[data-pos="1"] .deckcard__face,
+.deckcard[data-pos="2"] .deckcard__face{box-shadow:0 14px 34px rgba(62,50,34,.09)}
+.deckcard__antwort{font-size:.98rem;line-height:1.65;color:var(--dim);max-width:21em;margin:.4rem 0 0}
+.deckcard__flip{position:absolute;right:1rem;bottom:1rem;display:inline-flex;align-items:center;
+  font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+  border:1px solid var(--hairline);border-radius:999px;padding:.34em .85em;
+  background:rgba(255,255,255,.6);transition:color .25s,border-color .25s}
+.deckcard[data-pos="0"]:hover .deckcard__flip{color:var(--dacc,var(--wood));
+  border-color:rgba(185,136,92,.5)}
 .deckcard__art{width:66px;color:var(--dacc,var(--wood));opacity:.6;margin-bottom:.3rem}
 .deckcard__num{font-family:var(--serif);font-style:italic;color:var(--dacc,var(--wood));font-size:1.15rem}
 .deckcard__go{margin-top:1.2rem;display:inline-flex;align-items:center;gap:.5rem;
@@ -417,6 +431,7 @@ main.acc-amber{--acc:var(--amber);--acc-rgb:176,105,15}
   background:rgba(229,162,84,.08);border-radius:0 12px 12px 0;color:var(--ink);font-size:.98rem}
 @media(prefers-reduced-motion:reduce){
   .deckcard{transition:none}
+  .deckcard__inner{transition:none}
   .stepdialog[open]{animation:none}
 }
 

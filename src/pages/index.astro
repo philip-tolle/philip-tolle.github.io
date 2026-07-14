@@ -119,38 +119,71 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
           <p class="eyebrow eyebrow--c" style="--acc:var(--green)">Unsere Antwort</p>
           <div class="idee2__viz">
           <div class="deck" id="deck">
-        <div class="deckcard" data-pos="0" style="--dacc:var(--blue)">
-          <svg class="deckcard__art" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M50 14 C 38 6, 22 6, 14 12 L14 46 C 22 40, 38 40, 50 48"/>
-            <path d="M50 14 C 62 6, 78 6, 86 12 L86 46 C 78 40, 62 40, 50 48"/>
-            <path d="M50 14 L50 48"/>
-          </svg>
-          <span class="deckcard__num" aria-hidden="true">01</span>
-          <h3>Lernen</h3>
-          <p class="voice">Wissen, das sofort Zeit spart.</p>
-          <a class="deckcard__go" href="/akademie/">Zur Academy</a>
+        <div class="deckcard" data-pos="0" style="--dacc:var(--blue)" role="button" tabindex="0" aria-pressed="false" aria-label="Karte umdrehen: Warum die Academy?">
+          <div class="deckcard__inner">
+            <div class="deckcard__face">
+              <svg class="deckcard__art" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M50 14 C 38 6, 22 6, 14 12 L14 46 C 22 40, 38 40, 50 48"/>
+                <path d="M50 14 C 62 6, 78 6, 86 12 L86 46 C 78 40, 62 40, 50 48"/>
+                <path d="M50 14 L50 48"/>
+              </svg>
+              <span class="deckcard__num" aria-hidden="true">01</span>
+              <h3>Lernen</h3>
+              <p class="voice">Wissen, das sofort Zeit spart.</p>
+              <a class="deckcard__go" href="/akademie/">Zur Academy</a>
+              <span class="deckcard__flip" aria-hidden="true">Warum?</span>
+            </div>
+            <div class="deckcard__face deckcard__face--back">
+              <span class="deckcard__num">Warum die Academy?</span>
+              <p class="deckcard__antwort">Weil Technik nur hilft, wenn Menschen sie verstehen. Wissen im Team macht Sie unabhängig — und spart vom ersten Tag an Zeit.</p>
+              <a class="deckcard__go" href="/akademie/">Zur Academy</a>
+              <span class="deckcard__flip" aria-hidden="true">Zurück</span>
+            </div>
+          </div>
         </div>
-        <div class="deckcard" data-pos="1" style="--dacc:var(--green)">
-          <svg class="deckcard__art" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M8 42 C 24 28, 40 48, 56 36 C 64 30, 70 26, 78 22"/>
-            <path d="M70 14 L82 20 L74 31"/>
-          </svg>
-          <span class="deckcard__num" aria-hidden="true">02</span>
-          <h3>Umsetzen</h3>
-          <p class="voice">Systeme, die Zeit zurückgeben.</p>
-          <a class="deckcard__go" href="/consulting/">Zum Consulting</a>
+        <div class="deckcard" data-pos="1" style="--dacc:var(--green)" role="button" tabindex="0" aria-pressed="false" aria-label="Karte umdrehen: Warum das Consulting?">
+          <div class="deckcard__inner">
+            <div class="deckcard__face">
+              <svg class="deckcard__art" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 42 C 24 28, 40 48, 56 36 C 64 30, 70 26, 78 22"/>
+                <path d="M70 14 L82 20 L74 31"/>
+              </svg>
+              <span class="deckcard__num" aria-hidden="true">02</span>
+              <h3>Umsetzen</h3>
+              <p class="voice">Systeme, die Zeit zurückgeben.</p>
+              <a class="deckcard__go" href="/consulting/">Zum Consulting</a>
+              <span class="deckcard__flip" aria-hidden="true">Warum?</span>
+            </div>
+            <div class="deckcard__face deckcard__face--back">
+              <span class="deckcard__num">Warum das Consulting?</span>
+              <p class="deckcard__antwort">Weil gute Systeme kein Zufall sind. Erst der ehrliche Blick, dann die messbare Umsetzung — Schritt für Schritt statt Großprojekt.</p>
+              <a class="deckcard__go" href="/consulting/">Zum Consulting</a>
+              <span class="deckcard__flip" aria-hidden="true">Zurück</span>
+            </div>
+          </div>
         </div>
-        <div class="deckcard" data-pos="2" style="--dacc:var(--amber)">
-          <svg class="deckcard__art" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M32 14 A 24 20 0 0 1 70 20"/>
-            <path d="M64 10 L72 21 L58 24"/>
-            <path d="M68 46 A 24 20 0 0 1 30 40"/>
-            <path d="M36 50 L28 39 L42 36"/>
-          </svg>
-          <span class="deckcard__num" aria-hidden="true">03</span>
-          <h3>Abgeben</h3>
-          <p class="voice">Aufgaben, die wir einfach übernehmen.</p>
-          <a class="deckcard__go" href="/operation/">Zu Operation</a>
+        <div class="deckcard" data-pos="2" style="--dacc:var(--amber)" role="button" tabindex="0" aria-pressed="false" aria-label="Karte umdrehen: Warum Operation?">
+          <div class="deckcard__inner">
+            <div class="deckcard__face">
+              <svg class="deckcard__art" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M32 14 A 24 20 0 0 1 70 20"/>
+                <path d="M64 10 L72 21 L58 24"/>
+                <path d="M68 46 A 24 20 0 0 1 30 40"/>
+                <path d="M36 50 L28 39 L42 36"/>
+              </svg>
+              <span class="deckcard__num" aria-hidden="true">03</span>
+              <h3>Abgeben</h3>
+              <p class="voice">Aufgaben, die wir einfach übernehmen.</p>
+              <a class="deckcard__go" href="/operation/">Zu Operation</a>
+              <span class="deckcard__flip" aria-hidden="true">Warum?</span>
+            </div>
+            <div class="deckcard__face deckcard__face--back">
+              <span class="deckcard__num">Warum Operation?</span>
+              <p class="deckcard__antwort">Weil manche Aufgaben gar nicht erst bei Ihnen landen müssen. Abgeben schafft sofort Luft — ohne eine neue Stelle zu besetzen.</p>
+              <a class="deckcard__go" href="/operation/">Zu Operation</a>
+              <span class="deckcard__flip" aria-hidden="true">Zurück</span>
+            </div>
+          </div>
         </div>
           </div>
           <div class="deck__controls">
@@ -428,6 +461,7 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
   function advance() {
     if (blaettert) { return; }
     blaettert = true;
+    cards.forEach((c) => { c.classList.remove('is-flipped'); c.setAttribute('aria-pressed', 'false'); });
     const top = cards[order[0]];
     if (reduced) {
       order.push(order.shift()!);
@@ -443,9 +477,17 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
       blaettert = false;
     }, 480);
   }
-  deck.addEventListener('click', (e) => {
-    if ((e.target as HTMLElement).closest('a')) { return; }
-    advance();
+  /* Oberste Karte umdrehen (Warum?), untere Karten blättern weiter */
+  cards.forEach((card) => {
+    card.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) { return; }
+      if (card.dataset.pos !== '0') { advance(); return; }
+      const flipped = card.classList.toggle('is-flipped');
+      card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+    });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+    });
   });
   document.getElementById('decknext')!.addEventListener('click', advance);
 </script>
