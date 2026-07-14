@@ -750,7 +750,10 @@ a.offercard:hover .postcard__title{color:var(--facc)}
 /* Kupferstich-Banner: kein Entsättigungs-Filter, nur Cremeschleier + Auslauf */
 .pagehead--art{position:relative;overflow:hidden;isolation:isolate;min-height:100svh;
   padding-bottom:clamp(3.4rem,6vw,5.5rem)}
-.pagehead--art h1{color:#4a3826;transition:color .3s;cursor:default}
+.pagehead--art h1{color:#4a3826;transition:color .3s;cursor:default;max-width:none}
+/* Lead läuft breit über den Schirm statt als schmaler Block; feste Mindesthöhe,
+   damit die H1 auf allen drei Bereichsseiten auf gleicher Höhe (im hellen Auslauf) sitzt */
+.pagehead--art .lead{max-width:none;min-height:3.8rem}
 .pagehead--art h1:hover{color:var(--acc)}
 .pagehead--art .lead{color:#6b5946}
 .pagehead--art .eyebrow{color:#7a5b3e}
