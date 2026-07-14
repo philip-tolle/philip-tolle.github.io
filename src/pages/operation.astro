@@ -5,36 +5,48 @@ import Icon from '../components/Icon.astro';
 import logo from '../assets/nc-logo.png';
 
 const stationen = [
-  { num: '01', icon: 'gespraech', title: 'Kostenloses Erstgespräch', text: '30 Minuten: Welche Aufgaben bleiben bei Ihnen regelmäßig liegen — und lohnt sich externe Entlastung überhaupt? Ehrlich, ohne Verkaufsdruck.', href: '/kontakt/', link: 'Gespräch vereinbaren' },
-  { num: '02', icon: 'zeit', title: 'Operation Sprint', text: 'Der 30-Tage-Einstieg: klar begrenzter Umfang, echte Ergebnisse — danach entscheiden Sie in Ruhe, ob mehr daraus wird.', href: '/kontakt/', link: 'Sprint anfragen' },
-  { num: '03', icon: 'kreislauf', title: 'Ihr Desk', text: 'Wiederkehrende Aufgaben, Monat für Monat zuverlässig erledigt — im festen Monatspaket.', id: 'desks', offers: [
-    { title: 'F&B Desk', text: 'Wochen-, Saison- und Aktionskarten, Tischpläne, Aufsteller und Bankettunterlagen — pünktlich, auf Ihrer Vorlage.', href: '/kontakt/' },
-    { title: 'Content Desk', text: 'Redaktionsplan, Beiträge und Stories für Instagram und Facebook — getextet, gestaltet, veröffentlicht.', href: '/kontakt/' },
+  { num: '01', icon: 'gespraech', title: 'Kostenloses Erstgespräch', text: '30 Minuten: Was bleibt bei Ihnen liegen — und lohnt sich Entlastung von außen? Ehrlich, ohne Verkaufsdruck.', href: '/kontakt/', link: 'Gespräch vereinbaren' },
+  { num: '02', icon: 'zeit', title: 'Der 30-Tage-Test', pname: 'Operation Sprint', text: 'Ein Monat, klar begrenzter Umfang, echte Ergebnisse. Danach entscheiden Sie in Ruhe, ob mehr daraus wird.', wenn: 'Für Sie, wenn Sie uns erst mit begrenztem Risiko prüfen wollen.', href: '/kontakt/', link: 'Test anfragen' },
+  { num: '03', icon: 'kreislauf', title: 'Ihr Monatspaket', text: 'Wiederkehrende Aufgaben, Monat für Monat zuverlässig erledigt — Sie wählen, was wir übernehmen.', id: 'desks', offers: [
+    { title: 'Karten & Bankettunterlagen', pname: 'F&B Desk', text: 'Wochen-, Saison- und Aktionskarten, Tischpläne, Aufsteller — pünktlich, auf Ihrer Vorlage.', wenn: 'Für Sie, wenn die Wochenkarte regelmäßig um 23 Uhr entsteht.', href: '/kontakt/' },
+    { title: 'Social Media, verlässlich bespielt', pname: 'Content Desk', text: 'Beiträge und Stories für Instagram und Facebook — geplant, gestaltet, veröffentlicht.', wenn: 'Für Sie, wenn der letzte Post drei Monate her ist.', href: '/kontakt/' },
   ] },
-  { num: '04', icon: 'gastlichkeit', title: 'Operation Partner', text: 'Beide Desks plus flexible Projektstunden und Saisonplanung — Ihre externe Fachabteilung für F&B, Content und Projekte.', href: '/kontakt/', link: 'Partner besprechen' },
-  { num: '05', icon: 'ziel', title: 'Hotelprojekte', text: 'Saisonkampagnen, Weihnachtsgeschenke, Mitarbeiterfeste, Gäste- und Bankettmappen — klar umrissene Projekte, wenn Sie sie brauchen.', href: '/kontakt/', link: 'Projekt besprechen' },
+  { num: '04', icon: 'gastlichkeit', title: 'Die volle Fachabteilung', pname: 'Operation Partner', text: 'Karten, Social Media und dazu Projektstunden mit Saisonplanung — eine Fachkraft, die Sie nicht einstellen müssen.', wenn: 'Für Sie, wenn beides liegen bleibt — und die Projekte dazu.', href: '/kontakt/', link: 'Partner besprechen' },
+  { num: '05', icon: 'ziel', title: 'Feste, Geschenke & Mappen', text: 'Saisonkampagne, Weihnachtsgeschenke, Mitarbeiterfest, Gäste- oder Bankettmappe — ein Projekt mit Anfang, Ende und Festpreis.', wenn: 'Für Sie, wenn ein Projekt ansteht, aber niemand Zeit hat, es zu treiben.', href: '/kontakt/', link: 'Projekt besprechen' },
 ];
 ---
 <Base
   title="Operation — NextCourse"
-  description="NextCourse Operation ist die externe operative Fachabteilung für inhabergeführte Hotels in Mainfranken: Speise- und Bankettunterlagen, Social-Media-Content, Saisonkampagnen und Hotelprojekte — planbar im Monatspaket, umgesetzt mit Hotellerie-Erfahrung."
+  description="NextCourse Operation übernimmt, was im Hotelalltag liegen bleibt: Speise- und Bankettkarten, Social Media, Feste, Geschenke und Mappen — für inhabergeführte Hotels in Mainfranken, zuverlässig zum festen Monatspreis."
   accent="amber"
 >
   <div class="pagehead">
     <span class="ghostglyph" aria-hidden="true">&amp;</span>
     <div class="wrap">
       <p class="eyebrow">NextCourse Operation</p>
-      <h1>Entlastung, die anpackt.</h1>
-      <p class="lead">Die externe Fachabteilung für inhabergeführte Hotels: Karten, Content und Projekte — aus der Hotellerie, zum planbaren Festpreis.</p>
+      <h1>Wir übernehmen, was liegen bleibt.</h1>
+      <p class="lead">Speisekarten, Social Media, Bankettunterlagen, Feste: NextCourse Operation erledigt die Aufgaben, für die im Hotelalltag niemand Zeit hat — zuverlässig, zum festen Monatspreis.</p>
     </div>
   </div>
 
-  <div class="floor--auto floor" style="padding-top:clamp(3rem,6vw,4.5rem)">
+  <!-- Das übernehmen wir: Sofort-Überblick -->
+  <div class="floor--auto floor" style="padding-top:1rem">
+    <div class="wrap" style="max-width:1020px">
+      <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Das übernehmen wir</p>
+      <div class="trio reveal">
+        <div class="trio__cell"><span class="trio__big">Speise- &amp; Bankettkarten</span><span class="trio__sub">von der Wochenkarte bis zum Tischplan</span></div>
+        <div class="trio__cell"><span class="trio__big">Instagram &amp; Facebook</span><span class="trio__sub">geplant, gestaltet, veröffentlicht</span></div>
+        <div class="trio__cell"><span class="trio__big">Feste, Geschenke &amp; Mappen</span><span class="trio__sub">Projekte mit Anfang, Ende und Festpreis</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="floor--auto floor" style="padding-top:clamp(2.5rem,5vw,4rem)">
     <div class="wrap">
       <div class="menuhead">
         <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">So entlasten wir</p>
         <h2 class="reveal">Ihr nächster Kurs — vom ersten Gespräch zur externen Fachabteilung.</h2>
-        <p class="lead reveal">Aufgaben, die im Tagesgeschäft liegen bleiben: übernommen mit Hotellerie-Erfahrung, festen Abläufen und Paketen, die Sie kalkulieren können.</p>
+        <p class="lead reveal">Sie steigen dort ein, wo es Ihrem Haus hilft — vom kostenlosen Gespräch bis zur laufenden Entlastung.</p>
       </div>
 
       <div class="kurs" id="kurs">
@@ -52,17 +64,19 @@ const stationen = [
               <>
                 <button type="button" class="offercard station__card deckblatt reveal" aria-expanded="false" aria-controls={`off-${s.id}`}>
                   <Icon name={s.icon} size={38} class="station__icon" />
-                  <h3>{s.title}</h3>
+                  <h3>{s.title}{s.pname && <span class="pname">{s.pname}</span>}</h3>
                   <p>{s.text}</p>
-                  <span class="deckblatt__toggle">Angebote ansehen
+                  {s.wenn && <p class="wenn">{s.wenn}</p>}
+                  <span class="deckblatt__toggle">Pakete ansehen
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
                   </span>
                 </button>
                 <div class="deckoffers" id={`off-${s.id}`} hidden>
                   {s.offers.map((o) => (
                     <a class="deckoffer" href={o.href}>
-                      <h4>{o.title}</h4>
+                      <h4>{o.title}{o.pname && <span class="pname">{o.pname}</span>}</h4>
                       <p>{o.text}</p>
+                      {o.wenn && <p class="wenn">{o.wenn}</p>}
                       <span class="forkcard__go">Mehr erfahren</span>
                     </a>
                   ))}
@@ -71,8 +85,9 @@ const stationen = [
             ) : (
               <a class="offercard station__card deckblatt reveal" href={s.href}>
                 <Icon name={s.icon} size={38} class="station__icon" />
-                <h3>{s.title}</h3>
+                <h3>{s.title}{s.pname && <span class="pname">{s.pname}</span>}</h3>
                 <p>{s.text}</p>
+                {s.wenn && <p class="wenn">{s.wenn}</p>}
                 <span class="forkcard__go">{s.link}</span>
               </a>
             )}
@@ -90,10 +105,9 @@ const stationen = [
         <h2 class="reveal">Was Operation ist — und was nicht.</h2>
       </div>
       <div class="vsrows stagger">
-        <div class="vs reveal"><span class="vs__not">Keine Social-Media-Agentur.</span><span class="vs__but">Eine externe Fachabteilung, die Hotellerie von innen kennt.</span></div>
-        <div class="vs reveal"><span class="vs__not">Kein Grafikservice.</span><span class="vs__but">Karten und Unterlagen mit dem Wissen, was an Rezeption, Tresen und Pass wirklich zählt.</span></div>
-        <div class="vs reveal"><span class="vs__not">Keine neue Software.</span><span class="vs__but">Erledigte Aufgaben — die Automatisierung arbeitet bei uns im Hintergrund, nicht bei Ihnen.</span></div>
-        <div class="vs reveal"><span class="vs__not">Keine zusätzliche Stelle.</span><span class="vs__but">Verlässliche Fachkapazität — genau im Umfang, den Ihr Haus braucht.</span></div>
+        <div class="vs reveal"><span class="vs__not">Keine Social-Media-Agentur.</span><span class="vs__but">Wir kommen aus der Hotellerie — Restaurant, Bankett, Rezeption.</span></div>
+        <div class="vs reveal"><span class="vs__not">Keine neue Software.</span><span class="vs__but">Sie bekommen fertige Ergebnisse, keinen Login.</span></div>
+        <div class="vs reveal"><span class="vs__not">Keine zusätzliche Stelle.</span><span class="vs__but">Fachkapazität genau im Umfang, den Ihr Haus braucht.</span></div>
       </div>
     </div>
   </div>
@@ -105,7 +119,7 @@ const stationen = [
         <span class="ornament__dot"></span>
       </div>
       <p class="claim reveal">Erledigt.<span class="z2">Nicht vertagt.</span></p>
-      <p class="voice reveal" style="max-width:26em;margin:0 auto">Operative Entlastung für Hotels in Mainfranken — planbar, fachlich, verlässlich.</p>
+      <p class="voice reveal" style="max-width:26em;margin:0 auto">Entlastung für Hotels in Mainfranken — planbar, fachlich, verlässlich.</p>
       <div class="btnrow reveal" style="justify-content:center">
         <a href="/kontakt/" class="btn">Kostenloses Erstgespräch</a>
       </div>
@@ -114,6 +128,14 @@ const stationen = [
 </Base>
 
 <style>
+  /* Produktname klein unter dem Klartext-Titel */
+  .pname{display:block;font-family:var(--body);font-weight:500;font-size:.68rem;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-top:.35rem}
+
+  /* „Für Sie, wenn …"-Anker */
+  .wenn{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--wood);
+    margin:.65rem 0 0}
+
   /* Abgrenzungszeilen: „Keine X. Sondern Y." */
   .vsrows{display:flex;flex-direction:column;margin:1.6rem auto 0}
   .vs{display:grid;gap:.15rem 2rem;padding:1.15rem .2rem;border-bottom:1px solid var(--line)}
