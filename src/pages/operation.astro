@@ -25,13 +25,13 @@ const stationen = [
     <Image class="pagehead__bg" src={bannerOperation} alt="" width={1600} format="webp" quality={78} loading="eager" />
     <div class="wrap">
       <p class="eyebrow">NextCourse Operation</p>
-      <h1>Effiziente Entlastung mit Wert.</h1>
+      <h1>Entlastung mit Wert.</h1>
       <p class="lead">NextCourse Operation entlastet Ihre Mitarbeiter und erledigt Aufgaben und Projekte, für die im Geschäftsalltag niemand Zeit hat — zuverlässig &amp; gewissenhaft zum Festpreis.</p>
     </div>
   </div>
 
   <!-- Das übernehmen wir: drei Bereiche mit Beispielen -->
-  <div class="floor--auto floor" style="padding-top:1rem">
+  <div class="floor--auto floor" style="padding-top:clamp(3.5rem,7vw,5.5rem);padding-bottom:clamp(2rem,4vw,3rem)">
     <div class="wrap" style="max-width:1060px">
       <h2 class="sr-only">Das übernehmen wir</h2>
       <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">Das übernehmen wir</p>
@@ -163,7 +163,8 @@ const stationen = [
 
 <style>
   /* „Das übernehmen wir": Bereichs-Wahl + Panel (Kompass-Muster) */
-  .komp__wahl{display:grid;gap:.8rem;margin-bottom:1rem}
+  .komp{margin-top:2.2rem}
+  .komp__wahl{display:grid;gap:1.1rem;margin-bottom:1.4rem}
   @media(min-width:820px){.komp__wahl{grid-template-columns:repeat(3,1fr)}}
   .kompbtn{display:flex;align-items:center;justify-content:center;gap:.85rem;
     padding:1.05rem 1rem;border-radius:16px;
