@@ -34,34 +34,39 @@ const stationen = [
     <div class="wrap" style="max-width:1060px">
       <h2 class="sr-only">Das übernehmen wir</h2>
       <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">Das übernehmen wir</p>
-      <div class="ub stagger">
-        <div class="ubcell reveal">
-          <h3>Repetitive Aufgaben &amp; Backoffice</h3>
-          <ul>
+      <div class="komp reveal">
+        <div class="komp__wahl">
+          <button type="button" class="kompbtn" data-bereich="backoffice" aria-pressed="true" aria-controls="komp-panel">
+            <Icon name="vorlage" size={26} /><span>Repetitive Aufgaben &amp; Backoffice</span>
+          </button>
+          <button type="button" class="kompbtn" data-bereich="digital" aria-pressed="false" aria-controls="komp-panel">
+            <Icon name="senden" size={26} /><span>Digitale Gästekommunikation &amp; Marketing</span>
+          </button>
+          <button type="button" class="kompbtn" data-bereich="projekte" aria-pressed="false" aria-controls="komp-panel">
+            <Icon name="fest" size={26} /><span>Einmalige Projekte ohne Abteilung</span>
+          </button>
+        </div>
+        <div class="komp__panel" id="komp-panel" aria-live="polite">
+          <ul data-bereich="backoffice">
             <li><Icon name="karte" size={22} /><span>Erstellung von Tages- &amp; Menükarten, druckfertig</span></li>
             <li><Icon name="mappe" size={22} /><span>Erstellung und Pflege von Gästemappen &amp; Infomaterial</span></li>
             <li><Icon name="vorlage" size={22} /><span>Erstellung von Vorlagen &amp; Templates</span></li>
             <li><Icon name="analyse" size={22} /><span>Vorbereitung von Unterlagen, Präsentationen, Listen &amp; Analysen</span></li>
           </ul>
-        </div>
-        <div class="ubcell reveal">
-          <h3>Digitale Gästekommunikation &amp; Marketing</h3>
-          <ul>
+          <ul data-bereich="digital" hidden>
             <li><Icon name="tablet" size={22} /><span>Betreuung digitaler Gästemappen</span></li>
             <li><Icon name="senden" size={22} /><span>Newsletter &amp; Social-Media-Inhalte — geplant, gestaltet, veröffentlicht</span></li>
             <li><Icon name="globus" size={22} /><span>Pflege der Website und anderer Kanäle</span></li>
             <li><Icon name="bewertung" size={22} /><span>Verwaltung von Gästefeedback</span></li>
           </ul>
-        </div>
-        <div class="ubcell reveal">
-          <h3>Einmalige Projekte ohne Abteilung</h3>
-          <ul>
+          <ul data-bereich="projekte" hidden>
             <li><Icon name="fest" size={22} /><span>Planung interner Teamevents — vom Sommerfest bis zur Weihnachtsfeier</span></li>
             <li><Icon name="handbuch" size={22} /><span>Erstellung von Leitfäden &amp; Betriebshandbüchern</span></li>
             <li><Icon name="geschenk" size={22} /><span>Planung von Gastgeschenken &amp; Co.</span></li>
           </ul>
         </div>
       </div>
+      <noscript><style is:inline>.komp__panel ul[hidden]{display:grid !important}</style></noscript>
     </div>
   </div>
 
@@ -152,16 +157,47 @@ const stationen = [
 </Base>
 
 <style>
-  /* „Das übernehmen wir": drei Bereiche mit Beispiel-Listen */
-  .ub{display:grid;gap:1px;background:var(--hairline);border:1px solid var(--hairline);
-    border-radius:20px;overflow:hidden}
-  @media(min-width:840px){.ub{grid-template-columns:repeat(3,1fr)}}
-  .ubcell{background:rgba(255,255,255,.6);padding:1.8rem 1.6rem}
-  .ubcell h3{font-size:1.22rem;margin-bottom:1.1rem;line-height:1.25}
-  .ubcell ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.85rem}
-  .ubcell li{display:flex;gap:.7rem;align-items:flex-start;font-size:.92rem;
-    color:var(--dim);line-height:1.5}
-  .ubcell li :global(.ico){flex:none;color:var(--wood);margin-top:.05rem}
+  /* „Das übernehmen wir": Bereichs-Wahl + Panel (Kompass-Muster) */
+  .komp__wahl{display:grid;gap:.8rem;margin-bottom:1rem}
+  @media(min-width:760px){.komp__wahl{grid-template-columns:repeat(3,1fr)}}
+  .kompbtn{display:flex;align-items:center;gap:.85rem;padding:1.05rem 1.25rem;border-radius:16px;
+    cursor:pointer;background:rgba(255,255,255,.6);border:1px solid var(--glass-edge);
+    font-family:var(--body);font-size:.95rem;font-weight:500;color:var(--dim);text-align:left;
+    line-height:1.3;transition:all .25s ease}
+  .kompbtn :global(.ico){flex:none;color:var(--wood);transition:color .25s}
+  .kompbtn:hover{transform:translateY(-2px)}
+  .kompbtn[aria-pressed="true"]{background:rgba(var(--acc-rgb),.09);
+    border-color:rgba(var(--acc-rgb),.45);color:var(--ink);
+    box-shadow:0 14px 30px -18px rgba(var(--acc-rgb),.55)}
+  .kompbtn[aria-pressed="true"] :global(.ico){color:var(--acc)}
+  .komp__panel{background:rgba(255,255,255,.6);border:1px solid rgba(var(--acc-rgb),.22);
+    border-radius:20px;padding:clamp(1.5rem,3.5vw,2.1rem);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow)}
+  .komp__panel ul{list-style:none;margin:0;padding:0;display:grid;gap:.9rem 2.4rem;
+    animation:kompin .3s ease both}
+  @media(min-width:700px){.komp__panel ul{grid-template-columns:1fr 1fr}}
+  .komp__panel ul[hidden]{display:none}
+  .komp__panel li{display:flex;gap:.7rem;align-items:flex-start;font-size:.95rem;
+    color:var(--dim);line-height:1.55}
+  .komp__panel li :global(.ico){flex:none;color:var(--wood);margin-top:.05rem}
+  @keyframes kompin{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.komp__panel ul{animation:none}}
+</style>
+
+<script>
+  /* „Das übernehmen wir": Bereichs-Wahl schaltet das Panel um */
+  const kompBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('.kompbtn'));
+  const kompLists = Array.from(document.querySelectorAll<HTMLElement>('.komp__panel ul[data-bereich]'));
+  kompBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const wahl = btn.dataset.bereich;
+      kompBtns.forEach((b) => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+      kompLists.forEach((ul) => { ul.hidden = ul.dataset.bereich !== wahl; });
+    });
+  });
+</script>
+
+<style>
 
   /* Produktname klein unter dem Klartext-Titel */
   .pname{display:block;font-family:var(--body);font-weight:500;font-size:.68rem;
