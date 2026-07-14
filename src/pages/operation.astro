@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import logo from '../assets/nc-logo.png';
+import bannerOperation from '../assets/banner-operation.png';
 
 const stationen = [
   { num: '01', icon: 'gespraech', title: 'Kostenloses Erstgespräch', text: '30 Minuten: Was bleibt bei Ihnen liegen — und lohnt sich Entlastung von außen? Ehrlich, ohne Verkaufsdruck.', href: '/kontakt/', link: 'Gespräch vereinbaren' },
@@ -20,8 +21,8 @@ const stationen = [
   description="NextCourse Operation entlastet Ihre Mitarbeiter: repetitive Aufgaben & Backoffice, digitale Gästekommunikation & Marketing, einmalige Projekte ohne eigene Abteilung — zuverlässig und gewissenhaft zum Festpreis. Für Hotels und Gastgeber in Mainfranken."
   accent="amber"
 >
-  <div class="pagehead">
-    <span class="ghostglyph" aria-hidden="true">&amp;</span>
+  <div class="pagehead pagehead--art">
+    <Image class="pagehead__bg" src={bannerOperation} alt="" width={1600} format="webp" quality={78} loading="eager" />
     <div class="wrap">
       <p class="eyebrow">NextCourse Operation</p>
       <h1>Effiziente Entlastung mit Wert.</h1>
@@ -34,7 +35,6 @@ const stationen = [
     <div class="wrap" style="max-width:1060px">
       <h2 class="sr-only">Das übernehmen wir</h2>
       <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">Das übernehmen wir</p>
-      <p class="mcsection__hint reveal">Tippen Sie an, was Sie interessiert.</p>
       <div class="komp reveal">
         <div class="komp__wahl">
           <button type="button" class="kompbtn" data-bereich="backoffice" aria-pressed="false" aria-controls="komp-panel">
@@ -172,10 +172,10 @@ const stationen = [
     line-height:1.3;white-space:nowrap;transition:all .25s ease}
   .kompbtn :global(.ico){flex:none;color:var(--wood);transition:color .25s}
   .kompbtn:hover{transform:translateY(-2px)}
-  .kompbtn[aria-pressed="true"]{background:rgba(var(--acc-rgb),.09);
+  .kompbtn:hover,.kompbtn[aria-pressed="true"]{background:rgba(var(--acc-rgb),.09);
     border-color:rgba(var(--acc-rgb),.45);color:var(--ink);
     box-shadow:0 14px 30px -18px rgba(var(--acc-rgb),.55)}
-  .kompbtn[aria-pressed="true"] :global(.ico){color:var(--acc)}
+  .kompbtn:hover :global(.ico),.kompbtn[aria-pressed="true"] :global(.ico){color:var(--acc)}
   .komp__panel{background:rgba(255,255,255,.6);border:1px solid rgba(var(--acc-rgb),.22);
     border-radius:20px;padding:clamp(1.5rem,3.5vw,2.1rem);
     backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow)}

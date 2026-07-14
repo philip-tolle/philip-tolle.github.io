@@ -7,6 +7,7 @@ import logo from '../assets/nc-logo.png';
 import philip from '../assets/philip.png';
 import bannerConsulting from '../assets/banner-consulting-v4.png';
 import bannerAkademie from '../assets/banner-akademie-v4.png';
+import bannerOperation from '../assets/banner-operation.png';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -57,7 +58,7 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
           <p class="forkcard__aud">Für alle, die weiterkommen wollen</p>
         </a>
         <a class="forkcard forkcard--operation reveal" href="/operation/">
-          <span class="forkcard__ghost" aria-hidden="true">&amp;</span>
+          <Image class="forkcard__img" src={bannerOperation} alt="" width={760} format="webp" quality={72} />
           <h3>NextCourse Operation</h3>
           <p class="voice">Wir übernehmen, was im Tagesgeschäft liegen bleibt.</p>
           <p class="forkcard__aud">Für Häuser mit mehr Aufgaben als Zeit</p>

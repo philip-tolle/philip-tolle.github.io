@@ -195,13 +195,8 @@ main.acc-amber{--acc:var(--amber);--acc-rgb:176,105,15}
   padding:clamp(1.7rem,3vw,2.4rem);
   box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s}
 .forkcard--akademie{--facc:var(--blue);align-items:flex-end;text-align:right}
-/* Operation: noch ohne Kupferstich-Motiv — ruhiges Glas + Geister-& als Platzhalter-Ästhetik */
-.forkcard--operation{--facc:var(--amber);background:rgba(255,255,255,.44);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-.forkcard__ghost{position:absolute;right:.02em;top:-.16em;z-index:-2;pointer-events:none;
-  font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(9rem,16vw,14rem);
-  line-height:1;color:rgba(176,105,15,.13);transition:transform .7s cubic-bezier(.2,.6,.2,1)}
-.forkcard--operation:hover .forkcard__ghost{transform:scale(1.06)}
+.forkcard--operation{--facc:var(--amber)}
+.forkcard--operation .forkcard__img{object-position:38% 30%}
 .forkcard__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   object-position:center 28%;z-index:-2;
   filter:contrast(.9) brightness(1.04) blur(.3px);
