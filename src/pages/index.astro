@@ -70,54 +70,56 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
     </div>
   </div>
 
-  <!-- FLOOR 3: Die Idee hinter NextCourse -->
-  <div class="floor--auto floor" id="idee">
+  <!-- FLOOR 3: Die Idee hinter NextCourse — ein Bildschirm -->
+  <div class="floor" id="idee" style="padding:5rem 0 1.6rem">
     <div class="wrap">
       <div class="menuhead">
         <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Die Idee hinter NextCourse</p>
-        <h2 class="reveal">Kein Wissensproblem. Ein Zeitproblem.</h2>
-        <p class="voice reveal" style="max-width:28em;margin:.9rem auto 0">„Technologie übernimmt die Last. Menschen gestalten das Erlebnis. NextCourse macht beides möglich.“</p>
+        <h2 class="reveal" style="font-size:clamp(1.8rem,4.2vw,2.7rem)">Kein Wissensproblem. Ein Zeitproblem.</h2>
       </div>
 
       <div class="idee2">
         <div class="idee2col reveal">
-          <p class="eyebrow eyebrow--c" style="--acc:var(--amber)">Die Probleme der Branche</p>
+          <p class="eyebrow eyebrow--c" style="--acc:var(--amber)">Das Problem</p>
           <div class="idee2__viz">
           <div class="forces__stage" id="forces">
-            <svg viewBox="0 0 640 400" preserveAspectRatio="none" aria-hidden="true">
+            <svg viewBox="0 0 640 320" preserveAspectRatio="none" aria-hidden="true">
               <defs>
                 <marker id="ncArrow" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
                   <path d="M0,0 L8,4.5 L0,9 z" fill="rgba(138,114,80,.5)"/>
                 </marker>
               </defs>
-              <path d="M255,65 C345,65 385,120 435,165" marker-end="url(#ncArrow)"/>
-              <path d="M255,200 C345,200 385,200 435,200" marker-end="url(#ncArrow)"/>
-              <path d="M255,335 C345,335 385,280 435,235" marker-end="url(#ncArrow)"/>
+              <path d="M255,31 C345,31 385,100 434,134" marker-end="url(#ncArrow)"/>
+              <path d="M255,111 C345,111 390,140 432,152" marker-end="url(#ncArrow)"/>
+              <path d="M255,191 C345,191 390,180 432,168" marker-end="url(#ncArrow)"/>
+              <path d="M255,271 C345,271 385,220 434,186" marker-end="url(#ncArrow)"/>
             </svg>
-            <div class="forces__pill" data-f="0" style="top:35px">
-              <span>Fachkräftemangel</span><b>50.000+ unbesetzte Stellen</b>
+            <div class="forces__pill" data-f="0" style="top:0">
+              <span>Margendruck</span><b>sechs Verlustjahre in Folge</b>
             </div>
-            <div class="forces__pill" data-f="1" style="top:170px">
+            <div class="forces__pill" data-f="1" style="top:80px">
+              <span>Qualifikationsdefizit</span><b>KI-Wissen fehlt im Alltag</b>
+            </div>
+            <div class="forces__pill" data-f="2" style="top:160px">
               <span>Digitalisierungsrückstand</span><b>≈ 70 % analoge Prozesse</b>
             </div>
-            <div class="forces__pill" data-f="2" style="top:305px">
-              <span>EU AI Act &amp; neue Pflichten</span><b>gelten ab August 2026</b>
+            <div class="forces__pill" data-f="3" style="top:240px">
+              <span>Bürokratische Hürden</span><b>EU AI Act, DSGVO &amp; Co.</b>
             </div>
-            <div class="forces__node">
+            <div class="zeitmuenze">
               <span>Es kostet vor allem</span>
               <b>Zeit</b>
               <span>die im Betrieb fehlt</span>
             </div>
           </div>
           </div>
-          <p class="idee2__cap">Sechs Verlustjahre in Folge — und drei Kräfte, die sich gegenseitig verstärken.</p>
         </div>
         <span class="idee2__div" aria-hidden="true"></span>
         <div class="idee2col reveal">
-          <p class="eyebrow eyebrow--c" style="--acc:var(--green)">Die Unterstützung von NextCourse</p>
+          <p class="eyebrow eyebrow--c" style="--acc:var(--green)">Unsere Antwort</p>
           <div class="idee2__viz">
           <div class="deck" id="deck">
-        <div class="deckcard" data-step="lernen" data-pos="0">
+        <div class="deckcard" data-pos="0" style="--dacc:var(--blue)">
           <svg class="deckcard__art" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M50 14 C 38 6, 22 6, 14 12 L14 46 C 22 40, 38 40, 50 48"/>
             <path d="M50 14 C 62 6, 78 6, 86 12 L86 46 C 78 40, 62 40, 50 48"/>
@@ -125,20 +127,20 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
           </svg>
           <span class="deckcard__num" aria-hidden="true">01</span>
           <h3>Lernen</h3>
-          <p class="voice">Wissen, das man am nächsten Tag benutzt.</p>
-          <button class="deckcard__more" data-step="lernen" aria-haspopup="dialog">Mehr erfahren</button>
+          <p class="voice">Wissen, das sofort Zeit spart.</p>
+          <a class="deckcard__go" href="/akademie/">Zur Academy</a>
         </div>
-        <div class="deckcard" data-step="umsetzen" data-pos="1">
+        <div class="deckcard" data-pos="1" style="--dacc:var(--green)">
           <svg class="deckcard__art" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M8 42 C 24 28, 40 48, 56 36 C 64 30, 70 26, 78 22"/>
             <path d="M70 14 L82 20 L74 31"/>
           </svg>
           <span class="deckcard__num" aria-hidden="true">02</span>
           <h3>Umsetzen</h3>
-          <p class="voice">Projekte, die man am Monatsende misst.</p>
-          <button class="deckcard__more" data-step="umsetzen" aria-haspopup="dialog">Mehr erfahren</button>
+          <p class="voice">Systeme, die Zeit zurückgeben.</p>
+          <a class="deckcard__go" href="/consulting/">Zum Consulting</a>
         </div>
-        <div class="deckcard" data-step="dranbleiben" data-pos="2">
+        <div class="deckcard" data-pos="2" style="--dacc:var(--amber)">
           <svg class="deckcard__art" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M32 14 A 24 20 0 0 1 70 20"/>
             <path d="M64 10 L72 21 L58 24"/>
@@ -146,9 +148,9 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
             <path d="M36 50 L28 39 L42 36"/>
           </svg>
           <span class="deckcard__num" aria-hidden="true">03</span>
-          <h3>Dranbleiben</h3>
-          <p class="voice">Systeme, die auch nächstes Jahr noch laufen.</p>
-          <button class="deckcard__more" data-step="dranbleiben" aria-haspopup="dialog">Mehr erfahren</button>
+          <h3>Abgeben</h3>
+          <p class="voice">Aufgaben, die wir einfach übernehmen.</p>
+          <a class="deckcard__go" href="/operation/">Zu Operation</a>
         </div>
           </div>
           <div class="deck__controls">
@@ -161,41 +163,13 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
             </button>
           </div>
           </div>
-          <p class="idee2__cap">Kein Kursanbieter. Keine klassische Beratung. Sondern beides — als ein Kreislauf.</p>
         </div>
       </div>
-      <a class="scrollhint" href="#blog" aria-label="Weiter zu den neuesten Blog-Artikeln">
+      <a class="scrollhint" href="#blog" style="margin-top:.6rem" aria-label="Weiter zu den neuesten Blog-Artikeln">
         <span class="hintword">Entdecken</span><span class="bar" aria-hidden="true"></span>
       </a>
     </div>
   </div>
-
-  <dialog class="stepdialog" id="stepdialog">
-    <button class="stepdialog__close" type="button" aria-label="Schließen">×</button>
-    <div class="stepdialog__in">
-      <article data-panel="lernen" hidden>
-        <span class="deckcard__num">01 · Lernen</span>
-        <h3>Veränderung beginnt mit Verstehen.</h3>
-        <p>Wer KI einmal selbst ausprobiert hat, hört auf, sie zu fürchten — und fängt an, sie einzusetzen. Darum steht am Anfang nicht die Technik, sondern das Wissen im Team.</p>
-        <p class="modell">Bei NextCourse ist das die <b>Akademie</b>: Kurse und Seminare mit KI-Modul in jedem Format — vom KI-Grundlagentag bis zur AEVO-Vorbereitung.</p>
-        <a class="arrowlink" href="/akademie/">Zur Akademie</a>
-      </article>
-      <article data-panel="umsetzen" hidden>
-        <span class="deckcard__num">02 · Umsetzen</span>
-        <h3>Wissen allein ändert keinen Dienstplan.</h3>
-        <p>Den Unterschied macht die Umsetzung im eigenen Haus — klein geschnitten, messbar und ohne den laufenden Betrieb lahmzulegen.</p>
-        <p class="modell">Bei NextCourse ist das das <b>Consulting</b>: vom Quick-Check über den Mystery Check bis zum Implementierungsprojekt zum Festpreis.</p>
-        <a class="arrowlink" href="/consulting/">Zum Consulting</a>
-      </article>
-      <article data-panel="dranbleiben" hidden>
-        <span class="deckcard__num">03 · Dranbleiben</span>
-        <h3>Die meisten Projekte scheitern nicht am Start — sondern am dritten Monat.</h3>
-        <p>Damit Wissen im Haus bleibt und eingeführte Systeme weiterlaufen, braucht es jemanden, der dranbleibt. Genau das unterscheidet einen Partner von einem Anbieter.</p>
-        <p class="modell">Bei NextCourse ist das <b>Operation</b>: die externe Fachabteilung, die wiederkehrende Aufgaben Monat für Monat übernimmt.</p>
-        <a class="arrowlink" href="/operation/">Zu Operation</a>
-      </article>
-    </div>
-  </dialog>
 
   <!-- FLOOR 3b: Aus dem Blog — Band mit den 3 neuesten Artikeln -->
   <div class="floor--auto floor" id="blog">
@@ -442,11 +416,9 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
     pill.addEventListener('click', () => { setForce(i); holdForce(); });
   });
 
-  /* ---------- Kartenstapel: Umblättern + Overlay ---------- */
+  /* ---------- Kartenstapel: Umblättern ---------- */
   const deck = document.getElementById('deck')!;
   const cards = Array.from(deck.querySelectorAll<HTMLElement>('.deckcard'));
-  const dialog = document.getElementById('stepdialog') as HTMLDialogElement;
-  const panels = Array.from(dialog.querySelectorAll<HTMLElement>('[data-panel]'));
   let order = [0, 1, 2];
   let blaettert = false;
 
@@ -472,20 +444,8 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
     }, 480);
   }
   deck.addEventListener('click', (e) => {
-    if ((e.target as HTMLElement).closest('.deckcard__more')) { return; }
+    if ((e.target as HTMLElement).closest('a')) { return; }
     advance();
   });
   document.getElementById('decknext')!.addEventListener('click', advance);
-
-  document.querySelectorAll<HTMLButtonElement>('.deckcard__more').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const step = btn.dataset.step;
-      panels.forEach((p) => { p.hidden = p.dataset.panel !== step; });
-      dialog.showModal();
-    });
-  });
-  dialog.querySelector('.stepdialog__close')!.addEventListener('click', () => dialog.close());
-  dialog.addEventListener('click', (e) => {
-    if (e.target === dialog) { dialog.close(); }
-  });
 </script>

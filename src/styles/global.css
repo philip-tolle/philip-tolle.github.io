@@ -279,7 +279,7 @@ main.acc-amber{--acc:var(--amber);--acc-rgb:176,105,15}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6%)}}
 
 /* ---------- Idee: Problem links, Lösung rechts ---------- */
-.idee2{display:grid;gap:3.5rem;margin-top:2.6rem}
+.idee2{display:grid;gap:3.5rem;margin-top:1.4rem}
 @media(min-width:1020px){.idee2{grid-template-columns:1fr 1px 1fr;gap:0 3.5rem;
   align-items:start}}
 .idee2__div{display:none}
@@ -291,19 +291,20 @@ main.acc-amber{--acc:var(--amber);--acc-rgb:176,105,15}
 /* Breite explizit sichern, damit die absolut-positionierten Layouts nicht kollabieren */
 .idee2__viz .forces__stage{margin:0;width:100%;max-width:520px}
 .idee2__viz .deck{margin:0;width:min(420px,100%)}
-.idee2__viz .deck__controls{margin-top:1.4rem}
-@media(min-width:1020px){.idee2__viz{min-height:485px}}
+.idee2__viz .deck__controls{margin-top:.9rem}
+@media(min-width:1020px){.idee2__viz{min-height:330px}}
 /* beide Beschreibungstexte in gleicher Schrift und Größe, je 2 ausbalancierte Zeilen */
 .idee2__cap{font-family:var(--disp);font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.34;
   color:var(--ink);max-width:24em;margin:1.7rem auto 0;text-wrap:balance}
 
-.forces__stage{position:relative;height:400px;max-width:640px;margin:0 auto;text-align:left}
+.forces__stage{position:relative;height:320px;max-width:640px;margin:0 auto;text-align:left}
 .forces__stage svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .forces__stage svg path{stroke:rgba(138,114,80,.5);stroke-width:1.9;fill:none;
   transition:stroke .3s,stroke-width .3s}
 .forces__stage[data-active="0"] path:nth-of-type(1),
 .forces__stage[data-active="1"] path:nth-of-type(2),
-.forces__stage[data-active="2"] path:nth-of-type(3){stroke:var(--wood);stroke-width:2.8}
+.forces__stage[data-active="2"] path:nth-of-type(3),
+.forces__stage[data-active="3"] path:nth-of-type(4){stroke:var(--wood);stroke-width:2.8}
 .forces__pill{position:absolute;left:0;width:250px;display:flex;flex-direction:column;
   align-items:flex-start;gap:.1rem;min-height:56px;padding:.6rem 1.05rem;
   border-radius:13px;cursor:default;justify-content:center;
@@ -315,6 +316,23 @@ main.acc-amber{--acc:var(--amber);--acc-rgb:176,105,15}
 .forces__pill:hover,
 .forces__pill.is-active{background:rgba(185,136,92,.13);border-color:rgba(185,136,92,.55);
   box-shadow:0 14px 30px -18px rgba(150,110,60,.5)}
+/* Zeit-Medaillon: runde Glas-Münze mit doppelter Haarlinie statt dunklem Kasten */
+.zeitmuenze{position:absolute;right:6px;top:50%;transform:translateY(-50%);
+  width:182px;height:182px;border-radius:50%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:.2rem;text-align:center;padding:1rem;
+  background:radial-gradient(circle at 50% 30%,rgba(255,255,255,.94),rgba(255,255,255,.55));
+  border:1px solid rgba(185,136,92,.55);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.zeitmuenze::before{content:"";position:absolute;inset:7px;border-radius:50%;
+  border:1px solid rgba(185,136,92,.3);pointer-events:none}
+.zeitmuenze span{display:block;font-size:.6rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--wood)}
+.zeitmuenze b{display:block;font-family:var(--serif);font-style:italic;font-weight:500;
+  font-size:2.7rem;line-height:1.05;color:var(--ink)}
+.zeitmuenze span:last-child{text-transform:none;letter-spacing:.03em;
+  font-size:.78rem;color:var(--faint)}
+
 .forces__node{position:absolute;right:0;top:50%;transform:translateY(-50%);width:190px;
   text-align:center;padding:1.4rem 1rem;border-radius:18px;background:var(--ink);
   box-shadow:0 22px 50px -26px rgba(60,45,25,.65)}
@@ -330,10 +348,11 @@ main.acc-amber{--acc:var(--amber);--acc-rgb:176,105,15}
   .forces__stage svg{display:none}
   .forces__pill{position:static;width:100%;max-width:360px;align-items:center;text-align:center}
   .forces__node{position:static;transform:none;margin-top:.8rem}
+  .zeitmuenze{position:static;transform:none;margin-top:.8rem}
 }
 
 /* ---------- Konzept: Kartenstapel zum Umblättern ---------- */
-.deck{position:relative;max-width:420px;min-height:400px;margin:1.8rem auto 0;
+.deck{position:relative;max-width:420px;min-height:284px;margin:1.8rem auto 0;
   cursor:pointer;transform:translateX(-14px)}
 @media(max-width:719px){.deck{transform:none}}
 .deckcard{position:absolute;inset:0;display:flex;flex-direction:column;
@@ -351,8 +370,13 @@ main.acc-amber{--acc:var(--amber);--acc-rgb:176,105,15}
 .deckcard[data-pos="1"],.deckcard[data-pos="2"]{box-shadow:0 14px 34px rgba(62,50,34,.09)}
 .deckcard.is-leaving{transform:perspective(1000px) translateX(-46%) rotateY(-70deg);
   opacity:0;z-index:4}
-.deckcard__art{width:72px;color:var(--wood);opacity:.65;margin-bottom:.3rem}
-.deckcard__num{font-family:var(--serif);font-style:italic;color:var(--wood);font-size:1.15rem}
+.deckcard__art{width:66px;color:var(--dacc,var(--wood));opacity:.6;margin-bottom:.3rem}
+.deckcard__num{font-family:var(--serif);font-style:italic;color:var(--dacc,var(--wood));font-size:1.15rem}
+.deckcard__go{margin-top:1.2rem;display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--body);font-weight:500;letter-spacing:.04em;font-size:.95rem;
+  color:var(--dacc,var(--wood));text-decoration:none}
+.deckcard__go::after{content:"→";color:var(--wood);transition:transform .2s}
+.deckcard__go:hover::after{transform:translateX(4px)}
 .deckcard h3{font-size:clamp(1.7rem,4.5vw,2.1rem)}
 .deckcard .voice{font-size:clamp(1.05rem,2.2vw,1.15rem);max-width:20em;margin:0}
 .deckcard__more{margin-top:1.2rem;display:inline-flex;align-items:center;gap:.5rem;
