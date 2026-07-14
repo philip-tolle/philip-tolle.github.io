@@ -289,7 +289,7 @@ const orgSchema = JSON.stringify({
 
   /* ---------- Angebots-Kompass: Bereichs-Wahl schaltet das Panel um ---------- */
   const kompBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('.kompbtn'));
-  const kompLists = Array.from(document.querySelectorAll<HTMLElement>('.komp__panel ul[data-bereich]'));
+  const kompLists = Array.from(document.querySelectorAll<HTMLElement>('.komp__panel .komp__set[data-bereich]'));
   const kompPanel = document.getElementById('komp-panel');
   kompBtns.forEach((btn) => {
     btn.addEventListener('click', () => {

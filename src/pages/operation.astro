@@ -8,19 +8,19 @@ import logo from '../assets/nc-logo.png';
 import bannerOperation from '../assets/banner-operation.png';
 
 const uebernehmen = [
-  { id: 'backoffice', icon: 'vorlage', titel: 'Backoffice & Unterlagen', items: [
+  { id: 'backoffice', icon: 'vorlage', titel: 'Backoffice & Unterlagen', intro: 'Wiederkehrende Unterlagen kosten jede Woche Stunden. Wir erstellen und pflegen sie zuverlässig — auf Ihren Vorlagen, in Ihrem Stil.', items: [
     { icon: 'karte', text: 'Tages- & Menükarten' },
     { icon: 'mappe', text: 'Gästemappen & Infomaterial' },
     { icon: 'vorlage', text: 'Vorlagen & Templates' },
     { icon: 'analyse', text: 'Präsentationen, Listen & Analysen' },
   ] },
-  { id: 'digital', icon: 'senden', titel: 'Kommunikation & Marketing', items: [
+  { id: 'digital', icon: 'senden', titel: 'Kommunikation & Marketing', intro: 'Sichtbar bleiben, ohne täglich daran zu denken: Wir kümmern uns um Kanäle, Newsletter und Gästefeedback — geplant statt zwischendurch.', items: [
     { icon: 'tablet', text: 'Digitale Gästemappen' },
     { icon: 'senden', text: 'Newsletter & Social Media' },
     { icon: 'globus', text: 'Website & Online-Kanäle' },
     { icon: 'bewertung', text: 'Gästefeedback & Bewertungen' },
   ] },
-  { id: 'projekte', icon: 'fest', titel: 'Projekte & Events', items: [
+  { id: 'projekte', icon: 'fest', titel: 'Projekte & Events', intro: 'Manche Vorhaben brauchen eine Abteilung, die es nicht gibt. Wir planen und liefern — mit Anfang, Ende und Festpreis.', items: [
     { icon: 'fest', text: 'Team-Events & Feste' },
     { icon: 'handbuch', text: 'Leitfäden & Betriebshandbücher' },
     { icon: 'geschenk', text: 'Gastgeschenke & Aufmerksamkeiten' },
@@ -52,16 +52,21 @@ const stationen = [
     </div>
   </div>
 
-  <!-- Das übernehmen wir: drei Bereiche mit Beispielen -->
-  <div class="floor--auto floor" style="padding-top:clamp(3.5rem,7vw,5.5rem);padding-bottom:clamp(5rem,10vw,8rem)">
+  <!-- Das übernehmen wir: bildschirmfüllendes Schaufenster -->
+  <div class="floor">
     <div class="wrap" style="max-width:1060px">
-      <h2 class="sr-only">Das übernehmen wir</h2>
-      <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">Das übernehmen wir</p>
+      <div class="menuhead">
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Das übernehmen wir</p>
+        <h2 class="reveal">Backoffice, Kommunikation, Projekte.</h2>
+      </div>
       <Kompass bereiche={uebernehmen} />
+      <a class="scrollhint" href="#weg" aria-label="Weiter zu: So entlasten wir">
+        <span class="hintword">Entdecken</span><span class="bar" aria-hidden="true"></span>
+      </a>
     </div>
   </div>
 
-  <div class="floor--auto floor" style="padding-top:clamp(4rem,8vw,6rem)">
+  <div class="floor--auto floor" id="weg" style="padding-top:clamp(4rem,8vw,6rem)">
     <div class="wrap">
       <div class="menuhead">
         <h2 class="sr-only">So entlasten wir</h2>

@@ -8,19 +8,19 @@ import bannerConsulting from '../assets/banner-consulting-v4.png';
 import logo from '../assets/nc-logo.png';
 
 const angebote = [
-  { id: 'checks', icon: 'blick', titel: 'Analyse & Checks', items: [
+  { id: 'checks', icon: 'blick', titel: 'Analyse & Checks', intro: 'Bevor sich etwas ändert, braucht es Klarheit. Unsere Checks zeigen ehrlich, wo Ihr Haus steht — aus Gästesicht und entlang der neuen KI-Pflichten.', items: [
     { icon: 'handbuch', text: 'EU AI Act Quick-Check' },
     { icon: 'blick', text: 'Mystery Check aus Gästesicht' },
     { icon: 'analyse', text: 'Modellrechnung am Referenzbetrieb' },
     { icon: 'ziel', text: 'Priorisierter Maßnahmenplan' },
   ] },
-  { id: 'schulung', icon: 'lernen', titel: 'Schulung im Betrieb', items: [
+  { id: 'schulung', icon: 'lernen', titel: 'Schulung im Betrieb', intro: 'Veränderung trägt nur, wenn das Team sie versteht. Wir schulen direkt im Betrieb — mit Ihren Abläufen, nicht mit Folien von der Stange.', items: [
     { icon: 'gastlichkeit', text: 'Flying Academy — bei Ihnen im Haus' },
     { icon: 'ausbildung', text: 'EU AI Act Grundschulung (Art. 4)' },
     { icon: 'ki', text: 'KI-Praxis mit Ihren Anwendungsfällen' },
     { icon: 'gespraech', text: 'Individuell nach Absprache' },
   ] },
-  { id: 'umsetzung', icon: 'ziel', titel: 'Umsetzung & Begleitung', items: [
+  { id: 'umsetzung', icon: 'ziel', titel: 'Umsetzung & Begleitung', intro: 'Aus Empfehlungen werden Projekte: klar geschnitten, zum Festpreis, messbar. Und wer dranbleiben will, bekommt laufende Begleitung.', items: [
     { icon: 'gespraech', text: 'KI-Telefonassistent & Co.' },
     { icon: 'ziel', text: 'Implementierungsprojekte zum Festpreis' },
     { icon: 'ki', text: 'CorporateLLM als Ausbaustufe' },
@@ -57,16 +57,21 @@ const stationen = [
     </div>
   </div>
 
-  <!-- Das bieten wir: drei Bereiche mit Beispielen -->
-  <div class="floor--auto floor" style="padding-top:clamp(3.5rem,7vw,5.5rem);padding-bottom:clamp(5rem,10vw,8rem)">
+  <!-- Das bieten wir: bildschirmfüllendes Schaufenster -->
+  <div class="floor">
     <div class="wrap" style="max-width:1060px">
-      <h2 class="sr-only">Das bieten wir</h2>
-      <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">Das bieten wir</p>
+      <div class="menuhead">
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Das bieten wir</p>
+        <h2 class="reveal">Klarheit, Wissen, Umsetzung.</h2>
+      </div>
       <Kompass bereiche={angebote} />
+      <a class="scrollhint" href="#weg" aria-label="Weiter zu: So arbeiten wir">
+        <span class="hintword">Entdecken</span><span class="bar" aria-hidden="true"></span>
+      </a>
     </div>
   </div>
 
-  <div class="floor--auto floor" style="padding-top:clamp(4rem,8vw,6rem)">
+  <div class="floor--auto floor" id="weg" style="padding-top:clamp(4rem,8vw,6rem)">
     <div class="wrap">
       <div class="menuhead">
         <h2 class="sr-only">So arbeiten wir</h2>

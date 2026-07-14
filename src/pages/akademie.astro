@@ -8,19 +8,19 @@ import bannerAkademie from '../assets/banner-akademie-v4.png';
 import logo from '../assets/nc-logo.png';
 
 const angebote = [
-  { id: 'seminare', icon: 'ki', titel: 'Seminare & Webinare', items: [
+  { id: 'seminare', icon: 'ki', titel: 'Seminare & Webinare', intro: 'Der kompakte Einstieg: ein Tag oder online, direkt anwendbar. Ideal, um KI und Digitalisierung im Team greifbar zu machen.', items: [
     { icon: 'ki', text: 'KI im Geschäftsalltag „Gastgewerbe“' },
     { icon: 'befaehigung', text: 'Digitaler Wandel & Mitarbeiterzufriedenheit' },
     { icon: 'zeit', text: 'Kompakt: ein Tag oder online' },
     { icon: 'handbuch', text: 'Dokumentierter Teilnahmenachweis' },
   ] },
-  { id: 'flying', icon: 'gastlichkeit', titel: 'Flying Academy', items: [
+  { id: 'flying', icon: 'gastlichkeit', titel: 'Flying Academy', intro: 'Der Kursraum kommt zu Ihnen: Wir schulen Ihr Team im eigenen Haus — mit Beispielen aus Ihrem Alltag statt Theorie von der Stange.', items: [
     { icon: 'gastlichkeit', text: 'Schulung bei Ihnen im Haus' },
     { icon: 'ausbildung', text: 'EU AI Act Grundschulung (Art. 4)' },
     { icon: 'ziel', text: 'Anwendungsfälle aus Ihrem Betrieb' },
     { icon: 'gespraech', text: 'Individuell nach Absprache' },
   ] },
-  { id: 'lehrgaenge', icon: 'lernen', titel: 'Kurse & Lehrgänge', items: [
+  { id: 'lehrgaenge', icon: 'lernen', titel: 'Kurse & Lehrgänge', intro: 'Der lange Atem: mehrtägige Qualifizierung mit Abschluss — bis zum geförderten AZAV-Lehrgang. In Vorbereitung, Start Ende 2026.', items: [
     { icon: 'ausbildung', text: 'Mehrtägige Kurse mit Abschluss' },
     { icon: 'befaehigung', text: 'Workshops — fokussierte Praxis' },
     { icon: 'lernen', text: 'AZAV-Lehrgänge über Bildungsgutschein' },
@@ -56,16 +56,21 @@ const bereiche = [
     </div>
   </div>
 
-  <!-- Das bieten wir: drei Bereiche mit Beispielen -->
-  <div class="floor--auto floor" style="padding-top:clamp(3.5rem,7vw,5.5rem);padding-bottom:clamp(5rem,10vw,8rem)">
+  <!-- Das bieten wir: bildschirmfüllendes Schaufenster -->
+  <div class="floor">
     <div class="wrap" style="max-width:1060px">
-      <h2 class="sr-only">Das bieten wir</h2>
-      <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">Das bieten wir</p>
+      <div class="menuhead">
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Das bieten wir</p>
+        <h2 class="reveal">Seminare, Schulungen, Lehrgänge.</h2>
+      </div>
       <Kompass bereiche={angebote} />
+      <a class="scrollhint" href="#weg" aria-label="Weiter zu: So lernen Sie bei uns">
+        <span class="hintword">Entdecken</span><span class="bar" aria-hidden="true"></span>
+      </a>
     </div>
   </div>
 
-  <div class="floor--auto floor" style="padding-top:clamp(4rem,8vw,6rem)">
+  <div class="floor--auto floor" id="weg" style="padding-top:clamp(4rem,8vw,6rem)">
     <div class="wrap">
       <div class="menuhead">
         <h2 class="sr-only">So lernen Sie bei uns</h2>
