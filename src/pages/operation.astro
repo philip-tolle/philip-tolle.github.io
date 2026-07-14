@@ -6,13 +6,13 @@ import logo from '../assets/nc-logo.png';
 import bannerOperation from '../assets/banner-operation.png';
 
 const stationen = [
-  { num: '01', icon: 'zeit', title: 'Der 30-Tage-Test', pname: 'Operation Sprint', text: 'Ein Monat, klar begrenzter Umfang, echte Ergebnisse. Danach entscheiden Sie in Ruhe, ob mehr daraus wird.', wenn: 'Für Sie, wenn Sie uns erst mit begrenztem Risiko prüfen wollen.', href: '/kontakt/', link: 'Test anfragen' },
-  { num: '02', icon: 'kreislauf', title: 'Ihr Monatspaket', text: 'Wiederkehrende Aufgaben, Monat für Monat zuverlässig erledigt — Sie wählen, was wir übernehmen.', id: 'desks', offers: [
-    { title: 'Karten & Bankettunterlagen', pname: 'F&B Desk', text: 'Wochen-, Saison- und Aktionskarten, Tischpläne, Aufsteller — pünktlich, auf Ihrer Vorlage.', wenn: 'Für Sie, wenn die Wochenkarte regelmäßig um 23 Uhr entsteht.', href: '/kontakt/' },
-    { title: 'Social Media, verlässlich bespielt', pname: 'Content Desk', text: 'Beiträge und Stories für Instagram und Facebook — geplant, gestaltet, veröffentlicht.', wenn: 'Für Sie, wenn der letzte Post drei Monate her ist.', href: '/kontakt/' },
+  { num: '01', icon: 'zeit', title: 'Der 30-Tage-Test', pname: 'Operation Sprint', text: 'Ein Monat, fester Umfang — danach entscheiden Sie.', href: '/kontakt/', link: 'Test anfragen' },
+  { num: '02', icon: 'kreislauf', title: 'Ihr Monatspaket', text: 'Wiederkehrendes, Monat für Monat erledigt.', id: 'desks', offers: [
+    { title: 'Karten & Bankettunterlagen', pname: 'F&B Desk', text: 'Karten, Tischpläne, Aufsteller — pünktlich fertig.', href: '/kontakt/' },
+    { title: 'Social Media, verlässlich bespielt', pname: 'Content Desk', text: 'Beiträge & Stories — geplant, gestaltet, veröffentlicht.', href: '/kontakt/' },
   ] },
-  { num: '03', icon: 'gastlichkeit', title: 'Die volle Fachabteilung', pname: 'Operation Partner', text: 'Karten, Social Media und dazu Projektstunden mit Saisonplanung — eine Fachkraft, die Sie nicht einstellen müssen.', wenn: 'Für Sie, wenn beides liegen bleibt — und die Projekte dazu.', href: '/kontakt/', link: 'Partner besprechen' },
-  { num: '04', icon: 'ziel', title: 'Feste, Geschenke & Mappen', text: 'Saisonkampagne, Weihnachtsgeschenke, Mitarbeiterfest, Gäste- oder Bankettmappe — ein Projekt mit Anfang, Ende und Festpreis.', wenn: 'Für Sie, wenn ein Projekt ansteht, aber niemand Zeit hat, es zu treiben.', href: '/kontakt/', link: 'Projekt besprechen' },
+  { num: '03', icon: 'gastlichkeit', title: 'Die volle Fachabteilung', pname: 'Operation Partner', text: 'Beide Pakete plus Projektstunden und Saisonplanung.', href: '/kontakt/', link: 'Partner besprechen' },
+  { num: '04', icon: 'ziel', title: 'Feste, Geschenke & Mappen', text: 'Projekte mit Anfang, Ende und Festpreis.', href: '/kontakt/', link: 'Projekt besprechen' },
 ];
 ---
 <Base
@@ -84,11 +84,9 @@ const stationen = [
 
       <!-- Startpunkt: Erstgespräch, mittig und kompakt — hier beginnt die Linie -->
       <div class="startkarte reveal">
-        <a class="offercard deckblatt startkarte__card" href="/kontakt/">
-          <Icon name="gespraech" size={32} class="station__icon" />
+        <a class="offercard deckblatt startkarte__card" href="/kontakt/" aria-label="Kostenloses Erstgespräch vereinbaren">
           <h3>Kostenloses Erstgespräch</h3>
-          <p>30 Minuten: Was bleibt bei Ihnen liegen — und lohnt sich Entlastung von außen? Ehrlich, ohne Verkaufsdruck.</p>
-          <span class="forkcard__go">Gespräch vereinbaren</span>
+          <p>Was bleibt bei Ihnen liegen?</p>
         </a>
       </div>
 
@@ -157,11 +155,12 @@ const stationen = [
 
 <style>
   /* „Das übernehmen wir": Bereichs-Wahl + Panel (Kompass-Muster) */
-  /* Startkarte: Erstgespräch mittig, kompakter als die Stationskarten */
+  /* Startkarte: Erstgespräch mittig, deutlich kompakter als die Stationskarten */
   .startkarte{display:flex;justify-content:center;margin-top:2.4rem}
-  .startkarte__card{width:min(430px,100%);min-height:0;padding:1.7rem 1.9rem}
-  .startkarte__card h3{font-size:clamp(1.25rem,3vw,1.5rem)}
-  .startkarte__card p{font-size:.92rem}
+  .startkarte__card{width:min(360px,100%);min-height:0;padding:1.5rem 1.7rem;gap:.35rem}
+  .startkarte__card h3{font-size:clamp(1.2rem,2.8vw,1.4rem);margin:0}
+  .startkarte__card p{font-family:var(--serif);font-style:italic;font-size:1.05rem;
+    color:var(--dim);margin:0}
 
   .komp{margin-top:2.2rem}
   .komp__wahl{display:grid;gap:1.1rem;margin-bottom:1.4rem}
