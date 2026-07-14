@@ -2,8 +2,31 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
+import Kompass from '../components/Kompass.astro';
+import Startkarte from '../components/Startkarte.astro';
 import bannerAkademie from '../assets/banner-akademie-v4.png';
 import logo from '../assets/nc-logo.png';
+
+const angebote = [
+  { id: 'seminare', icon: 'ki', titel: 'Seminare & Webinare', items: [
+    { icon: 'ki', text: 'KI im Geschäftsalltag „Gastgewerbe“' },
+    { icon: 'befaehigung', text: 'Digitaler Wandel & Mitarbeiterzufriedenheit' },
+    { icon: 'zeit', text: 'Kompakt: ein Tag oder online' },
+    { icon: 'handbuch', text: 'Dokumentierter Teilnahmenachweis' },
+  ] },
+  { id: 'flying', icon: 'gastlichkeit', titel: 'Flying Academy', items: [
+    { icon: 'gastlichkeit', text: 'Schulung bei Ihnen im Haus' },
+    { icon: 'ausbildung', text: 'EU AI Act Grundschulung (Art. 4)' },
+    { icon: 'ziel', text: 'Anwendungsfälle aus Ihrem Betrieb' },
+    { icon: 'gespraech', text: 'Individuell nach Absprache' },
+  ] },
+  { id: 'lehrgaenge', icon: 'lernen', titel: 'Kurse & Lehrgänge', items: [
+    { icon: 'ausbildung', text: 'Mehrtägige Kurse mit Abschluss' },
+    { icon: 'befaehigung', text: 'Workshops — fokussierte Praxis' },
+    { icon: 'lernen', text: 'AZAV-Lehrgänge über Bildungsgutschein' },
+    { icon: 'zeit', text: 'In Vorbereitung — Start Ende 2026' },
+  ] },
+];
 
 const bereiche = [
   { icon: 'ki', title: 'Seminare & Webinare', text: 'Kompakter Einstieg — an einem Tag oder online, direkt im Alltag anwendbar.', available: true, id: 'seminare', offers: [
@@ -33,13 +56,25 @@ const bereiche = [
     </div>
   </div>
 
-  <div class="floor--auto floor" style="padding-top:clamp(3rem,6vw,4.5rem)">
+  <!-- Das bieten wir: drei Bereiche mit Beispielen -->
+  <div class="floor--auto floor" style="padding-top:clamp(3.5rem,7vw,5.5rem);padding-bottom:clamp(5rem,10vw,8rem)">
+    <div class="wrap" style="max-width:1060px">
+      <h2 class="sr-only">Das bieten wir</h2>
+      <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">Das bieten wir</p>
+      <Kompass bereiche={angebote} />
+    </div>
+  </div>
+
+  <div class="floor--auto floor" style="padding-top:clamp(4rem,8vw,6rem)">
     <div class="wrap">
       <div class="menuhead">
-        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">So lernen Sie bei uns</p>
-        <h2 class="reveal">Fünf Formate, ein Ziel.</h2>
-        <p class="lead reveal">Vom Kurztag bis zum geförderten Lehrgang — jedes Format mit KI-Modul, spezifisch fürs Gastgewerbe.</p>
+        <h2 class="sr-only">So lernen Sie bei uns</h2>
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">So lernen Sie bei uns</p>
+        <p class="lead reveal">Fünf Formate, ein Ziel — jedes mit KI-Modul, spezifisch fürs Gastgewerbe.</p>
       </div>
+
+      <!-- Startpunkt: Erstgespräch, mittig und kompakt — hier beginnt die Linie -->
+      <Startkarte frage="Welcher Kurs passt zu Ihnen?" />
 
       <div class="kurs" id="kurs">
         <svg class="kurs__line" viewBox="0 0 130 1600" preserveAspectRatio="none" aria-hidden="true">
@@ -85,12 +120,20 @@ const bereiche = [
         ))}
       </div>
 
-      <p class="dim reveal" style="max-width:44em;margin:3.4rem auto 0;text-align:center">In jedem Format steckt ein verpflichtendes KI-Modul — als einziger Anbieter spezifisch für das Gastgewerbe. Die Inhalte werden alle 12–18 Monate aktualisiert, und über unser Consulting-Netzwerk vermitteln wir Absolventen direkt in die Praxis. Weitere geförderte Lehrgänge (System- &amp; Change-Manager Gastgewerbe, KI-gestützter Guest-Relation-Manager) folgen 2027/2028.</p>
-      <div class="reveal" style="text-align:center;margin-top:1.4rem">
-        <a class="arrowlink" href="/akademie/foerderung/">Förderung: Wer zahlt was?</a>
+    </div>
+  </div>
+
+  <!-- Claim & Abschluss -->
+  <div class="floor">
+    <div class="wrap wrap--menu" style="text-align:center">
+      <div class="ornament reveal" aria-hidden="true">
+        <span class="ornament__dot"></span>
       </div>
-      <div class="btnrow reveal" style="justify-content:center;margin-top:1.6rem">
+      <p class="claim reveal">Heute gelernt.<span class="z2">Morgen im Betrieb.</span></p>
+      <p class="voice reveal" style="max-width:26em;margin:0 auto">Weiterbildung fürs Gastgewerbe — aus der Praxis, mit KI-Modul in jedem Format.</p>
+      <div class="btnrow reveal" style="justify-content:center">
         <a href="/kontakt/" class="btn">Kostenloses Erstgespräch</a>
+        <a href="/akademie/foerderung/" class="btn btn--line btn--blue">Förderung: Wer zahlt was?</a>
       </div>
     </div>
   </div>

@@ -161,6 +161,7 @@ main.acc-amber{--acc:var(--amber);--acc-rgb:176,105,15}
 .btn--line:hover{background:var(--bc);color:var(--paper);border-color:var(--bc);
   transform:translateY(-3px);box-shadow:0 16px 32px -14px var(--bc-sh)}
 .btn--amber{--bc:var(--amber);--bc-bd:rgba(176,105,15,.4);--bc-sh:rgba(176,105,15,.5)}
+.btn--blue{--bc:var(--blue);--bc-bd:rgba(63,94,126,.4);--bc-sh:rgba(63,94,126,.5)}
 .btnrow{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.2rem}
 .arrowlink{font-family:var(--body);font-weight:500;letter-spacing:.04em;color:var(--green);
   text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;margin-top:1.4rem}

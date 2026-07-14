@@ -1,0 +1,20 @@
+---
+/* Startpunkt der Kurslinie: kompakte, mittige Erstgespräch-Karte.
+   Nur Titel + eine kursive Frage — die ganze Karte verlinkt auf /kontakt/. */
+interface Props { titel?: string; frage: string; href?: string; }
+const { titel = 'Kostenloses Erstgespräch', frage, href = '/kontakt/' } = Astro.props;
+---
+<div class="startkarte reveal">
+  <a class="offercard deckblatt startkarte__card" href={href} aria-label={`${titel} vereinbaren`}>
+    <h3>{titel}</h3>
+    <p>{frage}</p>
+  </a>
+</div>
+
+<style>
+  .startkarte{display:flex;justify-content:center;margin-top:2.4rem}
+  .startkarte__card{width:min(360px,100%);min-height:0;padding:1.5rem 1.7rem;gap:.35rem}
+  .startkarte__card h3{font-size:clamp(1.2rem,2.8vw,1.4rem);margin:0}
+  .startkarte__card p{font-family:var(--serif);font-style:italic;font-size:1.05rem;
+    color:var(--dim);margin:0}
+</style>

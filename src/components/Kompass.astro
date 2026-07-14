@@ -1,0 +1,63 @@
+---
+/* Angebots-Kompass: drei Bereichs-Buttons + Panel mit Beispielen.
+   Erster Bereich ist beim Laden geöffnet; Klick wechselt, erneuter Klick schließt.
+   Das Umschalt-JS liegt global in Base.astro. Akzentfarbe folgt --acc der Seite. */
+import Icon from './Icon.astro';
+
+interface Item { icon: string; text: string; }
+interface Bereich { id: string; icon: string; titel: string; items: Item[]; }
+interface Props { bereiche: Bereich[]; }
+const { bereiche } = Astro.props;
+---
+<div class="komp reveal">
+  <div class="komp__wahl">
+    {bereiche.map((b, i) => (
+      <button type="button" class="kompbtn" data-bereich={b.id} aria-pressed={i === 0 ? 'true' : 'false'} aria-controls="komp-panel">
+        <Icon name={b.icon} size={26} /><span>{b.titel}</span>
+      </button>
+    ))}
+  </div>
+  <div class="komp__panel" id="komp-panel" aria-live="polite">
+    {bereiche.map((b, i) => (
+      <ul data-bereich={b.id} hidden={i !== 0}>
+        {b.items.map((it) => (
+          <li><Icon name={it.icon} size={22} /><span>{it.text}</span></li>
+        ))}
+      </ul>
+    ))}
+  </div>
+</div>
+<noscript><style is:inline>
+  .komp__panel[hidden]{display:block !important}
+  .komp__panel ul[hidden]{display:grid !important}
+</style></noscript>
+
+<style>
+  .komp{margin-top:2.2rem}
+  .komp__wahl{display:grid;gap:1.1rem;margin-bottom:1.4rem}
+  @media(min-width:820px){.komp__wahl{grid-template-columns:repeat(3,1fr)}}
+  .kompbtn{display:flex;align-items:center;justify-content:center;gap:.85rem;
+    padding:1.05rem 1rem;border-radius:16px;
+    cursor:pointer;background:rgba(255,255,255,.6);border:1px solid var(--glass-edge);
+    font-family:var(--body);font-size:.92rem;font-weight:500;color:var(--dim);text-align:left;
+    line-height:1.3;white-space:nowrap;transition:all .25s ease}
+  .kompbtn :global(.ico){flex:none;color:var(--wood);transition:color .25s}
+  .kompbtn:hover{transform:translateY(-2px)}
+  .kompbtn:hover,.kompbtn[aria-pressed="true"]{background:rgba(var(--acc-rgb),.09);
+    border-color:rgba(var(--acc-rgb),.45);color:var(--ink);
+    box-shadow:0 14px 30px -18px rgba(var(--acc-rgb),.55)}
+  .kompbtn:hover :global(.ico),.kompbtn[aria-pressed="true"] :global(.ico){color:var(--acc)}
+  .komp__panel{background:rgba(255,255,255,.6);border:1px solid rgba(var(--acc-rgb),.22);
+    border-radius:20px;padding:clamp(1.5rem,3.5vw,2.1rem);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow)}
+  .komp__panel[hidden]{display:none}
+  .komp__panel ul{list-style:none;margin:0;padding:0;display:grid;gap:.9rem 2.4rem;
+    animation:kompin .3s ease both}
+  @media(min-width:700px){.komp__panel ul{grid-template-columns:1fr 1fr}}
+  .komp__panel ul[hidden]{display:none}
+  .komp__panel li{display:flex;gap:.7rem;align-items:flex-start;font-size:.95rem;
+    color:var(--dim);line-height:1.55}
+  .komp__panel li :global(.ico){flex:none;color:var(--wood);margin-top:.05rem}
+  @keyframes kompin{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.komp__panel ul{animation:none}}
+</style>

@@ -287,6 +287,19 @@ const orgSchema = JSON.stringify({
     });
   });
 
+  /* ---------- Angebots-Kompass: Bereichs-Wahl schaltet das Panel um ---------- */
+  const kompBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('.kompbtn'));
+  const kompLists = Array.from(document.querySelectorAll<HTMLElement>('.komp__panel ul[data-bereich]'));
+  const kompPanel = document.getElementById('komp-panel');
+  kompBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const schliessen = btn.getAttribute('aria-pressed') === 'true';
+      kompBtns.forEach((b) => b.setAttribute('aria-pressed', !schliessen && b === btn ? 'true' : 'false'));
+      if (kompPanel) { kompPanel.hidden = schliessen; }
+      kompLists.forEach((ul) => { ul.hidden = schliessen || ul.dataset.bereich !== btn.dataset.bereich; });
+    });
+  });
+
   /* ---------- Fußzeile: Jahr ---------- */
   const year = document.getElementById('year');
   if (year) { year.textContent = String(new Date().getFullYear()); }

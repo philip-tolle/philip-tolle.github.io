@@ -2,8 +2,31 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
+import Kompass from '../components/Kompass.astro';
+import Startkarte from '../components/Startkarte.astro';
 import logo from '../assets/nc-logo.png';
 import bannerOperation from '../assets/banner-operation.png';
+
+const uebernehmen = [
+  { id: 'backoffice', icon: 'vorlage', titel: 'Backoffice & Unterlagen', items: [
+    { icon: 'karte', text: 'Tages- & Menükarten' },
+    { icon: 'mappe', text: 'Gästemappen & Infomaterial' },
+    { icon: 'vorlage', text: 'Vorlagen & Templates' },
+    { icon: 'analyse', text: 'Präsentationen, Listen & Analysen' },
+  ] },
+  { id: 'digital', icon: 'senden', titel: 'Kommunikation & Marketing', items: [
+    { icon: 'tablet', text: 'Digitale Gästemappen' },
+    { icon: 'senden', text: 'Newsletter & Social Media' },
+    { icon: 'globus', text: 'Website & Online-Kanäle' },
+    { icon: 'bewertung', text: 'Gästefeedback & Bewertungen' },
+  ] },
+  { id: 'projekte', icon: 'fest', titel: 'Projekte & Events', items: [
+    { icon: 'fest', text: 'Team-Events & Feste' },
+    { icon: 'handbuch', text: 'Leitfäden & Betriebshandbücher' },
+    { icon: 'geschenk', text: 'Gastgeschenke & Aufmerksamkeiten' },
+    { icon: 'ziel', text: 'Saisonaktionen & Kampagnen' },
+  ] },
+];
 
 const stationen = [
   { num: '01', icon: 'zeit', title: 'Der 30-Tage-Test', pname: 'Operation Sprint', text: 'Ein Monat, fester Umfang — danach entscheiden Sie.', href: '/kontakt/', link: 'Test anfragen' },
@@ -34,43 +57,7 @@ const stationen = [
     <div class="wrap" style="max-width:1060px">
       <h2 class="sr-only">Das übernehmen wir</h2>
       <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">Das übernehmen wir</p>
-      <div class="komp reveal">
-        <div class="komp__wahl">
-          <button type="button" class="kompbtn" data-bereich="backoffice" aria-pressed="false" aria-controls="komp-panel">
-            <Icon name="vorlage" size={26} /><span>Backoffice &amp; Unterlagen</span>
-          </button>
-          <button type="button" class="kompbtn" data-bereich="digital" aria-pressed="false" aria-controls="komp-panel">
-            <Icon name="senden" size={26} /><span>Kommunikation &amp; Marketing</span>
-          </button>
-          <button type="button" class="kompbtn" data-bereich="projekte" aria-pressed="false" aria-controls="komp-panel">
-            <Icon name="fest" size={26} /><span>Projekte &amp; Events</span>
-          </button>
-        </div>
-        <div class="komp__panel" id="komp-panel" aria-live="polite" hidden>
-          <ul data-bereich="backoffice" hidden>
-            <li><Icon name="karte" size={22} /><span>Tages- &amp; Menükarten</span></li>
-            <li><Icon name="mappe" size={22} /><span>Gästemappen &amp; Infomaterial</span></li>
-            <li><Icon name="vorlage" size={22} /><span>Vorlagen &amp; Templates</span></li>
-            <li><Icon name="analyse" size={22} /><span>Präsentationen, Listen &amp; Analysen</span></li>
-          </ul>
-          <ul data-bereich="digital" hidden>
-            <li><Icon name="tablet" size={22} /><span>Digitale Gästemappen</span></li>
-            <li><Icon name="senden" size={22} /><span>Newsletter &amp; Social Media</span></li>
-            <li><Icon name="globus" size={22} /><span>Website &amp; Online-Kanäle</span></li>
-            <li><Icon name="bewertung" size={22} /><span>Gästefeedback &amp; Bewertungen</span></li>
-          </ul>
-          <ul data-bereich="projekte" hidden>
-            <li><Icon name="fest" size={22} /><span>Team-Events &amp; Feste</span></li>
-            <li><Icon name="handbuch" size={22} /><span>Leitfäden &amp; Betriebshandbücher</span></li>
-            <li><Icon name="geschenk" size={22} /><span>Gastgeschenke &amp; Aufmerksamkeiten</span></li>
-            <li><Icon name="ziel" size={22} /><span>Saisonaktionen &amp; Kampagnen</span></li>
-          </ul>
-        </div>
-      </div>
-      <noscript><style is:inline>
-        .komp__panel[hidden]{display:block !important}
-        .komp__panel ul[hidden]{display:grid !important}
-      </style></noscript>
+      <Kompass bereiche={uebernehmen} />
     </div>
   </div>
 
@@ -83,12 +70,7 @@ const stationen = [
       </div>
 
       <!-- Startpunkt: Erstgespräch, mittig und kompakt — hier beginnt die Linie -->
-      <div class="startkarte reveal">
-        <a class="offercard deckblatt startkarte__card" href="/kontakt/" aria-label="Kostenloses Erstgespräch vereinbaren">
-          <h3>Kostenloses Erstgespräch</h3>
-          <p>Was bleibt bei Ihnen liegen?</p>
-        </a>
-      </div>
+      <Startkarte frage="Was bleibt bei Ihnen liegen?" />
 
       <div class="kurs" id="kurs">
         <svg class="kurs__line" viewBox="0 0 130 1600" preserveAspectRatio="none" aria-hidden="true">
@@ -154,65 +136,7 @@ const stationen = [
 </Base>
 
 <style>
-  /* „Das übernehmen wir": Bereichs-Wahl + Panel (Kompass-Muster) */
-  /* Startkarte: Erstgespräch mittig, deutlich kompakter als die Stationskarten */
-  .startkarte{display:flex;justify-content:center;margin-top:2.4rem}
-  .startkarte__card{width:min(360px,100%);min-height:0;padding:1.5rem 1.7rem;gap:.35rem}
-  .startkarte__card h3{font-size:clamp(1.2rem,2.8vw,1.4rem);margin:0}
-  .startkarte__card p{font-family:var(--serif);font-style:italic;font-size:1.05rem;
-    color:var(--dim);margin:0}
-
-  .komp{margin-top:2.2rem}
-  .komp__wahl{display:grid;gap:1.1rem;margin-bottom:1.4rem}
-  @media(min-width:820px){.komp__wahl{grid-template-columns:repeat(3,1fr)}}
-  .kompbtn{display:flex;align-items:center;justify-content:center;gap:.85rem;
-    padding:1.05rem 1rem;border-radius:16px;
-    cursor:pointer;background:rgba(255,255,255,.6);border:1px solid var(--glass-edge);
-    font-family:var(--body);font-size:.92rem;font-weight:500;color:var(--dim);text-align:left;
-    line-height:1.3;white-space:nowrap;transition:all .25s ease}
-  .kompbtn :global(.ico){flex:none;color:var(--wood);transition:color .25s}
-  .kompbtn:hover{transform:translateY(-2px)}
-  .kompbtn:hover,.kompbtn[aria-pressed="true"]{background:rgba(var(--acc-rgb),.09);
-    border-color:rgba(var(--acc-rgb),.45);color:var(--ink);
-    box-shadow:0 14px 30px -18px rgba(var(--acc-rgb),.55)}
-  .kompbtn:hover :global(.ico),.kompbtn[aria-pressed="true"] :global(.ico){color:var(--acc)}
-  .komp__panel{background:rgba(255,255,255,.6);border:1px solid rgba(var(--acc-rgb),.22);
-    border-radius:20px;padding:clamp(1.5rem,3.5vw,2.1rem);
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow)}
-  .komp__panel ul{list-style:none;margin:0;padding:0;display:grid;gap:.9rem 2.4rem;
-    animation:kompin .3s ease both}
-  @media(min-width:700px){.komp__panel ul{grid-template-columns:1fr 1fr}}
-  .komp__panel ul[hidden]{display:none}
-  .komp__panel li{display:flex;gap:.7rem;align-items:flex-start;font-size:.95rem;
-    color:var(--dim);line-height:1.55}
-  .komp__panel li :global(.ico){flex:none;color:var(--wood);margin-top:.05rem}
-  @keyframes kompin{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-  @media(prefers-reduced-motion:reduce){.komp__panel ul{animation:none}}
-</style>
-
-<script>
-  /* „Das übernehmen wir": Bereichs-Wahl öffnet das Panel; erneuter Klick schließt */
-  const kompBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('.kompbtn'));
-  const kompLists = Array.from(document.querySelectorAll<HTMLElement>('.komp__panel ul[data-bereich]'));
-  const kompPanel = document.getElementById('komp-panel');
-  kompBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const schliessen = btn.getAttribute('aria-pressed') === 'true';
-      kompBtns.forEach((b) => b.setAttribute('aria-pressed', !schliessen && b === btn ? 'true' : 'false'));
-      if (kompPanel) { kompPanel.hidden = schliessen; }
-      kompLists.forEach((ul) => { ul.hidden = schliessen || ul.dataset.bereich !== btn.dataset.bereich; });
-    });
-  });
-</script>
-
-<style>
-
   /* Produktname klein unter dem Klartext-Titel */
   .pname{display:block;font-family:var(--body);font-weight:500;font-size:.68rem;
     letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-top:.35rem}
-
-  /* „Für Sie, wenn …"-Anker */
-  .wenn{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--wood);
-    margin:.65rem 0 0}
-
 </style>
