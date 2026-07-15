@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const projekte = [
+  { titel: 'Saisonkampagne', text: 'Idee, Angebotsstruktur, Sonderkarte, Content und Aushänge — mit klarem Zeitplan.', preis: 'ab 1.250 €' },
+  { titel: 'Weihnachtsgeschenke: Konzept', text: 'Zielgruppen, Budgetstaffeln, Ideen, Lieferanten und Muster — entscheidungsreif.', preis: 'ab 1.500 €' },
+  { titel: 'Weihnachtsgeschenke: Komplett', text: 'Bestellung, Verpackung, Grußkarten, Termine und Verteilung — alles koordiniert.', preis: 'ab 2.900 €' },
+  { titel: 'Sommer- & Mitarbeiterfest', text: 'Vom Motto-Konzept mit Budgetrahmen und Checkliste bis zur vollständigen Planung.', preis: 'ab 1.800 €' },
+  { titel: 'Bankett- & Gästemappe', text: 'Struktur, Texte, Design — als Druck- und PDF-Version, die Ihrem Haus gerecht wird.', preis: 'ab 2.000 €' },
+  { titel: 'Content-Tag vor Ort', text: 'Ein Tag bei Ihnen im Haus: die Bild- und Videobasis für Monate an Inhalten.', preis: 'ab 890 €' },
+];
+---
+<Base
+  title="Projekte & Events — NextCourse Operation"
+  description="Projekte von NextCourse Operation zum Festpreis: Saisonkampagnen, Weihnachtsgeschenke, Sommer- und Mitarbeiterfeste, Bankett- und Gästemappen, Content-Tage — mit Anfang, Ende und klaren Meilensteinen. Ab-Preise, individuell vereinbart."
+  accent="amber"
+>
+  <div class="pagehead">
+    <span class="ghostglyph" aria-hidden="true">✦</span>
+    <div class="wrap" style="text-align:center">
+      <p class="eyebrow eyebrow--c">Operation · Projekte &amp; Events</p>
+      <h1 style="max-width:none;margin:0 auto">Ein Projekt. Ein Anfang. Ein Ende.</h1>
+      <p class="voice" style="max-width:34em;margin:1.6rem auto 0">Manche Vorhaben brauchen keine eigene Abteilung — nur jemanden, der sie zuverlässig plant und liefert. Zum Festpreis, mit klaren Meilensteinen.</p>
+    </div>
+  </div>
+
+  <div class="floor--auto floor" style="padding-top:1rem">
+    <div class="wrap" style="max-width:1020px">
+
+      <!-- Kennzahlen-Trio -->
+      <div class="trio reveal">
+        <div class="trio__cell"><span class="trio__big">Festpreis</span><span class="trio__sub">vorab vereinbart — Ab-Preise</span></div>
+        <div class="trio__cell"><span class="trio__big">Klare Meilensteine</span><span class="trio__sub">Anfang, Ende, Übergabe</span></div>
+        <div class="trio__cell"><span class="trio__big">Aus einer Hand</span><span class="trio__sub">Planung, Gestaltung, Koordination</span></div>
+      </div>
+
+      <!-- Projektkatalog -->
+      <div class="mcsection reveal">
+        <h2 class="sr-only">Typische Projekte</h2>
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">Typische Projekte</p>
+        <p class="mcsection__hint">Sechs Klassiker — Ihres ist nicht dabei? Fragen Sie trotzdem.</p>
+        <div class="projekte stagger">
+          {projekte.map((p) => (
+            <div class="projekt reveal">
+              <h3>{p.titel}</h3>
+              <p>{p.text}</p>
+              <span class="projekt__preis">{p.preis}</span>
+            </div>
+          ))}
+        </div>
+        <p class="projekte__note reveal">Alle Preise netto, als Ab-Preise — der genaue Umfang wird individuell vereinbart. Fremdkosten wie Druck, Geschenke oder Versand zahlt Ihr Haus direkt.</p>
+      </div>
+
+      <!-- CTA -->
+      <div class="ctabox reveal">
+        <p class="ctabox__eyebrow">Nächster Schritt</p>
+        <h3>Welches Projekt steht bei Ihnen an?</h3>
+        <div class="btnrow" style="justify-content:center;margin-top:2rem">
+          <a href="/kontakt/" class="btn">Projekt besprechen</a>
+        </div>
+        <p class="ctabox__note">Umfang, Meilensteine und Festpreis klären wir im kostenlosen Erstgespräch.<br>
+        Oder gleich einen <a href="https://cal.com/philip-tolle-yxp7ih/erstgesprach" target="_blank" rel="noopener" style="color:#F4ECDD">Termin buchen</a>.</p>
+      </div>
+
+      <p class="abgrenzung reveal">Abend-, Nacht- und Wochenendeinsätze sowie Vor-Ort-Betreuung am Veranstaltungstag werden gesondert vereinbart. Und: Wir geben keine Reichweiten- oder Umsatzversprechen ab — dafür ehrliche Arbeit mit klaren Meilensteinen.</p>
+
+      <div style="text-align:center;margin-top:2.4rem" class="reveal">
+        <a class="arrowlink" href="/operation/">Alle Operation-Leistungen</a>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  /* Projektkatalog: Glaskarten-Raster */
+  .projekte{display:grid;gap:1.2rem}
+  @media(min-width:680px){.projekte{grid-template-columns:1fr 1fr}}
+  @media(min-width:1000px){.projekte{grid-template-columns:repeat(3,1fr)}}
+  .projekt{display:flex;flex-direction:column;background:rgba(255,255,255,.6);
+    border:1px solid var(--glass-edge);border-radius:18px;padding:1.6rem 1.6rem 1.4rem;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow);
+    transition:transform .25s,box-shadow .25s,border-color .25s}
+  .projekt:hover{transform:translateY(-4px);border-color:rgba(var(--acc-rgb),.45);
+    box-shadow:var(--shadow),0 20px 44px -22px rgba(var(--acc-rgb),.4)}
+  .projekt h3{font-size:1.2rem;line-height:1.3;margin-bottom:.45rem}
+  .projekt p{margin:0 0 1rem;font-size:.9rem;line-height:1.55;color:var(--dim)}
+  .projekt__preis{margin-top:auto;font-family:var(--serif);font-style:italic;
+    font-size:1.15rem;color:var(--acc)}
+  .projekte__note{margin:1.6rem auto 0;text-align:center;font-size:.85rem;color:var(--faint);max-width:44em}
+</style>

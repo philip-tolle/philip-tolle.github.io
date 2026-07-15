@@ -1,0 +1,148 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const pakete = [
+  { pname: 'F&B Desk', titel: 'Karten & Bankettunterlagen', preis: 'ab 890 €', einrichtung: 'Einrichtung ab 890 €', fuer: 'Für Häuser mit häufig wechselnden Karten und Unterlagen.', punkte: [
+    'Vier Wochen-, Mittags- oder Aktionskarten pro Monat — auf Ihrer Vorlage',
+    'Ein Zusatzmaterial: Tischplan, Aufsteller oder Displaygrafik',
+    'Druck-PDF, Web-PDF und digitale Grafik',
+    'Eine Korrekturrunde je Material',
+    '30 Minuten Planungsgespräch pro Monat',
+    'Geordnete Dateiablage',
+  ] },
+  { pname: 'Content Desk', titel: 'Social Media & Newsletter', preis: 'ab 1.490 €', einrichtung: 'Einrichtung ab 1.290 €', fuer: 'Für Häuser, die sichtbar bleiben wollen — ohne eigene Contentstelle.', punkte: [
+    'Monatlicher Redaktionsplan',
+    'Sechs Beiträge für Instagram & Facebook',
+    'Acht Story-Elemente',
+    'Text, Gestaltung, Planung und Veröffentlichung',
+    'Saisonale Themen & Aktionen eingebunden',
+    'Monatsbericht + 45 Minuten Planungsgespräch',
+  ] },
+  { pname: 'Operation Partner', titel: 'Die volle Fachabteilung', preis: 'ab 2.690 €', einrichtung: 'Einrichtung ab 1.890 €', fuer: 'Für Häuser mit Restaurant, Bankett und regelmäßigem Projektbedarf.', punkte: [
+    'Alle Leistungen aus F&B Desk und Content Desk',
+    'Zwölf flexible Projektstunden pro Quartal',
+    'Quartalsweise Saison- und Kampagnenplanung',
+    'Bevorzugte Bearbeitung im Servicefenster',
+    '60 Minuten Steuerungsgespräch pro Monat',
+    'Projekt- und Aufgabenübersicht mit Status',
+  ] },
+];
+---
+<Base
+  title="Monatspakete — NextCourse Operation"
+  description="Die Monatspakete von NextCourse Operation: F&B Desk (Karten & Bankettunterlagen, ab 890 €), Content Desk (Social Media & Newsletter, ab 1.490 €) und Operation Partner (die volle Fachabteilung, ab 2.690 €) — wiederkehrende Aufgaben, Monat für Monat zuverlässig erledigt."
+  accent="amber"
+>
+  <div class="pagehead">
+    <span class="ghostglyph" aria-hidden="true">3</span>
+    <div class="wrap" style="text-align:center">
+      <p class="eyebrow eyebrow--c">Operation · Monatspakete</p>
+      <h1 style="max-width:none;margin:0 auto">Wiederkehrendes, zuverlässig erledigt.</h1>
+      <p class="voice" style="max-width:34em;margin:1.6rem auto 0">Drei Pakete, ein Prinzip: Sie geben ab, wir liefern — Monat für Monat, zum planbaren Preis.</p>
+    </div>
+  </div>
+
+  <div class="floor--auto floor" style="padding-top:1rem">
+    <div class="wrap" style="max-width:1120px">
+
+      <!-- Kennzahlen-Trio -->
+      <div class="trio reveal">
+        <div class="trio__cell"><span class="trio__big">3 Pakete</span><span class="trio__sub">vom Karten-Desk bis zur vollen Fachabteilung</span></div>
+        <div class="trio__cell"><span class="trio__big">Fester Monatspreis</span><span class="trio__sub">Ab-Preise — individuell vereinbart</span></div>
+        <div class="trio__cell"><span class="trio__big">Monatliches Gespräch</span><span class="trio__sub">Sie behalten die Steuerung</span></div>
+      </div>
+
+      <!-- Paket-Vergleich -->
+      <div class="mcsection reveal">
+        <h2 class="sr-only">Die drei Pakete im Vergleich</h2>
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">Die drei Pakete</p>
+        <p class="mcsection__hint">Jedes Paket ist klar umrissen — Sie wissen vorher, was Sie bekommen.</p>
+        <div class="pakete stagger">
+          {pakete.map((p) => (
+            <div class="paket reveal">
+              <span class="paket__pname">{p.pname}</span>
+              <h3>{p.titel}</h3>
+              <p class="paket__preis">{p.preis}<small>/ Monat</small></p>
+              <p class="paket__einrichtung">{p.einrichtung}</p>
+              <ul>
+                {p.punkte.map((pt) => <li>{pt}</li>)}
+              </ul>
+              <p class="paket__fuer">{p.fuer}</p>
+              <a class="forkcard__go" href="/kontakt/" style="--facc:var(--acc)">Paket anfragen</a>
+            </div>
+          ))}
+        </div>
+        <p class="pakete__note reveal">Alle Preise netto, als Ab-Preise — der genaue Umfang wird individuell vereinbart. Im Zweifel: erst der <a href="/operation/30-tage-test/">30-Tage-Test</a>.</p>
+      </div>
+
+      <!-- Spielregeln -->
+      <div class="mcsection reveal">
+        <h2 class="sr-only">So arbeiten wir zusammen</h2>
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">So arbeiten wir zusammen</p>
+        <p class="mcsection__hint">Klare Spielregeln — damit Entlastung entspannt bleibt.</p>
+        <div class="regeln stagger">
+          <div class="regel reveal"><span class="regel__satz">Eine Korrekturrunde ist inklusive.</span><span class="regel__weil">Unsere eigenen Fehler korrigieren wir selbstverständlich immer.</span></div>
+          <div class="regel reveal"><span class="regel__satz">Feste Abgabezeiten.</span><span class="regel__weil">So sind Ihre Materialien pünktlich fertig — verlässlich, jede Woche.</span></div>
+          <div class="regel reveal"><span class="regel__satz">Eine Kontaktperson mit Freigaberecht.</span><span class="regel__weil">Kurze Wege, schnelle Ergebnisse, keine Schleifen.</span></div>
+          <div class="regel reveal"><span class="regel__satz">Preise, Allergene &amp; Gästedaten gibt Ihr Haus frei.</span><span class="regel__weil">Die fachliche Verantwortung bleibt, wo sie hingehört.</span></div>
+          <div class="regel reveal"><span class="regel__satz">Mindestlaufzeit sechs Monate.</span><span class="regel__weil">Entlastung wirkt, wenn sie Routine wird — danach flexibel.</span></div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="ctabox reveal">
+        <p class="ctabox__eyebrow">Nächster Schritt</p>
+        <h3>Welches Paket passt zu Ihrem Haus?</h3>
+        <div class="btnrow" style="justify-content:center;margin-top:2rem">
+          <a href="/kontakt/" class="btn">Monatspaket besprechen</a>
+        </div>
+        <p class="ctabox__note">Umfang und Preis klären wir im kostenlosen Erstgespräch — oder Sie starten mit dem <a href="/operation/30-tage-test/" style="color:#F4ECDD">30-Tage-Test</a>.<br>
+        Gleich einen <a href="https://cal.com/philip-tolle-yxp7ih/erstgesprach" target="_blank" rel="noopener" style="color:#F4ECDD">Termin fürs Erstgespräch buchen</a>.</p>
+      </div>
+
+      <p class="abgrenzung reveal">Monatspakete sind keine Flatrate: Der Umfang ist klar definiert — was darüber hinausgeht, wird als Projekt oder Zusatz fair vereinbart. Fremdkosten wie Druck, Versand oder Werbebudget zahlt Ihr Haus direkt.</p>
+
+      <div style="text-align:center;margin-top:2.4rem" class="reveal">
+        <a class="arrowlink" href="/operation/">Alle Operation-Leistungen</a>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  /* Paket-Vergleich: drei Glaskarten */
+  .pakete{display:grid;gap:1.4rem}
+  @media(min-width:900px){.pakete{grid-template-columns:repeat(3,1fr)}}
+  .paket{display:flex;flex-direction:column;background:rgba(255,255,255,.6);
+    border:1px solid var(--glass-edge);border-radius:20px;padding:1.8rem 1.7rem;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow);
+    transition:transform .25s,box-shadow .25s,border-color .25s}
+  .paket:hover{transform:translateY(-4px);border-color:rgba(var(--acc-rgb),.45);
+    box-shadow:var(--shadow),0 20px 44px -22px rgba(var(--acc-rgb),.4)}
+  .paket__pname{font-family:var(--body);font-weight:500;font-size:.68rem;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--faint)}
+  .paket h3{font-size:1.35rem;margin:.3rem 0 .9rem;line-height:1.25}
+  .paket__preis{margin:0;font-family:var(--disp);font-size:2rem;color:var(--acc);
+    display:flex;align-items:baseline;gap:.45rem}
+  .paket__preis small{font-family:var(--body);font-size:.75rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--faint)}
+  .paket__einrichtung{margin:.15rem 0 1.1rem;font-size:.8rem;color:var(--faint)}
+  .paket ul{list-style:none;margin:0 0 1.2rem;padding:1.1rem 0 0;display:flex;
+    flex-direction:column;gap:.55rem;border-top:1px solid var(--line)}
+  .paket li{position:relative;padding-left:1.3rem;font-size:.9rem;line-height:1.5;color:var(--dim)}
+  .paket li::before{content:"";position:absolute;left:0;top:.5em;width:.45rem;height:.45rem;
+    border-radius:50%;background:rgba(var(--acc-rgb),.55)}
+  .paket__fuer{margin:auto 0 1rem;font-family:var(--serif);font-style:italic;
+    font-size:.98rem;color:var(--faint)}
+  .pakete__note{margin:1.6rem auto 0;text-align:center;font-size:.85rem;color:var(--faint);max-width:44em}
+  .pakete__note a{color:var(--acc);font-weight:500}
+
+  /* Spielregeln */
+  .regeln{display:flex;flex-direction:column;max-width:860px;margin:0 auto}
+  .regel{display:grid;gap:.15rem 2rem;padding:1.05rem .2rem;border-bottom:1px solid var(--line)}
+  .regel:first-child{border-top:1px solid var(--line)}
+  @media(min-width:700px){.regel{grid-template-columns:1.05fr 1fr;align-items:baseline}}
+  .regel__satz{font-family:var(--serif);font-style:italic;font-size:1.12rem;color:var(--ink)}
+  .regel__weil{color:var(--dim);font-size:.92rem;line-height:1.6}
+  .ctabox__note a{font-weight:500}
+</style>
