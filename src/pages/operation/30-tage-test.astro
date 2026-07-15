@@ -1,0 +1,129 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="Der 30-Tage-Test — NextCourse Operation"
+  description="Der 30-Tage-Test von NextCourse Operation: ein Monat operative Entlastung zum Festpreis — 90 Minuten Prozessaufnahme, eigene Vorlage, druckfertige Materialien und veröffentlichte Social-Media-Inhalte. Pilotangebot bis Ende Juli: 890 € statt 1.490 €."
+  accent="amber"
+>
+  <div class="pagehead">
+    <span class="ghostglyph" aria-hidden="true">30</span>
+    <div class="wrap" style="text-align:center">
+      <p class="eyebrow eyebrow--c">Operation · Der 30-Tage-Test</p>
+      <h1 style="max-width:none;margin:0 auto">Ein Monat. Ein fester Umfang. Ein ehrliches Fazit.</h1>
+      <p class="voice" style="max-width:34em;margin:1.6rem auto 0">Der 30-Tage-Test ist der bezahlte Einstieg in NextCourse Operation: Sie erleben einen Monat lang, wie Entlastung funktioniert — mit echten Ergebnissen statt Versprechen.</p>
+    </div>
+  </div>
+
+  <div class="floor--auto floor" style="padding-top:1rem">
+    <div class="wrap" style="max-width:1020px">
+
+      <!-- Kennzahlen-Trio -->
+      <div class="trio reveal">
+        <div class="trio__cell"><span class="trio__big">30 Tage</span><span class="trio__sub">klar begrenzt, zum Festpreis</span></div>
+        <div class="trio__cell"><span class="trio__big">Echte Ergebnisse</span><span class="trio__sub">Vorlage, Karten, Posts — keine Demos</span></div>
+        <div class="trio__cell"><span class="trio__big">Danach entscheiden Sie</span><span class="trio__sub">Fazit mit Vorschlag, keine Pflicht</span></div>
+      </div>
+
+      <!-- Erkennen Sie sich wieder? -->
+      <div class="mcsection reveal">
+        <h2 class="sr-only">Erkennen Sie sich wieder?</h2>
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">Erkennen Sie sich wieder?</p>
+        <p class="mcsection__hint">Vier Sätze, die wir gut verstehen.</p>
+        <div class="qgrid stagger">
+          <div class="qcell reveal">
+            <p class="qcell__q">„Externe Hilfe? Wir wissen nicht, ob sich das lohnt.“</p>
+            <p class="qcell__a">Genau dafür ist der Test da: ein Monat, fester Preis, messbares Ergebnis.</p>
+          </div>
+          <div class="qcell reveal">
+            <p class="qcell__q">„Wir haben keine Zeit, jemanden einzuarbeiten.“</p>
+            <p class="qcell__a">Die Prozessaufnahme dauert 90 Minuten — den Rest übernehmen wir.</p>
+          </div>
+          <div class="qcell reveal">
+            <p class="qcell__q">„Am Ende hängen wir in einem Vertrag fest.“</p>
+            <p class="qcell__a">Der Test endet nach 30 Tagen von selbst. Weiter geht es nur, wenn Sie wollen.</p>
+          </div>
+          <div class="qcell reveal">
+            <p class="qcell__q">„Und was bekommen wir konkret?“</p>
+            <p class="qcell__a">Eine eingerichtete Vorlage, fertige Materialien, veröffentlichte Inhalte — Dinge, die bleiben.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ablauf: interaktiver Stepper -->
+      <div class="mcsection reveal">
+        <h2 class="sr-only">So läuft der Monat ab</h2>
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">So läuft der Monat ab</p>
+        <p class="mcsection__hint">Vier Schritte — klicken Sie sich durch.</p>
+        <div class="stepper" id="stepper">
+          <span class="stepper__track" aria-hidden="true"></span>
+          <button class="stepbtn" data-step="0" aria-current="true"><span class="stepbtn__num">01</span><span class="stepbtn__label">Prozessaufnahme</span></button>
+          <button class="stepbtn" data-step="1"><span class="stepbtn__num">02</span><span class="stepbtn__label">Einrichtung</span></button>
+          <button class="stepbtn" data-step="2"><span class="stepbtn__num">03</span><span class="stepbtn__label">Produktion</span></button>
+          <button class="stepbtn" data-step="3"><span class="stepbtn__num">04</span><span class="stepbtn__label">Fazit</span></button>
+        </div>
+        <div class="stepdetail" aria-live="polite">
+          <article data-panel="0">
+            <span class="stepdetail__num" aria-hidden="true">01</span>
+            <div><h3>Prozessaufnahme</h3>
+            <p>90 Minuten, vor Ort oder remote: Welche Aufgaben bleiben bei Ihnen liegen — und was davon hat Priorität? Daraus entsteht der feste Umfang des Monats.</p></div>
+          </article>
+          <article data-panel="1" hidden>
+            <span class="stepdetail__num" aria-hidden="true">02</span>
+            <div><h3>Einrichtung</h3>
+            <p>Wir richten Ihre erste Design- oder Content-Vorlage ein — auf Ihr Haus zugeschnitten. Sie bleibt bei Ihnen, auch nach dem Test.</p></div>
+          </article>
+          <article data-panel="2" hidden>
+            <span class="stepdetail__num" aria-hidden="true">03</span>
+            <div><h3>Produktion</h3>
+            <p>Zwei wiederkehrende Materialien, drei Social-Media-Inhalte und zwei flexible Projektstunden — erledigt, geliefert, veröffentlicht.</p></div>
+          </article>
+          <article data-panel="3" hidden>
+            <span class="stepdetail__num" aria-hidden="true">04</span>
+            <div><h3>Fazit</h3>
+            <p>Im Abschlussgespräch schauen wir ehrlich hin: Was hat der Monat gebracht? Dazu ein klarer Vorschlag, ob und welches Monatspaket zu Ihrem Haus passt.</p></div>
+          </article>
+          <div class="stepdetail__foot">
+            <span class="stepdetail__count" id="stepcount">Schritt 01 / 04</span>
+            <div class="stepnav">
+              <button id="stepprev" aria-label="Vorheriger Schritt">←</button>
+              <button id="stepnext" aria-label="Nächster Schritt">→</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Das ist enthalten -->
+      <div class="mcsection reveal">
+        <h2 class="sr-only">Das ist enthalten</h2>
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">Das ist enthalten</p>
+        <div class="dgrid">
+          <div class="dcell"><span class="dcheck" aria-hidden="true">✓</span><div><h3>90 Minuten Prozessaufnahme</h3><p>Priorisierung der Aufgaben, die bei Ihnen regelmäßig liegen bleiben.</p></div></div>
+          <div class="dcell"><span class="dcheck" aria-hidden="true">✓</span><div><h3>Eine eingerichtete Vorlage</h3><p>Design- oder Content-Vorlage für Ihr Haus — sie bleibt bei Ihnen.</p></div></div>
+          <div class="dcell"><span class="dcheck" aria-hidden="true">✓</span><div><h3>Zwei wiederkehrende Materialien</h3><p>Zum Beispiel Wochenkarte und Aufsteller — druckfertig geliefert.</p></div></div>
+          <div class="dcell"><span class="dcheck" aria-hidden="true">✓</span><div><h3>Drei Social-Media-Inhalte</h3><p>Geplant, gestaltet, veröffentlicht.</p></div></div>
+          <div class="dcell"><span class="dcheck" aria-hidden="true">✓</span><div><h3>Zwei flexible Projektstunden</h3><p>Für das, was Ihnen gerade am meisten hilft.</p></div></div>
+          <div class="dcell"><span class="dcheck" aria-hidden="true">✓</span><div><h3>Abschlussgespräch mit Vorschlag</h3><p>Ehrliches Fazit und eine klare Empfehlung — keine Verkaufsshow.</p></div></div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="ctabox reveal">
+        <p class="ctabox__eyebrow">Pilotstart</p>
+        <h3>Testen Sie uns einen Monat.</h3>
+        <div class="btnrow" style="justify-content:center;margin-top:2rem">
+          <a href="/kontakt/" class="btn">30-Tage-Test anfragen</a>
+        </div>
+        <p class="ctabox__price">Pilotangebot bis Ende Juli&ensp;<b>890 €</b>&ensp;<s>1.490 €</s></p>
+        <p class="ctabox__note">Einmaliger Festpreis inklusive Einrichtung. Alle Preise sind Ab-Preise — der genaue Umfang wird individuell vereinbart.<br>
+        Oder gleich einen <a href="https://cal.com/philip-tolle-yxp7ih/erstgesprach" target="_blank" rel="noopener" style="color:#F4ECDD">Termin fürs Erstgespräch buchen</a>.</p>
+      </div>
+
+      <p class="abgrenzung reveal">Der 30-Tage-Test ist bewusst begrenzt: keine komplette Social-Media-Betreuung, keine Foto- oder Videoproduktion, keine großen Veranstaltungen. Er zeigt in einem Monat, wie die Zusammenarbeit mit uns funktioniert — mehr nicht. Und genau deshalb funktioniert er.</p>
+
+      <div style="text-align:center;margin-top:2.4rem" class="reveal">
+        <a class="arrowlink" href="/operation/">Alle Operation-Leistungen</a>
+      </div>
+    </div>
+  </div>
+</Base>
