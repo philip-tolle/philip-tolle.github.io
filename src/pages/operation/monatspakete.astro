@@ -2,13 +2,13 @@
 import Base from '../../layouts/Base.astro';
 
 const pakete = [
-  { pname: 'F&B Desk', titel: 'Karten & Bankettunterlagen', preis: 'ab 890 €', einrichtung: 'Einrichtung ab 890 €', fuer: 'Für Häuser mit häufig wechselnden Karten und Unterlagen.', punkte: [
-    'Vier Wochen-, Mittags- oder Aktionskarten pro Monat — auf Ihrer Vorlage',
-    'Ein Zusatzmaterial: Tischplan, Aufsteller oder Displaygrafik',
-    'Druck-PDF, Web-PDF und digitale Grafik',
-    'Eine Korrekturrunde je Material',
+  { pname: 'F&B Desk', titel: 'Karten & Bankettunterlagen', preis: 'ab 890 €', einrichtung: 'Einrichtung ab 890 € — entfällt beim Einstieg über den 30-Tage-Test', fuer: 'Für Häuser mit täglich wechselnden Karten — von der Tagung bis zur Halbpension.', punkte: [
+    'Alle laufenden Karten inklusive: Tages-, Wochen-, Tagungs- und HP-Karten — auf Ihren Vorlagen',
+    'Menü- und Preisänderungen inklusive — pünktlich zum vereinbarten Termin druckfertig',
+    'Bis zu vier Event-Menükarten pro Monat (Hochzeit, Geburtstag, Feier) aus Ihrer Vorlagen-Bibliothek — ganz individuelle Gestaltung gegen Aufpreis',
+    'Ein Zusatzmaterial pro Monat: Tischplan, Aufsteller oder Displaygrafik',
+    'Druck-PDF, Web-PDF und digitale Grafik — geordnet abgelegt',
     '30 Minuten Planungsgespräch pro Monat',
-    'Geordnete Dateiablage',
   ] },
   { pname: 'Content Desk', titel: 'Social Media & Newsletter', preis: 'ab 1.490 €', einrichtung: 'Einrichtung ab 1.290 €', fuer: 'Für Häuser, die sichtbar bleiben wollen — ohne eigene Contentstelle.', punkte: [
     'Monatlicher Redaktionsplan',
@@ -57,6 +57,7 @@ const pakete = [
         <h2 class="sr-only">Die drei Pakete im Vergleich</h2>
         <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)" aria-hidden="true">Die drei Pakete</p>
         <p class="mcsection__hint">Jedes Paket ist klar umrissen — Sie wissen vorher, was Sie bekommen.</p>
+        <p class="pakete__anker reveal">Zum Vergleich: Eine Teilzeitkraft für diese Aufgaben kostet ab rund 1.400 € im Monat — plus Einarbeitung, Urlaub und Krankheit.</p>
         <div class="pakete stagger">
           {pakete.map((p) => (
             <div class="paket reveal">
@@ -134,6 +135,8 @@ const pakete = [
     border-radius:50%;background:rgba(var(--acc-rgb),.55)}
   .paket__fuer{margin:auto 0 1rem;font-family:var(--serif);font-style:italic;
     font-size:.98rem;color:var(--faint)}
+  .pakete__anker{margin:-0.6rem auto 1.6rem;text-align:center;font-size:.92rem;
+    color:var(--dim);max-width:44em}
   .pakete__note{margin:1.6rem auto 0;text-align:center;font-size:.85rem;color:var(--faint);max-width:44em}
   .pakete__note a{color:var(--acc);font-weight:500}
 
