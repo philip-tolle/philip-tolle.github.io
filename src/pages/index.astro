@@ -85,15 +85,10 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
           <div class="idee2__viz">
           <div class="forces__stage" id="forces">
             <svg viewBox="0 0 520 320" preserveAspectRatio="none" aria-hidden="true">
-              <defs>
-                <marker id="ncArrow" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
-                  <path d="M0,0 L8,4.5 L0,9 z" fill="rgba(138,114,80,.5)"/>
-                </marker>
-              </defs>
-              <path d="M256,31 C302,31 306,96 334,132" marker-end="url(#ncArrow)"/>
-              <path d="M256,111 C302,111 306,140 331,151" marker-end="url(#ncArrow)"/>
-              <path d="M256,191 C302,191 306,181 331,169" marker-end="url(#ncArrow)"/>
-              <path d="M256,271 C302,271 306,225 334,188" marker-end="url(#ncArrow)"/>
+              <path d="M256,31 C304,31 312,98 354,138"/>
+              <path d="M256,111 C304,111 314,142 352,154"/>
+              <path d="M256,191 C304,191 314,178 352,166"/>
+              <path d="M256,271 C304,271 312,222 354,182"/>
             </svg>
             <div class="forces__pill" data-f="0" style="top:0">
               <span>Margendruck</span><b>sechs Verlustjahre in Folge</b>
@@ -404,7 +399,6 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
   const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('.deck__dot'));
   let order = [0, 1, 2];
   let blaettert = false;
-  let deckPaused = false;
 
   function applyOrder() {
     order.forEach((cardIdx, pos) => { cards[cardIdx].dataset.pos = String(pos); });
@@ -428,36 +422,33 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
       blaettert = false;
     }, 480);
   }
-  deck.addEventListener('click', advance);
+  function retreat() {
+    if (blaettert) { return; }
+    order.unshift(order.pop()!);
+    applyOrder();
+  }
   dots.forEach((dot) => {
     dot.addEventListener('click', () => {
       const ziel = parseInt(dot.dataset.i!, 10);
       if (order[0] === ziel || blaettert) { return; }
       order = [ziel, (ziel + 1) % 3, (ziel + 2) % 3];
       applyOrder();
-      deckHold();
     });
   });
 
-  /* sanftes Auto-Durchlaufen wie bei den Kräften links */
-  let deckResume: ReturnType<typeof setTimeout> | null = null;
-  const deckHold = (ms = 7000) => {
-    deckPaused = true;
-    if (deckResume) { clearTimeout(deckResume); }
-    deckResume = setTimeout(() => { deckPaused = false; }, ms);
-  };
-  deck.addEventListener('pointerenter', () => { deckPaused = true; });
-  deck.addEventListener('pointerleave', () => { deckPaused = false; });
-  deck.addEventListener('click', () => deckHold());
-  if (!reduced) {
-    let deckTimer: ReturnType<typeof setInterval> | null = null;
-    const dio = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting && !deckTimer) {
-          deckTimer = setInterval(() => { if (!deckPaused) { advance(); } }, 5200);
-        }
-      });
-    }, { threshold: 0.35 });
-    dio.observe(deck);
-  }
+  /* Klick blättert, am Handy wischen (links = weiter, rechts = zurück) */
+  let swiped = false;
+  let startX = 0;
+  let startY = 0;
+  deck.addEventListener('pointerdown', (e) => { startX = e.clientX; startY = e.clientY; });
+  deck.addEventListener('pointerup', (e) => {
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy)) {
+      swiped = true;
+      if (dx < 0) { advance(); } else { retreat(); }
+      setTimeout(() => { swiped = false; }, 350);
+    }
+  });
+  deck.addEventListener('click', () => { if (!swiped) { advance(); } });
 </script>
