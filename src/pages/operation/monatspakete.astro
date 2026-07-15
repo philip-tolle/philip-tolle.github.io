@@ -3,28 +3,28 @@ import Base from '../../layouts/Base.astro';
 
 const pakete = [
   { pname: 'F&B Desk', titel: 'Karten & Bankettunterlagen', preis: 'ab 890 €', einrichtung: 'Einrichtung ab 890 € — entfällt beim Einstieg über den 30-Tage-Test', fuer: 'Für Häuser mit täglich wechselnden Karten — von der Tagung bis zur Halbpension.', einheiten: [
-    { wert: 'Alle', label: 'laufenden Karten: Tages-, Wochen-, Tagungs- & HP' },
-    { wert: 'inkl.', label: 'Menü- & Preisänderungen — termingerecht druckfertig' },
-    { wert: '4', label: 'Event-Menükarten pro Monat aus Ihren Vorlagen — individuell gegen Aufpreis' },
-    { wert: '1', label: 'Zusatzmaterial: Tischplan, Aufsteller oder Display' },
-    { wert: '3', label: 'Formate: Druck-PDF, Web-PDF, Grafik — geordnet abgelegt' },
-    { wert: '30′', label: 'Planungsgespräch pro Monat' },
+    { titel: 'Übernahme aller laufenden Karten', sub: 'Tages-, Wochen-, Tagungs- & HP' },
+    { titel: 'Menü- & Preisänderungen inklusive', sub: 'termingerecht druckfertig' },
+    { titel: '4 Event-Menükarten pro Monat', sub: 'aus Vorlagen — individuell gegen Aufpreis' },
+    { titel: '1 Zusatzmaterial pro Monat', sub: 'Tischplan, Aufsteller oder Display' },
+    { titel: 'Alle Formate geliefert', sub: 'Druck-PDF, Web-PDF & Grafik' },
+    { titel: '30 Minuten Planungsgespräch', sub: 'jeden Monat, fester Termin' },
   ] },
   { pname: 'Content Desk', titel: 'Social Media & Newsletter', preis: 'ab 1.490 €', einrichtung: 'Einrichtung ab 1.290 €', fuer: 'Für Häuser, die sichtbar bleiben wollen — ohne eigene Contentstelle.', einheiten: [
-    { wert: '1', label: 'Redaktionsplan pro Monat — saisonale Themen eingebunden' },
-    { wert: '6', label: 'Beiträge für Instagram & Facebook' },
-    { wert: '8', label: 'Story-Elemente' },
-    { wert: 'A–Z', label: 'Text, Gestaltung, Planung & Veröffentlichung' },
-    { wert: '1', label: 'Monatsbericht mit Zahlen' },
-    { wert: '45′', label: 'Planungsgespräch pro Monat' },
+    { titel: 'Monatlicher Redaktionsplan', sub: 'saisonale Themen eingebunden' },
+    { titel: '6 Beiträge pro Monat', sub: 'Instagram & Facebook' },
+    { titel: '8 Story-Elemente', sub: 'passend zu den Beiträgen' },
+    { titel: 'Komplett aus einer Hand', sub: 'Text, Gestaltung, Veröffentlichung' },
+    { titel: 'Monatsbericht', sub: 'Zahlen statt Bauchgefühl' },
+    { titel: '45 Minuten Planungsgespräch', sub: 'jeden Monat, fester Termin' },
   ] },
   { pname: 'Operation Partner', titel: 'Die volle Fachabteilung', preis: 'ab 2.690 €', einrichtung: 'Einrichtung ab 1.890 €', fuer: 'Für Häuser mit Restaurant, Bankett und regelmäßigem Projektbedarf.', einheiten: [
-    { wert: '2', label: 'Desks komplett: F&B + Content' },
-    { wert: '12', label: 'Projektstunden pro Quartal' },
-    { wert: '4×', label: 'Saison- & Kampagnenplanung pro Jahr' },
-    { wert: 'Prio', label: 'Bevorzugte Bearbeitung im Servicefenster' },
-    { wert: '60′', label: 'Steuerungsgespräch pro Monat' },
-    { wert: '1', label: 'Projekt- & Aufgabenübersicht mit Status' },
+    { titel: 'Beide Desks komplett', sub: 'F&B + Content in vollem Umfang' },
+    { titel: '12 Projektstunden pro Quartal', sub: 'flexibel einsetzbar' },
+    { titel: 'Saison- & Kampagnenplanung', sub: 'viermal im Jahr' },
+    { titel: 'Bevorzugte Bearbeitung', sub: 'festes Servicefenster' },
+    { titel: '60 Minuten Steuerungsgespräch', sub: 'jeden Monat, fester Termin' },
+    { titel: 'Projekt- & Aufgabenübersicht', sub: 'Status jederzeit einsehbar' },
   ] },
 ];
 ---
@@ -68,8 +68,8 @@ const pakete = [
               <div class="kacheln">
                 {p.einheiten.map((e) => (
                   <div class="kachel">
-                    <span class="kachel__wert">{e.wert}</span>
-                    <span class="kachel__label">{e.label}</span>
+                    <span class="kachel__titel">{e.titel}</span>
+                    <span class="kachel__sub">{e.sub}</span>
                   </div>
                 ))}
               </div>
@@ -139,11 +139,11 @@ const pakete = [
     background:var(--hairline);border:1px solid var(--hairline);border-radius:16px;
     overflow:hidden}
   .kachel{aspect-ratio:1/1;background:rgba(255,255,255,.6);display:flex;
-    flex-direction:column;align-items:center;justify-content:center;gap:.3rem;
-    padding:.7rem;text-align:center}
-  .kachel__wert{font-family:var(--disp);font-size:clamp(1.5rem,2vw,1.9rem);
-    line-height:1;color:var(--acc)}
-  .kachel__label{font-size:.72rem;line-height:1.35;color:var(--dim)}
+    flex-direction:column;align-items:center;justify-content:center;gap:.4rem;
+    padding:.85rem;text-align:center}
+  .kachel__titel{font-family:var(--disp);font-size:.98rem;line-height:1.3;
+    color:var(--acc);text-wrap:balance}
+  .kachel__sub{font-size:.7rem;line-height:1.35;color:var(--faint)}
   .paket__fuer{margin:auto 0 1rem;font-family:var(--serif);font-style:italic;
     font-size:.98rem;color:var(--faint)}
   .pakete__anker{margin:-0.6rem auto 1.6rem;text-align:center;font-size:.92rem;
