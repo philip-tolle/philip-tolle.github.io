@@ -587,7 +587,7 @@ button.deckblatt{cursor:pointer;color:inherit}
 .tl::before{content:"";position:absolute;left:.42rem;top:.6rem;bottom:.6rem;width:1px;
   background:var(--hairline)}
 .tl::after{content:"";position:absolute;left:.42rem;top:.6rem;bottom:.6rem;width:1px;
-  background:var(--wood);transform:scaleY(0);transform-origin:top}
+  background:var(--acc);transform:scaleY(0);transform-origin:top}
 @supports (animation-timeline: view()){
   .tl::after{animation:tlgrow linear both;animation-timeline:view();
     animation-range:entry 15% cover 65%}
@@ -596,9 +596,9 @@ button.deckblatt{cursor:pointer;color:inherit}
 .tl li{position:relative;padding:0 0 1.7rem 2.3rem}
 .tl li:last-child{padding-bottom:0}
 .tl li::before{content:"";position:absolute;left:0;top:.4rem;width:.9rem;height:.9rem;
-  border-radius:50%;background:var(--paper);border:1px solid var(--wood)}
+  border-radius:50%;background:var(--paper);border:1px solid var(--acc)}
 .tl h3{font-size:clamp(1.15rem,3vw,1.45rem);margin-bottom:.25rem}
-.tl h3 .tl__num{font-family:var(--serif);font-style:italic;color:var(--wood);
+.tl h3 .tl__num{font-family:var(--serif);font-style:italic;color:var(--acc);
   font-size:.95em;margin-right:.5rem}
 .tl p{margin:0;color:var(--dim);max-width:38em}
 
@@ -800,7 +800,7 @@ a.offercard:hover .postcard__title{color:var(--facc)}
 @media(min-width:700px){.trio{grid-template-columns:1fr 1fr 1fr}}
 .trio__cell{background:rgba(255,255,255,.6);padding:1.6rem 1.2rem;text-align:center;
   display:flex;flex-direction:column;gap:.25rem}
-.trio__big{font-family:var(--disp);font-size:clamp(1.5rem,3.5vw,2.1rem);color:var(--wood)}
+.trio__big{font-family:var(--disp);font-size:clamp(1.5rem,3.5vw,2.1rem);color:var(--acc)}
 .trio__sub{font-size:.85rem;color:var(--faint);letter-spacing:.02em}
 
 .mcsection{margin-top:clamp(4rem,9vw,6rem)}
@@ -825,12 +825,12 @@ a.offercard:hover .postcard__title{color:var(--facc)}
   font-family:var(--body);transition:all .28s ease}
 .stepbtn__num{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
   background:var(--paper2);border:1px solid var(--hairline);font-family:var(--serif);
-  font-style:italic;font-size:1.25rem;color:var(--wood);transition:all .28s ease}
+  font-style:italic;font-size:1.25rem;color:var(--acc);transition:all .28s ease}
 .stepbtn__label{font-size:.85rem;font-weight:500;color:var(--dim);text-align:center;
   transition:color .28s}
-.stepbtn[aria-current="true"]{background:rgba(185,136,92,.12);border-color:rgba(185,136,92,.55);
-  box-shadow:0 16px 36px -18px rgba(150,110,60,.5)}
-.stepbtn[aria-current="true"] .stepbtn__num{background:var(--wood);border-color:var(--wood);color:var(--paper)}
+.stepbtn[aria-current="true"]{background:rgba(var(--acc-rgb),.1);border-color:rgba(var(--acc-rgb),.5);
+  box-shadow:0 16px 36px -18px rgba(var(--acc-rgb),.5)}
+.stepbtn[aria-current="true"] .stepbtn__num{background:var(--acc);border-color:var(--acc);color:var(--paper)}
 .stepbtn[aria-current="true"] .stepbtn__label{color:var(--ink)}
 .stepbtn:hover{transform:translateY(-2px)}
 
@@ -841,7 +841,7 @@ a.offercard:hover .postcard__title{color:var(--facc)}
 .stepdetail article[hidden]{display:none}
 @keyframes stepin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .stepdetail__num{font-family:var(--serif);font-style:italic;font-weight:500;
-  font-size:clamp(3rem,7vw,4.4rem);line-height:.8;color:var(--wood);flex:none}
+  font-size:clamp(3rem,7vw,4.4rem);line-height:.8;color:var(--acc);flex:none}
 .stepdetail h3{font-size:clamp(1.4rem,3.5vw,1.9rem);margin-bottom:.5rem}
 .stepdetail p{margin:0;color:var(--dim);line-height:1.65}
 .stepdetail__foot{margin-top:1.6rem;padding-top:1.3rem;border-top:1px solid var(--line);
@@ -850,7 +850,7 @@ a.offercard:hover .postcard__title{color:var(--facc)}
 .stepnav{display:flex;gap:.6rem}
 .stepnav button{width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:1.1rem;
   background:transparent;border:1px solid rgba(38,34,27,.3);color:var(--dim);transition:all .2s}
-.stepnav button:last-child{background:var(--wood);border-color:var(--wood);color:var(--paper)}
+.stepnav button:last-child{background:var(--acc);border-color:var(--acc);color:var(--paper)}
 .stepnav button:disabled,.stepnav button[aria-disabled="true"]{opacity:.35;cursor:default}
 
 /* Ampel-Akkordeon */
@@ -863,13 +863,13 @@ a.offercard:hover .postcard__title{color:var(--facc)}
 .ampel{display:flex;flex-direction:column;gap:.6rem;max-width:840px;margin:0 auto}
 .ampelrow{background:rgba(255,255,255,.6);border:1px solid var(--glass-edge);
   border-radius:15px;overflow:hidden;transition:all .25s ease}
-.ampelrow.is-open{background:rgba(185,136,92,.09);border-color:rgba(185,136,92,.4)}
+.ampelrow.is-open{background:rgba(var(--acc-rgb),.08);border-color:rgba(var(--acc-rgb),.4)}
 .ampelrow button{width:100%;display:flex;align-items:center;justify-content:space-between;
   gap:1rem;padding:1.05rem 1.4rem;background:none;border:0;cursor:pointer;
   font-family:var(--body);font-size:1rem;color:var(--ink);text-align:left}
 .ampelrow__right{display:inline-flex;align-items:center;gap:1rem}
 .ampelrow__right .dot{width:10px;height:10px}
-.ampelrow__right b{width:22px;text-align:center;font-size:1.25rem;font-weight:300;color:var(--wood)}
+.ampelrow__right b{width:22px;text-align:center;font-size:1.25rem;font-weight:300;color:var(--acc)}
 .ampelrow p{margin:0;padding:0 1.4rem 1.05rem;font-family:var(--serif);font-style:italic;
   font-size:1.15rem;color:var(--dim);animation:stepin .3s ease both}
 
@@ -879,8 +879,8 @@ a.offercard:hover .postcard__title{color:var(--facc)}
 @media(min-width:760px){.dgrid{grid-template-columns:1fr 1fr}}
 .dcell{background:rgba(255,255,255,.6);padding:1.7rem 1.9rem;display:flex;gap:1rem;
   align-items:flex-start}
-.dcheck{flex:none;width:30px;height:30px;border-radius:50%;background:rgba(185,136,92,.16);
-  display:grid;place-items:center;color:var(--wood);font-size:.9rem;margin-top:2px}
+.dcheck{flex:none;width:30px;height:30px;border-radius:50%;background:rgba(var(--acc-rgb),.13);
+  display:grid;place-items:center;color:var(--acc);font-size:.9rem;margin-top:2px}
 .dcell h3{font-size:1.15rem;margin-bottom:.25rem}
 .dcell p{margin:0;font-size:.9rem;line-height:1.55;color:var(--faint)}
 
