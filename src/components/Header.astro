@@ -12,6 +12,7 @@ const links = [
   { href: '/kontakt/', label: 'Kontakt', overlayLabel: 'Kontakt' },
 ];
 const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isHome = current === '/';
 const isActive = (href: string) => {
   const h = href.replace(/\/+$/, '') || '/';
   return h === current || (h !== '/' && current.startsWith(h + '/'));
@@ -25,22 +26,41 @@ const isActive = (href: string) => {
       </span>
       <span class="logo__word">NextCourse</span>
     </a>
-    <nav class="nav" aria-label="Hauptnavigation">
-      {links.map((l) => (
-        <a
-          href={l.href}
-          class:list={[isActive(l.href) && 'is-active']}
-          aria-current={isActive(l.href) ? 'page' : undefined}
-        >{l.label}</a>
-      ))}
-    </nav>
-    <button class="burger" aria-expanded="false" aria-label="Menü öffnen" aria-controls="overlay">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="header__actions">
+      <nav class="nav" aria-label="Hauptnavigation">
+        {links.map((l) => (
+          <a
+            href={l.href}
+            class:list={[isActive(l.href) && 'is-active']}
+            aria-current={isActive(l.href) ? 'page' : undefined}
+          >{l.label}</a>
+        ))}
+      </nav>
+      {isHome && (
+        <button
+          type="button"
+          class="theme-toggle"
+          data-home-theme-toggle
+          aria-label="Dunkelmodus"
+          aria-pressed="false"
+        >
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.4 15.2A8.5 8.5 0 0 1 8.8 3.6 8.5 8.5 0 1 0 20.4 15.2Z"></path>
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="3.5"></circle>
+            <path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"></path>
+          </svg>
+        </button>
+      )}
+      <button class="burger" aria-expanded="false" aria-label="Menü öffnen" aria-controls="overlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
-<div class="overlay" id="overlay">
+<div class="overlay" id="overlay" aria-hidden="true" inert>
   {links.map((l) => (
     <a
       href={l.href}
@@ -56,6 +76,8 @@ const isActive = (href: string) => {
 
   function setMenu(open: boolean) {
     overlay.classList.toggle('open', open);
+    overlay.toggleAttribute('inert', !open);
+    overlay.setAttribute('aria-hidden', open ? 'false' : 'true');
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
     document.body.style.overflow = open ? 'hidden' : '';
@@ -70,4 +92,49 @@ const isActive = (href: string) => {
       burger.focus();
     }
   });
+
+  const themeToggle = document.querySelector<HTMLButtonElement>('[data-home-theme-toggle]');
+  if (themeToggle) {
+    const root = document.documentElement;
+    const storageKey = 'nextcourse-home-theme';
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const storedTheme = () => {
+      try {
+        const value = localStorage.getItem(storageKey);
+        return value === 'dark' || value === 'light' ? value : null;
+      } catch {
+        return null;
+      }
+    };
+
+    const applyTheme = (theme: 'light' | 'dark') => {
+      root.classList.add('home-theme');
+      root.dataset.homeTheme = theme;
+      root.style.colorScheme = theme;
+      themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+      document.querySelector<HTMLMetaElement>('meta[data-home-theme-color]')
+        ?.setAttribute('content', theme === 'dark' ? '#08121F' : '#F7F4EF');
+      window.dispatchEvent(new CustomEvent('nextcourse:home-theme', { detail: { theme } }));
+    };
+
+    const initialTheme = root.dataset.homeTheme === 'dark' ? 'dark' : 'light';
+    applyTheme(initialTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const nextTheme = root.dataset.homeTheme === 'dark' ? 'light' : 'dark';
+      try {
+        localStorage.setItem(storageKey, nextTheme);
+      } catch {
+        // Der Umschalter funktioniert auch, wenn lokaler Speicher blockiert ist.
+      }
+      applyTheme(nextTheme);
+    });
+
+    systemTheme.addEventListener('change', (event) => {
+      if (!storedTheme()) {
+        applyTheme(event.matches ? 'dark' : 'light');
+      }
+    });
+  }
 </script>

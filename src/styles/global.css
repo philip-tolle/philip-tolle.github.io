@@ -57,13 +57,14 @@ main.acc-blue{--acc:var(--blue);--acc-rgb:63,94,126}
 main.acc-amber{--acc:var(--amber);--acc-rgb:176,105,15}
 
 /* ---------- Header ---------- */
-.header{position:fixed;top:0;left:0;right:0;z-index:80;
+.header{position:fixed;top:0;left:0;right:0;z-index:100;
   transition:background .3s,border-color .3s,backdrop-filter .3s;
   border-bottom:1px solid transparent}
 .header.solid{background:rgba(247,244,239,.66);backdrop-filter:blur(16px) saturate(1.3);
   border-bottom-color:var(--line)}
 .header__in{display:flex;align-items:center;justify-content:space-between;
   padding:1.05rem clamp(1.2rem,5vw,3rem);max-width:1320px;margin:0 auto}
+.header__actions{display:flex;align-items:center;gap:.5rem}
 .logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
 .logo__mark{width:34px;height:34px;border-radius:50%;overflow:hidden;flex:none;
   box-shadow:0 2px 8px rgba(62,50,34,.28),0 0 12px rgba(229,162,84,.25)}
@@ -85,7 +86,20 @@ main.acc-amber{--acc:var(--amber);--acc-rgb:176,105,15}
 .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
 .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+.theme-toggle{width:44px;height:44px;display:grid;place-items:center;flex:none;
+  color:var(--dim);background:var(--glass);border:1px solid var(--line);border-radius:50%;
+  cursor:pointer;transition:color .2s,background .25s,border-color .25s,transform .2s}
+.theme-toggle:hover{color:var(--ink);border-color:var(--hairline);transform:translateY(-1px)}
+.theme-toggle__icon{width:19px;height:19px;fill:none;stroke:currentColor;
+  stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+.theme-toggle__icon--sun{display:none}
+html.home-theme[data-home-theme="dark"] .theme-toggle__icon--moon{display:none}
+html.home-theme[data-home-theme="dark"] .theme-toggle__icon--sun{display:block}
 @media(min-width:900px){.nav{display:flex;gap:2.2rem}.burger{display:none}}
+@media(min-width:900px) and (max-width:1120px){
+  .nav{gap:1.15rem}
+  .nav a{font-size:.84rem}
+}
 
 .overlay{position:fixed;inset:0;background:rgba(247,244,239,.92);
   backdrop-filter:blur(22px) saturate(1.2);z-index:90;
@@ -903,4 +917,133 @@ a.offercard:hover .postcard__title{color:var(--facc)}
 
 @media(prefers-reduced-motion:reduce){
   .stepdetail article,.ampelrow p{animation:none}
+}
+
+/* ================= STARTSEITE: OPTIONALER DUNKELMODUS =================
+   Bewusst nur aktiv, wenn die Startseite im Head die Klasse home-theme setzt. */
+html.home-theme[data-home-theme="dark"]{
+  color-scheme:dark;
+  --paper:#08121F;--paper2:#101B29;--white:#F8F7F2;
+  --ink:#F8F7F2;--dim:#D4D9DF;--faint:#98A5B3;
+  --green:#7FB39E;--blue:#8CB4D8;--amber:#D9A15B;
+  --amber-soft:#E5A254;--wood:#C99565;
+  --line:rgba(248,247,242,.13);--hairline:rgba(201,149,101,.42);
+  --glass:rgba(16,27,41,.72);--glass-edge:rgba(248,247,242,.2);
+  --glow:0 0 70px rgba(229,162,84,.19);
+  --shadow:0 24px 70px rgba(1,6,16,.46);
+  background:var(--paper);
+}
+html.home-theme[data-home-theme="dark"] main{--acc-rgb:127,179,158}
+html.home-theme[data-home-theme="dark"] body{background:var(--paper)}
+html.home-theme[data-home-theme="dark"] :focus-visible{outline-color:#E5A254}
+
+/* Navigation + Umschalter */
+html.home-theme[data-home-theme="dark"] .header.solid{
+  background:rgba(8,18,31,.78);border-bottom-color:var(--line);
+  backdrop-filter:blur(18px) saturate(1.15)}
+html.home-theme[data-home-theme="dark"] .overlay{
+  background:rgba(1,6,16,.96);backdrop-filter:blur(22px) saturate(1.05)}
+html.home-theme[data-home-theme="dark"] .overlay a.is-active{color:var(--green)}
+html.home-theme[data-home-theme="dark"] .theme-toggle{
+  color:var(--dim);background:rgba(16,27,41,.82);
+  border-color:rgba(248,247,242,.32)}
+html.home-theme[data-home-theme="dark"] .theme-toggle:hover{
+  color:var(--ink);border-color:var(--wood)}
+
+/* Logo-Bühne: das helle Original bleibt als leuchtendes Objekt erhalten */
+html.home-theme[data-home-theme="dark"] .heroLogo{
+  box-shadow:0 0 76px rgba(229,162,84,.2),0 38px 90px rgba(1,6,16,.62)}
+html.home-theme[data-home-theme="dark"] .coin{
+  box-shadow:0 0 34px rgba(229,162,84,.18),0 18px 42px rgba(1,6,16,.56)}
+
+/* Drei Wege: bestehende Motive vorläufig als dunkle Bildtafeln */
+html.home-theme[data-home-theme="dark"] .forkcard{
+  color:var(--ink);background:var(--paper2);border-color:var(--glass-edge);
+  box-shadow:var(--shadow)}
+html.home-theme[data-home-theme="dark"] .forkcard__img{
+  filter:saturate(.72) contrast(.92) brightness(.68) sepia(.08)}
+html.home-theme[data-home-theme="dark"] .forkcard::after{
+  background:linear-gradient(180deg,
+    rgba(1,6,16,.04) 0%,rgba(1,6,16,.22) 36%,
+    rgba(8,18,31,.68) 60%,rgba(8,18,31,.92) 79%,
+    var(--paper) 100%)}
+html.home-theme[data-home-theme="dark"] .forkcard:hover{
+  box-shadow:var(--shadow),0 0 48px rgba(229,162,84,.12)}
+
+/* Idee: Kräfte, Zeit-Medaillon und Kartenstapel */
+html.home-theme[data-home-theme="dark"] .forces__stage svg path{
+  stroke:rgba(248,247,242,.25)}
+html.home-theme[data-home-theme="dark"] .forces__pill{
+  background:rgba(16,27,41,.88);border-color:var(--glass-edge);
+  box-shadow:0 10px 28px -20px rgba(1,6,16,.78)}
+html.home-theme[data-home-theme="dark"] .forces__pill:hover,
+html.home-theme[data-home-theme="dark"] .forces__pill.is-active{
+  background:rgba(201,149,101,.12);border-color:rgba(201,149,101,.58);
+  box-shadow:0 16px 34px -22px rgba(229,162,84,.4)}
+html.home-theme[data-home-theme="dark"] .zeitmuenze{
+  background:radial-gradient(circle at 50% 30%,#162437,#08121F);
+  border-color:rgba(201,149,101,.58);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(248,247,242,.1)}
+html.home-theme[data-home-theme="dark"] .zeitmuenze::before{
+  border-color:rgba(201,149,101,.34)}
+html.home-theme[data-home-theme="dark"] .forces__node{
+  background:#010610;border:1px solid var(--glass-edge);
+  box-shadow:0 22px 50px -26px rgba(1,6,16,.82)}
+html.home-theme[data-home-theme="dark"] .deckcard{
+  color:var(--ink);background:rgba(16,27,41,.94);border-color:var(--glass-edge);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(248,247,242,.08)}
+html.home-theme[data-home-theme="dark"] .deckcard[data-pos="1"],
+html.home-theme[data-home-theme="dark"] .deckcard[data-pos="2"]{
+  box-shadow:0 18px 38px rgba(1,6,16,.38)}
+html.home-theme[data-home-theme="dark"] .deckcard__ico{
+  background:radial-gradient(circle at 50% 30%,#162437,var(--paper2));
+  border-color:var(--glass-edge)}
+html.home-theme[data-home-theme="dark"] .deck__dot{
+  border-color:rgba(248,247,242,.42)}
+
+/* Buttons, Blog und Angebotskarten */
+html.home-theme[data-home-theme="dark"] .btn--line{
+  background:rgba(16,27,41,.7);backdrop-filter:blur(10px)}
+html.home-theme[data-home-theme="dark"] .btn--line:not(.btn--amber):not(.btn--blue){
+  --bc-bd:rgba(127,179,158,.54);--bc-sh:rgba(127,179,158,.42)}
+html.home-theme[data-home-theme="dark"] .btn--amber{
+  --bc-bd:rgba(217,161,91,.58);--bc-sh:rgba(217,161,91,.42)}
+html.home-theme[data-home-theme="dark"] .btn--blue{
+  --bc-bd:rgba(140,180,216,.58);--bc-sh:rgba(140,180,216,.42)}
+html.home-theme[data-home-theme="dark"] .offercard,
+html.home-theme[data-home-theme="dark"] .bandcard{
+  background:var(--glass);border-color:var(--glass-edge);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(248,247,242,.07)}
+html.home-theme[data-home-theme="dark"] a.offercard:hover{
+  box-shadow:var(--shadow),var(--glow),inset 0 1px 0 rgba(248,247,242,.1)}
+html.home-theme[data-home-theme="dark"] .bandcard__cover img{
+  filter:saturate(.78) brightness(.82)}
+html.home-theme[data-home-theme="dark"] .cover-frame::after{
+  background:linear-gradient(180deg,
+    rgba(8,18,31,.04) 0%,rgba(8,18,31,0) 34%,
+    rgba(8,18,31,.18) 68%,rgba(8,18,31,.74) 100%)}
+html.home-theme[data-home-theme="dark"] .newscard--neu{
+  --nc:var(--green);--nc-tint:rgba(127,179,158,.11);
+  --nc-bd:rgba(127,179,158,.52);--nc-sh:rgba(127,179,158,.34)}
+html.home-theme[data-home-theme="dark"] .newscard{--facc:var(--nc)}
+html.home-theme[data-home-theme="dark"] .newscard--termin{
+  --nc:var(--blue);--nc-tint:rgba(140,180,216,.11);
+  --nc-bd:rgba(140,180,216,.52);--nc-sh:rgba(140,180,216,.34)}
+html.home-theme[data-home-theme="dark"] .newscard--angebot{
+  --nc:var(--amber);--nc-tint:rgba(217,161,91,.11);
+  --nc-bd:rgba(217,161,91,.52);--nc-sh:rgba(217,161,91,.34)}
+html.home-theme[data-home-theme="dark"] .newscard__kick{
+  color:var(--wood);background:rgba(16,27,41,.9);border-color:var(--glass-edge)}
+html.home-theme[data-home-theme="dark"] .newscard__kick--neu{
+  color:var(--green);border-color:rgba(127,179,158,.52)}
+html.home-theme[data-home-theme="dark"] .newscard__kick--termin{
+  color:var(--blue);border-color:rgba(140,180,216,.52)}
+html.home-theme[data-home-theme="dark"] .newscard__kick--angebot{
+  color:var(--amber);border-color:rgba(217,161,91,.52)}
+html.home-theme[data-home-theme="dark"] .offercard.newscard:hover{
+  background:var(--nc-tint);border-color:var(--nc-bd);
+  box-shadow:0 18px 42px -20px var(--nc-sh),inset 0 1px 0 rgba(248,247,242,.08)}
+
+@media(prefers-reduced-motion:reduce){
+  .home-theme body,.home-theme .header,.home-theme .theme-toggle{transition:none}
 }
