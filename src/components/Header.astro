@@ -114,7 +114,7 @@ const isActive = (href: string) => {
       root.style.colorScheme = theme;
       themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
       document.querySelector<HTMLMetaElement>('meta[data-home-theme-color]')
-        ?.setAttribute('content', theme === 'dark' ? '#061522' : '#EDF3F6');
+        ?.setAttribute('content', theme === 'dark' ? '#08121F' : '#F7F4EF');
       window.dispatchEvent(new CustomEvent('nextcourse:home-theme', { detail: { theme } }));
     };
 

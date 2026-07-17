@@ -2,72 +2,26 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 import BlogCover from '../components/BlogCover.astro';
 import logo from '../assets/nc-logo.png';
 import philip from '../assets/philip.png';
-import '../styles/home.css';
+import bannerConsulting from '../assets/banner-consulting-v4.png';
+import bannerAkademie from '../assets/banner-akademie-v4.png';
+import bannerOperation from '../assets/banner-operation.png';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 const fmt = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
-const featuredPost = posts[0];
-const morePosts = posts.slice(1);
-
-const servicePaths = [
-  {
-    href: '/consulting/',
-    title: 'Consulting',
-    claim: 'Beratung, die ankommt.',
-    audience: 'Für Betriebe, die Lösungen suchen',
-  },
-  {
-    href: '/akademie/',
-    title: 'Academy',
-    claim: 'Weiterbildung, die wirkt.',
-    audience: 'Für alle, die weiterkommen wollen',
-  },
-  {
-    href: '/operation/',
-    title: 'Operation',
-    claim: 'Entlastung mit Wert.',
-    audience: 'Für Häuser mit mehr Aufgaben als Zeit',
-  },
-];
-
-const pressures = [
-  ['Margendruck', 'Wenig Spielraum für Experimente'],
-  ['Qualifikationsdefizit', 'Neues Wissen erreicht den Alltag zu langsam'],
-  ['Digitalisierungsrückstand', 'Zu viele Abläufe bleiben unnötig manuell'],
-  ['Bürokratische Hürden', 'Regeln binden Aufmerksamkeit und Kapazität'],
-];
-
-const answers = [
-  {
-    href: '/consulting/',
-    area: 'Consulting',
-    verb: 'Umsetzen',
-    text: 'Erst der ehrliche Blick, dann die messbare Umsetzung — Schritt für Schritt statt Großprojekt.',
-  },
-  {
-    href: '/akademie/',
-    area: 'Academy',
-    verb: 'Lernen',
-    text: 'Wissen im Team macht unabhängig und spart vom ersten Tag an Zeit.',
-  },
-  {
-    href: '/operation/',
-    area: 'Operation',
-    verb: 'Abgeben',
-    text: 'Aufgaben auslagern schafft sofort Luft — ohne eine neue Stelle zu besetzen.',
-  },
-];
+const marquee = posts.length >= 3;
+const bandItems = marquee ? [...posts, ...posts] : posts;
 ---
 <Base
   title="NextCourse — Bildungs-, Beratungs- und Umsetzungspartner für das Gastgewerbe"
   description="NextCourse ist der Bildungs-, Beratungs- und Umsetzungspartner für das deutsche Gastgewerbe: KI-Beratung und Digitalisierung für Betriebe, Kurse und Weiterbildung in der Akademie — aus Würzburg, im Einsatz in Mainfranken."
 >
-  <meta slot="head" name="theme-color" content="#EDF3F6" data-home-theme-color>
+  <meta slot="head" name="theme-color" content="#F7F4EF" data-home-theme-color>
   <script is:inline slot="head">
     (() => {
       const root = document.documentElement;
@@ -85,274 +39,437 @@ const answers = [
       root.dataset.homeTheme = theme;
       root.style.colorScheme = theme;
       document.querySelector('meta[data-home-theme-color]')
-        ?.setAttribute('content', theme === 'dark' ? '#061522' : '#EDF3F6');
+        ?.setAttribute('content', theme === 'dark' ? '#08121F' : '#F7F4EF');
     })();
   </script>
 
-  <div class="home-page">
-    <section class="home-hero" id="homeHero" aria-labelledby="home-title">
-      <div class="home-shell home-hero__inner">
-        <a
-          class="home-hero__logo"
-          id="heroLogo"
-          href="#wahl"
-          aria-label="Zu Consulting, Academy und Operation"
-        >
-          <Image
-            src={logo}
-            alt="NextCourse Logo — Wellen und Pfeil aus warmem Holz"
-            width={780}
-            format="webp"
-            quality={84}
-            loading="eager"
-          />
+  <!-- FLOOR 1: Das Logo als Bühne -->
+  <div class="floor hero">
+    <div class="wrap" style="text-align:center">
+      <div class="heroLogo" id="heroLogo" role="button" tabindex="0"
+        aria-label="Zur Auswahl: Consulting, Academy oder Operation">
+        <Image src={logo} alt="NextCourse Logo — Wellen und Pfeil aus warmem Holz, hinterleuchtet"
+          width={1080} format="webp" quality={82} loading="eager" />
+      </div>
+      <h1 class="heroWord">NextCourse<span class="sr-only"> — Bildungs-, Beratungs- und Umsetzungspartner für das deutsche Gastgewerbe</span></h1>
+      <p class="heroSub">Der Bildungs-, Beratungs- und Umsetzungspartner<br>für das deutsche Gastgewerbe.</p>
+      <a class="scrollhint" href="#wahl" aria-label="Weiter zur Auswahl der drei Bereiche">
+        <span class="hintword">Entdecken</span><span class="bar" aria-hidden="true"></span>
+      </a>
+    </div>
+  </div>
+
+  <!-- FLOOR 2: Die Weiche — Consulting, Academy oder Operation -->
+  <div class="floor" id="wahl">
+    <div class="wrap">
+      <div class="menuhead">
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Drei Wege</p>
+        <h2 class="reveal">Was führt Sie zu uns?</h2>
+      </div>
+      <div class="fork">
+        <a class="forkcard reveal" href="/consulting/">
+          <Image class="forkcard__img" src={bannerConsulting} alt="" width={760} format="webp" quality={72} />
+          <h3>NextCourse Consulting</h3>
+          <p class="voice">Beratung, die ankommt.</p>
+          <p class="forkcard__aud">Für Betriebe, die Lösungen suchen</p>
         </a>
-        <p class="home-kicker reveal">Bildung · Beratung · Umsetzung</p>
-        <h1 class="home-hero__word reveal" id="home-title">
-          NextCourse
-          <span class="sr-only"> — Bildungs-, Beratungs- und Umsetzungspartner für das deutsche Gastgewerbe</span>
-        </h1>
-        <p class="home-hero__claim reveal">
-          Der Bildungs-, Beratungs- und Umsetzungspartner<br>
-          für das deutsche Gastgewerbe.
-        </p>
-        <a class="home-scroll" href="#wahl">
-          <span>Entdecken</span>
-          <i aria-hidden="true"></i>
+        <a class="forkcard forkcard--akademie reveal" href="/akademie/">
+          <Image class="forkcard__img" src={bannerAkademie} alt="" width={760} format="webp" quality={72} />
+          <h3>NextCourse Academy</h3>
+          <p class="voice">Weiterbildung, die wirkt.</p>
+          <p class="forkcard__aud">Für alle, die weiterkommen wollen</p>
+        </a>
+        <a class="forkcard forkcard--operation reveal" href="/operation/">
+          <Image class="forkcard__img" src={bannerOperation} alt="" width={760} format="webp" quality={72} />
+          <h3>NextCourse Operation</h3>
+          <p class="voice">Entlastung mit Wert.</p>
+          <p class="forkcard__aud">Für Häuser mit mehr Aufgaben als Zeit</p>
         </a>
       </div>
-    </section>
+      <a class="scrollhint" href="#idee" aria-label="Weiter zur Idee hinter NextCourse">
+        <span class="hintword">Entdecken</span><span class="bar" aria-hidden="true"></span>
+      </a>
+    </div>
+  </div>
 
-    <section class="home-section home-section--left home-paths" id="wahl" aria-labelledby="paths-title">
-      <div class="home-shell home-paths__layout">
-        <div class="home-section__intro reveal">
-          <p class="home-kicker">Drei Wege</p>
-          <h2 id="paths-title">Ein Partner.<br>Drei Formen der Entlastung.</h2>
-          <p>Was führt Sie zu uns? Wählen Sie den Weg, der zu Ihrer aktuellen Aufgabe passt.</p>
-        </div>
-
-        <nav class="home-index" aria-label="Leistungsbereiche">
-          {servicePaths.map((service, index) => (
-            <a class="home-index__row reveal" href={service.href}>
-              <span class="home-index__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-              <span class="home-index__copy">
-                <strong>{service.title}</strong>
-                <span>{service.claim}</span>
-                <small>{service.audience}</small>
-              </span>
-              <span class="home-index__arrow" aria-hidden="true">↗</span>
-            </a>
-          ))}
-        </nav>
+  <!-- FLOOR 3: Die Idee hinter NextCourse — ein Bildschirm -->
+  <div class="floor" id="idee" style="padding:5rem 0 1.6rem">
+    <div class="wrap">
+      <div class="menuhead">
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Die Idee hinter NextCourse</p>
+        <h2 class="reveal" style="font-size:clamp(1.8rem,4.2vw,2.7rem)">Kein Wissensproblem. Ein Zeitproblem.</h2>
       </div>
-    </section>
 
-    <section class="home-section home-section--right home-idea" id="idee" aria-labelledby="idea-title">
-      <div class="home-time-object" aria-hidden="true">
-        <span>Zeit</span>
-      </div>
-      <div class="home-shell">
-        <div class="home-idea__content">
-          <div class="home-section__intro reveal">
-            <p class="home-kicker">Der Gedanke dahinter</p>
-            <h2 id="idea-title">Kein Wissensproblem.<br><span>Ein Zeitproblem.</span></h2>
-            <p>
-              Gute Ideen sind meist vorhanden. Im Betriebsalltag fehlt jedoch die Zeit,
-              sie zu prüfen, zu übersetzen und konsequent umzusetzen.
-            </p>
-          </div>
-
-          <ol class="home-pressure-list">
-            {pressures.map(([title, detail], index) => (
-              <li class="reveal">
-                <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-                <strong>{title}</strong>
-                <small>{detail}</small>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-section home-section--left home-answers" aria-labelledby="answers-title">
-      <div class="home-shell home-answers__layout">
-        <div class="home-section__intro reveal">
-          <p class="home-kicker">Unsere Antwort</p>
-          <h2 id="answers-title">Wissen, das Arbeit abnimmt.</h2>
-          <p>
-            NextCourse verbindet Analyse, Befähigung und operative Entlastung —
-            immer so viel, wie Ihr Betrieb wirklich braucht.
-          </p>
-        </div>
-
-        <div class="home-answer-list">
-          {answers.map((answer, index) => (
-            <a class="home-answer-row reveal" href={answer.href}>
-              <span class="home-answer-row__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-              <span class="home-answer-row__title">
-                <small>{answer.area}</small>
-                <strong>{answer.verb}</strong>
-              </span>
-              <span class="home-answer-row__text">{answer.text}</span>
-              <span class="home-answer-row__arrow" aria-hidden="true">↗</span>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="home-section home-section--right home-editorial" id="blog" aria-labelledby="blog-title">
-      <div class="home-shell">
-        <div class="home-editorial__head reveal">
-          <div class="home-section__intro">
-            <p class="home-kicker">Aus dem Blog</p>
-            <h2 id="blog-title">Frisch aus der Praxis.</h2>
-          </div>
-          <p>
-            KI, Digitalisierung und Weiterbildung fürs Gastgewerbe —
-            praxisnah statt paragraphenlastig.
-          </p>
-        </div>
-
-        {featuredPost ? (
-          <div class="home-editorial__grid">
-            <a class="home-featured reveal" href={`/blog/${featuredPost.id}/`}>
-              <span class="home-featured__cover">
-                <BlogCover post={featuredPost} width={760} />
-              </span>
-              <span class="home-featured__body">
-                <time datetime={featuredPost.data.pubDate.toISOString()}>{fmt.format(featuredPost.data.pubDate)}</time>
-                <strong>{featuredPost.data.title}</strong>
-                <span>Artikel lesen <i aria-hidden="true">↗</i></span>
-              </span>
-            </a>
-
-            <div class="home-article-list">
-              {morePosts.map((post) => (
-                <a class="home-article-row reveal" href={`/blog/${post.id}/`}>
-                  <time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time>
-                  <strong>{post.data.title}</strong>
-                  <span aria-hidden="true">↗</span>
-                </a>
-              ))}
-              <a class="home-text-link reveal" href="/blog/">Alle Artikel im Blog <span aria-hidden="true">→</span></a>
+      <div class="idee2">
+        <div class="idee2col reveal">
+          <p class="eyebrow eyebrow--c" style="--acc:var(--amber)">Das Problem</p>
+          <div class="idee2__viz">
+          <div class="forces__stage" id="forces">
+            <svg viewBox="0 0 520 320" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M256,31 C304,31 312,98 354,138"/>
+              <path d="M256,111 C304,111 314,142 352,154"/>
+              <path d="M256,191 C304,191 314,178 352,166"/>
+              <path d="M256,271 C304,271 312,222 354,182"/>
+            </svg>
+            <div class="forces__pill" data-f="0" style="top:0">
+              <span>Margendruck</span><b>sechs Verlustjahre in Folge</b>
+            </div>
+            <div class="forces__pill" data-f="1" style="top:80px">
+              <span>Qualifikationsdefizit</span><b>KI-Wissen fehlt im Alltag</b>
+            </div>
+            <div class="forces__pill" data-f="2" style="top:160px">
+              <span>Digitalisierungsrückstand</span><b>≈ 70 % analoge Prozesse</b>
+            </div>
+            <div class="forces__pill" data-f="3" style="top:240px">
+              <span>Bürokratische Hürden</span><b>EU AI Act, DSGVO &amp; Co.</b>
+            </div>
+            <div class="zeitmuenze">
+              <span>Es kostet vor allem</span>
+              <b>Zeit</b>
+              <span>die im Betrieb fehlt</span>
             </div>
           </div>
-        ) : (
-          <p class="home-empty reveal">Die ersten Artikel erscheinen in Kürze.</p>
-        )}
-      </div>
-    </section>
-
-    <section class="home-section home-section--left home-news" id="aktuelles" aria-labelledby="news-title">
-      <div class="home-shell home-news__layout">
-        <div class="home-section__intro reveal">
-          <p class="home-kicker">Neuigkeiten &amp; Angebote</p>
-          <h2 id="news-title">Was gerade bei uns läuft.</h2>
-          <p>Drei konkrete Möglichkeiten, NextCourse kennenzulernen oder direkt einzusteigen.</p>
-        </div>
-
-        <div class="home-news-list">
-          <a class="home-news-row reveal" href="/consulting/implementierungsprojekte/">
-            <span class="home-news-row__type">Neu</span>
-            <span class="home-news-row__copy">
-              <strong>KI-Bausteine zum Festpreis</strong>
-              <small>Vom Telefonassistenten bis zum CorporateLLM — jetzt als eigene Übersicht.</small>
-            </span>
-            <span class="home-news-row__meta">Projekte ansehen</span>
-            <span class="home-news-row__arrow" aria-hidden="true">↗</span>
-          </a>
-
-          <a class="home-news-row reveal" href="/kontakt/">
-            <span class="home-news-row__type">Termin</span>
-            <span class="home-news-row__copy">
-              <strong>KI-Praxisstart: das erste Seminar</strong>
-              <small>Unser erstes KI-Seminar fürs Gastgewerbe. Die Plätze sind begrenzt.</small>
-            </span>
-            <time class="home-news-row__meta" datetime="2026-08-03">3. August 2026</time>
-            <span class="home-news-row__arrow" aria-hidden="true">↗</span>
-          </a>
-
-          <a class="home-news-row reveal" href="/consulting/mystery-check/">
-            <span class="home-news-row__type">Angebot</span>
-            <span class="home-news-row__copy">
-              <strong>Mystery Check zum Pilotpreis</strong>
-              <small>Ihren Betrieb mit den Augen der Gäste sehen — als Einstieg ins Consulting.</small>
-            </span>
-            <span class="home-news-row__meta">950 € <s>1.490 €</s></span>
-            <span class="home-news-row__arrow" aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="home-section home-section--right home-contact" id="abschluss" aria-labelledby="contact-title">
-      <div class="home-shell home-contact__layout">
-        <div class="home-contact__portrait reveal">
-          <Image
-            src={philip}
-            alt="Philip Tolle, Gründer von NextCourse"
-            width={480}
-            format="webp"
-            quality={84}
-          />
-        </div>
-
-        <div class="home-contact__copy">
-          <p class="home-kicker reveal">Der nächste Schritt</p>
-          <h2 class="reveal" id="contact-title">Sprechen wir über Ihren Betrieb.</h2>
-          <p class="home-contact__lead reveal">
-            Ein Gespräch, kein Verkaufstermin. Erzählen Sie, wo es klemmt —
-            ich höre zu und sage Ihnen ehrlich, ob und wie wir helfen können.
-          </p>
-
-          <ul class="home-assurance reveal" aria-label="Was Sie erwartet">
-            <li>Kostenlos &amp; unverbindlich</li>
-            <li>Am Telefon oder bei Ihnen im Haus</li>
-            <li>Für Mainfranken &amp; Bayern</li>
-          </ul>
-
-          <div class="home-contact__actions reveal">
-            <a href="/kontakt/" class="home-button">Kostenloses Erstgespräch</a>
-            <a
-              href="https://cal.com/philip-tolle-yxp7ih/erstgesprach"
-              target="_blank"
-              rel="noopener"
-              class="home-text-link"
-            >Direkt Termin buchen <span aria-hidden="true">↗</span></a>
           </div>
-          <p class="home-signature reveal">— Philip Tolle, Gründer von NextCourse</p>
+        </div>
+        <span class="idee2__div" aria-hidden="true"></span>
+        <div class="idee2col reveal">
+          <p class="eyebrow eyebrow--c" style="--acc:var(--green)">Unsere Antwort</p>
+          <div class="idee2__viz">
+          <div class="deck" id="deck">
+        <div class="deckcard" data-pos="0" style="--dacc:var(--blue)">
+          <span class="deckcard__ico" aria-hidden="true"><Icon name="ausbildung" size={30} /></span>
+          <h3>Academy</h3>
+          <p class="deckcard__verb">Lernen</p>
+          <p class="deckcard__antwort">Weil Technik nur hilft, wenn Menschen sie verstehen. Wissen im Team macht unabhängig — und spart vom ersten Tag an Zeit.</p>
+        </div>
+        <div class="deckcard" data-pos="1" style="--dacc:var(--green)">
+          <span class="deckcard__ico" aria-hidden="true"><Icon name="ziel" size={30} /></span>
+          <h3>Consulting</h3>
+          <p class="deckcard__verb">Umsetzen</p>
+          <p class="deckcard__antwort">Weil gute Systeme kein Zufall sind. Erst der ehrliche Blick, dann die messbare Umsetzung — Schritt für Schritt statt Großprojekt.</p>
+        </div>
+        <div class="deckcard" data-pos="2" style="--dacc:var(--amber)">
+          <span class="deckcard__ico" aria-hidden="true"><Icon name="gastlichkeit" size={30} /></span>
+          <h3>Operation</h3>
+          <p class="deckcard__verb">Abgeben</p>
+          <p class="deckcard__antwort">Weil manche Aufgaben gar nicht erst bei Ihnen landen müssen. Abgeben schafft sofort Luft — ohne eine neue Stelle zu besetzen.</p>
+        </div>
+          </div>
+          <div class="deck__dots" aria-label="Bereich wählen">
+            <button class="deck__dot is-on" data-i="0" style="--dc:var(--blue)" aria-label="Academy zeigen"></button>
+            <button class="deck__dot" data-i="1" style="--dc:var(--green)" aria-label="Consulting zeigen"></button>
+            <button class="deck__dot" data-i="2" style="--dc:var(--amber)" aria-label="Operation zeigen"></button>
+          </div>
+          </div>
         </div>
       </div>
-    </section>
+      <a class="scrollhint" href="#blog" style="margin-top:.6rem" aria-label="Weiter zu den neuesten Blog-Artikeln">
+        <span class="hintword">Entdecken</span><span class="bar" aria-hidden="true"></span>
+      </a>
+    </div>
   </div>
+
+  <!-- FLOOR 3b: Aus dem Blog — Band mit den 3 neuesten Artikeln -->
+  <div class="floor--auto floor" id="blog">
+    <div class="wrap">
+      <div class="menuhead">
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Aus dem Blog</p>
+        <h2 class="reveal">Frisch aus der Praxis.</h2>
+        <p class="lead reveal">KI, Digitalisierung und Weiterbildung fürs Gastgewerbe — praxisnah statt paragraphenlastig.</p>
+      </div>
+
+      {posts.length > 0 ? (
+        <div class:list={['blogband reveal', marquee ? 'blogband--marquee' : 'blogband--static']}>
+          <div class="blogband__track">
+            {bandItems.map((post, i) => (
+              <a
+                class="bandcard"
+                href={`/blog/${post.id}/`}
+                aria-hidden={marquee && i >= posts.length ? 'true' : undefined}
+                tabindex={marquee && i >= posts.length ? -1 : undefined}
+              >
+                <span class="bandcard__cover cover-frame"><BlogCover post={post} width={420} /></span>
+                <span class="bandcard__body">
+                  <time class="bandcard__date" datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time>
+                  <span class="bandcard__title">{post.data.title}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <p class="dim reveal" style="text-align:center;margin-top:2rem">Die ersten Artikel erscheinen in Kürze.</p>
+      )}
+
+      <div class="reveal" style="text-align:center;margin-top:2rem">
+        <a class="arrowlink" href="/blog/">Alle Artikel im Blog</a>
+      </div>
+      <a class="scrollhint" href="#aktuelles" aria-label="Weiter zu Neuigkeiten und Angeboten">
+        <span class="hintword">Entdecken</span><span class="bar" aria-hidden="true"></span>
+      </a>
+    </div>
+  </div>
+
+  <!-- FLOOR 3c: Neuigkeiten & Angebote -->
+  <div class="floor--auto floor" id="aktuelles">
+    <div class="wrap">
+      <div class="menuhead">
+        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Neuigkeiten &amp; Angebote</p>
+        <h2 class="reveal">Was gerade bei uns läuft.</h2>
+      </div>
+      <div class="news reveal stagger">
+        <a class="offercard newscard newscard--neu" href="/consulting/implementierungsprojekte/">
+          <span class="newscard__kick newscard__kick--neu">Neu</span>
+          <h3>KI-Bausteine zum Festpreis</h3>
+          <p>Implementierungsprojekte — vom Telefonassistenten bis zum CorporateLLM — jetzt als eigene Übersicht.</p>
+          <span class="forkcard__go">Projekte ansehen</span>
+        </a>
+        <a class="offercard newscard newscard--termin" href="/kontakt/">
+          <span class="newscard__kick newscard__kick--termin">Termin</span>
+          <h3>KI-Praxisstart: das erste Seminar</h3>
+          <p>Unser erstes KI-Seminar fürs Gastgewerbe. Die Plätze sind begrenzt.</p>
+          <span class="newscard__hl">3. August 2026</span>
+          <span class="forkcard__go">Platz anfragen</span>
+        </a>
+        <a class="offercard newscard newscard--angebot" href="/consulting/mystery-check/">
+          <span class="newscard__kick newscard__kick--angebot">Angebot</span>
+          <h3>Mystery Check zum Pilotpreis</h3>
+          <p>Ihren Betrieb mit den Augen der Gäste sehen — als Einstieg ins Consulting.</p>
+          <span class="newscard__hl">950 €<s>1.490 €</s></span>
+          <span class="forkcard__go">Mehr zum Mystery Check</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOOR 4: Abschluss -->
+  <div class="floor" id="abschluss">
+    <div class="wrap wrap--menu" style="text-align:center">
+      <div class="coin reveal" data-tilt style="--coin:160px;margin:0 auto 1.8rem">
+        <Image src={philip} alt="Philip Tolle, Gründer von NextCourse" width={380} format="webp" quality={82} />
+      </div>
+      <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Der nächste Schritt</p>
+      <h2 class="reveal" style="max-width:none">Sprechen wir über Ihren Betrieb.</h2>
+      <p class="voice reveal" style="max-width:29em;margin:1.2rem auto 0">Ein Gespräch, kein Verkaufstermin. Erzählen Sie, wo es klemmt — ich höre zu und sage Ihnen ehrlich, ob und wie wir helfen können.</p>
+      <ul class="assure reveal" aria-label="Was Sie erwartet">
+        <li>Kostenlos &amp; unverbindlich</li>
+        <li>Am Telefon oder bei Ihnen im Haus</li>
+        <li>Für Mainfranken &amp; Bayern</li>
+      </ul>
+      <div class="btnrow reveal" style="justify-content:center">
+        <a href="/kontakt/" class="btn btn--line btn--amber">Kostenloses Erstgespräch</a>
+        <a href="https://cal.com/philip-tolle-yxp7ih/erstgesprach" target="_blank" rel="noopener" class="btn btn--line">Direkt Termin buchen</a>
+      </div>
+      <p class="reveal small faint" style="margin-top:1.7rem;font-style:italic;font-family:var(--serif);font-size:1.05rem">— Philip Tolle, Gründer von NextCourse</p>
+    </div>
+  </div>
+
 </Base>
 
+<style>
+  /* Aus dem Blog: laufendes Band */
+  .blogband{margin-top:2.6rem;overflow:hidden}
+  .blogband--marquee{
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+  .blogband__track{display:flex;gap:1.6rem;width:max-content}
+  .blogband--marquee .blogband__track{animation:bandscroll 46s linear infinite}
+  .blogband--marquee:hover .blogband__track{animation-play-state:paused}
+  @keyframes bandscroll{from{transform:translateX(0)}to{transform:translateX(calc(-50% - .8rem))}}
+  .blogband--static .blogband__track{width:auto;justify-content:center;flex-wrap:wrap}
+
+  .bandcard{flex:none;width:min(330px,82vw);text-decoration:none;color:var(--ink);
+    background:var(--glass);border:1px solid var(--glass-edge);border-radius:20px;overflow:hidden;
+    box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s;
+    backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4)}
+  .bandcard:hover{transform:translateY(-5px);box-shadow:var(--shadow),var(--glow)}
+  .bandcard__cover{display:block;aspect-ratio:3/2;overflow:hidden}
+  .bandcard__body{display:flex;flex-direction:column;gap:.4rem;padding:1.2rem 1.4rem 1.5rem}
+  .bandcard__date{font-size:.76rem;letter-spacing:.06em;color:var(--faint)}
+  .bandcard__title{font-family:var(--disp);font-size:1.18rem;line-height:1.25;color:var(--ink);
+    transition:color .25s;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .bandcard:hover .bandcard__title{color:var(--green)}
+
+  /* Neuigkeiten & Angebote */
+  .news{display:grid;gap:1.6rem;margin-top:2.4rem}
+  @media(min-width:820px){.news{grid-template-columns:repeat(3,1fr)}}
+  .newscard{align-items:flex-start;--nc:var(--wood);
+    transition:transform .25s,box-shadow .25s,background .25s,border-color .25s}
+  .newscard--neu{--nc:var(--green);--nc-tint:rgba(51,96,79,.09);--nc-bd:rgba(51,96,79,.5);--nc-sh:rgba(51,96,79,.4)}
+  .newscard--termin{--nc:var(--blue);--nc-tint:rgba(63,94,126,.1);--nc-bd:rgba(63,94,126,.5);--nc-sh:rgba(63,94,126,.42)}
+  .newscard--angebot{--nc:var(--amber);--nc-tint:rgba(176,105,15,.09);--nc-bd:rgba(176,105,15,.5);--nc-sh:rgba(176,105,15,.4)}
+  .offercard.newscard:hover{background:var(--nc-tint);border-color:var(--nc-bd);
+    box-shadow:0 18px 42px -20px var(--nc-sh),inset 0 1px 0 rgba(255,255,255,.9)}
+  .offercard.newscard:hover h3{color:var(--nc)}
+  .newscard:hover .newscard__kick{background:var(--nc);border-color:var(--nc);color:var(--paper)}
+  .newscard__kick{align-self:flex-start;font-family:var(--body);font-weight:500;font-size:.72rem;
+    letter-spacing:.16em;text-transform:uppercase;padding:.3em .9em;border-radius:999px;
+    border:1px solid var(--hairline);color:var(--wood);background:rgba(255,255,255,.55);margin-bottom:.3rem;
+    transition:background .25s,border-color .25s,color .25s}
+  .newscard__kick--neu{color:var(--green);border-color:rgba(51,96,79,.4)}
+  .newscard__kick--termin{color:var(--blue);border-color:rgba(63,94,126,.4)}
+  .newscard__kick--angebot{color:var(--amber);border-color:rgba(176,105,15,.4)}
+  .newscard__hl{font-family:var(--disp);font-size:1.35rem;color:var(--ink);margin-top:.1rem}
+  .newscard__hl s{color:var(--faint);font-size:.72em;margin-left:.5em}
+
+  /* Abschluss: Vertrauens-Zeile */
+  .assure{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1.5rem;
+    margin:1.8rem auto 0;padding:0;max-width:38em}
+  .assure li{display:inline-flex;align-items:center;gap:.5rem;font-size:.9rem;color:var(--dim)}
+  .assure li::before{content:"✓";color:var(--wood);font-weight:600}
+
+  @media(prefers-reduced-motion:reduce){
+    .blogband--marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+    .blogband--marquee .blogband__track{animation:none}
+    .bandcard[aria-hidden="true"]{display:none}
+  }
+</style>
+
 <script>
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const heroStage = document.getElementById('homeHero');
-  const heroLogo = document.getElementById('heroLogo');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (
-    heroStage instanceof HTMLElement
-    && heroLogo instanceof HTMLElement
-    && window.matchMedia('(pointer:fine)').matches
-    && !reducedMotion
-  ) {
-    heroStage.addEventListener('pointermove', (event) => {
-      const rect = heroStage.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - .5;
-      const y = (event.clientY - rect.top) / rect.height - .5;
-      heroLogo.style.transform = `perspective(900px) rotateX(${(-y * 7).toFixed(2)}deg) rotateY(${(x * 7).toFixed(2)}deg)`;
-      heroLogo.style.setProperty('--gx', `${(50 + x * 34).toFixed(1)}%`);
-      heroLogo.style.setProperty('--gy', `${(38 + y * 34).toFixed(1)}%`);
+  /* ---------- Hero-Logo: Tilt + Lichtreflex + Münzdrehung ---------- */
+  const heroFloor = document.querySelector('.floor.hero') as HTMLElement;
+  const heroLogo = document.getElementById('heroLogo')!;
+  let spinning = false;
+
+  if (heroFloor && heroLogo && window.matchMedia('(pointer:fine)').matches && !reduced) {
+    heroFloor.addEventListener('pointermove', (e) => {
+      if (spinning) { return; }
+      const r = heroFloor.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5;
+      const y = (e.clientY - r.top) / r.height - .5;
+      heroLogo.style.transform = 'perspective(900px) rotateX(' + (-y * 14).toFixed(2) +
+        'deg) rotateY(' + (x * 14).toFixed(2) + 'deg)';
+      heroLogo.style.setProperty('--gx', (50 + x * 46).toFixed(1) + '%');
+      heroLogo.style.setProperty('--gy', (38 + y * 46).toFixed(1) + '%');
     });
-
-    heroStage.addEventListener('pointerleave', () => {
+    heroFloor.addEventListener('pointerleave', () => {
+      if (spinning) { return; }
       heroLogo.style.transform = '';
       heroLogo.style.setProperty('--gx', '50%');
       heroLogo.style.setProperty('--gy', '35%');
     });
   }
+
+  function spinAndGo() {
+    const target = document.getElementById('wahl');
+    if (reduced || spinning) {
+      target?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+      return;
+    }
+    spinning = true;
+    heroLogo.style.transform = '';
+    heroLogo.classList.add('is-spinning');
+    setTimeout(() => { target?.scrollIntoView({ behavior: 'smooth' }); }, 550);
+    const stop = () => {
+      heroLogo.classList.remove('is-spinning');
+      spinning = false;
+    };
+    heroLogo.addEventListener('animationend', stop, { once: true });
+    setTimeout(stop, 1500);
+  }
+  heroLogo.addEventListener('click', spinAndGo);
+  heroLogo.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); spinAndGo(); }
+  });
+
+  /* ---------- Idee: Drei Kräfte → Zeit ---------- */
+  const forces = document.getElementById('forces')!;
+  const pills = Array.from(document.querySelectorAll<HTMLElement>('.forces__pill'));
+  let fActive = 0;
+  let fPaused = false;
+  let fTimer: ReturnType<typeof setInterval> | null = null;
+  let fResume: ReturnType<typeof setTimeout> | null = null;
+
+  const setForce = (i: number) => {
+    fActive = (i + pills.length) % pills.length;
+    forces.dataset.active = String(fActive);
+    pills.forEach((p, k) => p.classList.toggle('is-active', k === fActive));
+  };
+  const holdForce = (ms = 4500) => {
+    fPaused = true;
+    if (fResume) { clearTimeout(fResume); }
+    fResume = setTimeout(() => { fPaused = false; }, ms);
+  };
+
+  setForce(0);
+  if (!reduced && pills.length) {
+    // sanftes Durchlaufen, sobald die Sektion sichtbar ist
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting && !fTimer) {
+          fTimer = setInterval(() => { if (!fPaused) { setForce(fActive + 1); } }, 2600);
+        }
+      });
+    }, { threshold: 0.35 });
+    io.observe(forces);
+  }
+  const finePointer = window.matchMedia('(pointer:fine)').matches;
+  pills.forEach((pill, i) => {
+    if (finePointer) {
+      pill.addEventListener('pointerenter', () => { fPaused = true; setForce(i); });
+      pill.addEventListener('pointerleave', () => { fPaused = false; });
+    }
+    pill.addEventListener('click', () => { setForce(i); holdForce(); });
+  });
+
+  /* ---------- Kartenstapel: sanftes Durchlaufen + Punkt-Indikatoren ---------- */
+  const deck = document.getElementById('deck')!;
+  const cards = Array.from(deck.querySelectorAll<HTMLElement>('.deckcard'));
+  const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('.deck__dot'));
+  let order = [0, 1, 2];
+  let blaettert = false;
+
+  function applyOrder() {
+    order.forEach((cardIdx, pos) => { cards[cardIdx].dataset.pos = String(pos); });
+    dots.forEach((d, i) => d.classList.toggle('is-on', order[0] === i));
+  }
+  function advance() {
+    if (blaettert) { return; }
+    blaettert = true;
+    const top = cards[order[0]];
+    if (reduced) {
+      order.push(order.shift()!);
+      applyOrder();
+      blaettert = false;
+      return;
+    }
+    top.classList.add('is-leaving');
+    setTimeout(() => {
+      order.push(order.shift()!);
+      applyOrder();
+      top.classList.remove('is-leaving');
+      blaettert = false;
+    }, 480);
+  }
+  function retreat() {
+    if (blaettert) { return; }
+    order.unshift(order.pop()!);
+    applyOrder();
+  }
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const ziel = parseInt(dot.dataset.i!, 10);
+      if (order[0] === ziel || blaettert) { return; }
+      order = [ziel, (ziel + 1) % 3, (ziel + 2) % 3];
+      applyOrder();
+    });
+  });
+
+  /* Klick blättert, am Handy wischen (links = weiter, rechts = zurück) */
+  let swiped = false;
+  let startX = 0;
+  let startY = 0;
+  deck.addEventListener('pointerdown', (e) => { startX = e.clientX; startY = e.clientY; });
+  deck.addEventListener('pointerup', (e) => {
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy)) {
+      swiped = true;
+      if (dx < 0) { advance(); } else { retreat(); }
+      setTimeout(() => { swiped = false; }, 350);
+    }
+  });
+  deck.addEventListener('click', () => { if (!swiped) { advance(); } });
 </script>
