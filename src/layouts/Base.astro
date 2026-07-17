@@ -110,11 +110,12 @@ const orgSchema = JSON.stringify({
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const lines = 10;
     const sc = window.scrollY * 0.0012;
+    const homeTheme = document.documentElement.classList.contains('home-theme');
     const darkHome = document.documentElement.matches('.home-theme[data-home-theme="dark"]');
     for (let i = 0; i < lines; i++) {
       const yBase = H * 0.22 + (H * 0.68 / lines) * i;
       const amp = (30 + i * 4) * dpr;
-      const phase = t * 0.007 + sc + i * 0.5;
+      const phase = t * (homeTheme ? 0.0048 : 0.007) + sc + i * 0.5;
       ctx.beginPath();
       for (let x = 0; x <= W; x += 9 * dpr) {
         const y = yBase
@@ -122,13 +123,17 @@ const orgSchema = JSON.stringify({
           + Math.sin(x * 0.0006 / dpr - phase * 0.55) * amp * 0.55;
         if (x === 0) { ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
       }
-      const isAmber = (i === 7);
-      ctx.strokeStyle = darkHome
-        ? 'rgba(255,255,255,' + (isAmber ? 0.15 : 0.028 + i * 0.005) + ')'
-        : isAmber
+      const isAccentLine = (i === 7);
+      ctx.strokeStyle = homeTheme
+        ? darkHome
+          ? 'rgba(255,255,255,' + (isAccentLine ? 0.15 : 0.025 + i * 0.0045) + ')'
+          : isAccentLine
+            ? 'rgba(30,93,135,0.15)'
+            : 'rgba(30,93,135,' + (0.024 + i * 0.0042) + ')'
+        : isAccentLine
           ? 'rgba(229,162,84,0.16)'
           : 'rgba(185,136,92,' + (0.03 + i * 0.005) + ')';
-      ctx.lineWidth = (isAmber ? 1.4 : 1) * dpr;
+      ctx.lineWidth = (isAccentLine ? 1.4 : 1) * dpr;
       ctx.stroke();
     }
     t++;
