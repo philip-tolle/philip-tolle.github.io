@@ -919,8 +919,7 @@ a.offercard:hover .postcard__title{color:var(--facc)}
   .stepdetail article,.ampelrow p{animation:none}
 }
 
-/* ================= STARTSEITE: OPTIONALER DUNKELMODUS =================
-   Bewusst nur aktiv, wenn die Startseite im Head die Klasse home-theme setzt. */
+/* ================= WEBSITEWEITER DUNKELMODUS ================= */
 html.home-theme[data-home-theme="dark"]{
   color-scheme:dark;
   --paper:#08121F;--paper2:#101B29;--white:#F8F7F2;
@@ -931,11 +930,18 @@ html.home-theme[data-home-theme="dark"]{
   --glass:rgba(16,27,41,.72);--glass-edge:rgba(248,247,242,.2);
   --glow:0 0 70px rgba(229,162,84,.19);
   --shadow:0 24px 70px rgba(1,6,16,.46);
+  --surface:rgba(16,27,41,.78);--surface-strong:rgba(16,27,41,.94);
+  --field:#122234;--control-border:rgba(248,247,242,.36);
+  --inset:rgba(248,247,242,.08);--inverse-bg:#010610;
+  --error:#FF9B7D;
   background:var(--paper);
 }
 html.home-theme[data-home-theme="dark"] main{--acc-rgb:127,179,158}
+html.home-theme[data-home-theme="dark"] main.acc-blue{--acc-rgb:140,180,216}
+html.home-theme[data-home-theme="dark"] main.acc-amber{--acc-rgb:217,161,91}
 html.home-theme[data-home-theme="dark"] body{background:var(--paper)}
 html.home-theme[data-home-theme="dark"] :focus-visible{outline-color:#E5A254}
+html.home-theme[data-home-theme="dark"] ::selection{background:rgba(229,162,84,.28)}
 
 /* Navigation + Umschalter */
 html.home-theme[data-home-theme="dark"] .header.solid{
@@ -946,7 +952,7 @@ html.home-theme[data-home-theme="dark"] .overlay{
 html.home-theme[data-home-theme="dark"] .overlay a.is-active{color:var(--green)}
 html.home-theme[data-home-theme="dark"] .theme-toggle{
   color:var(--dim);background:rgba(16,27,41,.82);
-  border-color:rgba(248,247,242,.32)}
+  border-color:var(--control-border)}
 html.home-theme[data-home-theme="dark"] .theme-toggle:hover{
   color:var(--ink);border-color:var(--wood)}
 
@@ -1043,6 +1049,107 @@ html.home-theme[data-home-theme="dark"] .newscard__kick--angebot{
 html.home-theme[data-home-theme="dark"] .offercard.newscard:hover{
   background:var(--nc-tint);border-color:var(--nc-bd);
   box-shadow:0 18px 42px -20px var(--nc-sh),inset 0 1px 0 rgba(248,247,242,.08)}
+
+/* Unterseiten-Bühnen: Bild bleibt erkennbar, Text liegt auf dunklem Navy */
+html.home-theme[data-home-theme="dark"] .pagehead--photo .pagehead__bg{
+  filter:grayscale(1) sepia(.18) brightness(.55) contrast(1.08)}
+html.home-theme[data-home-theme="dark"] .pagehead--photo::after{
+  background:linear-gradient(180deg,
+    rgba(8,18,31,.36) 0%,rgba(8,18,31,.48) 30%,
+    rgba(8,18,31,.72) 55%,rgba(8,18,31,.94) 76%,var(--paper) 100%)}
+html.home-theme[data-home-theme="dark"] .pagehead--art h1{color:var(--ink)}
+html.home-theme[data-home-theme="dark"] .pagehead--art .lead{color:var(--dim)}
+html.home-theme[data-home-theme="dark"] .pagehead--art .eyebrow{color:var(--acc)}
+html.home-theme[data-home-theme="dark"] .pagehead--art .pagehead__bg{
+  filter:contrast(.94) brightness(.53) saturate(.72) blur(.4px)}
+html.home-theme[data-home-theme="dark"] .pagehead--art::after{
+  background:
+    linear-gradient(90deg,rgba(8,18,31,.66) 0%,rgba(8,18,31,.3) 30%,transparent 56%),
+    linear-gradient(180deg,rgba(8,18,31,.42) 0%,rgba(8,18,31,.34) 30%,
+      rgba(8,18,31,.68) 58%,rgba(8,18,31,.94) 78%,var(--paper) 100%)}
+
+/* Gemeinsame Glasflächen und die lokal definierten Unterseiten-Karten */
+html.home-theme[data-home-theme="dark"] :is(
+  .storybox,.gangs,.bill,.calc__panel,.portrait,.deckoffer,.chip,
+  .trio__cell,.qcell,.stepbtn,.stepdetail,.ampelrow,.dcell,
+  .faqrow,.projekt,.paket,.kachel,.bstein,.fixcell,
+  .kompbtn,.komp__panel,.kompass__options button,.kompass__result > div,
+  .profilkarte,.audioplayer
+){
+  color:var(--ink);background:var(--surface);border-color:var(--glass-edge)}
+html.home-theme[data-home-theme="dark"] :is(
+  .storybox,.gangs,.bill,.calc__panel,.portrait,.deckoffer,.qcell,.stepdetail,
+  .projekt,.paket,.bstein,.komp__panel,.profilkarte,.audioplayer
+){
+  box-shadow:var(--shadow),inset 0 1px 0 var(--inset),
+    inset 0 0 0 1px rgba(248,247,242,.025)}
+html.home-theme[data-home-theme="dark"] :is(
+  .faqrow[open],.ampelrow.is-open,.kompbtn:hover,.kompbtn[aria-pressed="true"],
+  .kompass__options button[aria-pressed="true"],.stepbtn[aria-current="true"]
+){
+  background:rgba(var(--acc-rgb),.12);border-color:rgba(var(--acc-rgb),.52)}
+
+/* Papierdetails, Medaillons und Symbole */
+html.home-theme[data-home-theme="dark"] :is(
+  .coin--glyph,.coin--art,.blogcover--empty,.wert__ico,.bstein__ico
+){
+  background:radial-gradient(circle at 50% 28%,#162437,var(--paper2));
+  border-color:var(--glass-edge)}
+html.home-theme[data-home-theme="dark"] :is(
+  .deckblatt__stamp,.flip__hint,.bstein__tag,.karteikarte__status
+){
+  background:var(--surface-strong);border-color:currentColor}
+html.home-theme[data-home-theme="dark"] .deckblatt{
+  box-shadow:0 20px 44px -22px rgba(var(--acc-rgb),.45),
+    inset 0 1px 0 var(--inset)}
+
+/* Karteikarten behalten ihre feinen Schreiblinien */
+html.home-theme[data-home-theme="dark"] .karteikarte{
+  background:
+    repeating-linear-gradient(transparent 0,transparent calc(1.7rem - 1px),
+      rgba(201,149,101,.1) calc(1.7rem - 1px),rgba(201,149,101,.1) 1.7rem),
+    var(--surface-strong);
+  border-color:var(--glass-edge);
+  box-shadow:var(--shadow),inset 0 1px 0 var(--inset)}
+html.home-theme[data-home-theme="dark"] .karteikarte:hover{
+  box-shadow:var(--shadow),var(--glow),inset 0 1px 0 var(--inset)}
+
+/* Formulare und interaktive Detailflächen */
+html.home-theme[data-home-theme="dark"] :is(.field input,.field textarea,.field select){
+  color:var(--ink);caret-color:var(--amber-soft);
+  background:var(--field);border-color:var(--control-border)}
+html.home-theme[data-home-theme="dark"] :is(.field input,.field textarea)::placeholder{
+  color:var(--faint);opacity:1}
+html.home-theme[data-home-theme="dark"] :is(.field input,.field textarea):-webkit-autofill{
+  -webkit-text-fill-color:var(--ink);
+  -webkit-box-shadow:0 0 0 1000px var(--field) inset;
+  transition:background-color 9999s ease-out}
+html.home-theme[data-home-theme="dark"] :is(.field .err,.check .err){color:var(--error)}
+html.home-theme[data-home-theme="dark"] :is(
+  .field.has-err input,.field.has-err textarea,.field.has-err select
+){border-color:var(--error)}
+html.home-theme[data-home-theme="dark"] .stepdialog{
+  color:var(--ink);background:var(--surface-strong);
+  border-color:var(--control-border);
+  box-shadow:0 40px 90px rgba(1,6,16,.68)}
+html.home-theme[data-home-theme="dark"] .stepdialog::backdrop{
+  background:rgba(1,6,16,.68)}
+html.home-theme[data-home-theme="dark"] .stepdialog__close:hover{
+  background:rgba(248,247,242,.08)}
+html.home-theme[data-home-theme="dark"] .stepnav button{
+  border-color:var(--control-border)}
+
+/* Feine Linien und Bildabstimmungen */
+html.home-theme[data-home-theme="dark"] .bl .dots{
+  border-bottom-color:rgba(248,247,242,.2)}
+html.home-theme[data-home-theme="dark"] .kurs__track{
+  stroke:rgba(248,247,242,.16)}
+html.home-theme[data-home-theme="dark"] .blogcover{
+  filter:contrast(.94) brightness(.78) saturate(.8)}
+html.home-theme[data-home-theme="dark"] .ctabox{
+  color:#F4ECDD;background:var(--inverse-bg);
+  border:1px solid var(--glass-edge);
+  box-shadow:0 40px 90px -48px rgba(1,6,16,.92)}
 
 @media(prefers-reduced-motion:reduce){
   .home-theme body,.home-theme .header,.home-theme .theme-toggle{transition:none}

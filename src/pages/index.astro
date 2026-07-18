@@ -18,28 +18,6 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
   title="NextCourse — Bildungs-, Beratungs- und Umsetzungspartner für das Gastgewerbe"
   description="NextCourse ist der Bildungs-, Beratungs- und Umsetzungspartner für das deutsche Gastgewerbe: KI-Beratung und Digitalisierung für Betriebe, Kurse und Weiterbildung in der Akademie — aus Würzburg, im Einsatz in Mainfranken."
 >
-  <meta slot="head" name="theme-color" content="#F7F4EF" data-home-theme-color>
-  <script is:inline slot="head">
-    (() => {
-      const root = document.documentElement;
-      const storageKey = 'nextcourse-home-theme';
-      let stored = null;
-      try {
-        stored = localStorage.getItem(storageKey);
-      } catch {
-        // Die Systemeinstellung bleibt der sichere Fallback.
-      }
-      const theme = stored === 'dark' || stored === 'light'
-        ? stored
-        : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      root.classList.add('home-theme');
-      root.dataset.homeTheme = theme;
-      root.style.colorScheme = theme;
-      document.querySelector('meta[data-home-theme-color]')
-        ?.setAttribute('content', theme === 'dark' ? '#08121F' : '#F7F4EF');
-    })();
-  </script>
-
   <!-- FLOOR 1: Das Logo als Bühne -->
   <div class="floor hero">
     <div class="wrap" style="text-align:center">

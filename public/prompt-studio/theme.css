@@ -1,0 +1,278 @@
+/* Websiteweite NextCourse-Farben für die separat gebaute Prompt-Studio-App. */
+.ps-theme-toggle{
+  position:fixed;
+  top:13px;
+  right:22px;
+  z-index:90;
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  padding:0;
+  color:var(--ink-muted);
+  background:rgba(255,255,255,.78);
+  border:1px solid var(--line-strong);
+  border-radius:50%;
+  box-shadow:var(--shadow-sm);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  transition:color .2s,background .25s,border-color .25s,transform .2s;
+}
+.ps-theme-toggle:hover{
+  color:var(--ink);
+  border-color:var(--wood);
+  transform:translateY(-1px);
+}
+.ps-theme-toggle svg{
+  width:19px;
+  height:19px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.65;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.ps-theme-toggle__sun{display:none}
+
+@media(min-width:701px){
+  .topbar{padding-right:88px}
+}
+@media(max-width:700px){
+  .ps-theme-toggle{top:9px;right:9px}
+  .topbar{padding-right:61px}
+}
+
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --navy:#7FB39E;
+  --navy-deep:#F8F7F2;
+  --navy-soft:rgba(127,179,158,.13);
+  --cyan:#7FB39E;
+  --cyan-soft:rgba(127,179,158,.13);
+  --gold:#D9A15B;
+  --gold-soft:rgba(217,161,91,.14);
+  --wood:#C99565;
+  --ink:#F8F7F2;
+  --ink-muted:#D4D9DF;
+  --ink-faint:#98A5B3;
+  --surface:#101B29;
+  --background:#08121F;
+  --surface-alt:#122234;
+  --line:rgba(248,247,242,.13);
+  --line-strong:rgba(248,247,242,.28);
+  --success:#79CFA9;
+  --success-soft:rgba(121,207,169,.13);
+  --warning:#F1B36C;
+  --warning-soft:rgba(241,179,108,.14);
+  --danger:#FF9B7D;
+  --danger-soft:rgba(255,155,125,.13);
+  --shadow-sm:0 1px 2px rgba(1,6,16,.22),0 8px 22px rgba(1,6,16,.25);
+  --shadow-md:0 18px 46px rgba(1,6,16,.42);
+  background:var(--background);
+}
+html[data-theme="dark"] body{background:var(--background)}
+html[data-theme="dark"] ::selection{background:rgba(229,162,84,.28)}
+html[data-theme="dark"] .ps-theme-toggle{
+  color:var(--ink-muted);
+  background:rgba(16,27,41,.86);
+  border-color:rgba(248,247,242,.36);
+  box-shadow:0 12px 30px rgba(1,6,16,.4);
+}
+html[data-theme="dark"] .ps-theme-toggle__moon{display:none}
+html[data-theme="dark"] .ps-theme-toggle__sun{display:block}
+
+/* Tragende Flächen */
+html[data-theme="dark"] :is(
+  .sidebar,.stats-panel,.quick-action,.library-card,.section-card,
+  .preview-layout,.preview-output-panel,.current-version-card,.version-card,
+  .modal,.structure-summary>div
+){
+  background:var(--surface);
+  border-color:var(--line);
+  box-shadow:var(--shadow-sm);
+}
+html[data-theme="dark"] :is(
+  .topbar,.editor-header,.editor-tabs,.mobile-bottom-nav
+){
+  background:rgba(8,18,31,.88);
+  border-color:var(--line);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+html[data-theme="dark"] :is(
+  .global-search,.segmented-control,.variable-row,.input-definition-row,
+  .step-card,.preview-input-panel,.create-options>button,.loading-screen
+){
+  background:var(--surface-alt);
+  border-color:var(--line);
+}
+html[data-theme="dark"] :is(
+  .global-search:focus-within,.global-search kbd,.secondary-button,.icon-button,
+  .segmented-control button.active,.filter-button,.filter-select,.back-button,
+  .hover-menu,.step-reorder button,.linked-prompt-select,.create-options>button:hover
+){
+  color:var(--ink);
+  background:var(--surface-strong,#162437);
+  border-color:var(--line-strong);
+}
+html[data-theme="dark"] :is(
+  .main-nav>button:hover,.icon-button:hover:not(:disabled),
+  .secondary-button:hover:not(:disabled),.hover-menu button:hover
+){
+  background:rgba(248,247,242,.07);
+}
+
+/* Akzentuierte Karten und Navigation */
+html[data-theme="dark"] .sidebar-tip{
+  background:linear-gradient(140deg,rgba(127,179,158,.12),rgba(16,27,41,.92));
+  border-color:rgba(127,179,158,.3);
+}
+html[data-theme="dark"] .continue-card{
+  background:
+    radial-gradient(circle at 80% 25%,rgba(127,179,158,.16),transparent 30%),
+    linear-gradient(120deg,var(--surface) 15%,#10251F);
+  border-color:rgba(127,179,158,.28);
+}
+html[data-theme="dark"] .coming-soon-card{
+  background:
+    radial-gradient(circle at 95% 0%,rgba(127,179,158,.16),transparent 40%),
+    var(--surface);
+}
+html[data-theme="dark"] .main-nav>button.active{
+  color:var(--green,#7FB39E);
+  background:rgba(127,179,158,.13);
+}
+html[data-theme="dark"] :is(
+  .nav-count,.status-draft,.status-archived,.tag-row span,.quick-arrow,
+  .card-actions button,.editor-tabs button span,.empty-icon,.modal-close
+){
+  color:var(--ink-muted);
+  background:rgba(248,247,242,.07);
+}
+html[data-theme="dark"] .main-nav>button.active .nav-count{
+  color:var(--cyan);
+  background:rgba(127,179,158,.16);
+}
+html[data-theme="dark"] :is(.brand-mark,.tip-icon,.continue-arrow){
+  background:var(--surface-strong,#162437);
+  border-color:var(--line);
+}
+html[data-theme="dark"] .empty-state{
+  background:rgba(16,27,41,.72);
+  border-color:var(--line);
+}
+
+/* Eingaben und Editor */
+html[data-theme="dark"] :is(
+  .field input:not([type=checkbox]):not([type=range]),.field textarea,.field select,
+  .input-definition-row input,.variable-row input,.step-card input,.step-card textarea
+){
+  color:var(--ink);
+  caret-color:#E5A254;
+  background:#122234;
+  border-color:rgba(248,247,242,.3);
+}
+html[data-theme="dark"] :is(
+  .field input:not([type=checkbox]):not([type=range]):focus,.field textarea:focus,
+  .field select:focus,.input-definition-row input:focus,.variable-row input:focus,
+  .step-card input:focus,.step-card textarea:focus
+){
+  color:var(--ink);
+  background:#16283D;
+  border-color:var(--cyan);
+}
+html[data-theme="dark"] :is(
+  .field input::placeholder,.field textarea::placeholder,
+  .input-definition-row input::placeholder,.variable-row input::placeholder,
+  .step-card input::placeholder,.step-card textarea::placeholder,
+  .global-search input::placeholder
+){
+  color:var(--ink-faint);
+  opacity:1;
+}
+html[data-theme="dark"] :is(
+  .field input,.field textarea,.global-search input
+):-webkit-autofill{
+  -webkit-text-fill-color:var(--ink);
+  -webkit-box-shadow:0 0 0 1000px #122234 inset;
+  transition:background-color 9999s ease-out;
+}
+html[data-theme="dark"] .preview-output-panel pre{
+  color:#DEECE6;
+  background:#010610;
+  border:1px solid var(--line);
+}
+
+/* Typografie: fest codierte Grautöne der gebauten App aufhellen */
+html[data-theme="dark"] :is(
+  .main-nav>button,.sidebar-tip p,.offline-badge,.global-search,
+  .save-indicator,.icon-button,.continue-copy>p,.continue-meta,
+  .stat-item span,.section-title-row p,.quick-action p,
+  .library-card .card-main>p,.mini-quality,.segmented-control button,
+  .filter-button,.filter-select,.active-search-note,.empty-state p,
+  .back-button,.hover-menu button,.editor-tabs button,.section-card-header p,
+  .field-label,.inline-check,.linked-prompt-select,.quality-check-list>div,
+  .next-step strong,.preview-heading p,.versions-heading p,.preview-info,
+  .skill-step-preview p,.current-version-card p,.version-card p,.version-score,
+  .settings-action-row p,.storage-summary p,.coming-soon-content p,
+  .modal>p,.create-options p,.loading-screen,.mobile-bottom-nav button
+){
+  color:var(--ink-muted);
+}
+html[data-theme="dark"] :is(
+  .sidebar-section-label,.global-search kbd,.stat-item small,.quick-eyebrow,
+  .quick-arrow,.card-footer,.card-actions button,.segmented-control button span,
+  .field-hint,.input-definition-row,.step-card-top,.quality-summary span,
+  .output-toolbar small,.structure-summary span,.storage-ring small,
+  .create-options>button>div>span,.create-options>button>svg
+){
+  color:var(--ink-faint);
+}
+html[data-theme="dark"] :is(
+  .skill-step-preview strong,.settings-action-row strong,.storage-summary strong
+){
+  color:var(--ink);
+}
+
+/* Statusfarben */
+html[data-theme="dark"] :is(
+  .type-prompt,.prompt-stat,.prompt-action .quick-icon,.card-type-prompt,
+  .status-tested,.variable-row code,.next-step span,.skill-step-preview small,
+  .settings-icon.import,.coming-soon-badge,.create-option-icon.prompt
+){
+  color:var(--cyan);
+}
+html[data-theme="dark"] :is(
+  .type-skill,.skill-stat,.skill-action .quick-icon,.card-type-skill,
+  .status-ready,.filter-button.active,.card-actions .favorite.active,
+  .heart-active,.warning-box,.create-option-icon.skill
+){
+  color:var(--gold);
+}
+html[data-theme="dark"] :is(.primary-button,.mobile-bottom-nav button.mobile-new){
+  color:#fff;
+  background:#315F4D;
+  border-color:#315F4D;
+}
+html[data-theme="dark"] .primary-button:hover{background:#244A3C}
+html[data-theme="dark"] .danger-button{color:#fff;background:#A9444D;border-color:#A9444D}
+
+/* Kleine Kontrastdetails */
+html[data-theme="dark"] :is(.quality-ring:before,.storage-ring:before){
+  background:var(--surface);
+}
+html[data-theme="dark"] :is(.mini-quality-track,.loading-line,.step-rail i){
+  background:rgba(248,247,242,.13);
+}
+html[data-theme="dark"] :is(
+  .stat-item,.card-footer,.library-toolbar,.quality-summary,.settings-action-row
+){
+  border-color:var(--line);
+}
+html[data-theme="dark"] .avatar{border-color:var(--background)}
+html[data-theme="dark"] .visual-center{border-color:rgba(248,247,242,.2)}
+html[data-theme="dark"] .modal-backdrop{background:rgba(1,6,16,.72)}
+
+@media(prefers-reduced-motion:reduce){
+  .ps-theme-toggle{transition:none}
+}
