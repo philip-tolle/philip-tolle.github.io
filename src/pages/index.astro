@@ -6,9 +6,6 @@ import Icon from '../components/Icon.astro';
 import BlogCover from '../components/BlogCover.astro';
 import logo from '../assets/nc-logo.png';
 import philip from '../assets/philip.png';
-import bannerConsulting from '../assets/banner-consulting-v4.png';
-import bannerAkademie from '../assets/banner-akademie-v4.png';
-import bannerOperation from '../assets/banner-operation.png';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -59,38 +56,64 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
     </div>
   </div>
 
-  <!-- FLOOR 2: Die Weiche — Consulting, Academy oder Operation -->
-  <div class="floor" id="wahl">
-    <div class="wrap">
-      <div class="menuhead">
-        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Drei Wege</p>
-        <h2 class="reveal">Was führt Sie zu uns?</h2>
+  <!-- FLOOR 2: Drei klar getrennte Wege -->
+  <section class="floor wege-section" id="wahl" aria-labelledby="wege-heading">
+    <div class="wege-panel">
+      <div class="wege-panel__inner">
+        <div class="wege-intro reveal">
+          <p class="wege-kicker">Drei Wege</p>
+          <h2 class="wege-title" id="wege-heading">
+            <span>Ein Partner.</span>
+            <span>Drei Formen der</span>
+            <span>Entlastung.</span>
+          </h2>
+          <p class="wege-copy">Was führt Sie zu uns? Wählen Sie den Weg, der zu Ihrer aktuellen Aufgabe passt.</p>
+        </div>
+
+        <nav class="wege-nav" aria-label="Leistungsbereiche">
+          <ol class="wege-list">
+            <li class="wege-item reveal" style="--wege-delay:.04s">
+              <a class="wege-link" href="/consulting/">
+                <span class="wege-link__number" aria-hidden="true">01</span>
+                <span class="wege-link__body">
+                  <span class="wege-link__title">Consulting</span>
+                  <span class="wege-link__claim">Beratung, die ankommt.</span>
+                  <span class="wege-link__audience">Für Betriebe, die Lösungen suchen</span>
+                </span>
+                <span class="wege-link__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li class="wege-item reveal" style="--wege-delay:.10s">
+              <a class="wege-link" href="/akademie/">
+                <span class="wege-link__number" aria-hidden="true">02</span>
+                <span class="wege-link__body">
+                  <span class="wege-link__title">Academy</span>
+                  <span class="wege-link__claim">Weiterbildung, die wirkt.</span>
+                  <span class="wege-link__audience">Für alle, die weiterkommen wollen</span>
+                </span>
+                <span class="wege-link__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li class="wege-item reveal" style="--wege-delay:.16s">
+              <a class="wege-link" href="/operation/">
+                <span class="wege-link__number" aria-hidden="true">03</span>
+                <span class="wege-link__body">
+                  <span class="wege-link__title">Operation</span>
+                  <span class="wege-link__claim">Entlastung mit Wert.</span>
+                  <span class="wege-link__audience">Für Häuser mit mehr Aufgaben als Zeit</span>
+                </span>
+                <span class="wege-link__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+          </ol>
+        </nav>
       </div>
-      <div class="fork">
-        <a class="forkcard reveal" href="/consulting/">
-          <Image class="forkcard__img" src={bannerConsulting} alt="" width={760} format="webp" quality={72} />
-          <h3>NextCourse Consulting</h3>
-          <p class="voice">Beratung, die ankommt.</p>
-          <p class="forkcard__aud">Für Betriebe, die Lösungen suchen</p>
-        </a>
-        <a class="forkcard forkcard--akademie reveal" href="/akademie/">
-          <Image class="forkcard__img" src={bannerAkademie} alt="" width={760} format="webp" quality={72} />
-          <h3>NextCourse Academy</h3>
-          <p class="voice">Weiterbildung, die wirkt.</p>
-          <p class="forkcard__aud">Für alle, die weiterkommen wollen</p>
-        </a>
-        <a class="forkcard forkcard--operation reveal" href="/operation/">
-          <Image class="forkcard__img" src={bannerOperation} alt="" width={760} format="webp" quality={72} />
-          <h3>NextCourse Operation</h3>
-          <p class="voice">Entlastung mit Wert.</p>
-          <p class="forkcard__aud">Für Häuser mit mehr Aufgaben als Zeit</p>
-        </a>
-      </div>
-      <a class="scrollhint" href="#idee" aria-label="Weiter zur Idee hinter NextCourse">
+
+      <a class="scrollhint wege-scrollhint" href="#idee" aria-label="Weiter zur Idee hinter NextCourse">
         <span class="hintword">Entdecken</span><span class="bar" aria-hidden="true"></span>
       </a>
     </div>
-  </div>
+  </section>
 
   <!-- FLOOR 3: Die Idee hinter NextCourse — ein Bildschirm -->
   <div class="floor" id="idee" style="padding:5rem 0 1.6rem">
@@ -267,6 +290,282 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
 </Base>
 
 <style>
+  /* Drei Wege: eigenständige Editorial-Fläche, ohne Einfluss auf den Rest der Seite */
+  .wege-section{
+    --wege-edge:.75rem;
+    --wege-outer:#F7F4EF;
+    --wege-panel:#EFEAE2;
+    --wege-text:#26221B;
+    --wege-claim:#5C564B;
+    --wege-muted:#807669;
+    --wege-accent:#3F5E7E;
+    --wege-line:rgba(63,94,126,.2);
+    --wege-hover:rgba(63,94,126,.045);
+    min-height:0;
+    align-items:stretch;
+    padding:4rem 0 1.5rem;
+    background:var(--wege-outer);
+    overflow:clip;
+  }
+  :global(html.home-theme[data-home-theme="dark"]) .wege-section{
+    --wege-outer:#061522;
+    --wege-panel:#0D2232;
+    --wege-text:#F3F7FA;
+    --wege-claim:#D1DAE1;
+    --wege-muted:#93A7B5;
+    --wege-accent:#82B9DB;
+    --wege-line:rgba(130,185,219,.18);
+    --wege-hover:rgba(130,185,219,.05);
+  }
+  .wege-panel{
+    position:relative;
+    width:calc(100% - var(--wege-edge));
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:3.75rem 0 3.4rem;
+    color:var(--wege-text);
+    background:var(--wege-panel);
+  }
+  .wege-panel__inner{
+    display:grid;
+    gap:2.75rem;
+    width:100%;
+    padding:0 1.25rem;
+  }
+  .wege-intro{max-width:42rem}
+  .wege-kicker{
+    margin:0 0 1.65rem;
+    color:var(--wege-accent);
+    font-family:var(--body);
+    font-size:.72rem;
+    font-weight:500;
+    line-height:1.4;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+  }
+  .wege-panel .wege-title{
+    max-width:none;
+    margin:0;
+    color:var(--wege-text);
+    font-family:var(--disp);
+    font-size:clamp(2.35rem,10.6vw,3rem);
+    font-weight:400;
+    line-height:1.04;
+    letter-spacing:-.018em;
+  }
+  .wege-title span{display:block}
+  .wege-title span:nth-child(2){white-space:nowrap}
+  .wege-copy{
+    max-width:31ch;
+    margin:1.8rem 0 0;
+    color:var(--wege-claim);
+    font-size:1rem;
+    line-height:1.65;
+  }
+  .wege-nav{min-width:0}
+  .wege-list{
+    position:relative;
+    margin:0;
+    padding:0;
+    list-style:none;
+  }
+  .wege-list::before,
+  .wege-item::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:-.5rem;
+    height:1px;
+    background:var(--wege-line);
+    pointer-events:none;
+  }
+  .wege-list::before{top:0}
+  .wege-item{position:relative;transition-delay:var(--wege-delay,0s)}
+  .wege-item::after{bottom:0}
+  .wege-link{
+    position:relative;
+    isolation:isolate;
+    min-height:6.5rem;
+    display:grid;
+    grid-template-columns:2rem minmax(0,1fr) 1.4rem;
+    gap:.8rem;
+    align-items:center;
+    padding:1.5rem 0;
+    color:var(--wege-text);
+    text-decoration:none;
+  }
+  .wege-link::before{
+    content:"";
+    position:absolute;
+    z-index:0;
+    inset:0 -.5rem 0 0;
+    background:var(--wege-hover);
+    opacity:0;
+    transition:opacity .24s ease;
+  }
+  .wege-link > span{position:relative;z-index:1}
+  .wege-link__number{
+    align-self:center;
+    color:var(--wege-accent);
+    font-family:var(--body);
+    font-size:.76rem;
+    font-weight:500;
+    letter-spacing:.08em;
+    font-variant-numeric:tabular-nums;
+  }
+  .wege-link__body{
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    transition:transform .24s ease;
+  }
+  .wege-link__title{
+    color:var(--wege-text);
+    font-family:var(--disp);
+    font-size:clamp(1.75rem,8vw,2rem);
+    font-weight:400;
+    line-height:1.08;
+    letter-spacing:-.012em;
+    transition:color .24s ease;
+  }
+  .wege-link__claim{
+    margin-top:.5rem;
+    color:var(--wege-claim);
+    font-size:1rem;
+    line-height:1.4;
+  }
+  .wege-link__audience{
+    margin-top:.42rem;
+    color:var(--wege-muted);
+    font-size:.82rem;
+    line-height:1.5;
+  }
+  .wege-link__arrow{
+    justify-self:end;
+    color:var(--wege-accent);
+    font-family:var(--body);
+    font-size:1.15rem;
+    font-weight:300;
+    line-height:1;
+    transition:color .24s ease,transform .24s ease;
+  }
+  .wege-link:hover::before,
+  .wege-link:focus-visible::before{opacity:1}
+  .wege-link:hover .wege-link__title,
+  .wege-link:focus-visible .wege-link__title{color:var(--wege-accent)}
+  .wege-link:hover .wege-link__body,
+  .wege-link:focus-visible .wege-link__body{transform:translateX(.25rem)}
+  .wege-link:hover .wege-link__arrow,
+  .wege-link:focus-visible .wege-link__arrow{transform:translate(.18rem,-.18rem)}
+  .wege-link:focus-visible{
+    outline:2px solid var(--wege-accent);
+    outline-offset:-3px;
+    border-radius:0;
+  }
+  .wege-scrollhint{
+    position:absolute;
+    left:50vw;
+    bottom:.85rem;
+    margin:0;
+    transform:translateX(-50%);
+  }
+  .wege-scrollhint .hintword{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .wege-scrollhint .bar{
+    width:48px;
+    height:6px;
+    border:1px solid var(--wege-line);
+    border-radius:999px;
+    background:transparent;
+  }
+  .wege-scrollhint .bar::after{display:none}
+
+  @media(min-width:720px){
+    .wege-section{
+      --wege-edge:2rem;
+      padding:5rem 0 2rem;
+    }
+    .wege-panel{padding:4.5rem 0 4rem}
+    .wege-panel__inner{
+      gap:3.5rem;
+      padding:0 clamp(2rem,6vw,4rem);
+    }
+    .wege-panel .wege-title{font-size:clamp(3.5rem,7vw,4.5rem)}
+    .wege-copy{max-width:34ch;font-size:1.08rem}
+    .wege-list::before,
+    .wege-item::after{right:-1rem}
+    .wege-link{
+      min-height:8.4rem;
+      grid-template-columns:3.5rem minmax(0,1fr) 2rem;
+      gap:1rem;
+      padding:1.7rem 0;
+    }
+    .wege-link::before{right:-1rem}
+    .wege-link__number{font-size:.82rem}
+    .wege-link__title{font-size:clamp(2rem,4.5vw,2.65rem)}
+    .wege-link__claim{font-size:1.06rem}
+    .wege-link__audience{font-size:.88rem}
+    .wege-link__arrow{font-size:1.28rem}
+  }
+
+  @media(min-width:1120px){
+    .wege-section{
+      --wege-edge:7.5vw;
+      min-height:100svh;
+      padding:8svh 0 2svh;
+    }
+    .wege-panel{
+      min-height:90svh;
+      padding:0;
+    }
+    .wege-panel__inner{
+      grid-template-columns:minmax(0,.78fr) minmax(0,1fr);
+      gap:6vw;
+      align-items:center;
+      padding:0 0 0 7.4vw;
+    }
+    .wege-panel .wege-title{
+      font-size:clamp(3.6rem,4.9vw,6.25rem);
+      line-height:1.03;
+    }
+    .wege-copy{
+      margin-top:2.15rem;
+      font-size:clamp(1.05rem,1.05vw,1.15rem);
+    }
+    .wege-list::before,
+    .wege-item::after{right:calc(var(--wege-edge) * -.5)}
+    .wege-link{
+      min-height:clamp(10rem,20.2svh,13.3rem);
+      grid-template-columns:4.5rem minmax(0,1fr) 2.25rem;
+      gap:1.4rem;
+      padding:clamp(1.65rem,2.5vw,2.5rem) 0;
+    }
+    .wege-link::before{right:calc(var(--wege-edge) * -.5)}
+    .wege-link__title{font-size:clamp(2.15rem,2.55vw,3.1rem)}
+    .wege-link__claim{font-size:clamp(1rem,1.2vw,1.25rem)}
+    .wege-link__audience{font-size:clamp(.88rem,.82vw,.94rem)}
+    .wege-link__arrow{
+      --wege-arrow-shift:calc(var(--wege-edge) * .48);
+      transform:translateX(var(--wege-arrow-shift));
+    }
+    .wege-link:hover .wege-link__arrow,
+    .wege-link:focus-visible .wege-link__arrow{
+      transform:translate(calc(var(--wege-arrow-shift) + .18rem),-.18rem);
+    }
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    .wege-item{transition-delay:0s}
+    .wege-link::before,
+    .wege-link__body,
+    .wege-link__title,
+    .wege-link__arrow{transition:none}
+    .wege-link:hover .wege-link__body,
+    .wege-link:focus-visible .wege-link__body{transform:none}
+  }
+
   /* Aus dem Blog: laufendes Band */
   .blogband{margin-top:2.6rem;overflow:hidden}
   .blogband--marquee{
