@@ -1,9 +1,28 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#33604f" />
+    <meta name="theme-color" content="#F7F4EF" data-theme-color />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const storageKey = 'nextcourse-home-theme';
+        let stored = null;
+        try {
+          stored = localStorage.getItem(storageKey);
+        } catch {
+          // Die Systemeinstellung bleibt der sichere Fallback.
+        }
+        const theme = stored === 'dark' || stored === 'light'
+          ? stored
+          : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        root.dataset.theme = theme;
+        root.style.colorScheme = theme;
+        document.querySelector('meta[data-theme-color]')
+          ?.setAttribute('content', theme === 'dark' ? '#08121F' : '#F7F4EF');
+      })();
+    </script>
     <meta
       name="description"
       content="NextCourse Prompt Studio – Prompts und KI-Skills entwickeln, testen und wiederverwenden."
@@ -22,8 +41,71 @@
     <title>NextCourse Prompt Studio</title>
     <script type="module" crossorigin src="./assets/index-Ct8QmA9N.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-nrcVORzu.css">
+    <link rel="stylesheet" href="./theme.css">
   </head>
   <body>
     <div id="root"></div>
+    <button
+      type="button"
+      class="ps-theme-toggle"
+      data-theme-toggle
+      aria-label="Dunkelmodus aktivieren"
+      aria-pressed="false"
+    >
+      <svg class="ps-theme-toggle__moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.4 15.2A8.5 8.5 0 0 1 8.8 3.6 8.5 8.5 0 1 0 20.4 15.2Z"></path>
+      </svg>
+      <svg class="ps-theme-toggle__sun" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="3.5"></circle>
+        <path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"></path>
+      </svg>
+    </button>
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const toggle = document.querySelector('[data-theme-toggle]');
+        const storageKey = 'nextcourse-home-theme';
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        const storedTheme = () => {
+          try {
+            const value = localStorage.getItem(storageKey);
+            return value === 'dark' || value === 'light' ? value : null;
+          } catch {
+            return null;
+          }
+        };
+
+        const applyTheme = (theme) => {
+          root.dataset.theme = theme;
+          root.style.colorScheme = theme;
+          toggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+          toggle.setAttribute(
+            'aria-label',
+            theme === 'dark' ? 'Hellmodus aktivieren' : 'Dunkelmodus aktivieren',
+          );
+          document.querySelector('meta[data-theme-color]')
+            ?.setAttribute('content', theme === 'dark' ? '#08121F' : '#F7F4EF');
+        };
+
+        applyTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
+
+        toggle.addEventListener('click', () => {
+          const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          try {
+            localStorage.setItem(storageKey, nextTheme);
+          } catch {
+            // Der Umschalter funktioniert auch ohne lokalen Speicher.
+          }
+          applyTheme(nextTheme);
+        });
+
+        systemTheme.addEventListener('change', (event) => {
+          if (!storedTheme()) {
+            applyTheme(event.matches ? 'dark' : 'light');
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

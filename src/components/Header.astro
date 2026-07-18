@@ -12,7 +12,6 @@ const links = [
   { href: '/kontakt/', label: 'Kontakt', overlayLabel: 'Kontakt' },
 ];
 const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
-const isHome = current === '/';
 const isActive = (href: string) => {
   const h = href.replace(/\/+$/, '') || '/';
   return h === current || (h !== '/' && current.startsWith(h + '/'));
@@ -36,23 +35,21 @@ const isActive = (href: string) => {
           >{l.label}</a>
         ))}
       </nav>
-      {isHome && (
-        <button
-          type="button"
-          class="theme-toggle"
-          data-home-theme-toggle
-          aria-label="Dunkelmodus"
-          aria-pressed="false"
-        >
-          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20.4 15.2A8.5 8.5 0 0 1 8.8 3.6 8.5 8.5 0 1 0 20.4 15.2Z"></path>
-          </svg>
-          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="3.5"></circle>
-            <path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"></path>
-          </svg>
-        </button>
-      )}
+      <button
+        type="button"
+        class="theme-toggle"
+        data-home-theme-toggle
+        aria-label="Dunkelmodus aktivieren"
+        aria-pressed="false"
+      >
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.4 15.2A8.5 8.5 0 0 1 8.8 3.6 8.5 8.5 0 1 0 20.4 15.2Z"></path>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.5"></circle>
+          <path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"></path>
+        </svg>
+      </button>
       <button class="burger" aria-expanded="false" aria-label="Menü öffnen" aria-controls="overlay">
         <span></span><span></span><span></span>
       </button>
@@ -113,6 +110,10 @@ const isActive = (href: string) => {
       root.dataset.homeTheme = theme;
       root.style.colorScheme = theme;
       themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+      themeToggle.setAttribute(
+        'aria-label',
+        theme === 'dark' ? 'Hellmodus aktivieren' : 'Dunkelmodus aktivieren',
+      );
       document.querySelector<HTMLMetaElement>('meta[data-home-theme-color]')
         ?.setAttribute('content', theme === 'dark' ? '#08121F' : '#F7F4EF');
       window.dispatchEvent(new CustomEvent('nextcourse:home-theme', { detail: { theme } }));
