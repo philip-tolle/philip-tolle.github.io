@@ -13,8 +13,8 @@ const links = [
 ];
 const current = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isActive = (href: string) => {
-  const h = href.replace(/\/+$/, '') || '/';
-  return h === current || (h !== '/' && current.startsWith(h + '/'));
+  const normalized = href.replace(/\/+$/, '') || '/';
+  return normalized === current || (normalized !== '/' && current.startsWith(`${normalized}/`));
 };
 ---
 <header class="header" id="header">
@@ -27,29 +27,14 @@ const isActive = (href: string) => {
     </a>
     <div class="header__actions">
       <nav class="nav" aria-label="Hauptnavigation">
-        {links.map((l) => (
+        {links.map((link) => (
           <a
-            href={l.href}
-            class:list={[isActive(l.href) && 'is-active']}
-            aria-current={isActive(l.href) ? 'page' : undefined}
-          >{l.label}</a>
+            href={link.href}
+            class:list={[isActive(link.href) && 'is-active']}
+            aria-current={isActive(link.href) ? 'page' : undefined}
+          >{link.label}</a>
         ))}
       </nav>
-      <button
-        type="button"
-        class="theme-toggle"
-        data-home-theme-toggle
-        aria-label="Dunkelmodus aktivieren"
-        aria-pressed="false"
-      >
-        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M20.4 15.2A8.5 8.5 0 0 1 8.8 3.6 8.5 8.5 0 1 0 20.4 15.2Z"></path>
-        </svg>
-        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="3.5"></circle>
-          <path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"></path>
-        </svg>
-      </button>
       <button class="burger" aria-expanded="false" aria-label="Menü öffnen" aria-controls="overlay">
         <span></span><span></span><span></span>
       </button>
@@ -58,84 +43,73 @@ const isActive = (href: string) => {
 </header>
 
 <div class="overlay" id="overlay" aria-hidden="true" inert>
-  {links.map((l) => (
+  {links.map((link) => (
     <a
-      href={l.href}
-      class:list={[isActive(l.href) && 'is-active']}
-      aria-current={isActive(l.href) ? 'page' : undefined}
-    >{l.overlayLabel}</a>
+      href={link.href}
+      class:list={[isActive(link.href) && 'is-active']}
+      aria-current={isActive(link.href) ? 'page' : undefined}
+    >{link.overlayLabel}</a>
   ))}
 </div>
 
+<noscript>
+  <nav class="noscript-nav" aria-label="Hauptnavigation ohne JavaScript">
+    {links.map((link) => <a href={link.href}>{link.overlayLabel}</a>)}
+  </nav>
+</noscript>
+
 <script>
-  const burger = document.querySelector('.burger') as HTMLButtonElement;
-  const overlay = document.getElementById('overlay')!;
+  const burger = document.querySelector<HTMLButtonElement>('.burger');
+  const overlay = document.getElementById('overlay');
+  const logo = document.querySelector<HTMLElement>('.logo');
+  const backgroundRegions = [
+    document.getElementById('main'),
+    document.querySelector<HTMLElement>('footer'),
+  ];
+
+  const menuLinks = () => Array.from(overlay?.querySelectorAll<HTMLAnchorElement>('a') ?? []);
 
   function setMenu(open: boolean) {
+    if (!burger || !overlay) { return; }
     overlay.classList.toggle('open', open);
     overlay.toggleAttribute('inert', !open);
     overlay.setAttribute('aria-hidden', open ? 'false' : 'true');
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    logo?.toggleAttribute('inert', open);
+    backgroundRegions.forEach((region) => region?.toggleAttribute('inert', open));
     document.body.style.overflow = open ? 'hidden' : '';
+    if (open) {
+      requestAnimationFrame(() => menuLinks()[0]?.focus());
+    }
   }
 
-  burger.addEventListener('click', () => {
-    setMenu(!overlay.classList.contains('open'));
+  burger?.addEventListener('click', () => {
+    setMenu(!overlay?.classList.contains('open'));
   });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('open')) {
+
+  overlay?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMenu(false));
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && overlay?.classList.contains('open')) {
       setMenu(false);
-      burger.focus();
+      burger?.focus();
+      return;
+    }
+
+    if (event.key === 'Tab' && overlay?.classList.contains('open') && burger) {
+      const focusable = [burger, ...menuLinks()];
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
     }
   });
-
-  const themeToggle = document.querySelector<HTMLButtonElement>('[data-home-theme-toggle]');
-  if (themeToggle) {
-    const root = document.documentElement;
-    const storageKey = 'nextcourse-home-theme';
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
-
-    const storedTheme = () => {
-      try {
-        const value = localStorage.getItem(storageKey);
-        return value === 'dark' || value === 'light' ? value : null;
-      } catch {
-        return null;
-      }
-    };
-
-    const applyTheme = (theme: 'light' | 'dark') => {
-      root.classList.add('home-theme');
-      root.dataset.homeTheme = theme;
-      root.style.colorScheme = theme;
-      themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
-      themeToggle.setAttribute(
-        'aria-label',
-        theme === 'dark' ? 'Hellmodus aktivieren' : 'Dunkelmodus aktivieren',
-      );
-      document.querySelector<HTMLMetaElement>('meta[data-home-theme-color]')
-        ?.setAttribute('content', theme === 'dark' ? '#08121F' : '#F7F4EF');
-      window.dispatchEvent(new CustomEvent('nextcourse:home-theme', { detail: { theme } }));
-    };
-
-    const initialTheme = root.dataset.homeTheme === 'dark' ? 'dark' : 'light';
-    applyTheme(initialTheme);
-
-    themeToggle.addEventListener('click', () => {
-      const nextTheme = root.dataset.homeTheme === 'dark' ? 'light' : 'dark';
-      try {
-        localStorage.setItem(storageKey, nextTheme);
-      } catch {
-        // Der Umschalter funktioniert auch, wenn lokaler Speicher blockiert ist.
-      }
-      applyTheme(nextTheme);
-    });
-
-    systemTheme.addEventListener('change', (event) => {
-      if (!storedTheme()) {
-        applyTheme(event.matches ? 'dark' : 'light');
-      }
-    });
-  }
 </script>
