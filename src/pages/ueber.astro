@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
+import IdeaSection from '../components/IdeaSection.astro';
 import philip from '../assets/philip.png';
 import motivNeuseeland from '../assets/motiv-neuseeland.png';
 ---
@@ -26,8 +27,10 @@ import motivNeuseeland from '../assets/motiv-neuseeland.png';
     </div>
   </div>
 
+  <IdeaSection />
+
   <!-- Philip: Profilkarte mit Umdreh-Foto -->
-  <div class="floor--auto floor">
+  <div class="floor--auto floor" id="profil">
     <div class="wrap">
       <div class="profilkarte reveal">
         <div class="flip" id="flip" role="button" tabindex="0" aria-pressed="false"
@@ -200,7 +203,7 @@ import motivNeuseeland from '../assets/motiv-neuseeland.png';
   /* Stations-Chips in der Profilkarte */
   .chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.3rem}
   .chip{font-family:var(--body);font-weight:500;font-size:.78rem;letter-spacing:.06em;
-    color:var(--ink);background:rgba(255,255,255,.6);border:1px solid var(--hairline);
+    color:var(--ink);background:rgba(var(--sand-rgb),.6);border:1px solid var(--hairline);
     border-radius:999px;padding:.45em 1em;white-space:nowrap}
 
   /* Werte-Medaillons */
@@ -209,7 +212,7 @@ import motivNeuseeland from '../assets/motiv-neuseeland.png';
   @media(min-width:1020px){.werte{grid-template-columns:repeat(5,1fr)}}
   .wert{display:flex;flex-direction:column;align-items:center;gap:.5rem}
   .wert__ico{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
-    color:var(--wood);background:radial-gradient(circle at 50% 30%,#FFFDF8,var(--paper2));
+    color:var(--wood);background:radial-gradient(circle at 50% 30%,var(--sand),var(--paper2));
     border:1px solid var(--hairline)}
   .wert h3{font-size:1rem;line-height:1.3;max-width:11em}
   .wert p{margin:0;font-family:var(--serif);font-style:italic;font-size:.95rem;color:var(--faint)}
@@ -226,7 +229,7 @@ import motivNeuseeland from '../assets/motiv-neuseeland.png';
   .profilkarte{display:grid;gap:2.2rem;align-items:start;
     background:var(--glass);border:1px solid var(--glass-edge);border-radius:24px;
     backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);
-    box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95);
+    box-shadow:var(--shadow),inset 0 1px 0 rgba(var(--sand-rgb),.95);
     padding:clamp(1.6rem,4vw,2.8rem)}
   @media(min-width:880px){.profilkarte{grid-template-columns:320px 1fr;gap:3rem}}
   .profilkarte__text .lead{font-size:clamp(1rem,2.1vw,1.12rem)}
@@ -239,13 +242,13 @@ import motivNeuseeland from '../assets/motiv-neuseeland.png';
   .flip[aria-pressed="true"] .flip__inner{transform:rotateY(180deg)}
   .flip__front,.flip__back{position:absolute;inset:0;backface-visibility:hidden;
     -webkit-backface-visibility:hidden;border-radius:18px;overflow:hidden;
-    border:1px solid var(--glass-edge);box-shadow:0 14px 34px rgba(62,50,34,.14)}
+    border:1px solid var(--glass-edge);box-shadow:0 14px 34px rgba(var(--forest-rgb),.14)}
   .flip__front img{width:100%;height:100%;object-fit:cover}
   .flip__back{transform:rotateY(180deg);padding:1.6rem 1.4rem;
     display:flex;flex-direction:column;
     background:
       repeating-linear-gradient(transparent 0, transparent calc(1.7rem - 1px),
-        rgba(185,136,92,.12) calc(1.7rem - 1px), rgba(185,136,92,.12) 1.7rem),
+        rgba(var(--forest-rgb),.12) calc(1.7rem - 1px), rgba(var(--forest-rgb),.12) 1.7rem),
       var(--paper2)}
   .flip__back h3{font-size:1.25rem;margin-bottom:.6rem}
   .quali--flip{margin-top:0}
@@ -253,15 +256,15 @@ import motivNeuseeland from '../assets/motiv-neuseeland.png';
   .quali--flip li::before{top:1.05rem}
   .flip__hint{position:absolute;right:.9rem;bottom:.9rem;width:44px;height:44px;
     border-radius:50%;display:grid;place-items:center;color:var(--wood);
-    background:rgba(247,244,239,.92);border:1px solid var(--hairline);
-    box-shadow:0 6px 18px rgba(62,50,34,.22);transition:transform .25s}
+    background:rgba(var(--sand-rgb),.92);border:1px solid var(--hairline);
+    box-shadow:0 6px 18px rgba(var(--forest-rgb),.22);transition:transform .25s}
   .flip:hover .flip__hint{transform:rotate(-45deg)}
   .flip:focus-visible{outline:2px solid var(--green);outline-offset:4px}
   /* Audio-Player Gründungsgeschichte */
   .audioplayer{display:flex;align-items:center;gap:1.2rem;margin:2.4rem auto 0;max-width:520px;
     background:var(--glass);border:1px solid var(--glass-edge);border-radius:18px;
     backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);
-    box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95);padding:1.2rem 1.5rem}
+    box-shadow:var(--shadow),inset 0 1px 0 rgba(var(--sand-rgb),.95);padding:1.2rem 1.5rem}
   .audioplayer__btn{flex:none;width:3.4rem;height:3.4rem;border-radius:50%;cursor:pointer;
     border:1px solid var(--hairline);display:grid;place-items:center;color:var(--wood);
     background:var(--paper);transition:transform .2s,box-shadow .2s}

@@ -1,13 +1,13 @@
 ---
-import '@fontsource/marcellus';
-import '@fontsource/jost/300.css';
-import '@fontsource/jost/400.css';
-import '@fontsource/jost/500.css';
-import '@fontsource/jost/600.css';
-import '@fontsource/cormorant-garamond/500.css';
-import '@fontsource/cormorant-garamond/600.css';
-import '@fontsource/cormorant-garamond/400-italic.css';
-import '@fontsource/cormorant-garamond/500-italic.css';
+import '@fontsource/plus-jakarta-sans/latin-400.css';
+import '@fontsource/plus-jakarta-sans/latin-600.css';
+import '@fontsource/plus-jakarta-sans/latin-700.css';
+import '@fontsource/plus-jakarta-sans/latin-800.css';
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import '@fontsource/inter/latin-600.css';
+import '@fontsource/inter/latin-400-italic.css';
+import '@fontsource/inter/latin-500-italic.css';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -16,83 +16,73 @@ interface Props {
   title: string;
   description?: string;
   accent?: 'green' | 'blue' | 'amber';
+  ogImage?: string;
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+  noindex?: boolean;
 }
 
 const {
   title,
-  description = 'KI-Beratung, Bildung und Begleitung für das Gastgewerbe in Mainfranken. NextCourse begleitet inhabergeführte Hotels und Restaurants dabei, KI sinnvoll einzusetzen — mit messbaren Ergebnissen.',
+  description = 'Digitale Betriebshandbücher und praxisnahe Digitalisierungsberatung für inhabergeführte Hotels und Hotelrestaurants in Mainfranken.',
   accent = 'green',
+  ogImage = '/og.jpg',
+  jsonLd,
+  noindex = false,
 } = Astro.props;
 
-const ogImage = new URL('/og.jpg', Astro.site);
-const orgSchema = JSON.stringify({
+const resolvedOgImage = new URL(ogImage, Astro.site);
+const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'NextCourse',
+  name: 'NextCourse Consulting',
   legalName: 'NextCourse UG (haftungsbeschränkt)',
   url: Astro.site?.toString(),
-  logo: ogImage.toString(),
-  email: 'tolle@nextcourse-academy.de',
+  logo: resolvedOgImage.toString(),
+  email: 'kontakt@next-course.de',
   telephone: '+49 151 20220983',
-  slogan: 'Menschliche Kompetenz. Digitale Kraft.',
-  description: 'Bildungs-, Beratungs- und Umsetzungspartner für das deutsche Gastgewerbe: KI-Beratung, Kurse und Begleitung aus Würzburg.',
+  slogan: 'Betriebswissen, das im Alltag trägt.',
+  description: 'Digitale Betriebshandbücher und praxisnahe Digitalisierungsberatung für inhabergeführte Hotels und Hotelrestaurants in Mainfranken.',
   address: { '@type': 'PostalAddress', streetAddress: 'Karmelitenstraße 24', postalCode: '97070', addressLocality: 'Würzburg', addressCountry: 'DE' },
   areaServed: 'Mainfranken',
   founder: { '@type': 'Person', name: 'Philip Tolle', sameAs: 'https://www.linkedin.com/in/philiptolle/' },
   sameAs: ['https://www.linkedin.com/in/philiptolle/'],
-});
+};
+const serializedJsonLd = JSON.stringify(jsonLd ?? orgSchema).replace(/</g, '\\u003c');
 ---
 <!DOCTYPE html>
-<html lang="de" class="home-theme" data-home-theme="light">
+<html lang="de" class="home-theme" data-home-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#F7F4EF" data-home-theme-color>
-<script is:inline>
-  (() => {
-    const root = document.documentElement;
-    const storageKey = 'nextcourse-home-theme';
-    let stored = null;
-    try {
-      stored = localStorage.getItem(storageKey);
-    } catch {
-      // Die Systemeinstellung bleibt der sichere Fallback.
-    }
-    const theme = stored === 'dark' || stored === 'light'
-      ? stored
-      : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    root.dataset.homeTheme = theme;
-    root.style.colorScheme = theme;
-    document.querySelector('meta[data-home-theme-color]')
-      ?.setAttribute('content', theme === 'dark' ? '#08121F' : '#F7F4EF');
-  })();
-</script>
+<meta name="theme-color" content="#122A2F">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 {import.meta.env.PROD && (
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self' https://formsubmit.co; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
 )}
 <title>{title}</title>
 <meta name="description" content={description}>
+{noindex && <meta name="robots" content="noindex, follow" />}
 <meta property="og:type" content="website">
 <meta property="og:title" content={title}>
 <meta property="og:description" content={description}>
 <meta property="og:locale" content="de_DE">
 <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)}>
-<meta property="og:image" content={ogImage}>
+<meta property="og:image" content={resolvedOgImage}>
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:site_name" content="NextCourse">
+<meta property="og:site_name" content="NextCourse Consulting">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content={ogImage}>
+<meta name="twitter:image" content={resolvedOgImage}>
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)}>
 <link rel="sitemap" href="/sitemap-index.xml">
 <link rel="alternate" type="application/rss+xml" title="NextCourse Blog" href="/rss.xml">
 <meta name="generator" content={Astro.generator}>
-<script type="application/ld+json" set:html={orgSchema}></script>
+<script type="application/ld+json" set:html={serializedJsonLd}></script>
 <slot name="head" />
 </head>
 <body>
+
 <canvas id="ambient" aria-hidden="true"></canvas>
 
 <a class="skiplink" href="#main">Zum Inhalt springen</a>
@@ -101,6 +91,8 @@ const orgSchema = JSON.stringify({
   /* Ohne JS: Stepper-Schritte und Ampel-Antworten vollständig anzeigen */
   .stepdetail article[hidden]{display:flex}
   .ampelrow p[hidden]{display:block}
+  .header{background:rgba(18,42,47,.98);border-bottom-color:rgba(249,247,243,.14)}
+  .burger{display:none!important}
 </style></noscript>
 
 <div class="site">
@@ -114,52 +106,67 @@ const orgSchema = JSON.stringify({
 <script>
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Ambient-Wellenfeld: dezente Linien auf Papier ---------- */
-  const canvas = document.getElementById('ambient') as HTMLCanvasElement;
-  const ctx = canvas.getContext('2d')!;
-  let W = 0, H = 0, t = 0;
-  function size() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = canvas.width = window.innerWidth * dpr;
-    H = canvas.height = window.innerHeight * dpr;
-    canvas.style.width = window.innerWidth + 'px';
-    canvas.style.height = window.innerHeight + 'px';
-  }
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const lines = 10;
-    const sc = window.scrollY * 0.0012;
-    const darkHome = document.documentElement.matches('.home-theme[data-home-theme="dark"]');
-    for (let i = 0; i < lines; i++) {
-      const yBase = H * 0.22 + (H * 0.68 / lines) * i;
-      const amp = (30 + i * 4) * dpr;
-      const phase = t * 0.007 + sc + i * 0.5;
-      ctx.beginPath();
-      for (let x = 0; x <= W; x += 9 * dpr) {
-        const y = yBase
-          + Math.sin(x * 0.0014 / dpr + phase) * amp
-          + Math.sin(x * 0.0006 / dpr - phase * 0.55) * amp * 0.55;
-        if (x === 0) { ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
-      }
-      const isAmber = (i === 7);
-      ctx.strokeStyle = darkHome
-        ? 'rgba(255,255,255,' + (isAmber ? 0.15 : 0.028 + i * 0.005) + ')'
-        : isAmber
-          ? 'rgba(229,162,84,0.16)'
-          : 'rgba(185,136,92,' + (0.03 + i * 0.005) + ')';
-      ctx.lineWidth = (isAmber ? 1.4 : 1) * dpr;
-      ctx.stroke();
+  /* ---------- Ambient-Wellenfeld: historische Bewegung, aktuelle Palette ---------- */
+  const ambientCanvas = document.getElementById('ambient') as HTMLCanvasElement | null;
+  if (ambientCanvas) {
+    const ambientContext = ambientCanvas.getContext('2d');
+    if (ambientContext) {
+      const rootStyles = getComputedStyle(document.documentElement);
+      const sandRgb = rootStyles.getPropertyValue('--sand-rgb').trim() || '249,247,243';
+      const coralRgb = rootStyles.getPropertyValue('--coral-rgb').trim() || '255,107,74';
+      let ambientWidth = 0;
+      let ambientHeight = 0;
+      let ambientTime = 0;
+
+      const sizeAmbient = () => {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        ambientWidth = ambientCanvas.width = window.innerWidth * dpr;
+        ambientHeight = ambientCanvas.height = window.innerHeight * dpr;
+        ambientCanvas.style.width = window.innerWidth + 'px';
+        ambientCanvas.style.height = window.innerHeight + 'px';
+      };
+
+      const drawAmbient = () => {
+        ambientContext.clearRect(0, 0, ambientWidth, ambientHeight);
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const scrollPhase = window.scrollY * 0.0012;
+        const lines = 10;
+
+        for (let i = 0; i < lines; i++) {
+          const yBase = ambientHeight * 0.22 + (ambientHeight * 0.68 / lines) * i;
+          const amplitude = (30 + i * 4) * dpr;
+          const phase = ambientTime * 0.007 + scrollPhase + i * 0.5;
+          ambientContext.beginPath();
+
+          for (let x = 0; x <= ambientWidth; x += 9 * dpr) {
+            const y = yBase
+              + Math.sin(x * 0.0014 / dpr + phase) * amplitude
+              + Math.sin(x * 0.0006 / dpr - phase * 0.55) * amplitude * 0.55;
+            if (x === 0) { ambientContext.moveTo(x, y); }
+            else { ambientContext.lineTo(x, y); }
+          }
+
+          const isAccent = i === 7;
+          ambientContext.strokeStyle = isAccent
+            ? `rgba(${coralRgb},0.12)`
+            : `rgba(${sandRgb},${0.028 + i * 0.005})`;
+          ambientContext.lineWidth = (isAccent ? 1.4 : 1) * dpr;
+          ambientContext.stroke();
+        }
+
+        ambientTime++;
+        if (!reduced) { requestAnimationFrame(drawAmbient); }
+      };
+
+      sizeAmbient();
+      if (reduced) { ambientTime = 80; drawAmbient(); }
+      else { requestAnimationFrame(drawAmbient); }
+      window.addEventListener('resize', () => {
+        sizeAmbient();
+        if (reduced) { drawAmbient(); }
+      });
     }
-    t++;
-    if (!reduced) { requestAnimationFrame(draw); }
   }
-  size();
-  if (reduced) { t = 80; draw(); } else { requestAnimationFrame(draw); }
-  window.addEventListener('resize', () => { size(); if (reduced) { draw(); } });
-  window.addEventListener('nextcourse:home-theme', () => {
-    if (reduced) { t = 80; draw(); }
-  });
 
   /* ---------- Reveal + Stagger ---------- */
   const io = new IntersectionObserver((entries) => {

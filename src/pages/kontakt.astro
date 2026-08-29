@@ -2,8 +2,8 @@
 import Base from '../layouts/Base.astro';
 ---
 <Base
-  title="Kontakt — NextCourse"
-  description="Kostenloses Erstgespräch: per Telefon oder bei Ihnen im Haus. NextCourse — KI-Beratung für das Gastgewerbe in Würzburg und Mainfranken."
+  title="Kontakt | NextCourse Consulting"
+  description="Sprechen Sie mit NextCourse Consulting über ein digitales Betriebshandbuch, einen Digital Audit oder ein klar abgegrenztes Digitalprojekt für Ihren Hotelbetrieb."
 >
   <div class="pagehead">
     <div class="wrap">
@@ -16,7 +16,7 @@ import Base from '../layouts/Base.astro';
   <div class="floor--auto floor">
     <div class="wrap result">
       <form class="form reveal" id="contactform" novalidate
-        action="https://formsubmit.co/tolle@nextcourse-academy.de" method="POST">
+        action="https://formsubmit.co/kontakt@next-course.de" method="POST">
         <input type="hidden" name="_subject" value="Neue Anfrage über die NextCourse-Website">
         <input type="hidden" name="_next" value="https://www.next-course.de/danke/">
         <input type="hidden" name="_captcha" value="false">
@@ -31,6 +31,14 @@ import Base from '../layouts/Base.astro';
           <p class="err" id="e-mail">Bitte geben Sie eine gültige E-Mail-Adresse an.</p></div>
         <div class="field"><label for="f-tel">Telefon (optional)</label>
           <input id="f-tel" name="Telefon" type="tel" autocomplete="tel"></div>
+        <div class="field"><label for="f-thema">Worum geht es?</label>
+          <select id="f-thema" name="Thema">
+            <option value="">Bitte wählen</option>
+            <option value="betriebshandbuch">Digitales Betriebshandbuch</option>
+            <option value="digital-audit">Digital Audit</option>
+            <option value="telefonassistent">KI-Telefonassistent</option>
+            <option value="entlastung">Entlastung im Betriebsalltag</option>
+          </select></div>
         <div class="field"><label for="f-msg">Ihre Nachricht *</label>
           <textarea id="f-msg" name="Nachricht" rows="5" required aria-describedby="e-msg"></textarea>
           <p class="err" id="e-msg">Bitte schreiben Sie kurz, worum es geht.</p></div>
@@ -50,7 +58,7 @@ import Base from '../layouts/Base.astro';
         </div>
         <h3 style="margin-bottom:.7rem">Direkt</h3>
         <p class="dim">Telefon: <a href="tel:+4915120220983" style="color:var(--green);font-weight:500">+49 151 20220983</a><br>
-        E-Mail: <a href="mailto:tolle@nextcourse-academy.de" style="color:var(--green);font-weight:500">tolle@nextcourse-academy.de</a><br>
+        E-Mail: <a href="mailto:kontakt@next-course.de" style="color:var(--green);font-weight:500">kontakt@next-course.de</a><br>
         Standort: Würzburg — im Einsatz in Mainfranken und Umgebung</p>
       </div>
     </div>
@@ -59,6 +67,19 @@ import Base from '../layouts/Base.astro';
 
 <script>
   const form = document.getElementById('contactform') as HTMLFormElement;
+  const topic = document.getElementById('f-thema') as HTMLSelectElement;
+  const allowedTopics = new Set([
+    'betriebshandbuch',
+    'digital-audit',
+    'telefonassistent',
+    'entlastung',
+  ]);
+  const requestedTopic = new URLSearchParams(window.location.search).get('thema');
+
+  if (requestedTopic && allowedTopics.has(requestedTopic)) {
+    topic.value = requestedTopic;
+  }
+
   form.addEventListener('submit', (e) => {
     let ok = true;
     function flag(fieldEl: Element | null, bad: boolean) {
@@ -80,3 +101,21 @@ import Base from '../layouts/Base.astro';
     }
   });
 </script>
+
+<style>
+  .field select {
+    width: 100%;
+    min-height: 3.25rem;
+    padding: .8rem 2.8rem .8rem 1rem;
+    border: 1px solid rgba(var(--forest-rgb), .5);
+    border-radius: 12px;
+    background: rgba(var(--sand-rgb), .7);
+    color: var(--ink);
+    font: inherit;
+  }
+
+  .field select:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 1px;
+  }
+</style>
