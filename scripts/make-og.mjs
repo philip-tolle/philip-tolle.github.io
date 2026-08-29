@@ -17,13 +17,13 @@ const roundLogo = await sharp('src/assets/nc-logo.png')
   .png()
   .toBuffer();
 
-const bg = Buffer.from(`<svg width="1200" height="630">
-  <rect width="1200" height="630" fill="#F7F4EF"/>
-  <circle cx="600" cy="240" r="205" fill="#E5A254" opacity="0.18"/>
+const bg = Buffer.from(`<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F9F7F3"/>
+  <circle cx="600" cy="240" r="205" fill="#FF6B4A" opacity="0.18"/>
   <text x="600" y="530" text-anchor="middle" font-family="Georgia, serif" font-size="60"
-    letter-spacing="3" fill="#26221B">NextCourse</text>
+    letter-spacing="3" fill="#122A2F">NextCourse</text>
   <text x="600" y="585" text-anchor="middle" font-family="Georgia, serif" font-size="27"
-    font-style="italic" fill="#5C564B">Menschliche Kompetenz. Digitale Kraft.</text>
+    font-style="italic" fill="#2B2D2F">Menschliche Kompetenz. Digitale Kraft.</text>
 </svg>`);
 
 await sharp(bg)

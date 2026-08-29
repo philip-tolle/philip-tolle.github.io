@@ -112,19 +112,19 @@ import Base from '../../layouts/Base.astro';
   @media(min-width:700px){.kompass__options{grid-template-columns:repeat(3,1fr)}}
   .kompass__options button{display:flex;flex-direction:column;align-items:center;gap:.8rem;
     padding:1.6rem 1rem;border-radius:20px;cursor:pointer;
-    background:rgba(255,255,255,.6);border:1px solid var(--glass-edge);
+    background:rgba(249,247,243,.72);border:1px solid var(--glass-edge);
     font-family:var(--body);font-weight:500;font-size:.98rem;color:var(--ink);
     transition:all .25s ease}
   .kompass__options button:hover{transform:translateY(-3px)}
-  .kompass__options button[aria-pressed="true"]{background:rgba(63,94,126,.1);
-    border-color:rgba(63,94,126,.5);box-shadow:0 16px 36px -18px rgba(63,94,126,.4)}
+  .kompass__options button[aria-pressed="true"]{background:rgba(18,42,47,.08);
+    border-color:rgba(18,42,47,.5);box-shadow:0 16px 36px -18px rgba(18,42,47,.34)}
   .kompass__icon{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
     background:var(--paper2);border:1px solid var(--hairline);color:var(--wood)}
   .kompass__icon svg{width:30px;height:30px}
-  .kompass__options button[aria-pressed="true"] .kompass__icon{background:var(--blue);
-    border-color:var(--blue);color:var(--paper)}
+  .kompass__options button[aria-pressed="true"] .kompass__icon{background:var(--coral);
+    border-color:var(--coral);color:var(--forest)}
   .kompass__result > div{max-width:680px;margin:1.6rem auto 0;padding:1.8rem 2rem;
-    background:rgba(255,255,255,.6);border:1px solid rgba(63,94,126,.35);border-radius:20px;
+    background:rgba(249,247,243,.72);border:1px solid rgba(18,42,47,.35);border-radius:20px;
     animation:kompassin .35s ease both;text-align:center}
   @keyframes kompassin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   .kompass__result h3{font-size:clamp(1.3rem,3.5vw,1.7rem);margin-bottom:.5rem}

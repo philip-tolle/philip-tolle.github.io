@@ -89,14 +89,14 @@ const faqSchema = JSON.stringify({
 
 <style>
   .faq{display:flex;flex-direction:column;gap:.6rem}
-  .faqrow{background:rgba(255,255,255,.6);border:1px solid var(--glass-edge);
+  .faqrow{background:rgba(var(--sand-rgb),.6);border:1px solid var(--glass-edge);
     border-radius:15px;overflow:hidden;transition:background .25s,border-color .25s}
-  .faqrow[open]{background:rgba(185,136,92,.09);border-color:rgba(185,136,92,.4)}
+  .faqrow[open]{background:rgba(var(--coral-rgb),.09);border-color:rgba(var(--coral-rgb),.4)}
   .faqrow summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;
     padding:1.05rem 1.4rem;cursor:pointer;list-style:none;
     font-family:var(--body);font-weight:500;font-size:1rem;color:var(--ink)}
   .faqrow summary::-webkit-details-marker{display:none}
-  .faqrow summary b{width:22px;text-align:center;font-size:1.25rem;font-weight:300;
+  .faqrow summary b{width:22px;text-align:center;font-size:1.25rem;font-weight:400;
     color:var(--wood);flex:none;transition:transform .25s}
   .faqrow[open] summary b{transform:rotate(45deg)}
   .faqrow p{margin:0;padding:0 1.4rem 1.2rem;color:var(--dim);line-height:1.65}

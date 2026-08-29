@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import Icon from '../components/Icon.astro';
 import BlogCover from '../components/BlogCover.astro';
 import logo from '../assets/nc-logo.png';
 import philip from '../assets/philip.png';
@@ -15,18 +14,18 @@ const marquee = posts.length >= 3;
 const bandItems = marquee ? [...posts, ...posts] : posts;
 ---
 <Base
-  title="NextCourse — Bildungs-, Beratungs- und Umsetzungspartner für das Gastgewerbe"
-  description="NextCourse ist der Bildungs-, Beratungs- und Umsetzungspartner für das deutsche Gastgewerbe: KI-Beratung und Digitalisierung für Betriebe, Kurse und Weiterbildung in der Akademie — aus Würzburg, im Einsatz in Mainfranken."
+  title="NextCourse | Bildungs-, Beratungs- und Umsetzungspartner für das Gastgewerbe"
+  description="NextCourse ist der Bildungs-, Beratungs- und Umsetzungspartner für das deutsche Gastgewerbe: KI-Beratung und Digitalisierung für Betriebe, Kurse und Weiterbildung in der Akademie. Aus Würzburg, im Einsatz in Mainfranken."
 >
   <!-- FLOOR 1: Das Logo als Bühne -->
   <div class="floor hero">
     <div class="wrap" style="text-align:center">
       <div class="heroLogo" id="heroLogo" role="button" tabindex="0"
         aria-label="Zur Auswahl: Consulting, Academy oder Operation">
-        <Image src={logo} alt="NextCourse Logo — Wellen und Pfeil aus warmem Holz, hinterleuchtet"
+        <Image src={logo} alt="NextCourse Logo mit Wellen und Pfeil aus warmem Holz, hinterleuchtet"
           width={1080} format="webp" quality={82} loading="eager" />
       </div>
-      <h1 class="heroWord">NextCourse<span class="sr-only"> — Bildungs-, Beratungs- und Umsetzungspartner für das deutsche Gastgewerbe</span></h1>
+      <h1 class="heroWord">NextCourse<span class="sr-only">, Bildungs-, Beratungs- und Umsetzungspartner für das deutsche Gastgewerbe</span></h1>
       <p class="heroSub">Der Bildungs-, Beratungs- und Umsetzungspartner<br>für das deutsche Gastgewerbe.</p>
       <a class="scrollhint" href="#wahl" aria-label="Weiter zur Auswahl der drei Bereiche">
         <span class="hintword">Entdecken</span><span class="bar" aria-hidden="true"></span>
@@ -87,96 +86,19 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
         </nav>
       </div>
 
-      <a class="scrollhint wege-scrollhint" href="#idee" aria-label="Weiter zur Idee hinter NextCourse">
+      <a class="scrollhint wege-scrollhint" href="#blog" aria-label="Weiter zu den neuesten Blog-Artikeln">
         <span class="hintword">Entdecken</span><span class="bar" aria-hidden="true"></span>
       </a>
     </div>
   </section>
 
-  <!-- FLOOR 3: Die Idee hinter NextCourse — ein Bildschirm -->
-  <div class="floor" id="idee" style="padding:5rem 0 1.6rem">
-    <div class="wrap">
-      <div class="menuhead">
-        <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Die Idee hinter NextCourse</p>
-        <h2 class="reveal" style="font-size:clamp(1.8rem,4.2vw,2.7rem)">Kein Wissensproblem. Ein Zeitproblem.</h2>
-      </div>
-
-      <div class="idee2">
-        <div class="idee2col reveal">
-          <p class="eyebrow eyebrow--c" style="--acc:var(--amber)">Das Problem</p>
-          <div class="idee2__viz">
-          <div class="forces__stage" id="forces">
-            <svg viewBox="0 0 520 320" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M256,31 C304,31 312,98 354,138"/>
-              <path d="M256,111 C304,111 314,142 352,154"/>
-              <path d="M256,191 C304,191 314,178 352,166"/>
-              <path d="M256,271 C304,271 312,222 354,182"/>
-            </svg>
-            <div class="forces__pill" data-f="0" style="top:0">
-              <span>Margendruck</span><b>sechs Verlustjahre in Folge</b>
-            </div>
-            <div class="forces__pill" data-f="1" style="top:80px">
-              <span>Qualifikationsdefizit</span><b>KI-Wissen fehlt im Alltag</b>
-            </div>
-            <div class="forces__pill" data-f="2" style="top:160px">
-              <span>Digitalisierungsrückstand</span><b>≈ 70 % analoge Prozesse</b>
-            </div>
-            <div class="forces__pill" data-f="3" style="top:240px">
-              <span>Bürokratische Hürden</span><b>EU AI Act, DSGVO &amp; Co.</b>
-            </div>
-            <div class="zeitmuenze">
-              <span>Es kostet vor allem</span>
-              <b>Zeit</b>
-              <span>die im Betrieb fehlt</span>
-            </div>
-          </div>
-          </div>
-        </div>
-        <span class="idee2__div" aria-hidden="true"></span>
-        <div class="idee2col reveal">
-          <p class="eyebrow eyebrow--c" style="--acc:var(--green)">Unsere Antwort</p>
-          <div class="idee2__viz">
-          <div class="deck" id="deck">
-        <div class="deckcard" data-pos="0" style="--dacc:var(--blue)">
-          <span class="deckcard__ico" aria-hidden="true"><Icon name="ausbildung" size={30} /></span>
-          <h3>Academy</h3>
-          <p class="deckcard__verb">Lernen</p>
-          <p class="deckcard__antwort">Weil Technik nur hilft, wenn Menschen sie verstehen. Wissen im Team macht unabhängig — und spart vom ersten Tag an Zeit.</p>
-        </div>
-        <div class="deckcard" data-pos="1" style="--dacc:var(--green)">
-          <span class="deckcard__ico" aria-hidden="true"><Icon name="ziel" size={30} /></span>
-          <h3>Consulting</h3>
-          <p class="deckcard__verb">Umsetzen</p>
-          <p class="deckcard__antwort">Weil gute Systeme kein Zufall sind. Erst der ehrliche Blick, dann die messbare Umsetzung — Schritt für Schritt statt Großprojekt.</p>
-        </div>
-        <div class="deckcard" data-pos="2" style="--dacc:var(--amber)">
-          <span class="deckcard__ico" aria-hidden="true"><Icon name="gastlichkeit" size={30} /></span>
-          <h3>Operation</h3>
-          <p class="deckcard__verb">Abgeben</p>
-          <p class="deckcard__antwort">Weil manche Aufgaben gar nicht erst bei Ihnen landen müssen. Abgeben schafft sofort Luft — ohne eine neue Stelle zu besetzen.</p>
-        </div>
-          </div>
-          <div class="deck__dots" aria-label="Bereich wählen">
-            <button class="deck__dot is-on" data-i="0" style="--dc:var(--blue)" aria-label="Academy zeigen"></button>
-            <button class="deck__dot" data-i="1" style="--dc:var(--green)" aria-label="Consulting zeigen"></button>
-            <button class="deck__dot" data-i="2" style="--dc:var(--amber)" aria-label="Operation zeigen"></button>
-          </div>
-          </div>
-        </div>
-      </div>
-      <a class="scrollhint" href="#blog" style="margin-top:.6rem" aria-label="Weiter zu den neuesten Blog-Artikeln">
-        <span class="hintword">Entdecken</span><span class="bar" aria-hidden="true"></span>
-      </a>
-    </div>
-  </div>
-
-  <!-- FLOOR 3b: Aus dem Blog — Band mit den 3 neuesten Artikeln -->
+  <!-- FLOOR 3: Aus dem Blog — Band mit den 3 neuesten Artikeln -->
   <div class="floor--auto floor" id="blog">
     <div class="wrap">
       <div class="menuhead">
         <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Aus dem Blog</p>
         <h2 class="reveal">Frisch aus der Praxis.</h2>
-        <p class="lead reveal">KI, Digitalisierung und Weiterbildung fürs Gastgewerbe — praxisnah statt paragraphenlastig.</p>
+        <p class="lead reveal">KI, Digitalisierung und Weiterbildung fürs Gastgewerbe. Praxisnah statt paragraphenlastig.</p>
       </div>
 
       {posts.length > 0 ? (
@@ -222,7 +144,7 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
         <a class="offercard newscard newscard--neu" href="/consulting/implementierungsprojekte/">
           <span class="newscard__kick newscard__kick--neu">Neu</span>
           <h3>KI-Bausteine zum Festpreis</h3>
-          <p>Implementierungsprojekte — vom Telefonassistenten bis zum CorporateLLM — jetzt als eigene Übersicht.</p>
+          <p>Implementierungsprojekte vom Telefonassistenten bis zum CorporateLLM, jetzt als eigene Übersicht.</p>
           <span class="forkcard__go">Projekte ansehen</span>
         </a>
         <a class="offercard newscard newscard--termin" href="/kontakt/">
@@ -235,7 +157,7 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
         <a class="offercard newscard newscard--angebot" href="/consulting/mystery-check/">
           <span class="newscard__kick newscard__kick--angebot">Angebot</span>
           <h3>Mystery Check zum Pilotpreis</h3>
-          <p>Ihren Betrieb mit den Augen der Gäste sehen — als Einstieg ins Consulting.</p>
+          <p>Ihren Betrieb mit den Augen der Gäste sehen. Ein klarer Einstieg ins Consulting.</p>
           <span class="newscard__hl">950 €<s>1.490 €</s></span>
           <span class="forkcard__go">Mehr zum Mystery Check</span>
         </a>
@@ -251,7 +173,7 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
       </div>
       <p class="eyebrow eyebrow--c reveal" style="--acc:var(--wood)">Der nächste Schritt</p>
       <h2 class="reveal" style="max-width:none">Sprechen wir über Ihren Betrieb.</h2>
-      <p class="voice reveal" style="max-width:29em;margin:1.2rem auto 0">Ein Gespräch, kein Verkaufstermin. Erzählen Sie, wo es klemmt — ich höre zu und sage Ihnen ehrlich, ob und wie wir helfen können.</p>
+      <p class="voice reveal" style="max-width:29em;margin:1.2rem auto 0">Ein Gespräch, kein Verkaufstermin. Erzählen Sie, wo es klemmt. Ich höre zu und sage Ihnen ehrlich, ob und wie wir helfen können.</p>
       <ul class="assure reveal" aria-label="Was Sie erwartet">
         <li>Kostenlos &amp; unverbindlich</li>
         <li>Am Telefon oder bei Ihnen im Haus</li>
@@ -261,24 +183,84 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
         <a href="/kontakt/" class="btn btn--line btn--amber">Kostenloses Erstgespräch</a>
         <a href="https://cal.com/philip-tolle-yxp7ih/erstgesprach" target="_blank" rel="noopener" class="btn btn--line">Direkt Termin buchen</a>
       </div>
-      <p class="reveal small faint" style="margin-top:1.7rem;font-style:italic;font-family:var(--serif);font-size:1.05rem">— Philip Tolle, Gründer von NextCourse</p>
+      <p class="reveal small faint" style="margin-top:1.7rem;font-style:italic;font-family:var(--serif);font-size:1.05rem">Philip Tolle, Gründer von NextCourse</p>
     </div>
   </div>
 
 </Base>
 
 <style>
+  /* Originale Logo-Bühne, auf das bestätigte Farb- und Schriftsystem übertragen */
+  .floor.hero{
+    align-items:center;
+    justify-content:center;
+    padding:6.5rem 0 3rem;
+  }
+  .heroLogo{
+    --gx:50%;
+    --gy:35%;
+    width:min(74vw,540px,calc(100svh - 380px));
+    aspect-ratio:1;
+    border-radius:50%;
+    overflow:hidden;
+    margin:0 auto;
+    position:relative;
+    cursor:pointer;
+    box-shadow:0 0 76px rgba(var(--coral-rgb),.18),0 34px 80px rgba(var(--forest-rgb),.58);
+    transition:transform .15s ease-out;
+    will-change:transform;
+  }
+  .heroLogo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:scale(1.58);
+  }
+  .heroLogo::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:1;
+    border-radius:50%;
+    background:radial-gradient(circle at var(--gx) var(--gy),rgba(var(--sand-rgb),.34),rgba(var(--sand-rgb),0) 44%);
+    pointer-events:none;
+  }
+  @keyframes coinspin{
+    from{transform:perspective(900px) rotateY(0)}
+    to{transform:perspective(900px) rotateY(720deg)}
+  }
+  .heroLogo.is-spinning{animation:coinspin 1.15s cubic-bezier(.32,.05,.25,1) both}
+  .heroWord{
+    max-width:none;
+    margin:2.4rem auto 0;
+    color:var(--ink);
+    font-family:var(--disp);
+    font-size:clamp(2.3rem,7vw,4rem);
+    font-weight:800;
+    line-height:1.1;
+    letter-spacing:-.045em;
+  }
+  .heroSub{
+    max-width:30em;
+    margin:.75rem auto 0;
+    color:var(--dim);
+    font-family:var(--body);
+    font-size:clamp(1.05rem,2.4vw,1.3rem);
+    font-weight:400;
+    line-height:1.55;
+  }
+
   /* Drei Wege: eigenständige Editorial-Fläche, ohne Einfluss auf den Rest der Seite */
   .wege-section{
     --wege-edge:.75rem;
-    --wege-outer:#F7F4EF;
-    --wege-panel:#EFEAE2;
-    --wege-text:#26221B;
-    --wege-claim:#5C564B;
-    --wege-muted:#807669;
-    --wege-accent:#3F5E7E;
-    --wege-line:rgba(63,94,126,.2);
-    --wege-hover:rgba(63,94,126,.045);
+    --wege-outer:var(--sand);
+    --wege-panel:color-mix(in srgb,var(--sand) 93%,var(--forest));
+    --wege-text:var(--graphite);
+    --wege-claim:rgba(var(--graphite-rgb),.78);
+    --wege-muted:rgba(var(--graphite-rgb),.6);
+    --wege-accent:var(--forest);
+    --wege-line:rgba(var(--forest-rgb),.2);
+    --wege-hover:rgba(var(--forest-rgb),.05);
     min-height:0;
     align-items:stretch;
     padding:4rem 0 1.5rem;
@@ -286,18 +268,18 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
     overflow:clip;
   }
   :global(html.home-theme[data-home-theme="dark"]) .wege-section{
-    --wege-outer:#061522;
-    --wege-panel:#0D2232;
-    --wege-text:#F3F7FA;
-    --wege-claim:#D1DAE1;
-    --wege-muted:#93A7B5;
-    --wege-accent:#82B9DB;
-    --wege-line:rgba(130,185,219,.18);
-    --wege-hover:rgba(130,185,219,.05);
+    --wege-outer:var(--forest);
+    --wege-panel:color-mix(in srgb,var(--forest) 88%,var(--sand));
+    --wege-text:var(--sand);
+    --wege-claim:rgba(var(--sand-rgb),.78);
+    --wege-muted:rgba(var(--sand-rgb),.6);
+    --wege-accent:var(--coral);
+    --wege-line:rgba(var(--coral-rgb),.24);
+    --wege-hover:rgba(var(--coral-rgb),.07);
   }
   .wege-panel{
     position:relative;
-    width:calc(100% - var(--wege-edge));
+    width:100%;
     min-height:0;
     display:flex;
     flex-direction:column;
@@ -312,6 +294,8 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
     width:100%;
     padding:0 1.25rem;
   }
+  .wege-intro,
+  .wege-nav{min-width:0}
   .wege-intro{max-width:42rem}
   .wege-kicker{
     margin:0 0 1.65rem;
@@ -329,12 +313,12 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
     color:var(--wege-text);
     font-family:var(--disp);
     font-size:clamp(2.35rem,10.6vw,3rem);
-    font-weight:400;
+    font-weight:800;
     line-height:1.04;
-    letter-spacing:-.018em;
+    letter-spacing:-.045em;
   }
   .wege-title span{display:block}
-  .wege-title span:nth-child(2){white-space:nowrap}
+  .wege-title span:nth-child(2){white-space:normal}
   .wege-copy{
     max-width:31ch;
     margin:1.8rem 0 0;
@@ -342,7 +326,6 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
     font-size:1rem;
     line-height:1.65;
   }
-  .wege-nav{min-width:0}
   .wege-list{
     position:relative;
     margin:0;
@@ -404,7 +387,7 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
     color:var(--wege-text);
     font-family:var(--disp);
     font-size:clamp(1.75rem,8vw,2rem);
-    font-weight:400;
+    font-weight:700;
     line-height:1.08;
     letter-spacing:-.012em;
     transition:color .24s ease;
@@ -499,10 +482,10 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
       padding:0;
     }
     .wege-panel__inner{
-      grid-template-columns:minmax(0,.78fr) minmax(0,1fr);
-      gap:6vw;
+      grid-template-columns:minmax(0,.9fr) minmax(0,1fr);
+      gap:clamp(3rem,5vw,6rem);
       align-items:center;
-      padding:0 0 0 7.4vw;
+      padding-inline:7.4vw;
     }
     .wege-panel .wege-title{
       font-size:clamp(3.6rem,4.9vw,6.25rem);
@@ -563,7 +546,7 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
   .bandcard__cover{display:block;aspect-ratio:3/2;overflow:hidden}
   .bandcard__body{display:flex;flex-direction:column;gap:.4rem;padding:1.2rem 1.4rem 1.5rem}
   .bandcard__date{font-size:.76rem;letter-spacing:.06em;color:var(--faint)}
-  .bandcard__title{font-family:var(--disp);font-size:1.18rem;line-height:1.25;color:var(--ink);
+  .bandcard__title{font-family:var(--disp);font-size:1.18rem;font-weight:700;line-height:1.25;color:var(--ink);
     transition:color .25s;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .bandcard:hover .bandcard__title{color:var(--green)}
 
@@ -572,21 +555,26 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
   @media(min-width:820px){.news{grid-template-columns:repeat(3,1fr)}}
   .newscard{align-items:flex-start;--nc:var(--wood);
     transition:transform .25s,box-shadow .25s,background .25s,border-color .25s}
-  .newscard--neu{--nc:var(--green);--nc-tint:rgba(51,96,79,.09);--nc-bd:rgba(51,96,79,.5);--nc-sh:rgba(51,96,79,.4)}
-  .newscard--termin{--nc:var(--blue);--nc-tint:rgba(63,94,126,.1);--nc-bd:rgba(63,94,126,.5);--nc-sh:rgba(63,94,126,.42)}
-  .newscard--angebot{--nc:var(--amber);--nc-tint:rgba(176,105,15,.09);--nc-bd:rgba(176,105,15,.5);--nc-sh:rgba(176,105,15,.4)}
+  .newscard--neu,
+  .newscard--termin,
+  .newscard--angebot{
+    --nc:var(--coral);
+    --nc-tint:rgba(var(--coral-rgb),.1);
+    --nc-bd:rgba(var(--coral-rgb),.5);
+    --nc-sh:rgba(var(--coral-rgb),.4);
+  }
   .offercard.newscard:hover{background:var(--nc-tint);border-color:var(--nc-bd);
-    box-shadow:0 18px 42px -20px var(--nc-sh),inset 0 1px 0 rgba(255,255,255,.9)}
+    box-shadow:0 18px 42px -20px var(--nc-sh),inset 0 1px 0 rgba(var(--sand-rgb),.14)}
   .offercard.newscard:hover h3{color:var(--nc)}
   .newscard:hover .newscard__kick{background:var(--nc);border-color:var(--nc);color:var(--paper)}
   .newscard__kick{align-self:flex-start;font-family:var(--body);font-weight:500;font-size:.72rem;
     letter-spacing:.16em;text-transform:uppercase;padding:.3em .9em;border-radius:999px;
-    border:1px solid var(--hairline);color:var(--wood);background:rgba(255,255,255,.55);margin-bottom:.3rem;
+    border:1px solid var(--hairline);color:var(--coral);background:rgba(var(--sand-rgb),.08);margin-bottom:.3rem;
     transition:background .25s,border-color .25s,color .25s}
-  .newscard__kick--neu{color:var(--green);border-color:rgba(51,96,79,.4)}
-  .newscard__kick--termin{color:var(--blue);border-color:rgba(63,94,126,.4)}
-  .newscard__kick--angebot{color:var(--amber);border-color:rgba(176,105,15,.4)}
-  .newscard__hl{font-family:var(--disp);font-size:1.35rem;color:var(--ink);margin-top:.1rem}
+  .newscard__kick--neu,
+  .newscard__kick--termin,
+  .newscard__kick--angebot{color:var(--coral);border-color:rgba(var(--coral-rgb),.48)}
+  .newscard__hl{font-family:var(--disp);font-size:1.35rem;font-weight:700;color:var(--ink);margin-top:.1rem}
   .newscard__hl s{color:var(--faint);font-size:.72em;margin-left:.5em}
 
   /* Abschluss: Vertrauens-Zeile */
@@ -596,6 +584,8 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
   .assure li::before{content:"✓";color:var(--wood);font-weight:600}
 
   @media(prefers-reduced-motion:reduce){
+    .heroLogo,
+    .heroLogo.is-spinning{animation:none;transition:none}
     .blogband--marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
     .blogband--marquee .blogband__track{animation:none}
     .bandcard[aria-hidden="true"]{display:none}
@@ -651,102 +641,4 @@ const bandItems = marquee ? [...posts, ...posts] : posts;
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); spinAndGo(); }
   });
 
-  /* ---------- Idee: Drei Kräfte → Zeit ---------- */
-  const forces = document.getElementById('forces')!;
-  const pills = Array.from(document.querySelectorAll<HTMLElement>('.forces__pill'));
-  let fActive = 0;
-  let fPaused = false;
-  let fTimer: ReturnType<typeof setInterval> | null = null;
-  let fResume: ReturnType<typeof setTimeout> | null = null;
-
-  const setForce = (i: number) => {
-    fActive = (i + pills.length) % pills.length;
-    forces.dataset.active = String(fActive);
-    pills.forEach((p, k) => p.classList.toggle('is-active', k === fActive));
-  };
-  const holdForce = (ms = 4500) => {
-    fPaused = true;
-    if (fResume) { clearTimeout(fResume); }
-    fResume = setTimeout(() => { fPaused = false; }, ms);
-  };
-
-  setForce(0);
-  if (!reduced && pills.length) {
-    // sanftes Durchlaufen, sobald die Sektion sichtbar ist
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting && !fTimer) {
-          fTimer = setInterval(() => { if (!fPaused) { setForce(fActive + 1); } }, 2600);
-        }
-      });
-    }, { threshold: 0.35 });
-    io.observe(forces);
-  }
-  const finePointer = window.matchMedia('(pointer:fine)').matches;
-  pills.forEach((pill, i) => {
-    if (finePointer) {
-      pill.addEventListener('pointerenter', () => { fPaused = true; setForce(i); });
-      pill.addEventListener('pointerleave', () => { fPaused = false; });
-    }
-    pill.addEventListener('click', () => { setForce(i); holdForce(); });
-  });
-
-  /* ---------- Kartenstapel: sanftes Durchlaufen + Punkt-Indikatoren ---------- */
-  const deck = document.getElementById('deck')!;
-  const cards = Array.from(deck.querySelectorAll<HTMLElement>('.deckcard'));
-  const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('.deck__dot'));
-  let order = [0, 1, 2];
-  let blaettert = false;
-
-  function applyOrder() {
-    order.forEach((cardIdx, pos) => { cards[cardIdx].dataset.pos = String(pos); });
-    dots.forEach((d, i) => d.classList.toggle('is-on', order[0] === i));
-  }
-  function advance() {
-    if (blaettert) { return; }
-    blaettert = true;
-    const top = cards[order[0]];
-    if (reduced) {
-      order.push(order.shift()!);
-      applyOrder();
-      blaettert = false;
-      return;
-    }
-    top.classList.add('is-leaving');
-    setTimeout(() => {
-      order.push(order.shift()!);
-      applyOrder();
-      top.classList.remove('is-leaving');
-      blaettert = false;
-    }, 480);
-  }
-  function retreat() {
-    if (blaettert) { return; }
-    order.unshift(order.pop()!);
-    applyOrder();
-  }
-  dots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      const ziel = parseInt(dot.dataset.i!, 10);
-      if (order[0] === ziel || blaettert) { return; }
-      order = [ziel, (ziel + 1) % 3, (ziel + 2) % 3];
-      applyOrder();
-    });
-  });
-
-  /* Klick blättert, am Handy wischen (links = weiter, rechts = zurück) */
-  let swiped = false;
-  let startX = 0;
-  let startY = 0;
-  deck.addEventListener('pointerdown', (e) => { startX = e.clientX; startY = e.clientY; });
-  deck.addEventListener('pointerup', (e) => {
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy)) {
-      swiped = true;
-      if (dx < 0) { advance(); } else { retreat(); }
-      setTimeout(() => { swiped = false; }, 350);
-    }
-  });
-  deck.addEventListener('click', () => { if (!swiped) { advance(); } });
 </script>

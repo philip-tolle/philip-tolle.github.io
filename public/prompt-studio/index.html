@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#F7F4EF" data-theme-color />
+    <meta name="theme-color" content="#F9F7F3" data-theme-color />
     <script>
       (() => {
         const root = document.documentElement;
@@ -20,7 +20,7 @@
         root.dataset.theme = theme;
         root.style.colorScheme = theme;
         document.querySelector('meta[data-theme-color]')
-          ?.setAttribute('content', theme === 'dark' ? '#08121F' : '#F7F4EF');
+          ?.setAttribute('content', theme === 'dark' ? '#122A2F' : '#F9F7F3');
       })();
     </script>
     <meta
@@ -85,7 +85,7 @@
             theme === 'dark' ? 'Hellmodus aktivieren' : 'Dunkelmodus aktivieren',
           );
           document.querySelector('meta[data-theme-color]')
-            ?.setAttribute('content', theme === 'dark' ? '#08121F' : '#F7F4EF');
+            ?.setAttribute('content', theme === 'dark' ? '#122A2F' : '#F9F7F3');
         };
 
         applyTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
