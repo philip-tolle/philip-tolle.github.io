@@ -28,6 +28,7 @@ class PageProbe(HTMLParser):
         self.tag_sequence = []
         self.service_rail_cards = 0
         self.rail_card_count = 0
+        self.rail_control_labels = {}
         self.feed(page.read_text(encoding="utf-8"))
 
     def handle_starttag(self, tag, attributes):
@@ -43,6 +44,7 @@ class PageProbe(HTMLParser):
         for control in ("data-mobile-rail-prev", "data-mobile-rail-next"):
             if control in attrs:
                 self.mobile_controls_hidden[control] = "hidden" in attrs
+                self.rail_control_labels[control] = attrs.get("aria-label")
         if tag == "a":
             self.links.append(attrs.get("href"))
             if "data-mobile-service-link" in attrs:
@@ -237,6 +239,12 @@ class MobileDetailTests(unittest.TestCase):
 
 
 class MobilePeerRailTests(unittest.TestCase):
+    def test_rail_buttons_have_clear_german_labels(self):
+        page = PageProbe(ROOT / "dist" / "index.html")
+        self.assertEqual(page.rail_control_labels,
+                         {"data-mobile-rail-prev": "Vorherige Karte",
+                          "data-mobile-rail-next": "Nächste Karte"})
+
     def test_peer_choices_swipe_without_losing_destinations_or_terms(self):
         cases = (
             ("blog", 3, ("/blog/fachkraeftemangel-ki-entlastung/",)),

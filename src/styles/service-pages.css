@@ -150,6 +150,7 @@ html[data-page-chrome="light"] .noscript-nav{background:#f9f7f3}
   .service-mobile-card strong{display:flex;align-items:center;justify-content:space-between;gap:.5rem;border-top:1px solid #122a2f30;padding-top:.8rem;font-size:.82rem;line-height:1.4}
   .service-mobile-card strong span{font-size:1.3rem;font-weight:400}
   .service-mobile-card:focus-visible{outline:3px solid #122a2f;outline-offset:4px}
+  .service-page [data-mobile-rail-card] .service-mobile-card:focus-visible{outline-offset:-4px}
   .service-step__image{aspect-ratio:1.65}
   .service-step__body{padding:1.25rem}.service-page .service-step h3,.service-page .service-step__benefit{font-size:1.45rem}.service-step__meta{font-size:.6rem}
   .service-step__controls{gap:.5rem}.service-step__toggle{padding:.45rem .6rem;font-size:.75rem;gap:.4rem}.service-step__toggle-long{display:none}.service-step__direct{font-size:.75rem;gap:.45rem}
