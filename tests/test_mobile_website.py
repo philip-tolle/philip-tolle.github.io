@@ -27,6 +27,7 @@ class PageProbe(HTMLParser):
         self.in_mobile_hero_summary = False
         self.tag_sequence = []
         self.service_rail_cards = 0
+        self.rail_card_count = 0
         self.feed(page.read_text(encoding="utf-8"))
 
     def handle_starttag(self, tag, attributes):
@@ -34,6 +35,8 @@ class PageProbe(HTMLParser):
         self.tag_sequence.append((tag, attrs))
         if tag == "article" and "station" in attrs.get("class", "") and "data-mobile-rail-card" in attrs:
             self.service_rail_cards += 1
+        if "data-mobile-rail-card" in attrs:
+            self.rail_card_count += 1
         if "id" in attrs:
             self.ids.append(attrs["id"])
         self.markers.update(name for name in attrs if name.startswith("data-mobile-"))
@@ -231,3 +234,30 @@ class MobileDetailTests(unittest.TestCase):
             page = PageProbe(path)
             self.assertFalse(any("detail-visual" in attrs.get("class", "") or "data-hero-visual" in attrs
                                  for _, attrs in page.tag_sequence))
+
+
+class MobilePeerRailTests(unittest.TestCase):
+    def test_peer_choices_swipe_without_losing_destinations_or_terms(self):
+        cases = (
+            ("blog", 3, ("/blog/fachkraeftemangel-ki-entlastung/",)),
+            ("akademie/flying-academy", 2, ("/akademie/ki-grundlagen/", "/akademie/digitale-zusammenarbeit/")),
+            ("operation/monatspakete", 3, ("/kontakt/?thema=entlastung",)),
+            ("faq", 3, ("/management/betriebshandbuch/", "/akademie/flying-academy/", "/akademie/foerderung/")),
+            ("404", 3, ("/management/", "/akademie/", "/operation/")),
+        )
+        for route, count, targets in cases:
+            with self.subTest(route=route):
+                path = ROOT / "dist" / ("404.html" if route == "404" else f"{route}/index.html")
+                page = PageProbe(path)
+                self.assertEqual(page.rail_card_count, count)
+                self.assertTrue({"data-mobile-rail", "data-mobile-rail-track",
+                                 "data-mobile-rail-status"}.issubset(page.markers))
+                self.assertEqual(page.mobile_controls_hidden,
+                                 {"data-mobile-rail-prev": True, "data-mobile-rail-next": True})
+                for href in targets:
+                    self.assertTrue(any(link and link.startswith(href) for link in page.links), href)
+        packages = (ROOT / "dist" / "operation/monatspakete/index.html").read_text(encoding="utf-8")
+        for term in ("ab 890 €", "ab 1.490 €", "ab 2.690 €", "Einrichtung ab 890 €", "Mindestlaufzeit: sechs Monate"):
+            self.assertIn(term, packages)
+        faq = (ROOT / "dist" / "faq/index.html").read_text(encoding="utf-8")
+        self.assertIn("AZAV-Zulassung ist in Vorbereitung", faq)

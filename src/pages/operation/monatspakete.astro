@@ -1,6 +1,7 @@
 ---
 import OfferPage from '../../components/OfferPage.astro';
 import { monthlyOffer } from '../../data/detail-offers';
+import MobileRailControls from '../../components/MobileRailControls.astro';
 const pakete = [
   { pname: 'F&B Desk', titel: 'Karten & Bankettunterlagen', preis: 'ab 890 €', einrichtung: 'Einrichtung ab 890 € — entfällt beim Einstieg über den 30-Tage-Test', fuer: 'Für Häuser mit täglich wechselnden Karten — von der Tagung bis zur Halbpension.', einheiten: [
     { titel: 'Übernahme aller laufenden Karten', sub: 'Tages-, Wochen-, Tagungs- & HP' },
@@ -30,7 +31,7 @@ const pakete = [
 ---
 <OfferPage page={monthlyOffer} extraLinks={[{label: 'Pakete & Preise', href: '#pakete'}]}>
  <section class="detail-section" id="pakete"><div class="detail-intro"><div><p class="detail-kicker">Die Pakete im Überblick</p><h2>Ein fester Rahmen.<em>Eine klare Leistung.</em></h2></div><p>Die Preise sind Netto-Ab-Preise pro Monat. Den genauen Umfang und die Einrichtung vereinbaren wir vor dem Start.</p></div>
- <div class="detail-grid">{pakete.map(p => <article class="detail-card detail-package"><p class="detail-kicker">{p.pname}</p><h3>{p.titel}</h3><p class="detail-price">{p.preis}<small>netto / Monat</small></p><p class="detail-note">{p.einrichtung}</p><ul class="detail-list">{p.einheiten.map(e => <li><strong>{e.titel}</strong>{e.sub}</li>)}</ul><p>{p.fuer}</p><a class="detail-button" href={'/kontakt/?thema=entlastung&angebot=' + encodeURIComponent(p.pname) + '#contactform'}>Paket anfragen <span aria-hidden="true">↗</span></a></article>)}</div>
+ <div data-mobile-rail><div class="detail-grid" data-mobile-rail-track tabindex="0" aria-label="Monatspakete: horizontal wischen oder mit den Pfeiltasten bewegen">{pakete.map(p => <article class="detail-card detail-package" data-mobile-rail-card><p class="detail-kicker">{p.pname}</p><h3>{p.titel}</h3><p class="detail-price">{p.preis}<small>netto / Monat</small></p><p class="detail-note">{p.einrichtung}</p><ul class="detail-list">{p.einheiten.map(e => <li><strong>{e.titel}</strong>{e.sub}</li>)}</ul><p>{p.fuer}</p><a class="detail-button" href={'/kontakt/?thema=entlastung&angebot=' + encodeURIComponent(p.pname) + '#contactform'}>Paket anfragen <span aria-hidden="true">↗</span></a></article>)}</div><MobileRailControls count={pakete.length} noun="Pakete" /></div>
  <p class="detail-note">Die Leistungen im Detail: <a href="/operation/karten-unterlagen/">Karten &amp; Unterlagen</a> · <a href="/operation/gaestekommunikation/">Gästekommunikation &amp; Inhalte</a>.</p>
  <p class="detail-note">Mindestlaufzeit: sechs Monate. Zusätzliche Aufgaben und Fremdkosten werden separat vereinbart. Newsletter-Umfang nach gesonderter Abstimmung. Zum Kennenlernen eignet sich der <a href="/operation/30-tage-test/">30-Tage-Test</a>.</p>
  </section>

@@ -2,11 +2,12 @@
 import {getCollection} from 'astro:content';
 import DetailLayout from '../../layouts/DetailLayout.astro';
 import BlogCover from '../../components/BlogCover.astro';
+import MobileRailControls from '../../components/MobileRailControls.astro';
 const posts=(await getCollection('blog')).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf());
 const fmt=new Intl.DateTimeFormat('de-DE',{day:'numeric',month:'long',year:'numeric'});
 ---
 <DetailLayout title="Wissen für Gastgeber | NextCourse Blog" description="Gedanken und praktische Einblicke zu Abläufen, Weiterbildung und digitalen Werkzeugen für Hotels und Gastronomie." label="Journal" heading="Gedanken aus der Praxis." emphasis="Für Ihren nächsten Schritt." lead="Was hilft im Betriebsalltag weiter? Hier teilen wir Anregungen zu guten Abläufen, Zusammenarbeit und dem sinnvollen Einsatz digitaler Werkzeuge." secondary={{label:'Artikel entdecken',href:'#artikel'}}>
-<section class="detail-section" id="artikel"><div class="journal-grid">{posts.map((post,i)=><a class:list={['journal-card',i===0&&'journal-card--featured']} href={'/blog/'+post.id+'/'}><span class="journal-cover"><BlogCover post={post} width={i===0?1000:720}/></span><span class="journal-copy"><span class="detail-kicker">{post.data.tags.join(' · ')}</span><h2>{post.data.title}</h2><p>{post.data.description}</p><span class="journal-bottom"><time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time><span class="detail-link">Artikel lesen ↗</span></span></span></a>)}</div></section>
+<section class="detail-section" id="artikel" data-mobile-rail><div class="journal-grid" data-mobile-rail-track tabindex="0" aria-label="Blogartikel: horizontal wischen oder mit den Pfeiltasten bewegen">{posts.map((post,i)=><a class:list={['journal-card',i===0&&'journal-card--featured']} href={'/blog/'+post.id+'/'} data-mobile-rail-card><span class="journal-cover"><BlogCover post={post} width={i===0?1000:720}/></span><span class="journal-copy"><span class="detail-kicker">{post.data.tags.join(' · ')}</span><h2>{post.data.title}</h2><p>{post.data.description}</p><span class="journal-bottom"><time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time><span class="detail-link">Artikel lesen ↗</span></span></span></a>)}</div><MobileRailControls count={posts.length} noun="Artikel" /></section>
 </DetailLayout>
 <style>
 .journal-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
@@ -28,6 +29,6 @@ const fmt=new Intl.DateTimeFormat('de-DE',{day:'numeric',month:'long',year:'nume
 .journal-card--featured .journal-bottom time{color:#c6d0ce}
 .journal-card--featured .detail-link{color:#ff947a}
 @media(max-width:899px){.journal-card--featured{display:flex}.journal-card--featured .journal-cover{aspect-ratio:16/9;min-height:0}}
-@media(max-width:599px){.journal-grid{grid-template-columns:1fr}}
+@media(max-width:599px){.journal-grid{display:flex;grid-template-columns:none}.journal-card--featured{grid-column:auto}}
 @media(prefers-reduced-motion:reduce){.journal-cover :global(img){transition:none}}
 </style>
