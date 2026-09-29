@@ -26,3 +26,12 @@ The final independent code review found that keyboard focus on a mobile home car
 ## Remaining real-device check
 
 No physical phone was used. Before publishing, confirm natural finger swipe, vertical finger scroll, tap targets and visual spacing on at least one iOS and one Android device. The browser's simulated drag/scroll is useful evidence but does not substitute for real touch hardware.
+
+## Handoff decisions
+
+- Work was done on a manual Git worktree because the app-native worktree creator targeted the enclosing empty repository, not the nested website repository. The branch is `codex/mobile-erlebnis`; its checkout is `C:/NextCourse Website -Projekte/mobile-erlebnis`.
+- The worktree's ignored `node_modules` junction reuses the canonical checkout's installed dependencies, avoiding a network install. Another agent should account for that coupling when updating dependencies.
+- The first test package was added in this branch; the prior checkout had no Python test directory. A built-HTML suite plus a Node controller suite cover markup and behavior separately.
+- Browser/interaction checks were consolidated at the end of the four implementation tasks. This caught and fixed the 320 px grid-width problem before handoff, but temporary intermediate commits had not been individually browser-verified.
+- Headless Chrome automation crashed in the GPU process, so the app browser's viewport override was used for the 78 route-width checks. A true no-JavaScript browser run and reduced-motion browser emulation remain unverified; static HTML/CSS checks and a reduced-motion unit test are the fallback.
+- The mobile 30-day price sentence differs slightly from the approved draft to state `Preis auf Anfrage` explicitly while preserving no automatic renewal. Full detail copy, general editorial pages, existing desktop flip decks, hosting, authentication and protected areas were intentionally left unchanged.
