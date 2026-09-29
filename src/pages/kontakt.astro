@@ -4,6 +4,7 @@ import {Image} from 'astro:assets';
 import philip from '../assets/philip.png';
 ---
 <DetailLayout title="Kontakt | NextCourse" description="Sprechen Sie mit Philip Tolle über Ihren Betrieb: Abläufe, Betriebshandbuch, Weiterbildung oder Entlastung im Tagesgeschäft." label="Kontakt" heading="Erzählen Sie uns" emphasis="von Ihrem Haus." lead="Was beschäftigt Sie gerade? Eine kurze Nachricht genügt. Gemeinsam finden wir heraus, welcher nächste Schritt Ihren Alltag leichter machen kann." secondary={{label:'Nachricht schreiben',href:'#contactform'}} contact={false} facts={['Kostenloses Erstgespräch','Für Hotels & Gastronomie in Mainfranken']}>
+<div slot="heroVisual" class="contact-hero-person"><Image src={philip} alt="Philip Tolle, Ihr Ansprechpartner" width={180} format="webp" loading="eager" /><span><strong>Philip Tolle</strong><small>Ihr Ansprechpartner · Würzburg</small></span></div>
 <section class="detail-section detail-aside-layout contact-layout"><div class="contact-panel"><p class="detail-kicker">Ihr Anliegen</p><h2>Hier beginnt <em>unser Gespräch.</em></h2><p>Die mit * markierten Felder benötigen wir, um Ihre Anfrage zu bearbeiten.</p>
 <form class="contact-form" id="contactform" action="https://formsubmit.co/kontakt@next-course.de" method="POST">
 <input type="hidden" name="_subject" value="Neue Anfrage über die NextCourse-Website"><input type="hidden" name="_next" value="https://www.next-course.de/danke/"><input type="hidden" name="_captcha" value="false"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -17,7 +18,7 @@ import philip from '../assets/philip.png';
 <div class="check"><input type="checkbox" id="f-ds" name="Datenschutz-Zustimmung" value="ja" required aria-describedby="e-ds"><label for="f-ds">Ich habe die <a href="/datenschutz/">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage einverstanden. *<span class="err" id="e-ds">Bitte bestätigen Sie die Datenschutzerklärung.</span></label></div>
 <div><button type="submit" class="detail-button">Anfrage senden ↗</button></div>
 </form></div>
-<aside class="detail-card contact-person"><Image src={philip} alt="Philip Tolle, Ihr Ansprechpartner" width={220} format="webp"/><p class="detail-kicker">Persönlich für Sie da</p><h3>Philip Tolle</h3><p>Sie möchten lieber direkt sprechen? Wählen Sie einen Termin für ein kostenloses Erstgespräch.</p><a class="detail-button" href="https://cal.com/philip-tolle-yxp7ih/erstgesprach" target="_blank" rel="noopener">Gesprächstermin wählen ↗</a><ul class="detail-list"><li><strong>Telefon</strong><a href="tel:+4915120220983">+49 151 20220983</a></li><li><strong>E-Mail</strong><a href="mailto:kontakt@next-course.de">kontakt@next-course.de</a></li><li><strong>Vor Ort und digital</strong>Würzburg · Mainfranken und Umgebung</li></ul><p class="detail-note">Nach Ihrer Nachricht melden wir uns in der Regel innerhalb eines Werktags.</p></aside></section>
+<aside class="detail-card contact-person"><p class="detail-kicker">Persönlich für Sie da</p><h3>Philip Tolle</h3><p>Sie möchten lieber direkt sprechen? Wählen Sie einen Termin für ein kostenloses Erstgespräch.</p><a class="detail-button" href="https://cal.com/philip-tolle-yxp7ih/erstgesprach" target="_blank" rel="noopener">Gesprächstermin wählen ↗</a><ul class="detail-list"><li><strong>Telefon</strong><a href="tel:+4915120220983">+49 151 20220983</a></li><li><strong>E-Mail</strong><a href="mailto:kontakt@next-course.de">kontakt@next-course.de</a></li><li><strong>Vor Ort und digital</strong>Würzburg · Mainfranken und Umgebung</li></ul><p class="detail-note">Nach Ihrer Nachricht melden wir uns in der Regel innerhalb eines Werktags.</p></aside></section>
 </DetailLayout>
 <script>
 const form=document.querySelector<HTMLFormElement>('#contactform')!;
@@ -59,6 +60,10 @@ form.addEventListener('submit',event=>{
 :global(.detail-page) .contact-person .detail-button{background:#ff6b4a;color:#122a2f}
 :global(.detail-page) .contact-person .detail-button:hover{background:#ff866b}
 .contact-person>img{width:4.5rem;height:4.5rem;margin-bottom:1rem}
+.contact-hero-person{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border:1px solid #f9f7f345;border-radius:12px;background:#f9f7f315;color:#f9f7f3}
+.contact-hero-person img{display:block;width:5rem;height:5rem;border-radius:50%;object-fit:cover;flex:none}
+.contact-hero-person span{display:grid;gap:.2rem}
+.contact-hero-person small{color:#c6d0ce;font-size:.8rem}
 .contact-person .detail-list{width:100%;margin:auto 0 0;padding-top:2rem}
 .contact-person .detail-list li{font-size:.9rem}
 .contact-person .detail-list strong{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:#c6d0ce}

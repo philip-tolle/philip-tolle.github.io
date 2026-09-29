@@ -6,7 +6,8 @@ import ProfileCard from '../components/ProfileCard.astro';
 import koru from '../assets/motiv-neuseeland.png';
 ---
 <DetailLayout title="Philip Tolle & NextCourse | Aus der Branche. An Ihrer Seite." description="Philip Tolle verbindet Erfahrung aus Hotellerie und Gastronomie mit Weiterbildung und praktischer Umsetzung. Für Gastgeber in Mainfranken." label="Über NextCourse" heading="Aus der Branche." emphasis="An Ihrer Seite." lead="Ich bin Philip Tolle. Ich kenne den Anspruch, ein guter Gastgeber zu sein – und die vielen Aufgaben, die im Hintergrund dafür erledigt werden müssen." action="Lernen wir uns kennen" secondary={{label:'Meine Geschichte',href:'#geschichte'}} facts={['13 Jahre Gastgewerbe','Würzburg · Mainfranken','Management · Academy · Operation']}>
-<section class="detail-section" id="profil"><div class="about-profile"><ProfileCard /><div><p class="detail-kicker">Der Mensch hinter NextCourse</p><h2>Gastfreundschaft braucht <em>Raum im Alltag.</em></h2><p>Meine Stationen reichen von der Traube Tonbach bis zur internationalen Restaurantleitung. Dabei habe ich erlebt, wie viel von guten Übergaben, einem eingespielten Team und zugänglichem Wissen abhängt.</p><p>NextCourse ist meine Antwort darauf: Wir ordnen Abläufe, entwickeln Menschen und übernehmen Aufgaben. Damit Sie sich wieder stärker um Ihr Haus, Ihr Team und Ihre Gäste kümmern können.</p></div></div></section>
+<ProfileCard slot="heroVisual" />
+<section class="detail-section" id="profil"><div class="about-profile"><div><p class="detail-kicker">Der Mensch hinter NextCourse</p><h2>Gastfreundschaft braucht <em>Raum im Alltag.</em></h2><p>Meine Stationen reichen von der Traube Tonbach bis zur internationalen Restaurantleitung. Dabei habe ich erlebt, wie viel von guten Übergaben, einem eingespielten Team und zugänglichem Wissen abhängt.</p><p>NextCourse ist meine Antwort darauf: Wir ordnen Abläufe, entwickeln Menschen und übernehmen Aufgaben. Damit Sie sich wieder stärker um Ihr Haus, Ihr Team und Ihre Gäste kümmern können.</p></div></div></section>
 <section class="detail-section" id="geschichte"><div class="about-story"><div><p class="detail-kicker">Wie alles begann</p><h2>Eine Idee aus Neuseeland. <em>Ein Zuhause in Mainfranken.</em></h2><p>Warum NextCourse? Die Geschichte beginnt am anderen Ende der Welt. Hier können Sie sie in Ruhe anhören.</p></div><div class="detail-card about-audio"><Image src={koru} alt="Farnspirale als Motiv der Gründungsgeschichte" width={150} format="webp" loading="lazy"/><h3>Die Gründungsgeschichte</h3><audio controls preload="metadata" aria-label="Die Gründungsgeschichte von NextCourse" src="/audio/gruendungsgeschichte.mp3"><a href="/audio/gruendungsgeschichte.mp3">Gründungsgeschichte als Audio anhören</a></audio><p class="detail-note">Vorgelesen von einer KI-Stimme. Die Geschichte ist meine.</p></div></div></section>
 <section class="detail-section about-values"><div class="detail-intro"><h2>Worauf Sie sich <em>verlassen können.</em></h2><p>Eine Zusammenarbeit soll Ihren Alltag leichter machen. Daran richten wir unsere Arbeit aus.</p></div><DetailRows items={[
 {title:'Ein Blick für den Betriebsalltag',text:'Wir beginnen bei den Aufgaben und Menschen in Ihrem Haus. Eine Lösung muss zu Ihrem Betrieb passen und in einer vollen Schicht funktionieren.'},
@@ -15,7 +16,7 @@ import koru from '../assets/motiv-neuseeland.png';
 ]}/></section>
 </DetailLayout>
 <style>
-.about-profile{display:grid;grid-template-columns:minmax(230px,.65fr) minmax(0,1.35fr);align-items:center;gap:clamp(2rem,4vw,3.5rem);background:#e8eeeb;border-radius:12px;padding:clamp(1.5rem,3vw,2.5rem)}
+.about-profile{background:#e8eeeb;border-radius:12px;padding:clamp(1.5rem,3vw,2.5rem)}
 .about-story{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:center;padding:clamp(1.5rem,3vw,2.5rem);background:#122a2f;color:#f9f7f3;--detail-muted:#c6d0ce;border-radius:12px}
 :global(.detail-page) .about-story :global(h2){color:#f9f7f3}
 .about-story :global(h2 em){color:#ff947a}
@@ -27,6 +28,6 @@ import koru from '../assets/motiv-neuseeland.png';
 .about-values :global(.detail-row__number){display:block;color:#a43e29;margin-bottom:.9rem}
 .about-values :global(.detail-row h3){font-size:1.2rem}
 .about-values :global(.detail-row p){font-size:.92rem}
-@media(max-width:899px){.about-profile{grid-template-columns:minmax(180px,.6fr) minmax(0,1fr);gap:1.5rem}.about-story{grid-template-columns:1fr}.about-values :global(.detail-rows){grid-template-columns:1fr}}
+@media(max-width:899px){.about-story{grid-template-columns:1fr}.about-values :global(.detail-rows){grid-template-columns:1fr}}
 @media(max-width:599px){.about-profile{grid-template-columns:1fr;padding:1.4rem}.about-story{padding:1.4rem}.about-audio{padding:1.25rem}}
 </style>

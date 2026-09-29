@@ -195,3 +195,39 @@ class MobileServiceTests(unittest.TestCase):
         self.assertIn("ohne automatische Verlängerung",
                       operation.mobile_copy.get("operation-trial", ""))
         self.assertIn("Preis auf Anfrage", operation.mobile_copy.get("operation-trial", ""))
+
+
+class MobileDetailTests(unittest.TestCase):
+    def test_image_bearing_detail_pages_put_visual_before_lead(self):
+        for route in ("akademie/ki-grundlagen", "blog/fachkraeftemangel-ki-entlastung", "ueber", "kontakt"):
+            with self.subTest(route=route):
+                page = PageProbe(ROOT / "dist" / route / "index.html")
+                tags = page.tag_sequence
+                h1 = next(i for i, (tag, _) in enumerate(tags) if tag == "h1")
+                visual = next(i for i, (_, attrs) in enumerate(tags)
+                              if "detail-visual" in attrs.get("class", "") or "data-hero-visual" in attrs)
+                lead = next(i for i, (_, attrs) in enumerate(tags) if "detail-lead" in attrs.get("class", ""))
+                self.assertLess(h1, visual)
+                self.assertLess(visual, lead)
+        contact = (ROOT / "dist" / "kontakt" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('action="https://formsubmit.co/kontakt@next-course.de"', contact)
+
+    def test_demo_covers_follow_headings_before_long_leads(self):
+        for route, pdf in (("digital-audit-demo", "/demo/digital-audit/nextcourse-digital-audit-demo.pdf"),
+                           ("mystery-check-demo", "/demo/mystery-check/nextcourse-mystery-check-demo.pdf")):
+            with self.subTest(route=route):
+                page = PageProbe(ROOT / "dist" / route / "index.html")
+                tags = page.tag_sequence
+                h1 = next(i for i, (tag, _) in enumerate(tags) if tag == "h1")
+                cover = next(i for i, (_, attrs) in enumerate(tags) if "mc-demo__cover" in attrs.get("class", ""))
+                lead = next(i for i, (_, attrs) in enumerate(tags) if "mc-demo__lead" in attrs.get("class", ""))
+                self.assertLess(h1, cover)
+                self.assertLess(cover, lead)
+                self.assertIn(pdf, page.links)
+
+    def test_text_only_pages_need_no_placeholder_visual(self):
+        for route in ("impressum", "datenschutz", "404"):
+            path = ROOT / "dist" / ("404.html" if route == "404" else f"{route}/index.html")
+            page = PageProbe(path)
+            self.assertFalse(any("detail-visual" in attrs.get("class", "") or "data-hero-visual" in attrs
+                                 for _, attrs in page.tag_sequence))

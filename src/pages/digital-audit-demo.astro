@@ -90,17 +90,19 @@ const highlights = [
     <div class="mc-demo__shell">
       <nav class="mc-demo__breadcrumb" aria-label="Brotkrümelnavigation"><a href="/management/digital-audit/">Digital Audit</a><span aria-hidden="true">/</span><span aria-current="page">Demo-Auswertung</span></nav>
       <section class="mc-demo__hero" aria-labelledby="demo-title">
-        <div>
+        <div class="mc-demo__intro">
           <p class="mc-demo__eyebrow">Das Ergebnis zum Lesen und Anhören</p>
           <h1 id="demo-title">Ein Blick in das,<br />was Sie <em>bekommen.</em></h1>
-          <p class="mc-demo__lead">Wo entsteht doppelte Arbeit – und welche Veränderung lohnt sich zuerst? Entdecken Sie es in unserer Beispiel-Auswertung – als Bericht und als Podcast.</p>
-          <div class="mc-demo__actions"><a class="mc-demo__button" href="#auswertung">Auswertung durchblättern <span aria-hidden="true">↓</span></a><a class="mc-demo__textlink" href="#podcast">Auswertung anhören <span aria-hidden="true">↓</span></a><a class="mc-demo__textlink" href={pdf} download>PDF herunterladen <span aria-hidden="true">↗</span></a></div>
-          <p class="mc-demo__note">18 Seiten · 16 Minuten Audio · ohne Anmeldung</p>
         </div>
         <a href="#auswertung" class="mc-demo__cover" aria-label="Beispiel-Auswertung durchblättern">
           <img src="/demo/digital-audit/cover.webp" width="620" height="877" alt="Titelblatt der NextCourse Digital-Audit-Demo für das fiktive Hotel und Restaurant Lindenbogen" fetchpriority="high" />
           <span>Ein echter Einblick. Ein fiktiver Betrieb.</span>
         </a>
+        <div class="mc-demo__details">
+          <p class="mc-demo__lead">Wo entsteht doppelte Arbeit – und welche Veränderung lohnt sich zuerst? Entdecken Sie es in unserer Beispiel-Auswertung – als Bericht und als Podcast.</p>
+          <div class="mc-demo__actions"><a class="mc-demo__button" href="#auswertung">Auswertung durchblättern <span aria-hidden="true">↓</span></a><a class="mc-demo__textlink" href="#podcast">Auswertung anhören <span aria-hidden="true">↓</span></a><a class="mc-demo__textlink" href={pdf} download>PDF herunterladen <span aria-hidden="true">↗</span></a></div>
+          <p class="mc-demo__note">18 Seiten · 16 Minuten Audio · ohne Anmeldung</p>
+        </div>
       </section>
       <aside class="mc-demo__context" aria-label="Zum Beispielbetrieb">
         <div><span class="mc-demo__overline">Das Beispiel</span><strong>Hotel &amp; Restaurant Lindenbogen</strong></div>
