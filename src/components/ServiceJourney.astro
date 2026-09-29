@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/nc-logo.png';
 import ServiceJourneyCard from './ServiceJourneyCard.astro';
+import MobileRailControls from './MobileRailControls.astro';
 import type { ServicePageContent } from '../data/service-pages';
 interface Props { page: ServicePageContent; }
 const { page } = Astro.props;
@@ -18,14 +19,17 @@ const { page } = Astro.props;
     {page.journey.links?.map(link => <a href={link.href}>{link.label}<span aria-hidden="true">↓</span></a>)}
   </nav>
   {page.id === 'management' && <a class="service-start" href={`/kontakt/?thema=${page.topic}#contactform`}><span>Der erste Schritt</span><strong>Ein Gespräch über Ihren Betrieb.</strong><em>Kostenlos und unverbindlich <span aria-hidden="true">↗</span></em></a>}
-  <div class="kurs" id="kurs">
+  <div data-mobile-rail>
+  <div class="kurs" id="kurs" data-mobile-rail-track tabindex="0" aria-label={`${page.area} Angebote: horizontal wischen oder mit den Pfeiltasten bewegen`}>
     <svg class="kurs__line" viewBox="0 0 130 1600" preserveAspectRatio="none" aria-hidden="true"><path class="kurs__track" d="M65 0 L65 1600"/><path class="kurs__path" d="M65 0 L65 1600"/></svg>
     <div class="kurs__pen"><span class="kurs__logo"><Image src={logo} alt="" width={120} format="webp" quality={82} loading="lazy" /></span></div>
-    {page.journey.steps.map((step, index) => <article class:list={['station', index % 2 === 1 && 'service-station--right']} id={`format-${step.id}`} aria-label={step.label}>
+    {page.journey.steps.map((step, index) => <article class:list={['station', index % 2 === 1 && 'service-station--right']} id={`format-${step.id}`} aria-label={step.label} data-mobile-rail-card>
       {step.aliases?.map(alias => <span id={alias} class="service-anchor" aria-hidden="true"></span>)}
       <span class="station__node" aria-hidden="true"></span>
       <ServiceJourneyCard step={step} area={page.area} />
     </article>)}
+  </div>
+  <MobileRailControls count={page.journey.steps.length} noun="Angebote" />
   </div>
   {page.related && <aside class="service-related"><p>{page.related.intro}</p><div>{page.related.links.map(link => <a href={link.href}>{link.label} <span aria-hidden="true">↗</span></a>)}</div></aside>}
 </section>

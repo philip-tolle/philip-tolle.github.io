@@ -25,10 +25,15 @@ class PageProbe(HTMLParser):
         self.mobile_controls_hidden = {}
         self.mobile_hero_summary = ""
         self.in_mobile_hero_summary = False
+        self.tag_sequence = []
+        self.service_rail_cards = 0
         self.feed(page.read_text(encoding="utf-8"))
 
     def handle_starttag(self, tag, attributes):
         attrs = dict(attributes)
+        self.tag_sequence.append((tag, attrs))
+        if tag == "article" and "station" in attrs.get("class", "") and "data-mobile-rail-card" in attrs:
+            self.service_rail_cards += 1
         if "id" in attrs:
             self.ids.append(attrs["id"])
         self.markers.update(name for name in attrs if name.startswith("data-mobile-"))
@@ -140,6 +145,27 @@ class MobileHomeTests(unittest.TestCase):
 
 
 class MobileServiceTests(unittest.TestCase):
+    def test_image_follows_heading_before_mobile_lead_and_offers_swipe(self):
+        for route, count in (("management", 4), ("akademie", 2), ("operation", 3)):
+            with self.subTest(route=route):
+                page = PageProbe(ROOT / "dist" / route / "index.html")
+                tags = page.tag_sequence
+                h1 = next(i for i, (tag, _) in enumerate(tags) if tag == "h1")
+                visual = next(i for i, (_, attrs) in enumerate(tags)
+                              if "service-hero__visual" in attrs.get("class", ""))
+                lead = next(i for i, (_, attrs) in enumerate(tags) if "data-mobile-hero" in attrs)
+                self.assertLess(h1, visual)
+                self.assertLess(visual, lead)
+                self.assertEqual(page.service_rail_cards, count)
+                self.assertTrue({"data-mobile-rail", "data-mobile-rail-track",
+                                 "data-mobile-rail-status"}.issubset(page.markers))
+                self.assertTrue({"data-mobile-rail-prev": True,
+                                 "data-mobile-rail-next": True}.items() <= page.mobile_controls_hidden.items())
+                self.assertTrue(all(f"format-{step}" in page.ids for step in
+                                    ({"management": ("handbuch", "mystery", "audit", "umsetzung"),
+                                      "akademie": ("ki", "zusammenarbeit"),
+                                      "operation": ("unterlagen", "kommunikation", "aktionen")}.get(route, ()))))
+
     def test_mobile_summaries_and_destinations(self):
         """Each overview exposes short direct cards without changing offer destinations."""
         for route, count in (("management", 4), ("akademie", 2), ("operation", 3)):

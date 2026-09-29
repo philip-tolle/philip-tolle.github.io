@@ -1,3 +1,4 @@
+.mobile-card-rail__nav{display:none}
 @media(max-width:599px){
   [data-mobile-rail]{min-width:0}
   [data-mobile-rail-track]{display:flex;gap:.75rem;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;min-width:0;padding:.3rem .1rem 1rem;outline-offset:4px}
