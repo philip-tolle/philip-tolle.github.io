@@ -23,6 +23,8 @@ class PageProbe(HTMLParser):
         self.mobile_service_links = []
         self.desktop_service_links = []
         self.mobile_controls_hidden = {}
+        self.mobile_hero_summary = ""
+        self.in_mobile_hero_summary = False
         self.feed(page.read_text(encoding="utf-8"))
 
     def handle_starttag(self, tag, attributes):
@@ -47,6 +49,8 @@ class PageProbe(HTMLParser):
         if tag == "p" and "data-mobile-copy" in attrs:
             self.current_mobile_copy = attrs["data-mobile-copy"]
             self.mobile_copy[self.current_mobile_copy] = ""
+        if tag == "p" and "data-mobile-hero-summary" in attrs:
+            self.in_mobile_hero_summary = True
         if tag == "article" and "data-mobile-rail-card" in attrs:
             self.in_mobile_card = True
             self.mobile_card_links.append([])
@@ -57,6 +61,7 @@ class PageProbe(HTMLParser):
         if tag == "p":
             self.current_mobile_copy = None
             self.in_mobile_summary = False
+            self.in_mobile_hero_summary = False
         if tag == "article" and self.in_mobile_card:
             self.in_mobile_card = False
 
@@ -65,9 +70,19 @@ class PageProbe(HTMLParser):
             self.mobile_copy[self.current_mobile_copy] += data
         if self.in_mobile_summary:
             self.mobile_summaries[-1] += data
+        if self.in_mobile_hero_summary:
+            self.mobile_hero_summary += data
 
 
 class MobileHomeTests(unittest.TestCase):
+    def test_quiet_mobile_opening_keeps_primary_and_secondary_paths(self):
+        page = PageProbe(ROOT / "dist" / "index.html")
+        self.assertEqual(page.mobile_hero_summary.strip(),
+                         "Abläufe ordnen. Team stärken. Arbeit abgeben.")
+        self.assertTrue({"#leistungen", "/kontakt/", "/ueber/"}.issubset(page.links))
+        self.assertIn("Wir ordnen Abläufe, schulen Ihr Team und übernehmen laufende Aufgaben.",
+                      (ROOT / "dist" / "index.html").read_text(encoding="utf-8"))
+
     def test_mobile_offer_keyboard_focus_indicator(self):
         """The link focus ring must be inset rather than clipped by its card."""
         css = (ROOT / "src" / "styles" / "home.css").read_text(encoding="utf-8")

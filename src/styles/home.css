@@ -60,6 +60,7 @@
 .nc-home .home-hero__promise{font-size:clamp(1.15rem,1.5vw,1.5rem);font-weight:500;letter-spacing:-.025em;line-height:1.5;margin:1rem auto .2rem;color:var(--nc-coral)}
 .nc-home .home-hero__lead{font-size:clamp(1rem,1.1vw,1.125rem);line-height:1.65;max-width:58ch;margin:.75rem auto 0;color:#d3ddda;text-wrap:pretty}
 .home-hero__lead>span{display:block;font-size:.9em;color:#b8c8c3;margin-top:.25rem}
+.home-hero__mobile-summary{display:none}
 .nc-home .home-hero__actions{gap:1rem 1.75rem;margin-top:1.4rem;align-items:center}
 .home-hero__actions .nc-button{min-height:48px;font-size:.875rem;padding:.9rem 1.25rem;gap:.9rem}
 .home-hero__contact{display:block;padding:.25rem 0;text-align:left;color:var(--nc-paper);font-size:.875rem;line-height:1.6;text-underline-offset:.25em}
@@ -180,3 +181,17 @@ html.home-theme[data-home-theme=dark] .home-finder :focus-visible{outline:2px so
   .home-finder__enter{width:2.6rem;height:2.6rem;font-size:1.4rem}
 }
 @media(prefers-reduced-motion:reduce){.nc-home .heroLogo,.nc-home .heroLogo.is-spinning{animation:none;transition:none}.home-about,.home-about:hover{transform:none;transition:none}.home-finder__marker,.home-finder__arrow,.home-finder__card,.home-finder__illustration img,.home-finder__enter{transition:none}.home-finder__card:hover img{transform:none}}
+
+/* A short first screen on phones: promise, benefit and one clear route first. */
+@media(max-width:599px){
+  .nc-home .home-hero{min-height:0;padding-top:5.8rem;padding-bottom:1.25rem;justify-content:flex-start}
+  .nc-home .home-hero__stage{margin-block:0;padding-bottom:.55rem}
+  .nc-home .heroLogo{--coin:clamp(128px,32vw,160px);margin-bottom:.75rem}
+  .nc-home .heroWord{font-size:clamp(2.3rem,10vw,3.2rem)}
+  .nc-home .home-hero__promise{margin:.6rem auto .25rem}
+  .nc-home .home-hero__lead{display:none}
+  .nc-home .home-hero__mobile-summary{display:block;max-width:29ch;margin:.6rem auto 0;font-size:.9rem;line-height:1.5;color:#d3ddda}
+  .nc-home .home-hero__actions{margin-top:1rem;gap:.7rem}
+  .nc-home .home-hero__foot{margin-top:.6rem}
+  .home-about{transform:none}
+}
