@@ -19,9 +19,9 @@ git rev-parse HEAD
 git rev-parse origin/main
 ```
 
-Beim Erstellen dieser Übergabe waren lokaler `main` und `origin/main` auf
-`a7269f50dc1f22443ff6d4858ea803afd0ac75f2` identisch. Spätere Commits sind normal;
-entscheidend ist, dass der neue Arbeitsstand von aktuellem `origin/main` ausgeht.
+Der konkrete Commit ändert sich mit jeder Weiterentwicklung. Maßgeblich ist deshalb
+nicht ein hier eingetragener Hash, sondern dass der neue Arbeitsstand vom aktuellen
+`origin/main` ausgeht und `HEAD` vor der Übergabe mit `origin/main` übereinstimmt.
 
 ## Betrieb
 
