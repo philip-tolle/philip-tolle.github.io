@@ -33,7 +33,12 @@ export function initMobileCardRail(root: HTMLElement): void {
   }
 
   function alignHash(): void {
-    const id = decodeURIComponent(window.location.hash.slice(1));
+    let id: string;
+    try {
+      id = decodeURIComponent(window.location.hash.slice(1));
+    } catch {
+      return;
+    }
     if (!id) return;
     const index = cards.findIndex(card => card.id === id || card.querySelector?.(`#${CSS.escape(id)}`));
     if (index >= 0) moveTo(index, true);

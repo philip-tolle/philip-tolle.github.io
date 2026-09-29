@@ -115,6 +115,15 @@ test('direct format hash positions its card without activating a link', () => {
   assert.equal(scrolls.at(-1).left, 200);
 });
 
+test('malformed URL hashes do not prevent rail controls from initializing', () => {
+  assert.doesNotThrow(() => {
+    const { prev, next, status } = fixture(false, 3, '#%');
+    assert.equal(prev.hidden, false);
+    assert.equal(next.hidden, false);
+    assert.equal(status.textContent, '1 von 3');
+  });
+});
+
 test('all marked rails initialize independently', () => {
   const roots = [{ querySelector: () => null }, { querySelector: () => null }];
   const scope = { querySelectorAll: selector => selector === '[data-mobile-rail]' ? roots : [] };
