@@ -7,6 +7,17 @@ const headingId = `format-${step.id}-heading`;
 const coverId = `format-${step.id}-cover`;
 const descriptionId = `format-${step.id}-description`;
 ---
+<a class="service-mobile-card" href={step.href} data-mobile-service-link>
+  <div class="service-mobile-card__image">
+    <Image src={step.image.src} alt={step.image.alt} width={720} widths={[360, 480, 720]} sizes="(max-width: 599px) calc(100vw - 40px), 1px" format="webp" quality={82} loading="lazy" decoding="async" />
+  </div>
+  <div class="service-mobile-card__body">
+    <p class="service-mobile-card__meta">NextCourse {area}{step.status && <span>{step.status}</span>}</p>
+    <h3>{step.label}</h3>
+    <p data-mobile-service-summary>{step.mobileSummary}</p>
+    <strong>{step.action} <span aria-hidden="true">↗</span></strong>
+  </div>
+</a>
 <div class="service-step" data-service-deck data-side="cover">
   <div class="service-card service-card--cover" data-deck-face="cover" id={coverId}>
     <div class="service-card__inner">

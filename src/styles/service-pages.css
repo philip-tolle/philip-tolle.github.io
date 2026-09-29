@@ -112,6 +112,7 @@ html[data-page-chrome="light"] .noscript-nav{background:#f9f7f3}
 
 /* Management retains its coral cards; the other areas retain white cards. */
 .service-page--management .service-step{--card-surface:#ff6b4a;--card-muted:#233e42}
+.service-mobile-card{display:none}
 .service-page--management .service-start{background:#ff6b4a;color:#122a2f;border-color:#122a2f20}
 @media(max-width:999px){.service-section-intro{gap:2rem}.service-page .service-surface h2{font-size:clamp(2.3rem,4.8vw,3.5rem)}}
 @media(max-width:859px){
@@ -130,6 +131,22 @@ html[data-page-chrome="light"] .noscript-nav{background:#f9f7f3}
   .service-jumps{gap:.15rem 1.3rem;margin-bottom:2rem}.service-start{padding:1.25rem 1rem}.service-start strong{font-size:1rem}
 }
 @media(max-width:599px){
+  .service-journey .kurs{padding-top:0}
+  .service-journey .kurs__line,.service-journey .kurs__pen,.service-journey .station__node,.service-journey .station::after{display:none}
+  .service-journey .station{margin-bottom:1rem}
+  .service-journey .service-step{display:none}
+  .service-mobile-card{display:block;overflow:hidden;background:#f9f7f3;color:#122a2f;text-decoration:none;border:1px solid #122a2f25;border-radius:12px;box-shadow:0 16px 32px -24px #122a2f80}
+  .service-page--management .service-mobile-card{background:#ff6b4a}
+  .service-mobile-card__image{aspect-ratio:1.9;overflow:hidden;background:#122a2f}
+  .service-mobile-card__image img{display:block;width:100%;height:100%;object-fit:cover}
+  .service-mobile-card__body{padding:1.15rem}
+  .service-page .service-mobile-card__meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.4rem;color:#425257;font-size:.64rem;font-weight:600;letter-spacing:.06em;margin:0 0 .55rem}
+  .service-mobile-card__meta span{border:1px solid #122a2f50;border-radius:99px;padding:.15rem .5rem;letter-spacing:0}
+  .service-page .service-mobile-card h3{color:#122a2f;font-size:1.45rem;line-height:1.2;margin:0 0 .4rem}
+  .service-page .service-mobile-card [data-mobile-service-summary]{font-size:.93rem;line-height:1.55;color:#334a4a;margin:0 0 1rem}
+  .service-mobile-card strong{display:flex;align-items:center;justify-content:space-between;gap:.5rem;border-top:1px solid #122a2f30;padding-top:.8rem;font-size:.82rem;line-height:1.4}
+  .service-mobile-card strong span{font-size:1.3rem;font-weight:400}
+  .service-mobile-card:focus-visible{outline:3px solid #122a2f;outline-offset:4px}
   .service-step__image{aspect-ratio:1.65}
   .service-step__body{padding:1.25rem}.service-page .service-step h3,.service-page .service-step__benefit{font-size:1.45rem}.service-step__meta{font-size:.6rem}
   .service-step__controls{gap:.5rem}.service-step__toggle{padding:.45rem .6rem;font-size:.75rem;gap:.4rem}.service-step__toggle-long{display:none}.service-step__direct{font-size:.75rem;gap:.45rem}

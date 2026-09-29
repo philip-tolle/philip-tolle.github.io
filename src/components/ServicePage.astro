@@ -11,7 +11,7 @@ const { page } = Astro.props;
 ---
 <Base title={page.title} description={page.description} lightChrome={page.id === 'academy'}>
   <div class={`nc-page service-page service-page--${page.id}`}>
-    <ServiceHero area={page.area} heading={page.hero.heading} emphasis={page.hero.emphasis} description={page.hero.description} image={page.image} imageAlt={page.imageAlt} contactLabel={page.hero.action} contactTopic={page.topic} exploreHref={`#${page.id}-angebote`} exploreLabel={page.id === 'operation' ? 'Leistungen ansehen' : page.id === 'academy' ? 'Themen ansehen' : 'Passenden Einstieg finden'} waveTone={page.id === 'academy' ? 'dark' : undefined} />
+    <ServiceHero area={page.area} heading={page.hero.heading} emphasis={page.hero.emphasis} description={page.hero.description} mobileDescription={page.hero.mobileDescription} image={page.image} imageAlt={page.imageAlt} contactLabel={page.hero.action} contactTopic={page.topic} exploreHref={`#${page.id}-angebote`} exploreLabel={page.id === 'operation' ? 'Leistungen ansehen' : page.id === 'academy' ? 'Themen ansehen' : 'Passenden Einstieg finden'} waveTone={page.id === 'academy' ? 'dark' : undefined} />
     <div class="service-surface" data-wave-tone={page.id === 'academy' ? undefined : 'dark'}>
       <ServiceJourney page={page} />
       <slot />

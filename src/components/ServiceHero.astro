@@ -7,6 +7,7 @@ interface Props {
   heading: string;
   emphasis: string;
   description: string;
+  mobileDescription: string;
   image: ImageMetadata;
   imageAlt: string;
   contactLabel: string;
@@ -16,7 +17,7 @@ interface Props {
   waveTone?: 'dark';
 }
 
-const { area, heading, emphasis, description, image, imageAlt, contactLabel, contactTopic, exploreHref, exploreLabel, waveTone } = Astro.props;
+const { area, heading, emphasis, description, mobileDescription, image, imageAlt, contactLabel, contactTopic, exploreHref, exploreLabel, waveTone } = Astro.props;
 ---
 
 <header class="service-hero" aria-labelledby="service-title" data-wave-tone={waveTone}>
@@ -24,7 +25,8 @@ const { area, heading, emphasis, description, image, imageAlt, contactLabel, con
   <div class="service-hero__copy">
     <p class="service-hero__kicker">NextCourse {area}</p>
     <h1 id="service-title">{heading} <em>{emphasis}</em></h1>
-    <p class="service-hero__lead">{description}</p>
+    <p class="service-hero__lead desktop-overview-copy">{description}</p>
+    <p class="service-hero__lead mobile-overview-copy" data-mobile-hero>{mobileDescription}</p>
     <div class="service-hero__actions">
       <a class="service-hero__button" href={`/kontakt/?thema=${contactTopic}#contactform`}>{contactLabel} <span aria-hidden="true">↗</span></a>
       <a class="service-hero__explore" href={exploreHref}>{exploreLabel} <span aria-hidden="true">↓</span></a>

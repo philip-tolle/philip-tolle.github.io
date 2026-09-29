@@ -23,7 +23,7 @@ const offerImages = {
 
 export interface JourneyStep {
   id: string; label: string; title: string; emphasis: string; situation: string;
-  image: { src: ImageMetadata; alt: string }; description: string; points: string[];
+  image: { src: ImageMetadata; alt: string }; description: string; mobileSummary: string; points: string[];
   href?: string; action?: string; listLabel?: string; note?: string; status?: string;
   aliases?: string[];
   offers?: { title: string; description: string; href: string; action: string }[];
@@ -31,8 +31,8 @@ export interface JourneyStep {
 export interface ServicePageContent {
   id: 'management' | 'academy' | 'operation'; area: string; topic: string; title: string; description: string;
   image: ImageMetadata; imageAlt: string;
-  hero: { heading: string; emphasis: string; description: string; action: string };
-  journey: { kicker: string; heading: string; emphasis: string; intro: string; steps: JourneyStep[]; links?: { label: string; href: string }[] };
+  hero: { heading: string; emphasis: string; description: string; mobileDescription: string; action: string };
+  journey: { kicker: string; heading: string; emphasis: string; intro: string; mobileIntro: string; steps: JourneyStep[]; links?: { label: string; href: string }[] };
   related?: { intro: string; links: { label: string; href: string }[] };
   contactTitle: string;
 }
@@ -41,16 +41,17 @@ export const management: ServicePageContent = {
   id: 'management', area: 'Management', topic: 'management', title: 'Management für Hotels & Gastronomie | NextCourse',
   description: 'Weniger Rückfragen, klare Abläufe und Wissen, das im Haus bleibt. Digitales Betriebshandbuch, Mystery Check und Digital Audit für Hotels und Gastronomie in Mainfranken.',
   image: managementImage, imageAlt: 'Eine Mitarbeiterin ordnet die Abläufe von Rezeption, Service und Housekeeping an einer gemeinsamen Übersicht.',
-  hero: { heading: 'Ein Betrieb, der auf', emphasis: 'klaren Abläufen steht.', description: 'Wir prüfen Abläufe und Gästeerlebnisse, halten Betriebswissen fest und führen Verbesserungen mit Ihrem Team ein. Sie erhalten klare Standards, konkrete Prioritäten oder einen erprobten neuen Ablauf.', action: 'Über Ihren Betrieb sprechen' },
+  hero: { heading: 'Ein Betrieb, der auf', emphasis: 'klaren Abläufen steht.', description: 'Wir prüfen Abläufe und Gästeerlebnisse, halten Betriebswissen fest und führen Verbesserungen mit Ihrem Team ein. Sie erhalten klare Standards, konkrete Prioritäten oder einen erprobten neuen Ablauf.', mobileDescription: 'Wir machen Betriebswissen zugänglich, prüfen Abläufe und begleiten konkrete Verbesserungen.', action: 'Über Ihren Betrieb sprechen' },
   journey: {
     kicker: 'Weniger Rückfragen. Mehr Klarheit.', heading: 'Was soll in Ihrem Haus', emphasis: 'leichter laufen?',
-    intro: 'Wissen zugänglich machen, den Service aus Gästesicht prüfen oder digitale Abläufe ordnen: Wählen Sie nach Ihrem Anliegen. Steht das Ziel schon fest, begleiten wir die Umsetzung.',
+    intro: 'Wissen zugänglich machen, den Service aus Gästesicht prüfen oder digitale Abläufe ordnen: Wählen Sie nach Ihrem Anliegen. Steht das Ziel schon fest, begleiten wir die Umsetzung.', mobileIntro: 'Wählen Sie den Bereich, der Ihrem Betrieb gerade am meisten hilft.',
     steps: [
       {
         id: 'handbuch', label: 'Betriebshandbuch', image: offerImages.handbook,
         aliases: ['management-wissen'], situation: '„Wie machen wir das bei uns?“',
         title: 'Hausstandards und Anleitungen.', emphasis: 'An einem gemeinsamen Ort.',
         description: 'Wenn Wissen an einzelnen Menschen hängt: Wir ordnen Ihre Unterlagen und beschreiben die vereinbarten Aufgaben mit Ihrem Team. Das Ergebnis ist ein digitales Handbuch für Standards, Einarbeitung und Übergaben.',
+        mobileSummary: 'Hausstandards und Anleitungen an einem gemeinsamen Ort.',
         points: ['Hausstandards und Arbeitsanweisungen festhalten', 'Einarbeitung und Übergaben erleichtern', 'Zuständigkeiten für alle verständlich machen'],
         href: '/management/betriebshandbuch/', action: 'Betriebshandbuch entdecken', note: 'Einführung gemeinsam mit Ihrem Team.'
       },
@@ -59,6 +60,7 @@ export const management: ServicePageContent = {
         aliases: ['management-gast'], situation: 'Wie fühlt sich Ihr Haus für einen Gast an?',
         title: 'Ihr Haus aus Gästesicht.', emphasis: 'Mit konkreten nächsten Schritten.',
         description: 'Wenn Sie wissen möchten, wie Gäste Ihren Betrieb erleben: Wir betrachten die vereinbarten Kontaktpunkte und halten Beobachtungen fest. Sie erhalten eine Auswertung mit Stärken, Reibungspunkten und priorisierten Maßnahmen.',
+        mobileSummary: 'Ihr Haus aus Gästesicht betrachten und nächste Schritte erkennen.',
         points: ['Den Weg Ihrer Gäste nachvollziehen', 'Konkrete Beobachtungen statt Vermutungen', 'Ansatzpunkte für den Service priorisieren'],
         href: '/management/mystery-check/', action: 'Mystery Check kennenlernen'
       },
@@ -67,6 +69,7 @@ export const management: ServicePageContent = {
         aliases: ['management-ablaeufe'], situation: 'Viele Systeme. Trotzdem doppelte Arbeit?',
         title: 'Abläufe und Systeme geprüft.', emphasis: 'Die nächsten Schritte geordnet.',
         description: 'Wenn Informationen doppelt erfasst werden oder Übergaben stocken: Wir prüfen das Zusammenspiel Ihrer Arbeitsmittel und Abläufe. Sie erhalten Befunde und geordnete Maßnahmen; eine anschließende Umsetzung vereinbaren wir separat.',
+        mobileSummary: 'Doppelte Arbeit erkennen und digitale Abläufe gezielt verbessern.',
         points: ['Digitale Arbeitsmittel und Abläufe prüfen', 'Doppelte Arbeit und Medienbrüche erkennen', 'Maßnahmen nach Nutzen und Aufwand ordnen'],
         href: '/management/digital-audit/', action: 'Digital Audit entdecken'
       },
@@ -74,6 +77,7 @@ export const management: ServicePageContent = {
         id: 'umsetzung', label: 'Umsetzungsprojekte', image: offerImages.implementation,
         situation: 'Sie wissen, was sich ändern soll?', title: 'Ein neuer Ablauf.', emphasis: 'Mit Ihrem Team eingeführt.',
         description: 'Wenn das Ziel feststeht: Wir richten einen neuen Ablauf oder eine digitale Lösung ein und erproben ihn mit Ihrem Team. Dazu können eine klare Schichtübergabe, ein verlässlicher Zimmerstatus oder ein geordneter Anfrageweg gehören.',
+        mobileSummary: 'Neue Abläufe mit Ihrem Team einführen und erproben.',
         points: ['Ziel, Umfang und Festpreis vorab vereinbaren', 'Lösung einrichten und mit Ihrem Team erproben', 'Einweisung und Zuständigkeiten festhalten'],
         href: '/management/implementierungsprojekte/', action: 'Umsetzung kennenlernen', note: 'Für laufende Unterlagen, Kommunikation und organisatorische Aufgaben ist Operation der passende Bereich.'
       },
@@ -87,10 +91,10 @@ export const academy: ServicePageContent = {
   id: 'academy', area: 'Academy', topic: 'academy', title: 'Weiterbildung für Hotel & Gastronomie | NextCourse Academy',
   description: 'KI verstehen und digitale Zusammenarbeit im Team verbessern. Praxisnahe Weiterbildung für Hotels und Gastronomie in Mainfranken – auch bei Ihnen im Betrieb.',
   image: academyImage, imageAlt: 'Eine Trainerin vermittelt einem Team aus dem Gastgewerbe Wissen für den Arbeitsalltag.',
-  hero: { heading: 'Weiterbildung,', emphasis: 'die im Alltag ankommt.', description: 'KI sinnvoll einsetzen und digitale Veränderungen gemeinsam angehen: Ihr Team lernt mit Beispielen aus Hotel und Gastronomie. In Mainfranken und auf Wunsch direkt in Ihrem Haus.', action: 'Schulung besprechen' },
+  hero: { heading: 'Weiterbildung,', emphasis: 'die im Alltag ankommt.', description: 'KI sinnvoll einsetzen und digitale Veränderungen gemeinsam angehen: Ihr Team lernt mit Beispielen aus Hotel und Gastronomie. In Mainfranken und auf Wunsch direkt in Ihrem Haus.', mobileDescription: 'Praxisnahe Schulungen zu KI und digitaler Zusammenarbeit – auf Wunsch in Ihrem Haus.', action: 'Schulung besprechen' },
   journey: {
     kicker: 'Die Themen', heading: 'Was soll Ihr Team', emphasis: 'sicherer können?',
-    intro: 'Wählen Sie zuerst das Lernziel. Auf den Karten finden Sie die Inhalte; Termin und Rahmen stimmen wir anschließend mit Ihnen ab.',
+    intro: 'Wählen Sie zuerst das Lernziel. Auf den Karten finden Sie die Inhalte; Termin und Rahmen stimmen wir anschließend mit Ihnen ab.', mobileIntro: 'Wählen Sie das Lernziel, das Ihr Team im Alltag braucht.',
     links: [{ label: 'Schulung im eigenen Haus', href: '#format-flying' }],
     steps: [
       {
@@ -99,6 +103,7 @@ export const academy: ServicePageContent = {
         situation: 'Sie möchten wissen, wobei KI Ihrem Haus helfen kann.',
         title: 'KI verstehen.', emphasis: 'Sinnvoll ausprobieren.',
         description: 'Für Gastgeber, Führungskräfte und Teams ohne KI-Vorkenntnisse. Sie üben an typischen Aufgaben, prüfen Ergebnisse und wählen Anwendungen für Ihr Haus aus.',
+        mobileSummary: 'KI an typischen Aufgaben aus Ihrem Betrieb sicher ausprobieren.',
         points: ['Texte entwerfen und Informationen ordnen', 'Grenzen erkennen und Ergebnisse prüfen', 'Anwendungsfälle, Vorlagen und Teilnahmenachweis'],
         href: '/akademie/ki-grundlagen/', action: 'KI-Seminar kennenlernen',
         note: 'Ein Tag, auch als Schulung für Ihr Team im eigenen Betrieb. Preis auf Anfrage.'
@@ -108,6 +113,7 @@ export const academy: ServicePageContent = {
         status: 'Inhalte nach Absprache', situation: 'Ein neues Werkzeug allein verändert noch keine Routine.',
         title: 'Veränderung erklären.', emphasis: 'Das Team mitnehmen.',
         description: 'Für Führungskräfte und Teams, die digitale Arbeitsweisen gemeinsam einführen. An typischen Übergaben und Rückfragen üben wir, Veränderungen verständlich zu besprechen und klare Absprachen zu treffen.',
+        mobileSummary: 'Digitale Veränderungen verständlich besprechen und gemeinsam umsetzen.',
         points: ['Aufgaben und Informationswege gemeinsam klären', 'Fragen und Bedenken im Team aufgreifen', 'Einen überschaubaren nächsten Schritt vereinbaren'],
         href: '/akademie/digitale-zusammenarbeit/', action: 'Schulung zur digitalen Zusammenarbeit kennenlernen',
         note: 'Thema: digitaler Wandel und Mitarbeiterzufriedenheit. Lernziel, Dauer und Gruppengröße stimmen wir vorab ab.'
@@ -121,16 +127,17 @@ export const operation: ServicePageContent = {
   id: 'operation', area: 'Operation', topic: 'entlastung', title: 'Karten, Kommunikation & Aktionen fürs Gastgewerbe | NextCourse',
   description: 'Wir erstellen Karten und Unterlagen, betreuen Gästekommunikation und organisieren Aktionen. Unterstützung für Hotels und Gastronomie in Mainfranken.',
   image: operationImage, imageAlt: 'Eine Mitarbeiterin übergibt Aufgaben an ihre Ansprechpartnerin im Backoffice.',
-  hero: { heading: 'Aufgaben abgeben.', emphasis: 'Mehr Zeit für Ihr Haus.', description: 'Wir erstellen Ihre Karten und Unterlagen, kümmern uns um Inhalte für Ihre Gäste und organisieren Aktionen. Für Hotels und Gastronomie in Mainfranken – mit einer festen Ansprechperson und klar vereinbarten Aufgaben.', action: 'Aufgaben besprechen' },
+  hero: { heading: 'Aufgaben abgeben.', emphasis: 'Mehr Zeit für Ihr Haus.', description: 'Wir erstellen Ihre Karten und Unterlagen, kümmern uns um Inhalte für Ihre Gäste und organisieren Aktionen. Für Hotels und Gastronomie in Mainfranken – mit einer festen Ansprechperson und klar vereinbarten Aufgaben.', mobileDescription: 'Wir übernehmen Karten, Gästeinhalte und Aktionen – mit klar vereinbarten Aufgaben.', action: 'Aufgaben besprechen' },
   journey: {
     kicker: 'Diese Aufgaben übernehmen wir.', heading: 'Was möchten Sie', emphasis: 'in gute Hände geben?',
-    intro: 'Die Wochenkarte muss fertig werden, der nächste Beitrag fehlt oder eine Saisonaktion wartet auf Umsetzung? Hier finden Sie die passende Unterstützung für Ihr Anliegen.',
+    intro: 'Die Wochenkarte muss fertig werden, der nächste Beitrag fehlt oder eine Saisonaktion wartet auf Umsetzung? Hier finden Sie die passende Unterstützung für Ihr Anliegen.', mobileIntro: 'Wählen Sie die Aufgabe, die Sie abgeben möchten.',
     steps: [
       {
         id: 'unterlagen', label: 'Karten & Unterlagen', image: operationImages.documents,
         aliases: ['operation-backoffice'], situation: 'Schon wieder dieselben Unterlagen?',
         title: 'Aktuell und einsatzbereit.', emphasis: 'Im Stil Ihres Hauses.',
         description: 'Wir erstellen und aktualisieren Speisekarten, Gästemappen und Vorlagen aus Ihren Informationen. Sie erhalten die vereinbarten Dateien für Druck und digitale Nutzung.',
+        mobileSummary: 'Karten und Gästematerialien aktuell und passend zu Ihrem Haus halten.',
         listLabel: 'Das können Sie abgeben', points: ['Tages-, Wochen- und Bankettkarten', 'Gästemappen, Aufsteller und Präsentationen', 'Vorlagen, Checklisten und interne Listen'],
         href: '/operation/karten-unterlagen/', action: 'Leistungen für Karten und Unterlagen ansehen', note: 'Einzelne Materialien oder laufende Pflege – nach Ihrem Bedarf.'
       },
@@ -139,6 +146,7 @@ export const operation: ServicePageContent = {
         aliases: ['operation-kommunikation'], situation: 'Viel zu erzählen. Wenig Zeit dafür.',
         title: 'Ihr Haus bleibt sichtbar.', emphasis: 'Ihre Gäste gut informiert.',
         description: 'Wir planen, texten und gestalten Inhalte für Ihre Gäste: von Social-Media-Beiträgen bis zum Newsletter. Themen, Ton und Veröffentlichungen stimmen wir mit Ihrem Haus ab.',
+        mobileSummary: 'Gästeinhalte für Ihr Haus planen, texten und gestalten.',
         listLabel: 'Das können Sie abgeben', points: ['Social Media und Redaktionsplanung', 'Newsletter und saisonale Gästeinformationen', 'Antwortvorlagen und abgestimmte Reaktionen auf Gästefeedback'],
         href: '/operation/gaestekommunikation/', action: 'Leistungen für Gästekommunikation ansehen', note: 'Auf Basis Ihrer Materialien und mit Ihrer Freigabe.'
       },
@@ -147,6 +155,7 @@ export const operation: ServicePageContent = {
         aliases: ['operation-projekte', 'format-projekt'], situation: 'Eine gute Idee. Aber niemand hat Zeit dafür.',
         title: 'Von der Idee', emphasis: 'zur organisierten Aktion.',
         description: 'Wir planen Saisonaktionen, Gastgeschenke und Veranstaltungen und koordinieren die vereinbarten Aufgaben. Sie behalten den Überblick über Termine, Budget und Entscheidungen.',
+        mobileSummary: 'Saisonaktionen und Veranstaltungen verlässlich organisieren lassen.',
         listLabel: 'Zum Beispiel', points: ['Saisonaktionen und Kampagnen vorbereiten', 'Gastgeschenke auswählen und organisieren', 'Sommer- und Mitarbeiterfeste planen'],
         href: '/operation/projekte/', action: 'Leistungen für Aktionen und Veranstaltungen ansehen', note: 'Ziel, Umfang und Festpreis vor dem Start. Vor-Ort-Begleitung nach Vereinbarung.'
       },

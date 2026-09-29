@@ -18,6 +18,10 @@ class PageProbe(HTMLParser):
         self.mobile_copy = {}
         self.current_mobile_copy = None
         self.links = []
+        self.mobile_summaries = []
+        self.in_mobile_summary = False
+        self.mobile_service_links = []
+        self.desktop_service_links = []
         self.feed(page.read_text(encoding="utf-8"))
 
     def handle_starttag(self, tag, attributes):
@@ -27,6 +31,15 @@ class PageProbe(HTMLParser):
         self.markers.update(name for name in attrs if name.startswith("data-mobile-"))
         if tag == "a":
             self.links.append(attrs.get("href"))
+            if "data-mobile-service-link" in attrs:
+                self.mobile_service_links.append(attrs.get("href"))
+            if "service-step__direct" in attrs.get("class", ""):
+                href = attrs.get("href")
+                if href not in self.desktop_service_links:
+                    self.desktop_service_links.append(href)
+        if tag == "p" and "data-mobile-service-summary" in attrs:
+            self.in_mobile_summary = True
+            self.mobile_summaries.append("")
         if tag == "p" and "data-mobile-copy" in attrs:
             self.current_mobile_copy = attrs["data-mobile-copy"]
             self.mobile_copy[self.current_mobile_copy] = ""
@@ -39,12 +52,15 @@ class PageProbe(HTMLParser):
     def handle_endtag(self, tag):
         if tag == "p":
             self.current_mobile_copy = None
+            self.in_mobile_summary = False
         if tag == "article" and self.in_mobile_card:
             self.in_mobile_card = False
 
     def handle_data(self, data):
         if self.current_mobile_copy is not None:
             self.mobile_copy[self.current_mobile_copy] += data
+        if self.in_mobile_summary:
+            self.mobile_summaries[-1] += data
 
 
 class MobileHomeTests(unittest.TestCase):
@@ -81,3 +97,18 @@ class MobileHomeTests(unittest.TestCase):
             "/kontakt/?thema=betriebshandbuch&angebot=Demo-Zugang#contactform",
             page.links,
         )
+
+
+class MobileServiceTests(unittest.TestCase):
+    def test_mobile_summaries_and_destinations(self):
+        """Each overview exposes short direct cards without changing offer destinations."""
+        for route, count in (("management", 4), ("akademie", 2), ("operation", 3)):
+            with self.subTest(route=route):
+                page = PageProbe(ROOT / "dist" / route / "index.html")
+                self.assertEqual(len(page.mobile_summaries), count)
+                self.assertTrue(all(summary.strip() and summary.count(".") == 1
+                                    for summary in page.mobile_summaries))
+                self.assertEqual(page.mobile_service_links, page.desktop_service_links)
+                self.assertIn("data-mobile-hero", page.markers)
+                self.assertIn("data-mobile-journey-intro", page.markers)
+                self.assertEqual(len(page.ids), len(set(page.ids)))

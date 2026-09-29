@@ -10,7 +10,8 @@ const { page } = Astro.props;
   <span id="weg" class="service-anchor" aria-hidden="true"></span>
   <div class="service-section-intro">
     <div><p class="service-kicker">{page.journey.kicker}</p><h2 id="service-journey-title">{page.journey.heading} <em>{page.journey.emphasis}</em></h2></div>
-    <p>{page.journey.intro}</p>
+    <p class="desktop-overview-copy">{page.journey.intro}</p>
+    <p class="mobile-overview-copy" data-mobile-journey-intro>{page.journey.mobileIntro}</p>
   </div>
   <nav class="service-jumps" aria-label={`${page.area}: direkt zum Angebot`}>
     {page.journey.steps.map(step => <a href={`#format-${step.id}`}>{step.label}<span aria-hidden="true">↓</span></a>)}
@@ -20,7 +21,7 @@ const { page } = Astro.props;
   <div class="kurs" id="kurs">
     <svg class="kurs__line" viewBox="0 0 130 1600" preserveAspectRatio="none" aria-hidden="true"><path class="kurs__track" d="M65 0 L65 1600"/><path class="kurs__path" d="M65 0 L65 1600"/></svg>
     <div class="kurs__pen"><span class="kurs__logo"><Image src={logo} alt="" width={120} format="webp" quality={82} loading="lazy" /></span></div>
-    {page.journey.steps.map((step, index) => <article class:list={['station', index % 2 === 1 && 'service-station--right']} id={`format-${step.id}`} aria-labelledby={`format-${step.id}-heading`}>
+    {page.journey.steps.map((step, index) => <article class:list={['station', index % 2 === 1 && 'service-station--right']} id={`format-${step.id}`} aria-label={step.label}>
       {step.aliases?.map(alias => <span id={alias} class="service-anchor" aria-hidden="true"></span>)}
       <span class="station__node" aria-hidden="true"></span>
       <ServiceJourneyCard step={step} area={page.area} />
