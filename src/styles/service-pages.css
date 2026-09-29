@@ -169,3 +169,23 @@ html[data-page-chrome="light"] .noscript-nav{background:#f9f7f3}
   .service-page--academy .service-journey .kurs__logo,.service-page--academy .service-journey .kurs__pen{width:24px;height:24px}
   .service-page--academy .service-step__body{padding:1rem}
 }
+@media(max-width:799px){
+  .service-page .service-hero{grid-template-columns:minmax(0,1fr);row-gap:0;padding:7rem 0 0;min-height:0;overflow:hidden}
+  .service-page .service-hero__intro{padding-inline:1.25rem}
+  .service-page .service-hero__visual{width:calc(100% - 2.5rem);max-width:36rem;justify-self:center;z-index:1}
+  .service-page .service-hero__wave{position:relative;grid-column:1;grid-row:auto;left:auto;bottom:auto;width:100%;height:5.5rem;margin-top:-4.6rem;z-index:2}
+  .service-page .service-hero__details{grid-column:1;grid-row:auto;z-index:3;padding:1rem 1.25rem 1.5rem;background:var(--service-surface);color:var(--service-ink)}
+  .service-page .service-hero .service-hero__lead{color:var(--service-muted)}
+  .service-page .service-hero__actions{margin-top:1rem;gap:.4rem 1rem}
+  .service-page .service-hero__explore{color:var(--service-ink)}
+  .service-page .service-hero .service-hero__region{color:var(--service-muted);margin-top:.75rem}
+  .service-page--operation .service-hero__button{background:#122a2f;color:#f9f7f3}
+  .service-page--operation .service-hero__button:hover{background:#244247}
+}
+@media(max-width:599px){
+  .service-page .service-hero{padding-top:6.4rem}
+  .service-page .service-hero__intro{margin-bottom:.5rem}
+  .service-page .service-hero .service-hero__kicker{margin-bottom:1rem}
+  .service-page .service-hero h1{line-height:1.1;margin-bottom:.4rem}
+  .service-page .service-surface h2{font-size:clamp(1.9rem,7vw,2.5rem)}
+}

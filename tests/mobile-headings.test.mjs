@@ -1,0 +1,89 @@
+import assert from 'node:assert/strict';
+import { createServer } from 'node:http';
+import { createRequire } from 'node:module';
+import { readFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import { extname, join, resolve, sep } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { test } from 'node:test';
+
+const root = resolve(fileURLToPath(new URL('../dist/', import.meta.url)));
+const chromePath = process.env.CHROME_PATH || 'C:/Program Files/Google/Chrome/Application/chrome.exe';
+let chromium;
+try {
+  ({ chromium } = createRequire(process.execPath)('playwright'));
+} catch {
+  // Playwright is optional in the website project; the bundled Codex runtime includes it.
+}
+
+test('mobile layout across page types', {
+  skip: !chromium || !existsSync(chromePath),
+}, async t => {
+  const server = createServer(async (request, response) => {
+    const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+    const path = resolve(join(root, pathname.replace(/^\//, ''), pathname.endsWith('/') ? 'index.html' : ''));
+    if (path !== root && !path.startsWith(root + sep)) {
+      response.writeHead(403).end();
+      return;
+    }
+    try {
+      const body = await readFile(path);
+      const type = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.webp': 'image/webp', '.woff2': 'font/woff2' }[extname(path)] || 'application/octet-stream';
+      response.writeHead(200, { 'content-type': type }).end(body);
+    } catch {
+      response.writeHead(404).end();
+    }
+  });
+  await new Promise(resolveListen => server.listen(0, '127.0.0.1', resolveListen));
+  const browser = await chromium.launch({ executablePath: chromePath, headless: true });
+  t.after(async () => {
+    await browser.close();
+    server.closeAllConnections();
+    await new Promise(resolveClose => server.close(resolveClose));
+  });
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  const base = `http://127.0.0.1:${server.address().port}`;
+  await t.test('important phone headings stay compact', async () => {
+    const cases = [
+      ['/', '.home-approach h2', 36],
+      ['/management/', '.service-hero h1', 34],
+      ['/akademie/', '.service-hero h1', 34],
+      ['/operation/', '.service-hero h1', 34],
+      ['/operation/', '.service-section-intro h2', 34],
+      ['/ueber/', '.detail-hero h1', 34],
+      ['/ueber/', '.detail-surface h2', 36],
+    ];
+    for (const [route, selector, maximum] of cases) {
+      await page.goto(base + route);
+      const heading = page.locator(selector).first();
+      await heading.waitFor({ timeout: 5000 });
+      const size = await heading.evaluate(element => parseFloat(getComputedStyle(element).fontSize));
+      assert.ok(size <= maximum, `${route} ${selector}: ${size}px exceeds ${maximum}px`);
+    }
+  });
+  await t.test('curved service transition touches the illustration on narrow screens', async () => {
+    for (const width of [390, 600]) {
+      await page.setViewportSize({ width, height: 844 });
+      await page.goto(base + '/operation/');
+      const touching = await page.evaluate(() => {
+        const visual = document.querySelector('.service-hero__visual').getBoundingClientRect();
+        const wave = document.querySelector('.service-hero__wave').getBoundingClientRect();
+        return wave.top <= visual.bottom && wave.bottom >= visual.bottom;
+      });
+      assert.ok(touching, `wave misses illustration at ${width}px`);
+    }
+  });
+  await t.test('footer link groups open on phones and stay static on desktop', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(base + '/');
+    const groups = page.locator('.footer__mobile-section');
+    assert.equal(await groups.count(), 3);
+    assert.equal(await groups.evaluateAll(elements => elements.filter(element => element.open).length), 0);
+    await groups.first().locator('summary').click();
+    assert.ok(await groups.first().evaluate(element => element.open));
+    assert.ok(await groups.first().locator('a').first().isVisible());
+    await page.setViewportSize({ width: 1280, height: 800 });
+    assert.ok(await page.locator('.footer__desktop-section').first().isVisible());
+    assert.equal(await groups.first().isVisible(), false);
+  });
+});

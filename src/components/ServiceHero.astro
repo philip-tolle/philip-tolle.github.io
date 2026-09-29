@@ -21,7 +21,6 @@ const { area, heading, emphasis, description, mobileDescription, image, imageAlt
 ---
 
 <header class="service-hero" aria-labelledby="service-title" data-wave-tone={waveTone}>
-  <svg class="service-hero__wave" viewBox="0 0 1440 240" preserveAspectRatio="none" aria-hidden="true"><path d="M0 135C300 205 520 175 780 100S1190 30 1440 72V240H0Z" /></svg>
   <div class="service-hero__intro">
     <p class="service-hero__kicker">NextCourse {area}</p>
     <h1 id="service-title">{heading} <em>{emphasis}</em></h1>
@@ -40,6 +39,7 @@ const { area, heading, emphasis, description, mobileDescription, image, imageAlt
       decoding="async"
     />
   </div>
+  <svg class="service-hero__wave" viewBox="0 0 1440 240" preserveAspectRatio="none" aria-hidden="true"><path d="M0 135C300 205 520 175 780 100S1190 30 1440 72V240H0Z" /></svg>
   <div class="service-hero__details">
     <p class="service-hero__lead desktop-overview-copy">{description}</p>
     <p class="service-hero__lead mobile-overview-copy" data-mobile-hero>{mobileDescription}</p>
@@ -81,7 +81,17 @@ const { area, heading, emphasis, description, mobileDescription, image, imageAlt
   .service-hero a:focus-visible{outline:2px solid #ff6b4a;outline-offset:6px}
   @media(max-width:1099px){.service-hero{gap:1.5rem;min-height:0}.service-hero h1{font-size:clamp(2.5rem,4.2vw,3.7rem)}.service-hero__actions{gap:.6rem 1.2rem}.service-hero__button{font-size:.84rem;padding:.9rem 1.2rem;gap:.8rem}}
   @media(max-width:799px){.service-hero{grid-template-columns:1fr;grid-template-rows:auto;gap:1.4rem;padding-top:7rem;padding-bottom:3rem}.service-hero__intro,.service-hero__details,.service-hero__visual{grid-column:1;grid-row:auto}.service-hero h1{font-size:clamp(2.6rem,6.8vw,4rem);max-width:20ch}.service-hero__visual{max-width:42rem;justify-self:center}.service-hero__visual img{max-height:none}.service-hero .service-hero__lead{max-width:52ch}}
-  @media(max-width:599px){.service-hero{gap:1.8rem}.service-hero .service-hero__kicker{font-size:.67rem;margin-bottom:1.3rem}.service-hero h1{font-size:clamp(2.3rem,9.6vw,3.4rem);margin-bottom:1.4rem}.service-hero .service-hero__lead{font-size:.96rem;line-height:1.8}.service-hero__actions{margin-top:1.5rem;gap:.65rem 1rem}.service-hero__button{font-size:.83rem}.service-hero__explore{font-size:.8rem}.service-hero .service-hero__region{font-size:.7rem;margin-top:1rem}.service-hero__visual{width:calc(100% + 1rem);max-width:none}}
+  @media(max-width:599px){
+    .service-hero{gap:1.8rem}
+    .service-hero .service-hero__kicker{font-size:.67rem;margin-bottom:1.3rem}
+    .service-hero h1{font-size:clamp(2rem,8.2vw,2.8rem);margin-bottom:.4rem}
+    .service-hero .service-hero__lead{font-size:.96rem;line-height:1.65;color:var(--service-muted)}
+    .service-hero__actions{margin-top:1.5rem;gap:.65rem 1rem}
+    .service-hero__button{font-size:.83rem}
+    .service-hero__explore{font-size:.8rem}
+    .service-hero .service-hero__region{font-size:.7rem;margin-top:1rem}
+    .service-hero__visual{width:calc(100% + 1rem);max-width:none}
+  }
   @media(prefers-reduced-motion:reduce){.service-hero__button,.service-hero .service-hero__visual img,.service-hero .service-hero__visual::before{transition:none;transform:none}}
 </style>
 

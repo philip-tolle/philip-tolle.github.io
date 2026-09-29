@@ -150,6 +150,25 @@ class MobileHomeTests(unittest.TestCase):
 
 
 class MobileServiceTests(unittest.TestCase):
+    def test_wave_separates_mobile_service_image_from_following_details(self):
+        """The curved color transition must touch the image before the lead/actions."""
+        for route in ("management", "akademie", "operation"):
+            with self.subTest(route=route):
+                tags = PageProbe(ROOT / "dist" / route / "index.html").tag_sequence
+                visual = next(i for i, (_, attrs) in enumerate(tags)
+                              if "service-hero__visual" in attrs.get("class", ""))
+                wave = next(i for i, (_, attrs) in enumerate(tags)
+                            if "service-hero__wave" in attrs.get("class", ""))
+                details = next(i for i, (_, attrs) in enumerate(tags)
+                               if "service-hero__details" in attrs.get("class", ""))
+                self.assertLess(visual, wave)
+                self.assertLess(wave, details)
+
+    def test_operation_question_has_no_repeated_mobile_instruction(self):
+        html = (ROOT / "dist" / "operation" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("in gute Hände geben?", html)
+        self.assertEqual(html.count("Wählen Sie die Aufgabe, die Sie abgeben möchten."), 0)
+
     def test_image_follows_heading_before_mobile_lead_and_offers_swipe(self):
         for route, count in (("management", 4), ("akademie", 2), ("operation", 3)):
             with self.subTest(route=route):
@@ -181,7 +200,10 @@ class MobileServiceTests(unittest.TestCase):
                                     for summary in page.mobile_summaries))
                 self.assertEqual(page.mobile_service_links, page.desktop_service_links)
                 self.assertIn("data-mobile-hero", page.markers)
-                self.assertIn("data-mobile-journey-intro", page.markers)
+                if route != "operation":
+                    self.assertIn("data-mobile-journey-intro", page.markers)
+                else:
+                    self.assertNotIn("data-mobile-journey-intro", page.markers)
                 self.assertEqual(len(page.ids), len(set(page.ids)))
 
     def test_supplemental_mobile_copy(self):
@@ -269,3 +291,52 @@ class MobilePeerRailTests(unittest.TestCase):
             self.assertIn(term, packages)
         faq = (ROOT / "dist" / "faq/index.html").read_text(encoding="utf-8")
         self.assertIn("AZAV-Zulassung ist in Vorbereitung", faq)
+
+
+class MobileFooterTests(unittest.TestCase):
+    def test_mobile_footer_groups_are_closed_accessible_link_lists(self):
+        """Phone visitors should reach every footer destination after opening its group."""
+        class FooterProbe(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.groups = {}
+                self.current = None
+                self.in_summary = False
+                self.label = ""
+                self.open_groups = []
+
+            def handle_starttag(self, tag, attributes):
+                attrs = dict(attributes)
+                if tag == "details" and "footer__mobile-section" in attrs.get("class", ""):
+                    self.current = []
+                    self.label = ""
+                    if "open" in attrs:
+                        self.open_groups.append(True)
+                elif self.current is not None and tag == "summary":
+                    self.in_summary = True
+                elif self.current is not None and tag == "a":
+                    self.current.append(attrs.get("href"))
+
+            def handle_data(self, data):
+                if self.in_summary:
+                    self.label += data
+
+            def handle_endtag(self, tag):
+                if tag == "summary":
+                    self.in_summary = False
+                elif tag == "details" and self.current is not None:
+                    self.groups[self.label.strip()] = self.current
+                    self.current = None
+
+        for route in ("index.html", "operation/index.html", "404.html"):
+            with self.subTest(route=route):
+                probe = FooterProbe()
+                probe.feed((ROOT / "dist" / route).read_text(encoding="utf-8"))
+                self.assertFalse(probe.open_groups)
+                self.assertEqual(probe.groups, {
+                    "Bereiche": ["/management/", "/management/betriebshandbuch/", "/akademie/",
+                                 "/operation/", "/akademie/foerderung/", "/prompt-studio/", "/faq/"],
+                    "Unternehmen": ["/ueber/", "/blog/", "/kontakt/",
+                                    "https://www.linkedin.com/in/philiptolle/"],
+                    "Rechtliches": ["/impressum/", "/datenschutz/"],
+                })

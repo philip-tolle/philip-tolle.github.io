@@ -12,7 +12,7 @@ const { page } = Astro.props;
   <div class="service-section-intro">
     <div><p class="service-kicker">{page.journey.kicker}</p><h2 id="service-journey-title">{page.journey.heading} <em>{page.journey.emphasis}</em></h2></div>
     <p class="desktop-overview-copy">{page.journey.intro}</p>
-    <p class="mobile-overview-copy" data-mobile-journey-intro>{page.journey.mobileIntro}</p>
+    {page.journey.mobileIntro && <p class="mobile-overview-copy" data-mobile-journey-intro>{page.journey.mobileIntro}</p>}
   </div>
   <nav class="service-jumps" aria-label={`${page.area}: direkt zum Angebot`}>
     {page.journey.steps.map(step => <a href={`#format-${step.id}`}>{step.label}<span aria-hidden="true">↓</span></a>)}

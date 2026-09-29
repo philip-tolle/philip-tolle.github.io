@@ -1,39 +1,44 @@
+---
+const groups = [
+  { title: 'Bereiche', links: [
+    { label: 'Management', href: '/management/' },
+    { label: 'Digitales Betriebshandbuch', href: '/management/betriebshandbuch/' },
+    { label: 'Akademie', href: '/akademie/' },
+    { label: 'Operation', href: '/operation/' },
+    { label: 'Förderung', href: '/akademie/foerderung/' },
+    { label: 'Prompt Studio', href: '/prompt-studio/' },
+    { label: 'Häufige Fragen', href: '/faq/' },
+  ] },
+  { title: 'Unternehmen', links: [
+    { label: 'Über NextCourse', href: '/ueber/' },
+    { label: 'Blog', href: '/blog/' },
+    { label: 'Kontakt', href: '/kontakt/' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/philiptolle/', external: true },
+  ] },
+  { title: 'Rechtliches', links: [
+    { label: 'Impressum', href: '/impressum/' },
+    { label: 'Datenschutz', href: '/datenschutz/' },
+  ] },
+];
+---
 <footer class="footer">
   <div class="wrap">
     <div class="footer__grid">
-      <div>
+      <div class="footer__brand">
         <span class="fw">NextCourse</span><br />
         <span class="claim">Gute Gastgeber. Klare Abläufe.</span>
         <p class="faint small" style="margin-top:1rem">Management, Academy und Operation für Hotels und Gastronomie. Persönlich in Mainfranken.</p>
       </div>
-      <div>
-        <h4>Bereiche</h4>
-        <ul>
-          <li><a href="/management/">Management</a></li>
-          <li><a href="/management/betriebshandbuch/">Digitales Betriebshandbuch</a></li>
-          <li><a href="/akademie/">Akademie</a></li>
-          <li><a href="/operation/">Operation</a></li>
-          <li><a href="/akademie/foerderung/">Förderung</a></li>
-          <li><a href="/prompt-studio/">Prompt Studio</a></li>
-          <li><a href="/faq/">Häufige Fragen</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Unternehmen</h4>
-        <ul>
-          <li><a href="/ueber/">Über NextCourse</a></li>
-          <li><a href="/blog/">Blog</a></li>
-          <li><a href="/kontakt/">Kontakt</a></li>
-          <li><a href="https://www.linkedin.com/in/philiptolle/" rel="noopener">LinkedIn</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Rechtliches</h4>
-        <ul>
-          <li><a href="/impressum/">Impressum</a></li>
-          <li><a href="/datenschutz/">Datenschutz</a></li>
-        </ul>
-      </div>
+      {groups.map(group => <div class="footer__nav-group">
+        <div class="footer__desktop-section">
+          <h4>{group.title}</h4>
+          <ul>{group.links.map(link => <li><a href={link.href} rel={link.external ? 'noopener' : undefined}>{link.label}</a></li>)}</ul>
+        </div>
+        <details class="footer__mobile-section">
+          <summary>{group.title}</summary>
+          <ul>{group.links.map(link => <li><a href={link.href} rel={link.external ? 'noopener' : undefined}>{link.label}</a></li>)}</ul>
+        </details>
+      </div>)}
     </div>
     <div class="footer__base">
       <span>© <span id="year"></span> NextCourse UG (haftungsbeschränkt) · Würzburg</span>

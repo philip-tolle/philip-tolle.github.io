@@ -104,7 +104,7 @@
 }
 @media(max-width:699px){
   .detail-page--compact .detail-head{padding-top:6rem}
-  .detail-page--compact .detail-hero h1{font-size:clamp(2.2rem,8vw,3rem)}
+  .detail-page--compact .detail-hero h1{font-size:clamp(2rem,8vw,2.75rem)}
   .detail-page--compact .detail-surface h2{font-size:2rem}
   .detail-page--compact .detail-lead{font-size:.97rem}
   .offer-navigation{gap:.2rem 1.1rem}
