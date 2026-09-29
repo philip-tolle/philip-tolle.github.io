@@ -1,20 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import managementImage from '../assets/services/management-ablaeufe-dunkel.png';
-import academyImage from '../assets/services/academy-team-dunkel.png';
-import operationImage from '../assets/services/operation-entlastung-dunkel.png';
-
-const illustrations = {
-  Management: { src: managementImage, alt: 'Illustration: Eine Mitarbeiterin ordnet die Abläufe von Rezeption, Service und Housekeeping an einer gemeinsamen Übersicht.' },
-  Academy: { src: academyImage, alt: 'Illustration: Ein Team aus dem Gastgewerbe lernt gemeinsam in einer praxisnahen Schulung.' },
-  Operation: { src: operationImage, alt: 'Illustration: Eine Mitarbeiterin übergibt Aufgaben und Unterlagen an ihre Ansprechpartnerin im Backoffice.' },
-};
-
-const situations = [
-  { id: 'leistung-ablaeufe', short: 'Abläufe ordnen', guide: 'Management · Standards & Betriebswissen', situation: 'Ständig dieselben Rückfragen?', heading: 'Gute Abläufe.', emphasis: 'Gemeinsame Routine.', description: 'Wir prüfen Abläufe und machen Betriebswissen zugänglich – zum Beispiel mit einem digitalen Handbuch für Standards, Zuständigkeiten und Einarbeitung.', action: 'Management kennenlernen', area: 'Management', href: '/management/' },
-  { id: 'leistung-team', short: 'Team stärken', guide: 'Academy · Weiterbildung im Gastgewerbe', situation: 'Neue Aufgaben. Unsicherheit im Team?', heading: 'Wissen, das bleibt.', emphasis: 'Und im Alltag hilft.', description: 'In Seminaren und Schulungen bei Ihnen vor Ort übt Ihr Team an Aufgaben aus dem eigenen Haus – verständlich und direkt anwendbar.', action: 'Weiterbildung entdecken', area: 'Academy', href: '/akademie/' },
-  { id: 'leistung-entlastung', short: 'Arbeit abgeben', guide: 'Operation · Laufende Aufgaben übernehmen', situation: 'Die To-do-Liste bleibt länger als der Tag?', heading: 'Aufgaben abgeben.', emphasis: 'Den Alltag entlasten.', description: 'Wir erstellen und pflegen Unterlagen, unterstützen Ihre Kommunikation und koordinieren Projekte. Sie geben vereinbarte Aufgaben ab und behalten den Überblick.', action: 'Unterstützung entdecken', area: 'Operation', href: '/operation/' },
-];
+import { situations } from '../data/home-services';
 ---
 <section class="home-finder nc-section nc-shell" id="leistungen" data-wave-tone="dark" aria-labelledby="services-title">
   <div class="home-finder__intro">
@@ -27,6 +13,30 @@ const situations = [
         <span class="home-finder__marker" aria-hidden="true"></span><span class="home-finder__choice-copy"><strong>{situation.short}</strong><small>{situation.guide}</small></span><span class="home-finder__arrow" aria-hidden="true">→</span>
       </a>)}
     </div>
+    <div class="home-finder__mobile" data-mobile-finder>
+      <div class="home-finder__mobile-track" data-mobile-service-track tabindex="0" aria-label="Angebote: horizontal wischen oder mit den Pfeiltasten bewegen">
+        {situations.map((situation) => <article class="home-finder__mobile-card" id={`mobile-${situation.id}`} data-mobile-service-card>
+          <a href={situation.href} aria-labelledby={`mobile-${situation.id}-heading`}>
+            <div class="home-finder__mobile-image">
+              <Image src={situation.image} alt={situation.imageAlt} width={720} widths={[360, 480, 720]} sizes="(max-width: 599px) 75vw, 1px" format="webp" quality={82} loading="lazy" decoding="async" />
+            </div>
+            <div class="home-finder__mobile-copy">
+              <span>NextCourse · {situation.area}</span>
+              <h3 id={`mobile-${situation.id}-heading`}>{situation.short}</h3>
+              <p>{situation.mobileSummary}</p>
+              <strong>{situation.action} <span aria-hidden="true">↗</span></strong>
+            </div>
+          </a>
+        </article>)}
+      </div>
+      <div class="home-finder__mobile-nav">
+        <p data-mobile-status aria-live="polite">3 Angebote · wischen</p>
+        <div>
+          <button type="button" data-mobile-prev aria-label="Vorheriges Angebot" hidden>←</button>
+          <button type="button" data-mobile-next aria-label="Nächstes Angebot" hidden>→</button>
+        </div>
+      </div>
+    </div>
     <p class="home-finder__invitation">Noch unsicher, welcher Bereich passt?<br /><a href="/kontakt/">Den Einstieg gemeinsam finden <span aria-hidden="true">↗</span></a></p>
   </div>
   <div class="home-finder__results">
@@ -34,8 +44,8 @@ const situations = [
       <a class="home-finder__card" href={situation.href} aria-labelledby={`${situation.id}-action`} aria-describedby={`${situation.id}-heading`}>
         <div class="home-finder__illustration">
           <Image
-            src={illustrations[situation.area as keyof typeof illustrations].src}
-            alt={illustrations[situation.area as keyof typeof illustrations].alt}
+            src={situation.image}
+            alt={situation.imageAlt}
             width={1400}
             widths={[480, 720, 1000, 1400]}
             sizes="(max-width: 999px) 90vw, 48vw"
@@ -60,7 +70,11 @@ const situations = [
 </section>
 
 <script>
+  import { initMobileHomeFinder } from '../scripts/mobile-home-finder';
+
   const finder = document.querySelector<HTMLElement>('.home-finder');
+  const mobileFinder = finder?.querySelector<HTMLElement>('[data-mobile-finder]');
+  if (mobileFinder) initMobileHomeFinder(mobileFinder);
   if (finder) {
     const choices = [...finder.querySelectorAll<HTMLAnchorElement>('[data-service-choice]')];
     const panels = [...finder.querySelectorAll<HTMLElement>('[data-service-result]')];
