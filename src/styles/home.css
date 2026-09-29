@@ -144,7 +144,7 @@ html.home-theme[data-home-theme=dark] .home-finder :focus-visible{outline:2px so
   .nc-home .heroWord{font-size:clamp(2.5rem,11vw,3.5rem)}
   .nc-home .home-hero__promise{font-size:clamp(1rem,4.3vw,1.25rem);margin:.85rem auto .3rem}
   .nc-home .home-hero__lead{font-size:.94rem;max-width:35ch;margin-top:.75rem}
-  .home-hero__lead>span{font-size:.84rem;margin-top:.4rem}
+  .home-hero__lead>span{font-size:.78rem;margin-top:.25rem;color:#b8c8c3}
   .nc-home .home-hero__actions{gap:.6rem;margin-top:1.1rem}
   .home-hero__contact{text-align:center;min-height:48px}
   .nc-home .home-hero__stage{padding-bottom:.75rem}
