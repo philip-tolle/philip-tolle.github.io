@@ -13,6 +13,9 @@ Begleitung für das Gastgewerbe in Mainfranken. Gebaut mit [Astro](https://astro
 
 ## Entwicklung
 
+Für die Übergabe an einen weiteren KI-Agenten zuerst
+[`AGENTS.md`](AGENTS.md) und [`docs/AI-UEBERGABE.md`](docs/AI-UEBERGABE.md) lesen.
+
 ```bash
 npm install
 npm run dev        # Dev-Server auf http://localhost:4321
