@@ -1,0 +1,23 @@
+---
+import ConceptShell from '../../components/home-concepts/ConceptShell.astro';
+import Overview from '../../components/home-concepts/Overview.astro';
+import Signature from '../../components/home-concepts/Signature.astro';
+import Editorial from '../../components/home-concepts/Editorial.astro';
+import Focus from '../../components/home-concepts/Focus.astro';
+
+// Design review only: these routes are deliberately absent from production builds.
+export function getStaticPaths() {
+  return import.meta.env.DEV
+    ? [undefined, '1', '2', '3'].map(variant => ({ params: { variant } }))
+    : [];
+}
+const variant = Astro.params.variant;
+const titles = { '1': 'Marke mit Strahlkraft', '2': 'Gastlichkeit als Haltung', '3': 'Mehr Luft im Alltag' };
+const title = variant ? titles[variant as keyof typeof titles] : 'Drei neue Perspektiven';
+---
+<ConceptShell variant={variant} title={title}>
+  {!variant && <Overview />}
+  {variant === '1' && <Signature />}
+  {variant === '2' && <Editorial />}
+  {variant === '3' && <Focus />}
+</ConceptShell>

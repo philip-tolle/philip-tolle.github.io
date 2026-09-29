@@ -1,0 +1,64 @@
+---
+import '@fontsource/plus-jakarta-sans/latin-400.css';
+import '@fontsource/plus-jakarta-sans/latin-600.css';
+import '@fontsource/plus-jakarta-sans/latin-700.css';
+import '@fontsource/plus-jakarta-sans/latin-800.css';
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import '@fontsource/inter/latin-600.css';
+import '../../styles/home-concepts.css';
+import BrandMark from './BrandMark.astro';
+interface Props { variant?: string; title: string; }
+const { variant, title } = Astro.props;
+const concepts = [
+  { id: '1', name: 'Marke mit Strahlkraft', short: 'Markant' },
+  { id: '2', name: 'Gastlichkeit als Haltung', short: 'Editorial' },
+  { id: '3', name: 'Mehr Luft im Alltag', short: 'Fokussiert' },
+];
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#122a2f" />
+    <title>{title} · NextCourse Designentwürfe</title>
+    <link rel="icon" href="/favicon.png" />
+  </head>
+  <body class:list={['concept-body', variant ? `concept-${variant}` : 'concept-overview']}>
+    <a class="concept-skip" href="#concept-main">Zum Inhalt springen</a>
+    <aside class="review-bar" aria-label="Designvergleich">
+      <a class="review-home" href="/entwuerfe/" aria-current={!variant ? 'page' : undefined}>← <span>Alle Entwürfe</span></a>
+      <nav aria-label="Entwurf auswählen">
+        {concepts.map(concept => <a href={`/entwuerfe/${concept.id}/`} aria-current={variant === concept.id ? 'page' : undefined}><span>0{concept.id}</span> {concept.short}</a>)}
+      </nav>
+      <span class="review-status">Designvorschau · Startseite</span>
+    </aside>
+    {variant && <header class="concept-header">
+      <a href="/" class="concept-brand" aria-label="NextCourse – aktuelle Startseite"><BrandMark /><span>NextCourse</span></a>
+      <nav class="concept-desktop-nav" aria-label="Hauptnavigation">
+        <a href="#leistungen">Leistungen</a><a href="/ueber/">Über NextCourse</a><a href="/blog/">Blog</a>
+      </nav>
+      <a class="concept-header-cta" href="/kontakt/">Lernen wir uns kennen <span aria-hidden="true">↗</span></a>
+      <details class="concept-mobile-nav">
+        <summary>Menü <span aria-hidden="true">＋</span></summary>
+        <nav aria-label="Mobile Hauptnavigation"><a href="#leistungen">Leistungen</a><a href="/ueber/">Über NextCourse</a><a href="/blog/">Blog</a><a href="/kontakt/">Kontakt aufnehmen</a></nav>
+      </details>
+    </header>}
+    <main id="concept-main"><slot /></main>
+    {variant && <footer class="concept-footer">
+      <a class="concept-footer-brand" href="/">NextCourse<span>Gute Gastgeber. Klare Abläufe.</span></a>
+      <p>Management · Academy · Operation<br />Aus Würzburg. Für das Gastgewerbe.</p>
+      <nav aria-label="Weitere Informationen"><a href="/kontakt/">Kontakt</a><a href="/impressum/">Impressum</a><a href="/datenschutz/">Datenschutz</a></nav>
+    </footer>}
+    <script>
+      document.querySelectorAll<HTMLDetailsElement>('.concept-mobile-nav').forEach(menu => {
+        menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => menu.open = false));
+        menu.addEventListener('keydown', event => {
+          if (event.key === 'Escape') { menu.open = false; menu.querySelector('summary')?.focus(); }
+        });
+      });
+    </script>
+  </body>
+</html>

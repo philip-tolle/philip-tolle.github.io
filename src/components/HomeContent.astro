@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/nc-logo.png';
+import philip from '../assets/philip.png';
+import HomeServices from './HomeServices.astro';
+import HomeTransition from './HomeTransition.astro';
+import HandbookGateway from './HandbookGateway.astro';
+import PersonalContact from './PersonalContact.astro';
+import '../styles/marketing.css';
+import '../styles/home.css';
+---
+<div class="nc-page nc-home">
+  <section class="home-hero nc-shell" aria-labelledby="home-title">
+    <div class="home-hero__stage">
+      <a class="heroLogo coin" id="heroLogo" href="#leistungen" aria-label="Logo drehen und die passende Unterstützung entdecken">
+        <Image src={logo} alt="NextCourse Logo: Wellen und Pfeil aus warmem Holz" widths={[360, 640, 1080]} sizes="(max-width: 599px) 56vw, min(440px, 70vw, calc(100svh - 550px))" width={1080} format="webp" quality={82} loading="eager" fetchpriority="high" />
+      </a>
+      <h1 class="heroWord" id="home-title">NextCourse<span class="sr-only"> – Management, Academy und Operation für das Gastgewerbe in Mainfranken</span></h1>
+      <p class="home-hero__promise">Mehr Zeit für das, was zählt.</p>
+      <p class="home-hero__lead">Wir ordnen Abläufe, schulen Ihr Team und übernehmen laufende Aufgaben.<span>Für Hotels und Gastronomie in Mainfranken.</span></p>
+      <div class="nc-actions home-hero__actions">
+        <a class="nc-button" href="#leistungen">Passende Unterstützung finden <span aria-hidden="true">↓</span></a>
+        <a class="home-hero__contact" href="/kontakt/">Erstgespräch anfragen <span aria-hidden="true">↗</span><small>Kostenlos und unverbindlich</small></a>
+      </div>
+    </div>
+    <div class="home-hero__foot">
+      <a class="home-about" href="/ueber/" aria-label="Über NextCourse: Philip Tolle kennenlernen">
+        <Image src={philip} alt="" width={120} format="webp" quality={82} />
+        <span>Aus der Branche.<br /><strong>An Ihrer Seite.</strong><span class="home-about__label">Über NextCourse</span></span>
+        <span class="home-about__arrow" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <HomeTransition from="dark" to="orange" />
+  <HomeServices />
+  <HomeTransition from="orange" to="dark" reverse />
+
+  <HandbookGateway />
+
+  <HomeTransition from="dark" to="white" />
+  <section class="home-approach nc-section nc-shell nc-paper" data-wave-tone="dark" aria-labelledby="approach-title">
+    <div class="home-approach__intro reveal">
+      <p class="nc-kicker">Zusammenarbeit</p>
+      <h2 id="approach-title">Wir fangen bei<br />Ihrem Alltag an.</h2>
+      <p>Am Anfang steht Ihr Anliegen. Gemeinsam legen wir fest, was sich ändern soll, welche Unterstützung Sie brauchen und was Sie am Ende erhalten.</p>
+    </div>
+    <ol class="nc-process">
+      <li class="reveal"><h3>Anliegen klären</h3><p>Was kostet Zeit? Wo fehlt Wissen? Welche Aufgaben möchten Sie abgeben? Wir hören zu und ordnen gemeinsam.</p></li>
+      <li class="reveal"><h3>Umfang vereinbaren</h3><p>Sie wissen vor dem Start, welche Leistungen Sie erhalten, was sie kosten und wer sich um die nächsten Schritte kümmert.</p></li>
+      <li class="reveal"><h3>Zusammenarbeiten</h3><p>Wir führen Abläufe ein, schulen Ihr Team oder übernehmen vereinbarte Aufgaben – mit klaren Ergebnissen und persönlicher Abstimmung.</p></li>
+    </ol>
+  </section>
+  <HomeTransition from="white" to="dark" reverse />
+  <PersonalContact />
+</div>
+
+<script>
+  const hero = document.querySelector<HTMLElement>('.home-hero');
+  const logo = document.querySelector<HTMLAnchorElement>('.nc-home #heroLogo');
+  const target = document.getElementById('leistungen');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let spinning = false;
+
+  if (hero && logo && target) {
+    // Restore the original coin movement, independently of the shared portrait tilt.
+    if (window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+      hero.addEventListener('pointermove', event => {
+        if (spinning || motion.matches) return;
+        const rect = hero.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - .5;
+        const y = (event.clientY - rect.top) / rect.height - .5;
+        logo.style.transform = `perspective(900px) rotateX(${-y * 14}deg) rotateY(${x * 14}deg)`;
+        logo.style.setProperty('--gx', `${50 + x * 46}%`);
+        logo.style.setProperty('--gy', `${38 + y * 46}%`);
+      });
+      hero.addEventListener('pointerleave', () => {
+        if (spinning) return;
+        logo.style.transform = '';
+        logo.style.setProperty('--gx', '50%');
+        logo.style.setProperty('--gy', '35%');
+      });
+    }
+    const goToServices = () => {
+      target.scrollIntoView({ behavior: motion.matches ? 'instant' : 'smooth' });
+      const heading = document.getElementById('services-title');
+      heading?.focus({ preventScroll: true });
+    };
+    const spinAndGo = (event: Event) => {
+      event.preventDefault();
+      if (spinning) return;
+      if (motion.matches) { goToServices(); return; }
+      spinning = true;
+      logo.style.transform = '';
+      logo.classList.add('is-spinning');
+      window.setTimeout(goToServices, 550);
+      const stop = () => {
+        logo.classList.remove('is-spinning');
+        spinning = false;
+        logo.removeEventListener('animationend', stop);
+        window.clearTimeout(fallback);
+      };
+      const fallback = window.setTimeout(stop, 1500);
+      logo.addEventListener('animationend', stop);
+    };
+    logo.addEventListener('click', event => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      spinAndGo(event);
+    });
+    logo.addEventListener('keydown', event => {
+      if (event.key === ' ') spinAndGo(event);
+    });
+  }
+</script>

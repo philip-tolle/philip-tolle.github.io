@@ -1,0 +1,40 @@
+---
+interface Props { kind: 'mystery' | 'audit'; }
+const { kind } = Astro.props;
+const mystery = kind === 'mystery';
+const title = mystery ? 'Servicelücken im Hotel Lindenbogen gezielt schließen' : 'Prozesse reparieren statt neue Software kaufen';
+const audio = mystery ? '/demo/mystery-check/nextcourse-mystery-check-podcast.m4a' : '/demo/digital-audit/nextcourse-digital-audit-podcast.m4a';
+---
+<section class="demo-audio" id="podcast" aria-labelledby="podcast-title">
+  <div class="demo-audio__intro">
+    <p class="mc-demo__eyebrow">Die Auswertung zum Anhören</p>
+    <h2 id="podcast-title">Ein Bericht.<br />Auch für die Ohren.</h2>
+    <p>Hören Sie in die Podcast-Version unserer {mystery ? 'Mystery-Check-Auswertung' : 'Digital-Audit-Auswertung'} hinein – zu Hause oder unterwegs.</p>
+  </div>
+  <div class="demo-audio__player">
+    <p class="demo-audio__meta">Podcast-Demo · {mystery ? '14:13' : '15:48'} Min.</p>
+    <h3 id="podcast-episode">{title}</h3>
+    <p class="demo-audio__description" id="podcast-description">Die Hörversion zur Demo-Auswertung des Hotel &amp; Restaurant Lindenbogen. {mystery ? 'Betrieb, Besuch und Ergebnisse' : 'Betrieb, Abläufe, Systeme und Ergebnisse'} sind vollständig fiktiv.</p>
+    <audio controls preload="metadata" aria-labelledby="podcast-episode" aria-describedby="podcast-description">
+      <source src={audio} type="audio/mp4" />
+      Ihr Browser unterstützt den Audioplayer nicht. Über den folgenden Link können Sie die Hörversion herunterladen.
+    </audio>
+    <div class="demo-audio__links"><a class="mc-demo__textlink" href={audio} download>Podcast herunterladen <span aria-hidden="true">↓</span></a><span>M4A · {mystery ? '27,5' : '30,5'} MB</span></div>
+    <p class="demo-audio__credit">Mit Google NotebookLM aus der Demo-Auswertung erstellt. <a href="#auswertung">Die schriftliche Auswertung lesen.</a></p>
+  </div>
+</section>
+<style>
+  .demo-audio{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(1.5rem,4vw,4rem);align-items:start;padding:3rem 0;border-bottom:1px solid var(--mc-line,#122a2f30);scroll-margin-top:110px}
+  .demo-audio__intro>p:last-child{font-size:.94rem;line-height:1.75;color:var(--dim,#586264);max-width:38ch;margin:1rem 0 0}
+  .demo-audio__player{min-width:0;padding:clamp(1.25rem,2vw,1.75rem);background:var(--paper,#f9f7f3);border:1px solid var(--mc-line,#122a2f30);border-radius:12px;box-shadow:0 12px 24px -22px #122a2f50}
+  .demo-audio__meta{font-size:.74rem;font-weight:600;color:var(--dim,#586264);margin:0 0 1rem}
+  .demo-audio h3{font-size:clamp(1.2rem,1.8vw,1.5rem);line-height:1.35;letter-spacing:-.025em;margin:0 0 .8rem}
+  .demo-audio__description{font-size:.84rem;line-height:1.7;color:var(--dim,#586264);margin:0 0 1.1rem}
+  .demo-audio audio{display:block;width:100%;max-width:100%;height:54px;color-scheme:light;accent-color:#122a2f}
+  .demo-audio__links{display:flex;align-items:center;flex-wrap:wrap;gap:.15rem 1rem;margin-top:.5rem}
+  .demo-audio__links>span{font-size:.7rem;color:var(--faint,#62696a)}
+  .demo-audio__credit{font-size:.74rem;line-height:1.7;color:var(--faint,#62696a);margin:.8rem 0 0}
+  .demo-audio__credit a{text-decoration:underline;text-underline-offset:3px}
+  .demo-audio audio:focus-visible{outline:2px solid #ce5637;outline-offset:5px;border-radius:3px}
+  @media(max-width:760px){.demo-audio{grid-template-columns:1fr;padding:2.25rem 0;gap:1.5rem;scroll-margin-top:100px}.demo-audio__intro>p:last-child{max-width:100%}}
+</style>

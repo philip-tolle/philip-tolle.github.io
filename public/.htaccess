@@ -1,0 +1,55 @@
+# IONOS Webhosting / Apache 2.4. This file is copied to the website root by Astro.
+# No DNS changes. The preview stays separate from the canonical production host.
+
+ErrorDocument 404 /404.html
+
+# Deployment archives may remain in the document root after extraction.
+# Keep their PHP sources and protected content unavailable over HTTP.
+<FilesMatch "^nextcourse-praxis-.*\.zip$">
+  Require all denied
+</FilesMatch>
+
+# Apply to all preview responses, including redirects and internal error pages.
+# Do not block crawlers in robots.txt: they must be able to read this noindex header.
+Header always set X-Robots-Tag "noindex, nofollow" "expr=tolower(%{HTTP_HOST}) =~ m#^vorschau\.next-course\.de(?::[0-9]+)?$#"
+
+RewriteEngine On
+
+# Leave certificate validation paths available without redirecting HTTP requests.
+RewriteRule ^\.well-known/acme-challenge/ - [END]
+
+# Redirect the former project URL directly to its final HTTPS destination.
+# A query string is retained automatically. Match the old Astro index file as well.
+RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^consulting/pilotprojekte(?:/index\.html|/)?$ https://vorschau.next-course.de/management/implementierungsprojekte/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(?:www\.)?next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^consulting/pilotprojekte(?:/index\.html|/)?$ https://www.next-course.de/management/implementierungsprojekte/ [R=301,L]
+
+# Consulting is now Management. Keep old links, including index.html and queries.
+RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^consulting(?:/index\.html|/)?$ https://vorschau.next-course.de/management/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^consulting/(quick-check|mystery-check|implementierungsprojekte|referenzbetrieb)(?:/index\.html|/)?$ https://vorschau.next-course.de/management/$1/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(?:www\.)?next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^consulting(?:/index\.html|/)?$ https://www.next-course.de/management/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^consulting/(quick-check|mystery-check|implementierungsprojekte|referenzbetrieb)(?:/index\.html|/)?$ https://www.next-course.de/management/$1/ [R=301,L]
+
+# THE_REQUEST retains the original URL encoding. Capture the raw path last so %1
+# belongs to this condition. Fixed target hosts prevent Host-header redirects.
+# Existing query strings are preserved; no QSA/QSD flags are needed.
+RewriteCond %{HTTP_HOST} ^next-course\.de(?::[0-9]+)?$ [NC]
+RewriteCond %{THE_REQUEST} "^[^[:space:]]+[[:space:]]/+([^?[:space:]]*)"
+RewriteRule ^ https://www.next-course.de/%1 [R=301,L,NE]
+
+RewriteCond %{HTTP_HOST} ^www\.next-course\.de(?::[0-9]+)?$ [NC]
+RewriteCond %{HTTPS} !=on
+RewriteCond %{THE_REQUEST} "^[^[:space:]]+[[:space:]]/+([^?[:space:]]*)"
+RewriteRule ^ https://www.next-course.de/%1 [R=301,L,NE]
+
+RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
+RewriteCond %{HTTPS} !=on
+RewriteCond %{THE_REQUEST} "^[^[:space:]]+[[:space:]]/+([^?[:space:]]*)"
+RewriteRule ^ https://vorschau.next-course.de/%1 [R=301,L,NE]

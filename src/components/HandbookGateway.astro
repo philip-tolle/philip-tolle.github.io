@@ -1,0 +1,69 @@
+---
+import { Image } from 'astro:assets';
+import demoHotel from '../assets/handbook/residenzhof-demo.webp';
+
+const demoUrl = 'https://handbuch.next-course.de/';
+const requestUrl = '/kontakt/?thema=betriebshandbuch&angebot=Demo-Zugang#contactform';
+---
+
+<section class="handbook-gateway nc-section nc-shell" id="betriebshandbuch" aria-labelledby="handbook-gateway-title">
+  <div class="handbook-gateway__showcase">
+    <a class="handbook-gateway__entry" href={requestUrl} aria-label="Demo-Zugang anfragen: Betriebshandbuch Hotel Residenzhof">
+      <div class="handbook-gateway__image">
+        <Image src={demoHotel} alt="Abendlicher Eingang des fiktiven Demo-Hotels Residenzhof am Main." width={1400} widths={[480, 720, 1000, 1400]} sizes="(max-width: 999px) 90vw, 48vw" format="webp" quality={85} loading="lazy" />
+        <span class="handbook-gateway__image-label">Ein Haus. Ein Handbuch.</span>
+      </div>
+      <div class="handbook-gateway__caption">
+        <div>
+          <span class="handbook-gateway__eyebrow">Die NextCourse-Demo</span>
+          <strong>Hotel Residenzhof <span>am Main</span></strong>
+          <span class="handbook-gateway__areas">Rezeption · Housekeeping · Service</span>
+        </div>
+        <span class="handbook-gateway__demo-action">Demo-Zugang anfragen <span class="handbook-gateway__enter" aria-hidden="true">↗</span></span>
+      </div>
+    </a>
+    <p class="handbook-gateway__caption-note">Ein fiktives Hotel. Eine geschützte Anwendung zum Kennenlernen.<br />Bereits Zugang? <a href={demoUrl} target="_blank" rel="noopener noreferrer">Geschützte Demo öffnen <span aria-hidden="true">↗</span><span class="sr-only"> (in einem neuen Tab)</span></a></p>
+  </div>
+
+  <div class="handbook-gateway__copy">
+    <p class="nc-kicker">Management · Digitales Betriebshandbuch</p>
+    <h2 id="handbook-gateway-title">Damit Wissen<br /><em>im Haus bleibt.</em></h2>
+    <p class="handbook-gateway__lead">Wie wird ein Zimmer freigegeben? Was gehört zur Schichtübergabe? Ein digitales Betriebshandbuch hält die Antworten Ihres Hauses an einem gemeinsamen Ort fest.</p>
+    <p class="handbook-gateway__invitation">Am fiktiven Hotel Residenzhof zeigen wir Ihnen die Anwendung. Den Zugang zur geschützten Demo stimmen wir persönlich mit Ihnen ab.</p>
+    <div class="handbook-gateway__actions">
+      <a class="nc-button" href="/management/betriebshandbuch/">Betriebshandbuch kennenlernen <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .handbook-gateway{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(3rem,6vw,8rem);align-items:start;background:var(--nc-forest);color:var(--nc-paper);scroll-margin-top:5rem}
+  .handbook-gateway .nc-kicker{font-size:clamp(.68rem,.8vw,.85rem);letter-spacing:.13em;line-height:1.8;margin:0 0 2rem}
+  .handbook-gateway h2{font-size:clamp(2.75rem,4.1vw,5.4rem);font-weight:600;letter-spacing:-.05em;line-height:1.13;max-width:none;margin:0 0 2rem}
+  .handbook-gateway h2 em{font-family:Georgia,'Times New Roman',serif;font-weight:400;font-style:italic;letter-spacing:-.055em;color:var(--nc-paper)}
+  .handbook-gateway__lead{font-size:clamp(1rem,1.12vw,1.2rem);line-height:1.85;color:var(--nc-muted);max-width:44ch;margin:0 0 1.5rem}
+  .handbook-gateway__invitation{font-size:clamp(.94rem,1vw,1.08rem);line-height:1.75;max-width:44ch;margin:0;color:var(--nc-paper)}
+  .handbook-gateway__actions{display:flex;align-items:center;flex-wrap:wrap;gap:1.3rem 1.7rem;margin-top:2rem}
+  .handbook-gateway .nc-button{font-size:.94rem;gap:1.4rem;padding:1.1rem 1.65rem}
+  .handbook-gateway__showcase{min-width:0}
+  .handbook-gateway__entry{display:block;background:var(--nc-paper);color:var(--nc-forest);border-radius:.75rem;overflow:hidden;text-decoration:none;box-shadow:0 25px 70px -30px #0008;transition:box-shadow .35s}
+  .handbook-gateway__image{position:relative;overflow:hidden}
+  .handbook-gateway__image img{display:block;width:100%;height:auto;transition:transform .7s ease}
+  .handbook-gateway__image-label{position:absolute;left:0;right:0;bottom:0;padding:3rem 2rem 1.5rem;background:linear-gradient(transparent,rgba(18,42,47,.76));color:var(--nc-paper);font-family:Georgia,'Times New Roman',serif;font-size:clamp(1rem,1.4vw,1.6rem);font-style:italic}
+  .handbook-gateway__caption{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;padding:clamp(1.5rem,2.4vw,3rem)}
+  .handbook-gateway__eyebrow{display:block;font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:1rem;color:#425257}
+  .handbook-gateway__caption strong{display:block;font-family:var(--disp);font-size:clamp(1.5rem,2.2vw,2.7rem);font-weight:600;letter-spacing:-.045em;line-height:1.2}
+  .handbook-gateway__caption strong span{display:block;font-family:Georgia,'Times New Roman',serif;font-size:.8em;font-style:italic;font-weight:400;letter-spacing:-.025em;margin-top:.2rem}
+  .handbook-gateway__areas{display:block;font-size:clamp(.72rem,.8vw,.88rem);line-height:1.7;margin-top:1.2rem;color:#425257}
+  .handbook-gateway__demo-action{display:flex;align-items:center;gap:.9rem;margin-left:auto;flex:none;font-size:.9rem;font-weight:600;white-space:nowrap}
+  .handbook-gateway__enter{display:grid;place-items:center;flex:none;width:3.3rem;height:3.3rem;border:1px solid rgba(18,42,47,.25);border-radius:50%;font-size:1.7rem;transition:background .25s,border-color .25s}
+  .handbook-gateway__entry:hover{box-shadow:0 30px 80px -25px #0009}
+  .handbook-gateway__entry:hover img{transform:scale(1.025)}
+  .handbook-gateway__entry:hover .handbook-gateway__enter{background:var(--nc-coral);border-color:var(--nc-coral)}
+  .handbook-gateway__caption-note{font-size:.72rem;line-height:1.7;color:var(--nc-muted);margin:1rem 0 0;text-align:right;max-width:none}
+  .handbook-gateway__caption-note a{display:inline-block;padding-block:.45rem;color:var(--nc-paper);text-underline-offset:.25em}
+  .handbook-gateway a:focus-visible{outline:2px solid var(--nc-coral);outline-offset:6px}
+  @media(max-width:999px){.handbook-gateway{grid-template-columns:1fr;gap:3rem}.handbook-gateway h2{font-size:clamp(2.75rem,7vw,4.2rem)}.handbook-gateway__lead,.handbook-gateway__invitation{max-width:54ch}.handbook-gateway__showcase{width:100%;max-width:48rem;justify-self:center}.handbook-gateway__caption strong{font-size:clamp(1.7rem,4vw,2.3rem)}}
+  @media(max-width:599px){.handbook-gateway .nc-kicker{font-size:.65rem;max-width:31ch;margin-bottom:1.5rem}.handbook-gateway h2{font-size:clamp(2.6rem,10.7vw,3.4rem);margin-bottom:1.5rem}.handbook-gateway__lead{font-size:1rem}.handbook-gateway__invitation{font-size:.93rem}.handbook-gateway__actions{gap:1rem;margin-top:1.5rem}.handbook-gateway .nc-button{font-size:.86rem;gap:1rem;padding:1rem 1.2rem}.handbook-gateway__caption{padding:1.4rem 1.2rem;gap:1.2rem}.handbook-gateway__caption strong{font-size:1.55rem}.handbook-gateway__eyebrow{font-size:.6rem}.handbook-gateway__demo-action{width:100%;justify-content:space-between;font-size:.82rem;border-top:1px solid rgba(18,42,47,.18);padding-top:1rem}.handbook-gateway__enter{width:2.6rem;height:2.6rem;font-size:1.4rem}.handbook-gateway__areas{font-size:.67rem}.handbook-gateway__image-label{padding:2.5rem 1.2rem 1.2rem}.handbook-gateway__caption-note{font-size:.67rem;text-align:left}}
+  @media(prefers-reduced-motion:reduce){.handbook-gateway__entry,.handbook-gateway__image img,.handbook-gateway__enter{transition:none}.handbook-gateway__entry:hover img{transform:none}}
+</style>

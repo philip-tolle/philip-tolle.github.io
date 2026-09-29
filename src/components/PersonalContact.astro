@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import philip from '../assets/philip.png';
+interface Props { topic?: string; title?: string; waveTone?: 'dark'; }
+const { topic, title = 'Was würde Ihren Alltag leichter machen?', waveTone } = Astro.props;
+const href = topic ? `/kontakt/?thema=${encodeURIComponent(topic)}#contactform` : '/kontakt/';
+---
+<section class="nc-contact nc-shell" aria-labelledby="personal-contact-title" data-wave-tone={waveTone}>
+  <div class="nc-contact__portrait coin reveal" data-tilt>
+    <Image src={philip} alt="Philip Tolle, Gründer von NextCourse" widths={[200, 400]} sizes="200px" width={400} format="webp" loading="lazy" />
+  </div>
+  <div class="nc-contact__copy reveal">
+    <p class="nc-kicker">Persönlich kennenlernen</p>
+    <h2 id="personal-contact-title">{title}</h2>
+    <p>Erzählen Sie mir, wo es in Ihrem Haus hakt. Gemeinsam schauen wir, welcher nächste Schritt sinnvoll ist.</p>
+    <a class="nc-button nc-button--outline" href={href}>Erstgespräch anfragen <span aria-hidden="true">→</span></a>
+    <p class="nc-note">Kostenlos und unverbindlich. Am Telefon oder bei Ihnen im Haus.</p>
+    <p class="nc-contact__signature"><strong>Philip Tolle</strong><span>Ihr Ansprechpartner · Würzburg</span></p>
+  </div>
+</section>

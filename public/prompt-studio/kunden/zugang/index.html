@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#122A2F">
+  <meta name="description" content="Persönlicher Zugang zum NextCourse Praxis-Hub.">
+  <title>Zugang zum Praxis-Hub | NextCourse</title>
+  <link rel="icon" type="image/png" sizes="192x192" href="./entry-icon-20260908.png">
+  <meta property="og:image" content="https://www.next-course.de/prompt-studio/kunden/zugang/entry-icon-20260908.png">
+  <style>html,body{min-height:100%;margin:0;background:#122a2f}html.access-qr.access-resolving body>*{display:none!important}</style>
+  <script>(() => {
+    "use strict";
+
+    if (new URLSearchParams(window.location.search).has("status")) {
+      document.documentElement.classList.add("access-status-pending");
+    }
+
+    let token = window.location.hash.slice(1);
+    try {
+      token = decodeURIComponent(token);
+    } catch {
+      token = "";
+    }
+
+    if (!/^[A-Za-z0-9_-]{32,160}$/.test(token)) return;
+
+    document.documentElement.classList.add("access-qr", "access-resolving");
+    window.history.replaceState(null, "", window.location.pathname + window.location.search);
+
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 12000);
+    const request = fetch("../auth.php", {
+      method: "POST",
+      credentials: "same-origin",
+      cache: "no-store",
+      redirect: "error",
+      referrerPolicy: "no-referrer",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+      },
+      body: new URLSearchParams({ token }),
+      signal: controller.signal,
+    })
+      .then((response) => {
+        const result = { response, redirectStarted: false };
+
+        if (response.status === 204) {
+          result.redirectStarted = true;
+          window.location.replace("../");
+        } else {
+          document.documentElement.classList.remove("access-qr", "access-resolving");
+        }
+
+        return result;
+      })
+      .catch((error) => {
+        document.documentElement.classList.remove("access-qr", "access-resolving");
+        return { error };
+      })
+      .finally(() => window.clearTimeout(timeout));
+
+    Object.defineProperty(window, "__ncPraxisAccessRequest", {
+      configurable: true,
+      value: request,
+    });
+  })();</script>
+  <link rel="stylesheet" href="../access.css?v=20260907-3">
+  <script src="../access.js?v=20260907-3" defer></script>
+</head>
+<body class="access-page">
+  <main class="access-shell" data-access-gateway>
+    <section class="access-intro" aria-labelledby="access-intro-title">
+      <a class="access-brand" href="../../">
+        <span>NextCourse Prompt Studio</span>
+      </a>
+      <div class="access-intro-copy">
+        <p class="eyebrow"><span></span> Persönlicher Praxiszugang</p>
+        <h1 id="access-intro-title">Scannen.<br>Öffnen.<br>Loslegen.</h1>
+        <p>15 kleine Abkürzungen, direkt nutzbare Prompts und Geräte-Tricks für einen leichteren Alltag.</p>
+      </div>
+    </section>
+
+    <section class="access-card" aria-labelledby="access-title">
+      <p class="eyebrow"><span></span> Geschützter Bereich</p>
+      <h2 id="access-title">Dein Praxis-Hub</h2>
+      <p class="access-lead">Der QR-Link bestätigt deinen Zugang automatisch. Alternativ kannst du hier den Code von deiner Zugangskarte eingeben.</p>
+
+      <p class="access-status" role="status" data-access-status></p>
+
+      <form class="access-form" action="../auth.php" method="post" data-manual-form>
+        <label for="access-code">Persönlicher Zugangscode</label>
+        <input
+          id="access-code"
+          name="code"
+          type="text"
+          inputmode="text"
+          autocomplete="one-time-code"
+          autocapitalize="characters"
+          spellcheck="false"
+          maxlength="14"
+          placeholder="XXXX-XXXX-XXXX"
+          required
+          data-code-input
+        >
+        <button class="button button--primary" type="submit">Praxis-Hub öffnen</button>
+      </form>
+
+      <p class="access-help">Keinen Zugang erhalten? <a href="https://www.next-course.de/kontakt/">NextCourse kontaktieren</a> · <a href="https://www.next-course.de/">Zur Website</a></p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,12 +1,7 @@
 ---
-import Base from '../layouts/Base.astro';
+import DetailLayout from '../layouts/DetailLayout.astro';
 ---
-<Base title="Datenschutzerklärung — NextCourse" description="Datenschutzerklärung der NextCourse UG (haftungsbeschränkt).">
-  <div class="pagehead" style="min-height:32svh"><div class="wrap">
-    <h1>Datenschutzerklärung</h1>
-  </div></div>
-  <div class="floor--auto floor" style="padding-top:1rem"><div class="wrap">
-    <div class="prose" style="margin:0">
+<DetailLayout title="Datenschutzerklärung | NextCourse" description="Datenschutzerklärung der NextCourse UG (haftungsbeschränkt), Würzburg." label="Rechtliche Informationen" heading="Datenschutzerklärung" lead="Informationen zur Verarbeitung Ihrer Daten und zu Ihren Rechten." contact={false}><section class="detail-section detail-prose legal-prose">
       <h2 style="margin-top:0">1. Verantwortlicher</h2>
       <p>
         NextCourse UG (haftungsbeschränkt)<br>
@@ -18,25 +13,68 @@ import Base from '../layouts/Base.astro';
 
       <h2>2. Grundsätzliches</h2>
       <p>
-        Diese Website ist ein reines Informationsangebot. Sie verwendet <strong>keine Cookies</strong>,
-        keine Analyse- oder Tracking-Dienste und keine Werbenetzwerke. Schriftarten werden lokal
-        von unserem Server geladen; es besteht keine Verbindung zu Google Fonts oder anderen
-        Font-Diensten.
+        Die frei zugänglichen Seiten setzen selbst <strong>keine Cookies</strong>. Für die
+        Zugangskontrolle und Nutzung des geschützten Praxis-Hubs wird ausschließlich ein technisch
+        notwendiges Sitzungs-Cookie gesetzt; Einzelheiten dazu stehen in Abschnitt 4. Wir binden
+        keine zusätzlichen Analyse- oder Tracking-Skripte und keine Werbenetzwerke ein. Die
+        technische Protokollierung und die Serverstatistiken unseres Hosting-Anbieters erläutern
+        wir in Abschnitt 3. Schriftarten werden lokal von unserem Server geladen; es besteht keine
+        Verbindung zu Google Fonts oder anderen Font-Diensten.
       </p>
 
-      <h2>3. Hosting (GitHub Pages)</h2>
+      <h2>3. Hosting und Serverstatistiken (IONOS)</h2>
       <p>
-        Diese Website wird bei GitHub Pages gehostet, einem Dienst der GitHub, Inc.,
-        88 Colin P Kelly Jr St, San Francisco, CA 94107, USA. Beim Aufruf der Website verarbeitet
-        GitHub technisch notwendige Daten wie Ihre IP-Adresse, Datum und Uhrzeit des Zugriffs
-        sowie Browser-Informationen (Server-Logs). Rechtsgrundlage ist unser berechtigtes
-        Interesse an einer sicheren und effizienten Bereitstellung der Website
-        (Art. 6 Abs. 1 lit. f DSGVO). GitHub ist unter dem EU-US Data Privacy Framework
-        zertifiziert. Weitere Informationen:
-        <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub Privacy Statement</a>.
+        Diese Website wird bei der IONOS SE, Elgendorfer Str. 57, 56410 Montabaur,
+        Deutschland, gehostet. Beim Aufruf werden technische Zugriffsdaten verarbeitet,
+        insbesondere die angeforderte Seite oder Datei, die zuvor besuchte Seite (Referrer),
+        Browser- und Betriebssysteminformationen, Gerätetyp, Zugriffszeit und IP-Adresse.
+        Dies dient der Bereitstellung, Sicherheit und Stabilität unserer Website.
+        Rechtsgrundlage ist unser berechtigtes Interesse an einem sicheren und zuverlässigen
+        Webangebot (Art. 6 Abs. 1 lit. f DSGVO).
+      </p>
+      <p>
+        Nach Angaben von IONOS werden die IP-Adressen für die gespeicherten Besucherdaten
+        bei der Erhebung anonymisiert. IONOS nennt für diese Daten eine Speicherdauer
+        von acht Wochen. Weitere Informationen:
+        <a href="https://www.ionos.de/hilfe/datenschutz/datenverarbeitung-durch-ihr-ionos-produktes/datenverarbeitung-durch-webhosting-produkte/" rel="noopener">Datenschutzhinweise zu IONOS Webhosting</a>.
+      </p>
+      <p>
+        Zum Webhosting gehört nach Angaben von IONOS auch die statistische Auswertung
+        durch IONOS WebAnalytics. Für unsere Website werden dafür Server-Logdaten genutzt;
+        zusätzliche Tracking-Pixel binden wir nicht ein. IONOS beschreibt diese Verarbeitung
+        als cookiefrei und mit anonymisierten IP-Adressen. Sie dient der statistischen
+        Auswertung und technischen Optimierung des Webangebots auf Grundlage unseres
+        berechtigten Interesses (Art. 6 Abs. 1 lit. f DSGVO). Einzelheiten:
+        <a href="https://www.ionos.de/hilfe/datenschutz/datenverarbeitung-durch-ihr-ionos-produktes/webanalytics/" rel="noopener">Datenschutzhinweise zu IONOS WebAnalytics</a>.
       </p>
 
-      <h2>4. Kontaktformular</h2>
+      <h2>4. Prompt Studio und geschützter Praxis-Hub</h2>
+      <p>
+        Das Prompt Studio arbeitet im Browser. Dort angelegte Prompts, Skills, Versionen und
+        Einstellungen werden lokal im Browserspeicher des jeweiligen Geräts gespeichert. Sie
+        werden durch das Prompt Studio nicht an NextCourse oder an einen KI-Anbieter übertragen.
+        Nutzer können diese lokalen Daten in den Einstellungen selbst exportieren oder löschen.
+      </p>
+      <p>
+        Der Praxis-Hub ist nur mit einem von NextCourse ausgegebenen Zugangslink oder Zugangscode
+        erreichbar. Der Zugangsschlüssel wird ausschließlich geprüft, um die jeweilige
+        Freischaltung zu bestätigen. Serverseitig wird dafür ein kryptografischer Vergleichswert
+        statt des lesbaren Schlüssels hinterlegt. Nach erfolgreicher Prüfung speichern wir in der
+        Sitzung die Kennung und den Umfang der Freischaltung sowie Zeitpunkte für Beginn und letzte
+        Nutzung. Das technisch notwendige Sitzungs-Cookie wird beim Absenden eines Zugangsversuchs
+        gesetzt, enthält eine zufällige Sitzungskennung, ist auf den Praxis-Hub begrenzt und wird
+        beim Abmelden oder nach Ablauf der Sitzung ungültig. Nach fehlgeschlagenen Eingaben halten
+        wir Anzahl und Zeitpunkte für höchstens 15 Minuten in dieser Sitzung vor, um automatisierte
+        Zugangsversuche zu begrenzen.
+      </p>
+      <p>
+        Diese Verarbeitung dient der Bereitstellung vereinbarter Kundeninhalte und dem Schutz des
+        nicht öffentlichen Angebots (Art. 6 Abs. 1 lit. b und f DSGVO). Das Sitzungs-Cookie ist für
+        den ausdrücklich aufgerufenen geschützten Dienst erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG).
+        Es wird weder für Reichweitenmessung noch für Werbung oder Profilbildung verwendet.
+      </p>
+
+      <h2>5. Kontaktformular</h2>
       <p>
         Wenn Sie unser Kontaktformular nutzen, verarbeiten wir die von Ihnen angegebenen Daten
         (Name, E-Mail-Adresse, ggf. Betrieb und Telefonnummer sowie Ihre Nachricht) zur
@@ -46,14 +84,14 @@ import Base from '../layouts/Base.astro';
         erforderlich sind und keine gesetzlichen Aufbewahrungspflichten bestehen.
       </p>
 
-      <h2>5. Kontakt per E-Mail oder Telefon</h2>
+      <h2>6. Kontakt per E-Mail oder Telefon</h2>
       <p>
         Wenn Sie uns per E-Mail oder Telefon kontaktieren, verarbeiten wir Ihre Angaben zur
         Bearbeitung des Anliegens sowie für mögliche Anschlussfragen
         (Art. 6 Abs. 1 lit. b und f DSGVO).
       </p>
 
-      <h2>6. Terminbuchung (Cal.com)</h2>
+      <h2>7. Terminbuchung (Cal.com)</h2>
       <p>
         Für die Online-Terminbuchung verlinken wir auf den externen Dienst Cal.com. Der Link
         öffnet die Buchungsseite von Cal.com in einem neuen Fenster; erst dort werden Daten
@@ -62,7 +100,7 @@ import Base from '../layouts/Base.astro';
         Auf unserer Website selbst werden durch den Link keine Daten an Cal.com übertragen.
       </p>
 
-      <h2>7. Ihre Rechte</h2>
+      <h2>8. Ihre Rechte</h2>
       <p>
         Sie haben das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16),
         Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18),
@@ -73,7 +111,5 @@ import Base from '../layouts/Base.astro';
         Promenade 18, 91522 Ansbach.
       </p>
 
-      <p class="small faint">Stand: Juli 2026</p>
-    </div>
-  </div></div>
-</Base>
+      <p class="small faint">Stand: September 2026</p>
+    </section></DetailLayout>

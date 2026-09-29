@@ -1,0 +1,78 @@
+---
+interface Props { id: string; }
+const { id } = Astro.props;
+const examples = [
+  { key: 'rezeption', area: 'Rezeption', title: 'Die nächste Schicht weiß Bescheid.', subtitle: 'Schichtübergabe', responsible: 'Rezeption & Schichtleitung', steps: [
+    ['Anreisen übergeben', 'Späte Ankünfte, besondere Wünsche und offene Rückmeldungen festhalten.'],
+    ['Offene Aufgaben klären', 'Was ist zu tun? Wer übernimmt? Bis wann wird eine Rückmeldung gebraucht?'],
+    ['Gemeinsam abschließen', 'Die nächste Schicht liest die Übergabe und klärt offene Fragen.'],
+  ] },
+  { key: 'housekeeping', area: 'Housekeeping', title: 'Ein Zimmer. Ein gemeinsamer Standard.', subtitle: 'Zimmerfreigabe', responsible: 'Housekeeping & Rezeption', steps: [
+    ['Zimmer prüfen', 'Sauberkeit, Ausstattung und Funktion nach der vereinbarten Checkliste kontrollieren.'],
+    ['Abweichungen festhalten', 'Mängel benennen und an die zuständige Person weitergeben.'],
+    ['Freigabe weitergeben', 'Die Rezeption erfährt, welche Zimmer bereit sind und wo noch etwas offen ist.'],
+  ] },
+  { key: 'service', area: 'Service', title: 'Gut vorbereitet in den Service.', subtitle: 'Servicevorbereitung', responsible: 'Serviceteam & Schichtleitung', steps: [
+    ['Reservierungen ansehen', 'Belegung, Gruppen und bekannte Gästewünsche im Team besprechen.'],
+    ['Station vorbereiten', 'Material, Tischaufbau und Arbeitsbereich nach dem Hausstandard prüfen.'],
+    ['Team kurz abstimmen', 'Aufgaben verteilen und Besonderheiten für den heutigen Service klären.'],
+  ] },
+];
+---
+<div class="handbook-example" data-handbook-example>
+  <div class="handbook-example__label"><span>Management / Digitales Betriebshandbuch</span><span aria-hidden="true">NC</span></div>
+  <div class="handbook-example__book">
+    <div class="handbook-example__spine" aria-hidden="true"><span>Wissen für den Alltag.</span></div>
+    <div class="handbook-example__pages">
+      <div class="handbook-example__tabs" data-example-tabs aria-label="Beispiele aus dem Betrieb">
+        {examples.map((example, index) => <button type="button" id={`${id}-tab-${index}`} aria-controls={`${id}-panel-${index}`} data-example-tab>{example.area}</button>)}
+      </div>
+      {examples.map((example, index) => (
+        <section class="handbook-example__page" id={`${id}-panel-${index}`} aria-labelledby={`${id}-title-${index}`} data-example-panel>
+          <p class="handbook-example__chapter">{example.area} <span aria-hidden="true">/</span> {example.subtitle}</p>
+          <h2 id={`${id}-title-${index}`}>{example.title}</h2>
+          <p class="handbook-example__owner">Verantwortlich: {example.responsible}</p>
+          <ol>{example.steps.map(([title, text], step) => <li><span class="handbook-example__number" aria-hidden="true">{step + 1}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>
+          <div class="handbook-example__footer"><span>Ein Ablauf. Klar beschrieben.</span><span>NextCourse</span></div>
+        </section>
+      ))}
+    </div>
+  </div>
+  <p class="handbook-example__caption">Beispielinhalt · Ihr Handbuch entsteht aus den Abläufen Ihres Hauses.</p>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-handbook-example]').forEach((example) => {
+    const tabs = Array.from(example.querySelectorAll<HTMLButtonElement>('[data-example-tab]'));
+    const panels = Array.from(example.querySelectorAll<HTMLElement>('[data-example-panel]'));
+    const tablist = example.querySelector<HTMLElement>('[data-example-tabs]');
+    if (!tablist || !tabs.length) return;
+    tablist.setAttribute('role', 'tablist');
+    const select = (index: number, focus = false) => {
+      tabs.forEach((tab, i) => {
+        tab.setAttribute('role', 'tab');
+        tab.setAttribute('aria-selected', String(i === index));
+        tab.tabIndex = i === index ? 0 : -1;
+        panels[i].hidden = i !== index;
+        panels[i].setAttribute('role', 'tabpanel');
+        panels[i].setAttribute('aria-labelledby', tab.id);
+        panels[i].tabIndex = 0;
+      });
+      if (focus) tabs[index].focus();
+    };
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => select(index));
+      tab.addEventListener('keydown', (event) => {
+        let next: number;
+        if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = tabs.length - 1;
+        else return;
+        event.preventDefault();
+        select(next, true);
+      });
+    });
+    example.classList.add('is-ready');
+    select(0);
+  });
+</script>

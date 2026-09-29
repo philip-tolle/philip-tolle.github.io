@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import demoHotel from '../assets/handbook/residenzhof-demo.webp';
+const requestHref = '/kontakt/?thema=betriebshandbuch&angebot=Demo-Zugang#contactform';
+const exampleSteps = [
+  { title: 'Standard finden', text: 'Unter Housekeeping findet sie die Prüfpunkte zur Zimmerfreigabe und die zuständige Person.' },
+  { title: 'Abweichungen klären', text: 'Die Anleitung zeigt, was zu prüfen ist und an wen sie offene Mängel meldet.' },
+  { title: 'Freigabe weitergeben', text: 'Sie liest nach, wer das Zimmer freigibt und wie die Rezeption die Rückmeldung erhält.' },
+];
+---
+<div class="handbook-showcase">
+  <div class="handbook-showcase__story">
+    <p class="detail-kicker">So hilft das Handbuch im Alltag</p>
+    <h2 id="handbook-example-title">Zimmer fertig.<em>Was kommt jetzt?</em></h2>
+    <p class="handbook-showcase__lead">Eine neue Kollegin prüft ein Zimmer. Im Handbuch findet sie die Schritte für die Freigabe.</p>
+    <ol class="handbook-showcase__steps">
+      {exampleSteps.map(step => <li><h3>{step.title}</h3><p>{step.text}</p></li>)}
+    </ol>
+    <p class="handbook-showcase__result"><strong>Der Unterschied:</strong> Prüfpunkte, Zuständigkeit und Rückmeldung stehen an einem Ort.</p>
+    <p class="detail-note">Fiktives Beispiel. Ihr Handbuch beschreibt die Abläufe und Freigaben Ihres eigenen Betriebs.</p>
+  </div>
+  <aside class="handbook-showcase__demo" aria-labelledby="handbook-demo-title">
+    <Image src={demoHotel} alt="Das fiktive Demo-Hotel Residenzhof am Main am Abend." width={720} widths={[360,480,720]} sizes="(max-width:899px) 90vw, 38vw" format="webp" loading="lazy" />
+    <div class="handbook-showcase__demo-copy">
+      <p class="detail-kicker">Hotel Residenzhof am Main</p>
+      <h3 id="handbook-demo-title">Die Anwendung kennenlernen.</h3>
+      <p>Im fiktiven Hotel Residenzhof sehen Sie, wie Rezeption, Housekeeping und Service mit dem Handbuch arbeiten.</p>
+      <p class="handbook-showcase__access">Die Demo ist geschützt. Wir stimmen den Zugang persönlich mit Ihnen ab.</p>
+      <a class="handbook-showcase__button" href={requestHref}>Demo-Zugang anfragen <span aria-hidden="true">↗</span></a>
+      <p class="handbook-showcase__existing">Bereits Zugang?<br /><a href="https://handbuch.next-course.de/" target="_blank" rel="noopener noreferrer">Geschützte Demo öffnen <span aria-hidden="true">↗</span><span class="sr-only"> (in einem neuen Tab)</span></a></p>
+    </div>
+  </aside>
+</div>
+<style>
+  .handbook-showcase{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.85fr);gap:1.25rem;align-items:stretch}
+  .handbook-showcase__story{padding:clamp(1.4rem,2.6vw,2.5rem);background:#fff;border:1px solid #122a2f20;border-radius:12px;min-width:0}
+  .handbook-showcase h2{font-size:clamp(1.85rem,2.35vw,2.4rem);margin:0 0 1rem;max-width:24ch}
+  .handbook-showcase .handbook-showcase__lead{font-size:.96rem;line-height:1.7;max-width:56ch}
+  .handbook-showcase__steps{list-style:none;counter-reset:example;margin:1.4rem 0;padding:0}
+  .handbook-showcase__steps li{counter-increment:example;position:relative;padding:.95rem 0 .95rem 2.6rem;border-top:1px solid #122a2f20}
+  .handbook-showcase__steps li::before{content:counter(example);position:absolute;top:1rem;left:0;display:grid;place-items:center;width:1.65rem;height:1.65rem;border-radius:50%;background:#e8eeeb;color:#122a2f;font-size:.72rem;font-weight:600}
+  .handbook-showcase__steps h3{font-size:1.02rem;line-height:1.4;margin:0 0 .35rem}
+  .handbook-showcase__steps p{font-size:.88rem;line-height:1.7;margin:0;color:#465b60}
+  .handbook-showcase .handbook-showcase__result{font-size:.88rem;line-height:1.65;padding:1rem 1.1rem;background:#e8eeeb;border-radius:8px;color:#122a2f;margin:0}
+  .handbook-showcase__demo{background:#122a2f;border-radius:12px;overflow:hidden;min-width:0;color:#f9f7f3;--detail-text:#f9f7f3;--detail-muted:#c6d0ce}
+  .handbook-showcase__demo>img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+  .handbook-showcase__demo-copy{padding:clamp(1.4rem,2vw,2rem)}
+  .handbook-showcase__demo h3{font-size:1.4rem;line-height:1.3;color:#f9f7f3;margin:0 0 .85rem}
+  .handbook-showcase__demo p{font-size:.92rem;line-height:1.7;color:#c6d0ce}
+  .handbook-showcase__demo .detail-kicker{font-size:.65rem;color:#ffac94;margin:0 0 .85rem}
+  .handbook-showcase .handbook-showcase__access{font-size:.84rem;color:#f9f7f3;margin:1rem 0}
+  .handbook-showcase__button{display:inline-flex;align-items:center;justify-content:center;gap:1rem;min-height:48px;padding:.75rem 1.1rem;border-radius:999px;background:#ff6b4a;color:#122a2f;font-size:.85rem;font-weight:600;line-height:1.4;text-decoration:none}
+  .handbook-showcase__button:hover{background:#ff866b}
+  .handbook-showcase .handbook-showcase__existing{font-size:.78rem;line-height:1.8;margin:1.2rem 0 0}
+  .handbook-showcase__existing a{display:inline-flex;align-items:center;gap:.45rem;min-height:44px;color:#f9f7f3;text-underline-offset:.3em}
+  .handbook-showcase a:focus-visible{outline:2px solid #ffac94;outline-offset:5px}
+  @media(max-width:899px){.handbook-showcase{grid-template-columns:1fr}.handbook-showcase__demo{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr);align-items:center}.handbook-showcase__demo>img{height:100%;aspect-ratio:auto}}
+  @media(max-width:599px){.handbook-showcase__demo{display:block}.handbook-showcase__demo>img{height:auto;aspect-ratio:16/9}.handbook-showcase__steps li{padding-left:2.35rem}.handbook-showcase__story{padding:1.25rem}}
+</style>

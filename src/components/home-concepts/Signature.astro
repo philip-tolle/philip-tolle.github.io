@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import philip from '../../assets/philip.png';
+import BrandMark from './BrandMark.astro';
+const services = [
+  { title: 'Management', claim: 'Damit Ihr Betrieb rundläuft.', text: 'Abläufe klären. Wissen sichern. Veränderungen gemeinsam umsetzen.', href: '/management/', items: ['Betriebsanalyse', 'Digitales Betriebshandbuch', 'Umsetzung im Haus'] },
+  { title: 'Academy', claim: 'Damit Ihr Team weiterkommt.', text: 'Weiterbildung, die an den Aufgaben Ihrer Mitarbeitenden ansetzt.', href: '/akademie/', items: ['Fachwissen', 'Führung', 'Praxisnahes Lernen'] },
+  { title: 'Operation', claim: 'Damit Sie Arbeit abgeben können.', text: 'Unterstützung bei den Aufgaben, die im Tagesgeschäft liegen bleiben.', href: '/operation/', items: ['Backoffice', 'Kommunikation', 'Projektunterstützung'] },
+];
+---
+<section class="s-hero concept-pad" aria-labelledby="s-title">
+  <div class="s-hero-copy">
+    <p class="concept-eyebrow"><span class="concept-dot"></span> Für Hotels & Gastronomie</p>
+    <h1 id="s-title">Mehr Zeit<br />für das,<br />was <em>zählt.</em></h1>
+    <p class="concept-lead">Für Ihre Gäste. Für Ihr Team. Für Sie.<br />Wir bringen Klarheit in Ihren Betrieb und entlasten Sie dort, wo es im Alltag hakt.</p>
+    <div class="concept-actions"><a class="concept-button" href="/kontakt/">Über Ihren Betrieb sprechen <span aria-hidden="true">↗</span></a><a class="concept-link" href="#leistungen">NextCourse entdecken ↓</a></div>
+  </div>
+  <div class="s-brand-stage">
+    <span class="s-orbit s-orbit-one" aria-hidden="true"></span><span class="s-orbit s-orbit-two" aria-hidden="true"></span>
+    <span class="s-stage-label">KLARER KURS. GUTER BETRIEB.</span>
+    <BrandMark large />
+    <span class="s-stage-coordinate">WÜRZBURG · MAINFRANKEN</span>
+    <a class="s-founder-note" href="/ueber/"><Image src={philip} alt="Philip Tolle" width={120} format="webp" /><span>Aus der Branche.<br /><strong>An Ihrer Seite.</strong></span><span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="s-hero-bottom"><span>Gute Gastgeber verdienen gute Abläufe.</span><a href="#leistungen" aria-label="Zu den Leistungen">WEITER ENTDECKEN <span aria-hidden="true">↓</span></a></div>
+</section>
+<section class="s-services concept-pad concept-section" id="leistungen" aria-labelledby="s-services-title">
+  <div class="concept-section-heading"><p class="concept-eyebrow">01 / Was Sie weiterbringt</p><h2 id="s-services-title">Ein Partner.<br /><span>Drei gute nächste Schritte.</span></h2></div>
+  <div class="s-service-grid">{services.map((service, i) => <a class="s-service" href={service.href}>
+    <div class="s-service-top"><span>0{i + 1}</span><span aria-hidden="true">↗</span></div>
+    <h3>{service.title}</h3><strong>{service.claim}</strong><p>{service.text}</p>
+    <ul>{service.items.map(item => <li>{item}</li>)}</ul>
+    <span class="s-service-more">Bereich entdecken <span aria-hidden="true">→</span></span>
+  </a>)}</div>
+</section>
+<section class="s-handbook concept-pad concept-section" aria-labelledby="s-book-title">
+  <div><p class="concept-eyebrow">02 / Wissen, das bleibt</p><h2 id="s-book-title">Ihr bester Ablauf?<br /><em>Der, den alle kennen.</em></h2><p>Wenn Antworten nur in einzelnen Köpfen stecken, wird jede Übergabe zur Rückfrage. Ein digitales Betriebshandbuch macht Ihr Wissen im Team verfügbar.</p><a class="concept-button" href="/management/betriebshandbuch/">Das Betriebshandbuch entdecken <span aria-hidden="true">↗</span></a></div>
+  <div class="s-knowledge"><span class="s-knowledge-label">VOM EINZELWISSEN ZUM TEAMWISSEN</span><div class="s-knowledge-row"><span>01</span><strong>So arbeiten wir hier.</strong></div><div class="s-knowledge-row"><span>02</span><strong>Das ist unser Standard.</strong></div><div class="s-knowledge-row"><span>03</span><strong>Darauf kann sich jeder verlassen.</strong></div><p>Klare Abläufe. Ein gemeinsamer Ort.</p></div>
+</section>
+<section class="s-contact concept-pad concept-section" aria-labelledby="s-contact-title">
+  <Image class="s-contact-photo" src={philip} alt="Philip Tolle, Gründer von NextCourse" width={600} format="webp" loading="lazy" />
+  <div><p class="concept-eyebrow">03 / Persönlich statt kompliziert</p><h2 id="s-contact-title">Lassen Sie uns über<br />Ihren Alltag sprechen.</h2><p>Ich bin Philip Tolle. Erzählen Sie mir, was Sie gerade beschäftigt. Gemeinsam finden wir einen nächsten Schritt, der zu Ihrem Haus passt.</p><a class="concept-button" href="/kontakt/">Philip kennenlernen <span aria-hidden="true">↗</span></a><span class="concept-note">Erstgespräch kostenlos & unverbindlich</span></div>
+</section>

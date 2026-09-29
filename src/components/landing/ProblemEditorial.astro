@@ -1,0 +1,76 @@
+---
+import { Picture } from 'astro:assets';
+import shiftHandover from '../../assets/landing/shift-handover.png';
+import hotelWalkthrough from '../../assets/landing/hotel-walkthrough.png';
+---
+
+<section class="landing-section landing-problem" id="ausgangslage" aria-labelledby="problem-title">
+  <div class="landing-shell">
+    <header class="landing-section__head" data-reveal>
+      <p class="landing-index">Ausgangslage <span>01</span></p>
+      <h2 id="problem-title">Ihr Betrieb darf nicht an Einzelnen hängen.</h2>
+    </header>
+
+    <div class="landing-problem__layout">
+      <div class="landing-problem__images" aria-label="Vorschau auf reale Arbeitssituationen im Hotel">
+        <figure class="landing-photo landing-photo--handover" data-reveal>
+          <Picture
+            src={shiftHandover}
+            formats={['avif', 'webp']}
+            widths={[480, 720, 960]}
+            sizes="(max-width: 839px) 92vw, 44vw"
+            alt="Vorschaubild: Mitarbeitende eines kleinen Hotels bei einer Schichtübergabe"
+            loading="lazy"
+            quality={82}
+          />
+          <figcaption>Bildprototyp · finales Lizenzmotiv folgt</figcaption>
+        </figure>
+
+        <figure class="landing-photo landing-photo--walkthrough" data-reveal>
+          <Picture
+            src={hotelWalkthrough}
+            formats={['avif', 'webp']}
+            widths={[360, 540, 720]}
+            sizes="(max-width: 839px) 58vw, 25vw"
+            alt="Vorschaubild: Hotelführung und Team nehmen Abläufe bei einem Rundgang auf"
+            loading="lazy"
+            quality={82}
+          />
+          <figcaption>Bildprototyp · finales Lizenzmotiv folgt</figcaption>
+        </figure>
+      </div>
+
+      <div class="landing-problem__copy" data-reveal>
+        <p class="landing-problem__intro">
+          In vielen Hotels steckt entscheidendes Betriebswissen in Köpfen, Chats,
+          Ordnern und einzelnen Dateien. Solange dieselben Menschen vor Ort sind,
+          fällt das kaum auf. Bei Urlaub, Krankheit, Wechsel oder Wachstum wird es spürbar.
+        </p>
+
+        <ol class="landing-pressure" aria-label="Typische Folgen von verstreutem Betriebswissen">
+          <li>
+            <span aria-hidden="true">01</span>
+            <p><strong>Rückfragen wiederholen sich,</strong> obwohl die Antwort im Betrieb längst bekannt ist.</p>
+          </li>
+          <li>
+            <span aria-hidden="true">02</span>
+            <p><strong>Einarbeitung hängt von Zeit und Tagesform ab,</strong> statt einem klaren Standard zu folgen.</p>
+          </li>
+          <li>
+            <span aria-hidden="true">03</span>
+            <p><strong>Übergaben werden lückenhaft,</strong> sobald Verantwortliche nicht gleichzeitig vor Ort sind.</p>
+          </li>
+          <li>
+            <span aria-hidden="true">04</span>
+            <p><strong>Qualität schwankt,</strong> weil jeder denselben Ablauf etwas anders interpretiert.</p>
+          </li>
+        </ol>
+
+        <p class="landing-pullquote">
+          Das Problem ist nicht fehlendes Wissen. Es fehlt ein verlässlicher Ort,
+          an dem dieses Wissen im Alltag funktioniert.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

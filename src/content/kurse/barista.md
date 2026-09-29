@@ -3,13 +3,13 @@ title: "Barista-Kurs"
 botschaft: "Handwerk, das man schmeckt."
 kurz: "Ein Praxistag an der Maschine — für Teams, die Kaffee ernst nehmen, und Gastgeber, die ihn verkaufen."
 kategorie: "Workshop"
-status: "buchbar"
+status: "geplant"
 reihenfolge: 3
 dauer: "1 Tag"
 format: "Praxisworkshop, kleine Gruppen"
-foerderung: "Auch als Team-Event buchbar"
+foerderung: "Preis und Rahmen in Vorbereitung"
 trio:
-  - { wert: "100 %", label: "Praxis — jeder steht an der Maschine" }
+  - { wert: "Praxis", label: "selbst an der Maschine üben" }
   - { wert: "Klein", label: "Gruppen mit echtem Feedback" }
   - { wert: "€", label: "Kaffee als Umsatzbringer verstehen" }
 module:
@@ -27,7 +27,6 @@ termine:
   - { label: "Termine auf Anfrage", hinweis: "auch als Team-Event bei Ihnen im Haus" }
 ---
 
-Kaffee ist im Gastgewerbe einer der ehrlichsten Qualitätsbeweise — und eine der besten
-Margen im Haus. In diesem Praxistag steht jeder Teilnehmer selbst an der Maschine: von
-der Mühle über die Extraktion bis zur Latte Art. Und weil Genuss und Wirtschaftlichkeit
-zusammengehören, endet der Tag bei Karte und Kalkulation.
+Ein guter Kaffee entsteht durch viele kleine Handgriffe. In diesem geplanten Workshop übt Ihr Team die Grundlagen an der Maschine: Mahlgrad, Extraktion, Milch und einen sauberen Arbeitsablauf.
+
+Gemeinsam betrachten wir auch, wie Kaffee in die Karte Ihres Hauses passt. Ausstattung, Gruppengröße und Termin werden vorab abgestimmt. Das Workshop-Angebot ist in Vorbereitung.

@@ -1,0 +1,338 @@
+[
+  {
+    "url": "https://www.next-course.de/",
+    "final_url": "https://www.next-course.de/",
+    "status": 200,
+    "redirects": [],
+    "headers": {
+      "Content-Type": "text/html",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "X-WS-Origin": "available",
+      "X-WS-RateLimit-Limit": "1000",
+      "X-WS-RateLimit-Remaining": "999",
+      "server": "Apache",
+      "date": "Sun, 13 Sep 2026 05:22:07 GMT",
+      "vary": "Cookie",
+      "etag": "W/\"6397-65b4af62b3c00\"",
+      "last-modified": "Sat, 12 Sep 2026 15:36:16 GMT",
+      "Content-Encoding": "gzip"
+    },
+    "bytes": 8298,
+    "seconds": 0.141
+  },
+  {
+    "url": "http://next-course.de/",
+    "final_url": "https://www.next-course.de/",
+    "status": 200,
+    "redirects": [
+      {
+        "from": "http://next-course.de/",
+        "status": 301,
+        "to": "https://www.next-course.de/"
+      }
+    ],
+    "headers": {
+      "Content-Type": "text/html",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "X-WS-Origin": "available",
+      "X-WS-RateLimit-Limit": "1000",
+      "X-WS-RateLimit-Remaining": "998",
+      "server": "Apache",
+      "x-cache": "HIT",
+      "date": "Sun, 13 Sep 2026 05:22:07 GMT",
+      "vary": "Cookie",
+      "etag": "W/\"6397-65b4af62b3c00\"",
+      "last-modified": "Sat, 12 Sep 2026 15:36:16 GMT",
+      "Content-Encoding": "gzip"
+    },
+    "bytes": 8298,
+    "seconds": 0.188
+  },
+  {
+    "url": "https://next-course.de/management/",
+    "final_url": "https://www.next-course.de/management/",
+    "status": 200,
+    "redirects": [
+      {
+        "from": "https://next-course.de/management/",
+        "status": 301,
+        "to": "https://www.next-course.de/management/"
+      }
+    ],
+    "headers": {
+      "Content-Type": "text/html",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "X-WS-Origin": "available",
+      "X-WS-RateLimit-Limit": "1000",
+      "X-WS-RateLimit-Remaining": "996",
+      "server": "Apache",
+      "date": "Sun, 13 Sep 2026 05:22:07 GMT",
+      "vary": "Cookie",
+      "etag": "W/\"7f74-65b4af62b3c00\"",
+      "last-modified": "Sat, 12 Sep 2026 15:36:16 GMT",
+      "Content-Encoding": "gzip"
+    },
+    "bytes": 9139,
+    "seconds": 0.203
+  },
+  {
+    "url": "https://www.next-course.de/management/index.html",
+    "final_url": "https://www.next-course.de/management/index.html",
+    "status": 200,
+    "redirects": [],
+    "headers": {
+      "Content-Type": "text/html",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "X-WS-Origin": "available",
+      "X-WS-RateLimit-Limit": "1000",
+      "X-WS-RateLimit-Remaining": "999",
+      "server": "Apache",
+      "date": "Sun, 13 Sep 2026 05:22:07 GMT",
+      "vary": "Cookie",
+      "etag": "W/\"7f74-65b4af62b3c00\"",
+      "last-modified": "Sat, 12 Sep 2026 15:36:16 GMT",
+      "Content-Encoding": "gzip"
+    },
+    "bytes": 9139,
+    "seconds": 0.109
+  },
+  {
+    "url": "https://www.next-course.de/consulting/pilotprojekte/",
+    "final_url": "https://www.next-course.de/management/implementierungsprojekte/",
+    "status": 200,
+    "redirects": [
+      {
+        "from": "https://www.next-course.de/consulting/pilotprojekte/",
+        "status": 301,
+        "to": "https://www.next-course.de/management/implementierungsprojekte/"
+      }
+    ],
+    "headers": {
+      "Content-Type": "text/html",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "X-WS-Origin": "available",
+      "X-WS-RateLimit-Limit": "1000",
+      "X-WS-RateLimit-Remaining": "997",
+      "server": "Apache",
+      "date": "Sun, 13 Sep 2026 05:22:07 GMT",
+      "vary": "Cookie",
+      "etag": "W/\"4319-65b4af62b3c00\"",
+      "last-modified": "Sat, 12 Sep 2026 15:36:16 GMT",
+      "Content-Encoding": "gzip"
+    },
+    "bytes": 6357,
+    "seconds": 0.203
+  },
+  {
+    "url": "https://www.next-course.de/robots.txt",
+    "final_url": "https://www.next-course.de/robots.txt",
+    "status": 200,
+    "redirects": [],
+    "headers": {
+      "Content-Type": "text/plain",
+      "Content-Length": "357",
+      "Connection": "close",
+      "X-WS-Origin": "available",
+      "X-WS-RateLimit-Limit": "1000",
+      "X-WS-RateLimit-Remaining": "998",
+      "server": "Apache",
+      "accept-ranges": "bytes",
+      "date": "Sun, 13 Sep 2026 05:22:07 GMT",
+      "vary": "Cookie",
+      "etag": "\"165-65989df0fa500\"",
+      "last-modified": "Fri, 21 Aug 2026 07:49:08 GMT"
+    },
+    "bytes": 357,
+    "seconds": 0.094,
+    "body": "User-agent: Googlebot\nAllow: /\n\nUser-agent: Bingbot\nAllow: /\n\nUser-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: Claude-SearchBot\nAllow: /\n\nUser-agent: Claude-User\nAllow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: ClaudeBot\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: *\nAllow: /\n\nSitemap: https://www.next-course.de/sitemap-index.xml\n"
+  },
+  {
+    "url": "https://www.next-course.de/sitemap-index.xml",
+    "final_url": "https://www.next-course.de/sitemap-index.xml",
+    "status": 200,
+    "redirects": [],
+    "headers": {
+      "Content-Type": "application/xml",
+      "Content-Length": "189",
+      "Connection": "close",
+      "X-WS-Origin": "available",
+      "X-WS-RateLimit-Limit": "1000",
+      "X-WS-RateLimit-Remaining": "995",
+      "server": "Apache",
+      "accept-ranges": "bytes",
+      "date": "Sun, 13 Sep 2026 05:22:07 GMT",
+      "vary": "Cookie",
+      "etag": "\"bd-65b4af62b3c00\"",
+      "last-modified": "Sat, 12 Sep 2026 15:36:16 GMT"
+    },
+    "bytes": 189,
+    "seconds": 0.094,
+    "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"><sitemap><loc>https://www.next-course.de/sitemap-0.xml</loc></sitemap></sitemapindex>"
+  },
+  {
+    "url": "https://www.next-course.de/sitemap-0.xml",
+    "final_url": "https://www.next-course.de/sitemap-0.xml",
+    "status": 200,
+    "redirects": [],
+    "headers": {
+      "Content-Type": "application/xml",
+      "Content-Length": "2363",
+      "Connection": "close",
+      "X-WS-Origin": "available",
+      "X-WS-RateLimit-Limit": "1000",
+      "X-WS-RateLimit-Remaining": "997",
+      "server": "Apache",
+      "accept-ranges": "bytes",
+      "date": "Sun, 13 Sep 2026 05:22:07 GMT",
+      "vary": "Cookie",
+      "etag": "\"93b-65b4af62b3c00\"",
+      "last-modified": "Sat, 12 Sep 2026 15:36:16 GMT"
+    },
+    "bytes": 2363,
+    "seconds": 0.078,
+    "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:news=\"http://www.google.com/schemas/sitemap-news/0.9\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\" xmlns:image=\"http://www.google.com/schemas/sitemap-image/1.1\" xmlns:video=\"http://www.google.com/schemas/sitemap-video/1.1\"><url><loc>https://www.next-course.de/</loc></url><url><loc>https://www.next-course.de/akademie/</loc></url><url><loc>https://www.next-course.de/akademie/aevo/</loc></url><url><loc>https://www.next-course.de/akademie/barista/</loc></url><url><loc>https://www.next-course.de/akademie/flying-academy/</loc></url><url><loc>https://www.next-course.de/akademie/foerderung/</loc></url><url><loc>https://www.next-course.de/akademie/fuehren-mit-ki/</loc></url><url><loc>https://www.next-course.de/akademie/ki-grundlagen/</loc></url><url><loc>https://www.next-course.de/blog/</loc></url><url><loc>https://www.next-course.de/blog/eu-ai-act-gastgewerbe/</loc></url><url><loc>https://www.next-course.de/blog/fachkraeftemangel-ki-entlastung/</loc></url><url><loc>https://www.next-course.de/blog/ki-telefonassistent-hotel/</loc></url><url><loc>https://www.next-course.de/datenschutz/</loc></url><url><loc>https://www.next-course.de/digital-audit-demo/</loc></url><url><loc>https://www.next-course.de/faq/</loc></url><url><loc>https://www.next-course.de/impressum/</loc></url><url><loc>https://www.next-course.de/kontakt/</loc></url><url><loc>https://www.next-course.de/management/</loc></url><url><loc>https://www.next-course.de/management/betriebshandbuch/</loc></url><url><loc>https://www.next-course.de/management/digital-audit/</loc></url><url><loc>https://www.next-course.de/management/implementierungsprojekte/</loc></url><url><loc>https://www.next-course.de/management/mystery-check/</loc></url><url><loc>https://www.next-course.de/management/quick-check/</loc></url><url><loc>https://www.next-course.de/management/referenzbetrieb/</loc></url><url><loc>https://www.next-course.de/mystery-check-demo/</loc></url><url><loc>https://www.next-course.de/operation/</loc></url><url><loc>https://www.next-course.de/operation/30-tage-test/</loc></url><url><loc>https://www.next-course.de/operation/monatspakete/</loc></url><url><loc>https://www.next-course.de/operation/projekte/</loc></url><url><loc>https://www.next-course.de/ueber/</loc></url></urlset>"
+  },
+  {
+    "url": "https://www.next-course.de/danke/",
+    "final_url": "https://www.next-course.de/danke/",
+    "status": 200,
+    "redirects": [],
+    "headers": {
+      "Content-Type": "text/html",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "X-WS-Origin": "available",
+      "X-WS-RateLimit-Limit": "1000",
+      "X-WS-RateLimit-Remaining": "996",
+      "server": "Apache",
+      "date": "Sun, 13 Sep 2026 05:22:07 GMT",
+      "vary": "Cookie",
+      "etag": "W/\"2a81-65b4af62b3c00\"",
+      "last-modified": "Sat, 12 Sep 2026 15:36:16 GMT",
+      "Content-Encoding": "gzip"
+    },
+    "bytes": 3939,
+    "seconds": 0.11
+  },
+  {
+    "url": "https://www.next-course.de/audit-nicht-vorhanden-20260913/",
+    "final_url": "https://www.next-course.de/audit-nicht-vorhanden-20260913/",
+    "status": 404,
+    "redirects": [],
+    "headers": {
+      "Content-Type": "text/html",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "X-WS-Origin": "available",
+      "X-WS-RateLimit-Limit": "1000",
+      "X-WS-RateLimit-Remaining": "995",
+      "server": "Apache",
+      "date": "Sun, 13 Sep 2026 05:22:07 GMT",
+      "vary": "Cookie",
+      "etag": "W/\"2bc5-65b4af62b3c00\"",
+      "last-modified": "Sat, 12 Sep 2026 15:36:16 GMT",
+      "Content-Encoding": "gzip"
+    },
+    "bytes": 4019,
+    "seconds": 0.109
+  },
+  {
+    "url": "https://handbuch.next-course.de/",
+    "final_url": "https://handbuch.next-course.de/",
+    "status": 401,
+    "redirects": [],
+    "headers": {
+      "Alt-Svc": "h3=\":443\"; ma=2592000",
+      "Cache-Control": "no-store",
+      "Content-Type": "text/plain; charset=utf-8",
+      "Date": "Sun, 13 Sep 2026 05:22:07 GMT",
+      "Via": "1.1 Caddy",
+      "Www-Authenticate": "Basic realm=\"NextCourse Private Vorschau\", charset=\"UTF-8\"",
+      "X-Robots-Tag": "noindex, nofollow, noarchive",
+      "Connection": "close",
+      "Transfer-Encoding": "chunked"
+    },
+    "bytes": 51,
+    "seconds": 0.234
+  },
+  {
+    "url": "https://www.next-course.de/akademie/aevo/",
+    "final_url": "https://www.next-course.de/akademie/aevo/",
+    "status": 200,
+    "redirects": [],
+    "headers": {
+      "Content-Type": "text/html",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "X-WS-Origin": "available",
+      "X-WS-RateLimit-Limit": "1000",
+      "X-WS-RateLimit-Remaining": "994",
+      "server": "Apache",
+      "date": "Sun, 13 Sep 2026 05:22:07 GMT",
+      "vary": "Cookie",
+      "etag": "W/\"4027-65b4af62b3c00\"",
+      "last-modified": "Sat, 12 Sep 2026 15:36:16 GMT",
+      "Content-Encoding": "gzip"
+    },
+    "bytes": 5883,
+    "seconds": 0.109
+  },
+  {
+    "url": "https://cal.com/philip-tolle-yxp7ih/erstgesprach",
+    "final_url": "https://cal.com/philip-tolle-yxp7ih/erstgesprach",
+    "status": 200,
+    "redirects": [],
+    "headers": {
+      "Date": "Sun, 13 Sep 2026 05:22:08 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "close",
+      "CF-Ray": "a3a4b65ef8c2141d-FRA",
+      "CF-Cache-Status": "DYNAMIC",
+      "Age": "0",
+      "Cache-Control": "private, no-cache, no-store, max-age=0, must-revalidate",
+      "Link": "</_next/static/media/83afe278b6a6bb3c-s.p.45535valc9rzk.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/CalSansUI%5Bwght%2CGEOM%5D-s.p.3pp56rz-p4ksj.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/media/CalSans_SemiBold-s.p.3bf54woy3n06n.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\", </_next/static/chunks/1zl7cvzmbr9ar.css>; rel=preload; as=\"style\", </_next/static/chunks/2ff65sp7mv3b3.css>; rel=preload; as=\"style\", </_next/static/chunks/02aim_pfp1fug.css>; rel=preload; as=\"style\", </_next/static/chunks/29d2nrz6qbbi_.css>; rel=preload; as=\"style\"",
+      "Server": "cloudflare",
+      "x-vercel-id": "fra1:fra1:fra1::cle1::lnrjz-1789276927850-e5420ea69663",
+      "Strict-Transport-Security": "max-age=63072000",
+      "Vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, accept-encoding",
+      "permissions-policy": "geolocation=(self), usb=(), serial=(), bluetooth=(), hid=(), midi=(), xr-spatial-tracking=(), idle-detection=(), local-fonts=(), window-management=()",
+      "referrer-policy": "no-referrer-when-downgrade",
+      "x-content-type-options": "nosniff",
+      "x-matched-path": "/[user]/[type]",
+      "x-nextjs-rewritten-path": "/philip-tolle-yxp7ih/erstgesprach",
+      "x-powered-by": "Next.js",
+      "x-vercel-cache": "MISS",
+      "Content-Encoding": "gzip"
+    },
+    "bytes": 157246,
+    "seconds": 0.922
+  },
+  {
+    "url": "https://www.next-course.de/_astro/nc-logo.sIgw0Idv_Z1I1gah.webp",
+    "final_url": "https://www.next-course.de/_astro/nc-logo.sIgw0Idv_Z1I1gah.webp",
+    "status": 200,
+    "redirects": [],
+    "headers": {
+      "Content-Type": "image/webp",
+      "Content-Length": "24646",
+      "Connection": "close",
+      "X-WS-Origin": "available",
+      "X-WS-RateLimit-Limit": "1000",
+      "X-WS-RateLimit-Remaining": "993",
+      "server": "Apache",
+      "accept-ranges": "bytes",
+      "date": "Sun, 13 Sep 2026 05:22:07 GMT",
+      "vary": "Cookie",
+      "etag": "\"6046-6563fdaea9900\"",
+      "last-modified": "Fri, 10 Jul 2026 11:15:16 GMT"
+    },
+    "bytes": 24646,
+    "seconds": 0.125
+  }
+]

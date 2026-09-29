@@ -4,7 +4,7 @@ import logo from '../assets/nc-logo.png';
 
 const links = [
   { href: '/', label: 'Start', overlayLabel: 'Start' },
-  { href: '/consulting/', label: 'Consulting', overlayLabel: 'Consulting' },
+  { href: '/management/', label: 'Management', overlayLabel: 'Management' },
   { href: '/akademie/', label: 'Academy', overlayLabel: 'Academy' },
   { href: '/operation/', label: 'Operation', overlayLabel: 'Operation' },
   { href: '/blog/', label: 'Blog', overlayLabel: 'Blog' },
@@ -30,7 +30,7 @@ const isActive = (href: string) => {
         {links.map((link) => (
           <a
             href={link.href}
-            class:list={[isActive(link.href) && 'is-active']}
+            class:list={[isActive(link.href) && 'is-active', link.href === '/kontakt/' && 'nav-contact']}
             aria-current={isActive(link.href) ? 'page' : undefined}
           >{link.label}</a>
         ))}

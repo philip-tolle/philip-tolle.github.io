@@ -1,0 +1,87 @@
+{
+  "status": "local_only_not_deployed",
+  "changed_files": [
+    "src/data/service-pages.ts",
+    "src/components/ServiceJourney.astro",
+    "src/components/ServicePage.astro",
+    "src/styles/service-pages.css",
+    "src/pages/akademie.astro",
+    "src/components/AcademyFormat.astro",
+    "src/data/academy-offers.ts",
+    "src/pages/akademie/digitale-zusammenarbeit.astro",
+    "src/data/detail-offers.ts",
+    "src/pages/akademie/flying-academy.astro",
+    "src/content/kurse/ki-grundlagen.md",
+    "src/pages/akademie/[id].astro"
+  ],
+  "final_sha256": {
+    "src/data/service-pages.ts": "b075fa0dc6e6933547030bf2fb1b20f85555b57b44f3aa9dc515a0b39e4011bd",
+    "src/components/ServiceJourney.astro": "09aa99a4d25e1519e262761734b255a4d421351cd89f066ff9c47cc82e66c503",
+    "src/components/ServicePage.astro": "f7a9fb2bce7e5becb894167e17320fe51d7d5b84b700dbd548ba42e36ace2b63",
+    "src/styles/service-pages.css": "1224bb36705ee6b1c4333e040f762913bbc394774791252eaab0f4e7a9b222fd",
+    "src/pages/akademie.astro": "c98e8044ba6a0fa4b8ac13a22d3066efc853324ee8aa247f5481827cfa425257",
+    "src/components/AcademyFormat.astro": "fccdb1734c9163a49bea161edbf5aeabda3233d414e37e8515e2e2a755385fee",
+    "src/data/academy-offers.ts": "7a7285a320a3f945d62d5aefa3dc52f2afda92a995ea11bd91cb72c58012ea02",
+    "src/pages/akademie/digitale-zusammenarbeit.astro": "4b6ae91117ef945d3bec67ccbf797ff096f8937deea86e7f054e5c9025712747",
+    "src/data/detail-offers.ts": "8931a234f6ae5e813e9cfd7a73d7ebb7dd5f9b9dcd44ae937bf4666983e77040",
+    "src/pages/akademie/flying-academy.astro": "e06697998000e8f265c86a4adfed7f938d94c792c48d3bf8e25175cfed5bc32b",
+    "src/content/kurse/ki-grundlagen.md": "e2c5db644e748a93647bb255220a1001b5bb9cd46280b5d8477a9938cd15345b",
+    "src/pages/akademie/[id].astro": "9a5bcccce1901a9e253c000572e17f571510ac9fe5ebc3e94386cb08ab4393e3"
+  },
+  "build": "passed_without_warnings",
+  "internal_link_check": {
+    "pages": 41,
+    "references": 2132,
+    "errors": 0
+  },
+  "source_regression": {
+    "management_and_operation_data_unchanged": true,
+    "other_detail_offers_unchanged": true
+  },
+  "routes": {
+    "akademie": {
+      "one_h1": true,
+      "canonical": "https://www.next-course.de/akademie/",
+      "duplicate_ids": false
+    },
+    "akademie/ki-grundlagen": {
+      "one_h1": true,
+      "canonical": "https://www.next-course.de/akademie/ki-grundlagen/",
+      "duplicate_ids": false
+    },
+    "akademie/digitale-zusammenarbeit": {
+      "one_h1": true,
+      "canonical": "https://www.next-course.de/akademie/digitale-zusammenarbeit/",
+      "duplicate_ids": false
+    },
+    "akademie/flying-academy": {
+      "one_h1": true,
+      "canonical": "https://www.next-course.de/akademie/flying-academy/",
+      "duplicate_ids": false
+    }
+  },
+  "previous_anchors_preserved": [
+    "format-seminare",
+    "academy-einstieg",
+    "format-flying",
+    "academy-team",
+    "format-entwicklung",
+    "academy-entwicklung",
+    "format-kurse",
+    "format-workshops",
+    "format-lehrgaenge"
+  ],
+  "browser_checks": [
+    "1280 px Academy overview and digital collaboration page visually inspected",
+    "390 px detail pages, FAQ and contact topic/visible offer selection checked",
+    "320 px Academy card cover/details/back and KI page: no horizontal overflow",
+    "Card content height verified within enclosing card",
+    "Escape switches card back to cover",
+    "Viewport reset after checks"
+  ],
+  "limits": [
+    "No contact request submitted",
+    "Native touch swipe unchanged; not emulated in this check",
+    "No publication"
+  ]
+}

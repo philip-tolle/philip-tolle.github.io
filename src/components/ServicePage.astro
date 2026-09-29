@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import ServiceHero from './ServiceHero.astro';
+import ServiceJourney from './ServiceJourney.astro';
+import PersonalContact from './PersonalContact.astro';
+import type { ServicePageContent } from '../data/service-pages';
+import '../styles/marketing.css';
+import '../styles/service-pages.css';
+interface Props { page: ServicePageContent; }
+const { page } = Astro.props;
+---
+<Base title={page.title} description={page.description} lightChrome={page.id === 'academy'}>
+  <div class={`nc-page service-page service-page--${page.id}`}>
+    <ServiceHero area={page.area} heading={page.hero.heading} emphasis={page.hero.emphasis} description={page.hero.description} image={page.image} imageAlt={page.imageAlt} contactLabel={page.hero.action} contactTopic={page.topic} exploreHref={`#${page.id}-angebote`} exploreLabel={page.id === 'operation' ? 'Leistungen ansehen' : page.id === 'academy' ? 'Themen ansehen' : 'Passenden Einstieg finden'} waveTone={page.id === 'academy' ? 'dark' : undefined} />
+    <div class="service-surface" data-wave-tone={page.id === 'academy' ? undefined : 'dark'}>
+      <ServiceJourney page={page} />
+      <slot />
+      <svg class="service-surface__end" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44C240 104 420 104 720 48S1200 0 1440 44V100H0Z" /></svg>
+    </div>
+    <PersonalContact topic={page.topic} title={page.contactTitle} waveTone={page.id === 'academy' ? 'dark' : undefined} />
+  </div>
+</Base>

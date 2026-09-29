@@ -1,0 +1,177 @@
+---
+const modules = [
+  {
+    number: 'A',
+    title: 'Standards',
+    text: '40 auf Ihren Betrieb zugeschnittene Abläufe – klar benannt, versioniert und auffindbar.',
+  },
+  {
+    number: 'B',
+    title: 'Bildanweisungen',
+    text: 'Bis zu acht bebilderte Arbeitsanweisungen erklären ausgewählte Abläufe direkt am Einsatzort.',
+  },
+  {
+    number: 'C',
+    title: 'Toolkits',
+    text: '16 Branchen-Toolkits ergänzen die Standards; bis zu sechs davon werden auf Ihren Betrieb angepasst.',
+  },
+  {
+    number: 'D',
+    title: 'Kundeninstanz & QR-Zugänge',
+    text: 'Ihr Handbuch liegt in einer eigenen Kundeninstanz und ist am Einsatzort gezielt per QR-Code erreichbar.',
+  },
+  {
+    number: 'E',
+    title: 'Drei Sprachfassungen',
+    text: 'Deutsch, Englisch und eine vorab festgelegte Teamsprache machen das Wissen für Ihr Team nutzbar.',
+  },
+  {
+    number: 'F',
+    title: 'Schulung & Stabilisierung',
+    text: 'Nach der Einführung und Schulung begleiten wir die Anwendung 30 Tage lang im vereinbarten Umfang.',
+  },
+];
+---
+
+<section class="landing-section landing-handbook" id="betriebshandbuch" aria-labelledby="handbook-title">
+  <div class="landing-shell">
+    <header class="landing-section__head landing-section__head--wide" data-reveal>
+      <p class="landing-index">Kernprodukt <span>02</span></p>
+      <h2 id="handbook-title">Nicht noch ein Ordner. Ein eingeführtes Arbeitssystem.</h2>
+      <p>
+        Ihr digitales Betriebshandbuch dokumentiert nicht irgendeinen Idealprozess.
+        Es bildet die Abläufe ab, die in Ihrem Haus tragfähig sein sollen – in einer Form,
+        die neue wie erfahrene Mitarbeitende nutzen können.
+      </p>
+    </header>
+
+    <div class="landing-proof" data-reveal>
+      <div class="landing-proof__statement">
+        <span class="landing-proof__stamp">40 Standards</span>
+        <p>
+          Gemeinsam festgelegt, vor Ort aufgenommen und so beschrieben,
+          dass aus Betriebswissen eine belastbare Arbeitsgrundlage wird.
+        </p>
+      </div>
+      <dl class="landing-proof__facts">
+        <div><dt>Format</dt><dd>Digital und mobil erreichbar</dd></div>
+        <div><dt>Sprache</dt><dd>Deutsch, Englisch plus eine Teamsprache</dd></div>
+        <div><dt>Projekt</dt><dd>Zwei Vor-Ort-Tage und zwei Korrekturrunden</dd></div>
+        <div><dt>Übergabe</dt><dd>Eigene Kundeninstanz, Inhalte und Zugänge</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="manual-sequence" data-manual-sequence>
+    <div class="manual-stage">
+      <div class="manual-spine" aria-hidden="true">
+        <span class="manual-spine__cap"></span>
+        <span class="manual-spine__track"><i></i></span>
+        <span class="manual-spine__label">Betriebshandbuch</span>
+      </div>
+
+      <div class="manual-viewport">
+        <div class="manual-track" data-manual-track>
+          <article class="manual-sheet manual-sheet--cover" aria-label="Muster-Titelseite des digitalen Betriebshandbuchs">
+            <p class="manual-placeholder">Musteransicht – wird vor Veröffentlichung ersetzt</p>
+            <div class="manual-cover__brand">
+              <span class="manual-cover__mark" aria-hidden="true">↗</span>
+              <span>NextCourse Consulting</span>
+            </div>
+            <div class="manual-cover__title">
+              <p>Digitales</p>
+              <h3>Betriebs&shy;handbuch</h3>
+              <span>Musterbetrieb · Mainfranken</span>
+            </div>
+            <div class="manual-cover__meta">
+              <span>Version 1.0</span>
+              <span>Einführung 2026</span>
+            </div>
+          </article>
+
+          <article class="manual-sheet manual-sheet--standard" aria-labelledby="sample-standard-title">
+            <p class="manual-placeholder">Musteransicht – wird vor Veröffentlichung ersetzt</p>
+            <header class="standard-head">
+              <div>
+                <span>Standard 03.2</span>
+                <h3 id="sample-standard-title">Zimmer vor Anreise freigeben</h3>
+              </div>
+              <span class="standard-status">Freigegeben</span>
+            </header>
+
+            <div class="standard-body">
+              <section>
+                <h4>Ziel</h4>
+                <p>Jedes bezugsfertige Zimmer wird nach denselben vereinbarten Punkten geprüft.</p>
+              </section>
+              <section>
+                <h4>Verantwortlich</h4>
+                <p>Housekeeping · Schichtleitung bei Abweichungen</p>
+              </section>
+              <section class="standard-steps">
+                <h4>Ablauf</h4>
+                <ol>
+                  <li><span>1</span><p>Raumeindruck und vereinbarte Grundordnung prüfen.</p></li>
+                  <li><span>2</span><p>Funktionspunkte laut betrieblicher Checkliste kontrollieren.</p></li>
+                  <li><span>3</span><p>Abweichung dokumentieren oder Zimmer digital freigeben.</p></li>
+                </ol>
+              </section>
+            </div>
+
+            <footer class="standard-foot">
+              <span>Zuletzt geprüft: Musterangabe</span>
+              <span>DE · EN · Teamsprache</span>
+            </footer>
+          </article>
+
+          <article class="manual-sheet manual-sheet--toolkit" aria-labelledby="toolkit-title">
+            <p class="manual-placeholder">Musteransicht – wird vor Veröffentlichung ersetzt</p>
+            <div class="toolkit-title">
+              <p>Direkt am Einsatzort</p>
+              <h3 id="toolkit-title">Scannen. Nachsehen. Sicher handeln.</h3>
+            </div>
+
+            <div class="toolkit-qr" aria-hidden="true">
+              <svg viewBox="0 0 21 21" role="img">
+                <rect x="1" y="1" width="6" height="6"></rect>
+                <rect x="14" y="1" width="6" height="6"></rect>
+                <rect x="1" y="14" width="6" height="6"></rect>
+                <path d="M9 2h2v2H9zM9 6h3v2H9zM8 10h2v2H8zM12 9h2v3h-2zM16 9h3v2h-3zM10 14h2v2h-2zM13 13h2v2h-2zM16 15h2v2h-2zM9 18h3v2H9zM13 17h2v3h-2zM18 18h2v2h-2z"></path>
+              </svg>
+            </div>
+
+            <div class="toolkit-note">
+              <span>Beispielzugang</span>
+              <p>Der QR-Code kann am passenden Arbeitsort auf genau den benötigten Standard führen.</p>
+            </div>
+
+            <div class="toolkit-tabs" aria-label="Beispielhafte Inhaltsarten">
+              <span>Anweisung</span><span>Bildfolge</span><span>Checkpunkt</span><span>Kontaktweg</span>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <p class="manual-progress" aria-hidden="true"><span data-manual-count>01</span> / 03</p>
+    </div>
+  </div>
+
+  <div class="landing-shell landing-modules">
+    <header data-reveal>
+      <p class="landing-index">Das Ergebnis <span>03</span></p>
+      <h2>Was am Ende in Ihrem Betrieb steht.</h2>
+    </header>
+
+    <ol class="landing-modules__list">
+      {modules.map((module) => (
+        <li data-reveal>
+          <span class="landing-module__number">{module.number}</span>
+          <div>
+            <h3>{module.title}</h3>
+            <p>{module.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

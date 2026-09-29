@@ -1,0 +1,168 @@
+---
+import Base from '../layouts/Base.astro';
+import DemoAudio from '../components/DemoAudio.astro';
+import '../styles/mystery-demo.css';
+
+const pdf = '/demo/mystery-check/nextcourse-mystery-check-demo.pdf';
+const pages = [
+  ['Das Titelblatt', 'Ein vollständiges Beispiel für ein inhabergeführtes Hotel mit Restaurant.'],
+  ['Das Wichtigste in zwei Minuten', 'Was überzeugt, wo Reibung entsteht und welche drei Schritte zuerst anstehen.'],
+  ['Auftrag und Aussagekraft', 'Das Gästeszenario, der Umfang und die Grenzen dieser Momentaufnahme.'],
+  ['Sechs Kontaktpunkte im Überblick', 'Die Guest-Journey-Ampel macht sichtbar, an welchen Stellen Sie ansetzen können.'],
+  ['Digitale Auffindbarkeit', 'Was ein Gast bei der Suche findet – und welche Informationen noch nicht zusammenpassen.'],
+  ['Anfrage und Antwort', 'Freundlicher Kontakt und eine vollständige Entscheidungsgrundlage gehören zusammen.'],
+  ['Buchung und Reservierung', 'Eine bestätigte Tischreservierung geht bei der Übergabe verloren. So wird der Befund eingeordnet.'],
+  ['Erwartungsmanagement', 'Auch Stärken werden festgehalten: Das Haus hält sein zentrales Versprechen.'],
+  ['Service vor Ort', 'Konkrete Situationen zeigen, wo Aufmerksamkeit den Aufenthalt angenehmer machen kann.'],
+  ['Nachkontakt und Feedback', 'Eine Rückmeldung des Gastes eröffnet die Chance, Vertrauen wiederherzustellen.'],
+  ['Das Beobachtungsprotokoll', '18 fiktive Beobachtungen machen nachvollziehbar, worauf die Befunde beruhen.'],
+  ['Prüfkriterien vor dem Aufenthalt', 'Die Kriterien hinter der Ampel – mit Begründung und Verweis auf die Beobachtung.'],
+  ['Prüfkriterien während und danach', 'Ein transparenter Maßstab für den Aufenthalt und seinen Abschluss.'],
+  ['Die ersten vier Maßnahmen', 'Zusagen, Gästefälle und Antworten: Zuständigkeiten, Aufwand und Prüfkriterien.'],
+  ['Die nächsten vier Maßnahmen', 'Kleine Routinen für das Team und ein besser lesbares Angebot am Smartphone.'],
+  ['Die wirtschaftliche Einordnung', 'Einfache Modellrechnungen mit offenen Annahmen, ohne Erfolgsversprechen.'],
+  ['Direkt für die nächste Schicht', 'Kurze Standards und Formulierungsbeispiele als Arbeitsvorlage für Ihr Team.'],
+  ['Übergabe und nächste Schritte', 'Ein Plan für die ersten 30 Tage und überprüfbare Ziele für die Umsetzung.'],
+];
+const highlights = [
+  [2, '01', 'Das Kurzfazit', 'Die wichtigsten Ergebnisse zuerst.'],
+  [4, '02', 'Der Gästeweg', 'Alle sechs Kontaktpunkte auf einen Blick.'],
+  [7, '03', 'Ein konkreter Befund', 'Beobachtung, Wirkung und Empfehlung.'],
+  [14, '04', 'Der Maßnahmenplan', 'Wer macht was – und mit welchem Aufwand?'],
+] as const;
+---
+<Base title="Mystery Check: Demo-Auswertung ansehen | NextCourse" description="Blättern Sie durch eine vollständige, fiktive Mystery-Check-Auswertung: sechs Kontaktpunkte, konkrete Beobachtungen und acht priorisierte Maßnahmen.">
+  <div class="mc-demo">
+    <div class="mc-demo__shell">
+      <nav class="mc-demo__breadcrumb" aria-label="Brotkrümelnavigation"><a href="/management/mystery-check/">Mystery Check</a><span aria-hidden="true">/</span><span aria-current="page">Demo-Auswertung</span></nav>
+      <section class="mc-demo__hero" aria-labelledby="demo-title">
+        <div>
+          <p class="mc-demo__eyebrow">Das Ergebnis zum Lesen und Anhören</p>
+          <h1 id="demo-title">Ein Blick in das,<br />was Sie <em>bekommen.</em></h1>
+          <p class="mc-demo__lead">Wie wird aus einem anonymen Besuch ein konkreter nächster Schritt? Entdecken Sie es in unserer Beispiel-Auswertung – als Bericht und als Podcast.</p>
+          <div class="mc-demo__actions"><a class="mc-demo__button" href="#auswertung">Auswertung durchblättern <span aria-hidden="true">↓</span></a><a class="mc-demo__textlink" href="#podcast">Auswertung anhören <span aria-hidden="true">↓</span></a><a class="mc-demo__textlink" href={pdf} download>PDF herunterladen <span aria-hidden="true">↗</span></a></div>
+          <p class="mc-demo__note">18 Seiten · 14 Minuten Audio · ohne Anmeldung</p>
+        </div>
+        <a href="#auswertung" class="mc-demo__cover" aria-label="Beispiel-Auswertung durchblättern">
+          <img src="/demo/mystery-check/cover.webp" width="620" height="877" alt="Titelblatt der NextCourse Mystery-Check-Demo für das fiktive Hotel und Restaurant Lindenbogen" fetchpriority="high" />
+          <span>Ein echter Einblick. Ein fiktiver Betrieb.</span>
+        </a>
+      </section>
+      <aside class="mc-demo__context" aria-label="Zum Beispielbetrieb">
+        <div><span class="mc-demo__overline">Das Beispiel</span><strong>Hotel &amp; Restaurant Lindenbogen</strong></div>
+        <p>Ein inhabergeführtes Haus mit 26 Zimmern in Mainfranken. Betrieb, Besuch und Ergebnisse sind vollständig fiktiv. Die Demo zeigt, wie Ihre Auswertung aussehen kann.</p>
+      </aside>
+      <DemoAudio kind="mystery" />
+      <section class="mc-reader" id="auswertung" aria-labelledby="reader-title" data-mc-reader>
+        <div class="mc-reader__intro"><div><p class="mc-demo__eyebrow">Direkt in den Bericht</p><h2 id="reader-title">Vom Eindruck<br />zur Umsetzung.</h2></div><p>Starten Sie bei den wichtigsten Ergebnissen oder blättern Sie durch alle 18 Originalseiten der Demo.</p></div>
+        <div class="mc-reader__layout">
+          <div class="mc-reader__rail">
+            <nav class="mc-reader__chapters" aria-label="Ausgewählte Berichtsseiten">
+              {highlights.map(([page, number, title, text]) => <a href={`${pdf}#page=${page}`} data-mc-jump={page} aria-current={page === 2 ? 'true' : undefined}><span>{number}</span><div><strong>{title}</strong><small>{text}</small></div><b aria-hidden="true">↗</b></a>)}
+            </nav>
+            <div class="mc-reader__select" data-mc-controls hidden><label for="mc-page-select">Alle 18 Seiten</label><select id="mc-page-select">{pages.map(([title],i) => <option value={i+1} selected={i===1}>{String(i+1).padStart(2,'0')} · {title}</option>)}</select></div>
+            <p class="mc-reader__description" data-mc-description>{pages[1][1]}</p>
+            <a href={pdf} class="mc-demo__textlink" download>Gesamte Demo als PDF <span aria-hidden="true">↓</span></a>
+            <small class="mc-reader__file">18 Seiten · ca. 100 KB</small>
+          </div>
+          <div class="mc-reader__document">
+            <div class="mc-reader__toolbar"><p aria-live="polite" aria-atomic="true" data-mc-status>02 / 18 <span>Das Wichtigste in zwei Minuten</span></p><div class="mc-reader__arrows" data-mc-controls hidden><button type="button" data-mc-prev aria-label="Vorherige Berichtsseite">←</button><button type="button" data-mc-next aria-label="Nächste Berichtsseite">→</button></div></div>
+            <div class="mc-reader__sheet">
+              <a href={`${pdf}#page=2`} class="mc-reader__page" data-mc-expand aria-label="Berichtsseite 2 vergrößern"><img src="/demo/mystery-check/seite-02.webp" width="1191" height="1684" alt="Demo-Auswertung, Seite 2: Das Wichtigste in zwei Minuten" loading="lazy" data-mc-image /></a>
+            </div>
+            <div class="mc-reader__bottom"><span>Fiktive Demo-Auswertung</span><a href={`${pdf}#page=2`} data-mc-expand class="mc-demo__textlink">Seite vergrößern <span aria-hidden="true">↗</span></a></div>
+            <p class="mc-reader__error" data-mc-error hidden>Die Seitenvorschau konnte nicht geladen werden. <a href={pdf}>Hier können Sie die vollständige PDF öffnen.</a></p>
+            <noscript><p class="mc-reader__error">Die Kapitellinks öffnen die jeweilige Seite direkt in der PDF. Zum Durchblättern auf dieser Website ist JavaScript nötig.</p></noscript>
+          </div>
+        </div>
+        <dialog class="mc-lightbox" aria-labelledby="mc-lightbox-title" data-mc-dialog>
+          <div class="mc-lightbox__toolbar"><h3 id="mc-lightbox-title">Demo-Auswertung · Seite 2</h3><form method="dialog"><button aria-label="Vergrößerte Ansicht schließen">Schließen <span aria-hidden="true">×</span></button></form></div>
+          <img src="/demo/mystery-check/seite-02.webp" width="1191" height="1684" alt="Vergrößerte Demo-Auswertung, Seite 2" data-mc-large loading="lazy" />
+          <a class="mc-lightbox__pdf" href={`${pdf}#page=2`} data-mc-pdf target="_blank" rel="noopener">Diese Seite in der PDF öffnen <span aria-hidden="true">↗</span></a>
+        </dialog>
+      </section>
+      <section class="mc-demo__takeaways" aria-labelledby="takeaways-title"><p class="mc-demo__eyebrow">Was Ihnen die Auswertung gibt</p><h2 id="takeaways-title">Etwas, mit dem Sie<br />weiterarbeiten können.</h2><div class="mc-demo__benefits"><article><span>01</span><h3>Verstehen, was ankommt.</h3><p>Konkrete Situationen zeigen, was Ihre Gäste erleben. Gelungene Momente werden genauso festgehalten wie Reibung im Ablauf.</p></article><article><span>02</span><h3>Wissen, was zuerst zählt.</h3><p>Priorisierte Maßnahmen mit Zuständigkeit und Aufwand helfen Ihnen, die nächsten Schritte für Ihren Betrieb festzulegen.</p></article><article><span>03</span><h3>Im Alltag anfangen.</h3><p>Kurze Standards, Formulierungen und Prüfkriterien machen die Ergebnisse für Sie und Ihr Team nutzbar.</p></article></div></section>
+      <section class="mc-demo__contact" aria-labelledby="demo-contact-title"><div><p class="mc-demo__eyebrow">Und wie kommt Ihr Haus an?</p><h2 id="demo-contact-title">Schauen wir gemeinsam hin.</h2><p>Im Erstgespräch klären wir, was Sie herausfinden möchten und welches Gästeszenario zu Ihrem Betrieb passt.</p></div><div class="mc-demo__contact-actions"><a class="mc-demo__button" href="/kontakt/?thema=mystery-check#contactform">Mystery Check besprechen <span aria-hidden="true">↗</span></a><a href="/management/mystery-check/" class="mc-demo__textlink">Mehr über den Ablauf</a></div></section>
+      <p class="mc-demo__disclaimer">Die Demo ist eine ausführliche Musterfassung. Den Umfang Ihres Checks und der Auswertung vereinbaren wir vorab. Sie enthält keine Ergebnisse eines echten Kunden.</p>
+    </div>
+  </div>
+<script define:vars={{ pages, pdf }}>
+  (() => {
+    const reader = document.querySelector('[data-mc-reader]');
+    if (!reader) return;
+    const select = reader.querySelector('#mc-page-select');
+    const image = reader.querySelector('[data-mc-image]');
+    const large = reader.querySelector('[data-mc-large]');
+    const status = reader.querySelector('[data-mc-status]');
+    const description = reader.querySelector('[data-mc-description]');
+    const previous = reader.querySelector('[data-mc-prev]');
+    const next = reader.querySelector('[data-mc-next]');
+    const dialog = reader.querySelector('[data-mc-dialog]');
+    const dialogTitle = reader.querySelector('#mc-lightbox-title');
+    const pdfLink = reader.querySelector('[data-mc-pdf]');
+    const error = reader.querySelector('[data-mc-error]');
+    let current = 2;
+    let savedOverflow = '';
+    const showPage = (value) => {
+      const page = Math.max(1, Math.min(pages.length, Number(value)));
+      if (!Number.isInteger(page)) return;
+      current = page;
+      const [title, text] = pages[page - 1];
+      const number = String(page).padStart(2, '0');
+      const source = `/demo/mystery-check/seite-${number}.webp`;
+      image.src = source;
+      image.alt = `Demo-Auswertung, Seite ${page}: ${title}`;
+      large.src = source;
+      large.alt = `Vergrößerte Demo-Auswertung, Seite ${page}: ${title}`;
+      select.value = String(page);
+      status.replaceChildren(document.createTextNode(`${number} / 18 `));
+      const titleSpan = document.createElement('span');
+      titleSpan.textContent = title;
+      status.append(titleSpan);
+      description.textContent = text;
+      previous.disabled = page === 1;
+      next.disabled = page === pages.length;
+      error.hidden = true;
+      reader.querySelectorAll('[data-mc-jump]').forEach((a) => {
+        if (Number(a.dataset.mcJump) === page) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
+      reader.querySelectorAll('[data-mc-expand]').forEach((a) => {
+        a.href = `${pdf}#page=${page}`;
+        if (a.classList.contains('mc-reader__page')) a.setAttribute('aria-label', `Berichtsseite ${page} vergrößern`);
+      });
+      dialogTitle.textContent = `Demo-Auswertung · Seite ${page} von 18`;
+      pdfLink.href = `${pdf}#page=${page}`;
+    };
+    reader.querySelectorAll('[data-mc-controls]').forEach((el) => el.hidden = false);
+    reader.querySelectorAll('[data-mc-jump]').forEach((a) => a.addEventListener('click', (event) => {
+      event.preventDefault(); showPage(a.dataset.mcJump);
+    }));
+    select.addEventListener('change', () => showPage(select.value));
+    previous.addEventListener('click', () => showPage(current - 1));
+    next.addEventListener('click', () => showPage(current + 1));
+    reader.addEventListener('keydown', (event) => {
+      if (dialog.open || event.altKey || event.ctrlKey || event.metaKey || event.target.matches('select, option')) return;
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault(); showPage(current + (event.key === 'ArrowRight' ? 1 : -1));
+      }
+    });
+    reader.querySelectorAll('[data-mc-expand]').forEach((a) => a.addEventListener('click', (event) => {
+      if (!dialog.showModal) return;
+      event.preventDefault();
+      savedOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      dialog.showModal();
+      dialog.scrollTop = 0;
+    }));
+    dialog.addEventListener('close', () => document.body.style.overflow = savedOverflow);
+    dialog.addEventListener('click', (event) => {
+      const bounds = dialog.getBoundingClientRect();
+      if (event.target === dialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) dialog.close();
+    });
+    image.addEventListener('error', () => error.hidden = false);
+    image.addEventListener('load', () => error.hidden = true);
+    if (image.complete && !image.naturalWidth) error.hidden = false;
+  })();
+</script>
+</Base>

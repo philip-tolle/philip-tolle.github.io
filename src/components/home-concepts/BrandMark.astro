@@ -1,0 +1,9 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../assets/nc-logo.png';
+interface Props { large?: boolean; }
+const { large = false } = Astro.props;
+---
+<span class:list={['concept-mark', large && 'concept-mark--large']}>
+  <Image src={logo} alt="NextCourse – Wellen und Pfeil aus Holz" width={large ? 960 : 120} format="webp" quality={85} loading="eager" />
+</span>

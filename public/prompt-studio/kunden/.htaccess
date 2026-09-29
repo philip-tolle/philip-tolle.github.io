@@ -1,0 +1,36 @@
+Options -Indexes
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule "(^|/)\." - [F,L]
+</IfModule>
+
+<FilesMatch "(^\.|\.(?:ini|log|sql|bak|dist|example|ya?ml)$)">
+  Require all denied
+</FilesMatch>
+
+<Files "tipps.php">
+  Require all denied
+</Files>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set Cache-Control "private, no-store, max-age=0"
+  Header always set Pragma "no-cache"
+  Header always set X-Robots-Tag "noindex, nofollow, noarchive"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "no-referrer"
+  Header always set X-Frame-Options "DENY"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self' 'sha256-BXvm51Lw754ku6VcmBpO+egQ6Q8s2cbMUmh2//Vwfes='; style-src 'self' 'sha256-k/2Jq868HsKu3klCToWH7Z/bl8dQ0UbAn4MwF5HMcnE='; font-src 'self'; img-src 'self' data:; connect-src 'self'"
+
+  # These files are versioned in the HTML. Reuse them during the gateway-to-hub navigation.
+  <FilesMatch "\.(?:css|js)$">
+    Header always unset Pragma
+    Header always set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>

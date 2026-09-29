@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  area: string;
+  heading: string;
+  emphasis: string;
+  description: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  contactLabel: string;
+  contactTopic: string;
+  exploreHref: string;
+  exploreLabel: string;
+  waveTone?: 'dark';
+}
+
+const { area, heading, emphasis, description, image, imageAlt, contactLabel, contactTopic, exploreHref, exploreLabel, waveTone } = Astro.props;
+---
+
+<header class="service-hero" aria-labelledby="service-title" data-wave-tone={waveTone}>
+  <svg class="service-hero__wave" viewBox="0 0 1440 240" preserveAspectRatio="none" aria-hidden="true"><path d="M0 135C300 205 520 175 780 100S1190 30 1440 72V240H0Z" /></svg>
+  <div class="service-hero__copy">
+    <p class="service-hero__kicker">NextCourse {area}</p>
+    <h1 id="service-title">{heading} <em>{emphasis}</em></h1>
+    <p class="service-hero__lead">{description}</p>
+    <div class="service-hero__actions">
+      <a class="service-hero__button" href={`/kontakt/?thema=${contactTopic}#contactform`}>{contactLabel} <span aria-hidden="true">↗</span></a>
+      <a class="service-hero__explore" href={exploreHref}>{exploreLabel} <span aria-hidden="true">↓</span></a>
+    </div>
+    <p class="service-hero__region">Für Hotels &amp; Gastronomie in Mainfranken.</p>
+  </div>
+  <div class="service-hero__visual">
+    <Image
+      src={image}
+      alt={imageAlt}
+      width={1400}
+      widths={[480, 720, 1000, 1400]}
+      sizes="(max-width: 799px) 94vw, 51vw"
+      format="webp"
+      quality={88}
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </div>
+</header>
+
+<style>
+  .service-hero{--hero-ink:#f9f7f3;--hero-muted:#bcc8c6;--hero-region:#aebbbb;--hero-glow:255,107,74;--hero-rim:255,170,132}
+  .service-hero[data-wave-tone="dark"]{--hero-glow:76,119,169;--hero-rim:94,139,184}
+  .service-hero{position:relative;display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:center;gap:clamp(2rem,4vw,5rem);padding:clamp(8rem,9.5vw,12rem) clamp(1.25rem,4.8vw,10rem) clamp(3.5rem,5vw,6rem);min-height:82svh;color:var(--hero-ink)}
+  .service-hero__copy{position:relative;z-index:1;padding-block:1rem}
+  .service-hero .service-hero__kicker{display:flex;align-items:center;gap:.85rem;color:var(--hero-muted);font-size:clamp(.7rem,.72vw,.85rem);font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin:0 0 1.7rem;max-width:none}
+  .service-hero__kicker::before{content:'';height:2px;width:1.6rem;background:#ff6b4a;flex:none}
+  .service-hero h1{font-family:var(--disp);font-size:clamp(2.8rem,3.9vw,5.6rem);font-weight:600;line-height:1.12;letter-spacing:-.05em;color:var(--hero-ink);max-width:17ch;margin:0 0 1.8rem;text-wrap:balance}
+  .service-hero h1 em{display:block;font-family:Georgia,'Times New Roman',serif;font-weight:400;font-style:italic;letter-spacing:-.045em;color:#ff6b4a}
+  .service-hero .service-hero__lead{font-size:clamp(1rem,1.07vw,1.3rem);line-height:1.85;color:var(--hero-muted);max-width:46ch;margin:0}
+  .service-hero__actions{display:flex;align-items:center;flex-wrap:wrap;gap:1rem 1.7rem;margin-top:2rem}
+  .service-hero__button{display:inline-flex;align-items:center;justify-content:center;gap:1.2rem;min-height:3.4rem;padding:1rem 1.5rem;border:1px solid transparent;border-radius:999px;background:#ff6b4a;color:#122a2f;font-size:.93rem;font-weight:500;line-height:1.5;text-decoration:none;transition:background .2s,transform .2s}
+  .service-hero__button:hover{background:#ff866b;transform:translateY(-2px)}
+  .service-hero__button span{font-size:1.25em}
+  .service-hero__explore{display:inline-flex;align-items:center;gap:.65rem;min-height:44px;color:var(--hero-ink);font-size:.85rem;line-height:1.5;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.4em}
+  .service-hero__explore:hover{color:#ff6b4a}
+  .service-hero .service-hero__region{font-size:.75rem;line-height:1.7;letter-spacing:.02em;color:var(--hero-region);margin:1.4rem 0 0;max-width:none}
+  .service-hero__visual{position:relative;min-width:0;width:100%;isolation:isolate}
+  /* Explicit ellipse radii reach full transparency before every canvas edge. */
+  .service-hero__visual::before{content:'';position:absolute;z-index:-1;inset:-12% -12%;border-radius:50%;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(var(--hero-glow),.44) 0%,rgba(var(--hero-glow),.25) 30%,rgba(var(--hero-glow),.1) 53%,rgba(var(--hero-glow),.025) 74%,rgba(var(--hero-glow),0) 100%);opacity:.6;transform:translate(var(--light-x,0px),var(--light-y,0px));transition:opacity .6s ease,transform .6s ease;pointer-events:none}
+  .service-hero__visual img{display:block;width:100%;height:auto;max-height:70svh;object-fit:contain;transform-origin:50% 50%;transform:perspective(900px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));filter:drop-shadow(0 4px 6px rgba(0,0,0,.16)) drop-shadow(0 20px 28px rgba(0,0,0,.18));transition:transform .65s ease-out,filter .4s ease}
+  @media(hover:hover) and (pointer:fine){
+    .service-hero[data-pointer-active] .service-hero__visual::before{opacity:.8}
+    .service-hero[data-pointer-active] .service-hero__visual img{transition:transform .25s ease-out,filter .4s ease;filter:drop-shadow(0 5px 7px rgba(0,0,0,.16)) drop-shadow(0 22px 30px rgba(0,0,0,.19))}
+  }
+  .service-hero a:focus-visible{outline:2px solid #ff6b4a;outline-offset:6px}
+  @media(max-width:1099px){.service-hero{gap:1.5rem;min-height:0}.service-hero h1{font-size:clamp(2.5rem,4.2vw,3.7rem)}.service-hero__actions{gap:.6rem 1.2rem}.service-hero__button{font-size:.84rem;padding:.9rem 1.2rem;gap:.8rem}}
+  @media(max-width:799px){.service-hero{grid-template-columns:1fr;gap:2rem;padding-top:7rem;padding-bottom:3rem}.service-hero__copy{padding:0}.service-hero h1{font-size:clamp(2.6rem,6.8vw,4rem);max-width:20ch}.service-hero__visual{max-width:42rem;justify-self:center}.service-hero__visual img{max-height:none}.service-hero .service-hero__lead{max-width:52ch}}
+  @media(max-width:599px){.service-hero{gap:1.8rem}.service-hero .service-hero__kicker{font-size:.67rem;margin-bottom:1.3rem}.service-hero h1{font-size:clamp(2.3rem,9.6vw,3.4rem);margin-bottom:1.4rem}.service-hero .service-hero__lead{font-size:.96rem;line-height:1.8}.service-hero__actions{margin-top:1.5rem;gap:.65rem 1rem}.service-hero__button{font-size:.83rem}.service-hero__explore{font-size:.8rem}.service-hero .service-hero__region{font-size:.7rem;margin-top:1rem}.service-hero__visual{width:calc(100% + 1rem);max-width:none}}
+  @media(prefers-reduced-motion:reduce){.service-hero__button,.service-hero .service-hero__visual img,.service-hero .service-hero__visual::before{transition:none;transform:none}}
+</style>
+
+<script>
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const pointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  document.querySelectorAll<HTMLElement>('.service-hero').forEach(hero => {
+    const visual = hero.querySelector<HTMLElement>('.service-hero__visual')!;
+    let frame = 0;
+    const reset = () => {
+      cancelAnimationFrame(frame);
+      delete hero.dataset.pointerActive;
+      ['--tilt-x', '--tilt-y', '--light-x', '--light-y'].forEach(name => visual.style.removeProperty(name));
+    };
+    // Follow the homepage logo movement at a quieter, reduced angle.
+    hero.addEventListener('pointermove', event => {
+      if (motion.matches || !pointer.matches || event.pointerType === 'touch') return;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const rect = hero.getBoundingClientRect();
+        const x = Math.max(-.5, Math.min(.5, (event.clientX - rect.left) / rect.width - .5));
+        const y = Math.max(-.5, Math.min(.5, (event.clientY - rect.top) / rect.height - .5));
+        hero.dataset.pointerActive = 'true';
+        visual.style.setProperty('--tilt-x', `${-y * 6}deg`);
+        visual.style.setProperty('--tilt-y', `${x * 6}deg`);
+        visual.style.setProperty('--light-x', `${x * 20}px`);
+        visual.style.setProperty('--light-y', `${y * 16}px`);
+      });
+    });
+    hero.addEventListener('pointerleave', reset);
+    hero.addEventListener('pointercancel', reset);
+    motion.addEventListener('change', reset);
+    pointer.addEventListener('change', reset);
+    window.addEventListener('blur', reset);
+  });
+</script>

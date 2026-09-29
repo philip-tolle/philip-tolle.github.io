@@ -1,17 +1,17 @@
 ---
 title: "Führen & Kommunizieren mit KI"
-botschaft: "Vom Überforderten zum KI-kompetenten Führenden."
-kurz: "Unser erster geförderter Lehrgang (AZAV): Führung, Kommunikation und KI — bis zu 100 % finanziert. Start geplant Ende 2026."
-kategorie: "Lehrgang · AZAV"
+botschaft: "Menschen führen. Veränderung gemeinsam gestalten."
+kurz: "Ein Lehrgang zu Führung, Kommunikation und dem verantwortungsvollen Einsatz von KI wird vorbereitet. Mit einem Praxisvorhaben aus dem Gastgewerbe."
+kategorie: "Lehrgang in Vorbereitung"
 status: "geplant"
 reihenfolge: 4
 dauer: "2–3 Monate"
-format: "Lehrgang, AZAV-gefördert"
-foerderung: "Bis zu 100 % über Bildungsgutschein oder Qualifizierungsgeld"
+format: "Berufsbegleitender Lehrgang geplant"
+foerderung: "AZAV-Zulassung in Vorbereitung; Förderung noch nicht zugesagt"
 trio:
   - { wert: "2–3", label: "Monate berufsbegleitend lernbar" }
-  - { wert: "100 %", label: "Förderung möglich (Bildungsgutschein/QCG)" }
-  - { wert: "2026", label: "geplanter Start: Ende des Jahres" }
+  - { wert: "Praxis", label: "ein Vorhaben aus Ihrem Betrieb" }
+  - { wert: "Geplant", label: "Start wird bekannt gegeben" }
 module:
   - { titel: "Führung im Wandel", text: "Was moderne Führung im Gastgewerbe heute leisten muss — zwischen Fachkräftemangel und Digitalisierung." }
   - { titel: "KI im Führungsalltag", text: "Dienstpläne, Kommunikation, Auswertungen: die Werkzeuge, die Führungskräften Zeit zurückgeben." }
@@ -21,14 +21,12 @@ ergebnisse:
   - "Führungskompetenz für den digitalen Betriebsalltag"
   - "Souveräner Einsatz von KI-Werkzeugen in der Führung"
   - "Ein umgesetztes Praxisprojekt als Referenz"
-  - "Zertifikat nach anerkanntem Curriculum"
+  - "Dokumentation der erarbeiteten Inhalte und des Praxisprojekts"
 zielgruppe: "Für Fach- und Führungskräfte im Wandel — und für alle, die es werden wollen."
 termine:
-  - { label: "Start geplant: Ende 2026", hinweis: "Curriculum in AZAV-Zulassung — Interessentenliste offen" }
+  - { label: "Start in Vorbereitung", hinweis: "Termine und Zulassungsstand werden bekannt gegeben" }
 ---
 
-Alle reden über KI — aber niemand zeigt Führungskräften im Gastgewerbe, was das für ihren
-Alltag bedeutet. Genau dafür entsteht dieser Lehrgang: Führung, Kommunikation und KI in
-einem Programm, praxisnah und mit echtem Projekt im Betrieb. Die AZAV-Zulassung ist in
-Vorbereitung; wer auf der Interessentenliste steht, erfährt als Erstes vom Start — und
-sichert sich einen der ersten Plätze.
+Veränderung im Betrieb braucht Führung, die Orientierung gibt. Der geplante Lehrgang verbindet Kommunikation, Teamführung und die Einordnung von KI-Werkzeugen mit einem konkreten Praxisvorhaben.
+
+Die AZAV-Zulassung ist in Vorbereitung. Ein verbindlicher Start, die Konditionen und eine mögliche Förderfähigkeit stehen noch nicht fest. Sie können uns Ihr Interesse unverbindlich mitteilen. Mehr zum aktuellen Stand finden Sie in unserer [Förderübersicht](/akademie/foerderung/).

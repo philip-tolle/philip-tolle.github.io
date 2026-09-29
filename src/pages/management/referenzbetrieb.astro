@@ -1,0 +1,28 @@
+---
+import DetailLayout from '../../layouts/DetailLayout.astro';
+---
+<DetailLayout offer title="Zeitpotenziale einschätzen | NextCourse" description="Wie viel Zeit können kürzere, häufig wiederkehrende Abläufe freigeben? Rechnen Sie mit Ihren eigenen Annahmen." area="management" label="Planungsbeispiel" heading="Kleine Schritte." emphasis="Spürbar mehr Zeit." action="Ihren Ablauf besprechen" secondary={{label:'Zurück zur Umsetzung',href:'/management/implementierungsprojekte/'}} facts={['Rechenbeispiel · keine Kundenreferenz','Eigene Annahmen einsetzen']}>
+<section class="detail-section detail-aside-layout" id="zeitrechner"><div><p class="detail-kicker">Ein Ablauf. Vier Angaben.</p><h2>Was macht eine Minute <em>im Alltag aus?</em></h2><p>Eine wiederkehrende Aufgabe ist ein guter Anfang: zum Beispiel eine Anfrage erfassen oder eine Information an die nächste Schicht übergeben. Tragen Sie ein, wie häufig sie vorkommt und wie lange sie heute dauert.</p>
+<form class="time-inputs" id="time-form" aria-label="Zeitpotenzial berechnen">
+<label for="time-count">Vorgänge pro Arbeitstag<input id="time-count" type="number" min="1" max="10000" step="1" value="30" required /></label>
+<label for="time-days">Arbeitstage pro Monat<input id="time-days" type="number" min="1" max="31" step="1" value="22" required /></label>
+<label for="time-before">Minuten pro Vorgang heute<input id="time-before" type="number" min="0.1" max="1440" step="0.1" value="4" required /></label>
+<label for="time-after">Minuten mit verbessertem Ablauf<input id="time-after" type="number" min="0" max="1440" step="0.1" value="2" required /></label>
+</form></div><aside class="detail-card"><p class="detail-kicker">Ihr Rechenbeispiel</p><output class="time-result" id="time-result" for="time-count time-days time-before time-after" aria-live="polite">22 Stunden pro Monat</output><p id="time-formula">30 Vorgänge × 22 Tage × 2 Minuten ÷ 60</p><p class="detail-note">Das ist ein rechnerisches Zeitpotenzial. Ob es erreichbar ist, prüfen wir am tatsächlichen Ablauf. Freie Zeit bedeutet nicht automatisch eingesparte Personalkosten oder zusätzlichen Umsatz.</p></aside></section>
+<section class="detail-section"><div class="detail-intro"><h2>Erst beobachten. <em>Dann verbessern.</em></h2><p>Die Rechnung hilft beim Einordnen. Entscheidend ist, ob die Veränderung in Ihrem Haus funktioniert.</p></div><ol class="detail-steps"><li><h3>Ausgangslage festhalten</h3><p>Messen Sie mehrere typische Vorgänge. Berücksichtigen Sie Rückfragen, Sonderfälle und die Übergabe.</p></li><li><h3>Einen Ablauf erproben</h3><p>Testen Sie eine klar begrenzte Verbesserung gemeinsam mit den Menschen, die sie später nutzen.</p></li><li><h3>Ergebnis vergleichen</h3><p>Prüfen Sie Zeitaufwand und Qualität. Erst danach entscheiden Sie über den nächsten Schritt.</p></li></ol></section>
+</DetailLayout>
+<script>
+const form=document.querySelector<HTMLFormElement>('#time-form')!;
+const result=document.querySelector<HTMLOutputElement>('#time-result')!;
+const formula=document.querySelector<HTMLElement>('#time-formula')!;
+const fields=['count','days','before','after'].map(id=>document.querySelector<HTMLInputElement>('#time-'+id)!);
+const fmt=new Intl.NumberFormat('de-DE',{maximumFractionDigits:1});
+form.addEventListener('submit',event=>event.preventDefault());
+form.addEventListener('input',()=>{
+ if(fields.some(f=>!f.validity.valid||!Number.isFinite(f.valueAsNumber))){result.textContent='Bitte gültige Werte eintragen.';formula.textContent='Die erlaubten Werte stehen an den Eingabefeldern.';return;}
+ const [count,days,before,after]=fields.map(f=>f.valueAsNumber);const diff=before-after;
+ result.textContent=fmt.format(Math.abs(count*days*diff/60))+(diff<0?' Stunden zusätzlicher Aufwand':' Stunden pro Monat');
+ formula.textContent=fmt.format(count)+' Vorgänge × '+fmt.format(days)+' Tage × '+fmt.format(diff)+' Minuten ÷ 60';
+});
+</script>
+<style>.time-inputs{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}.time-inputs label{font-size:.85rem;font-weight:500}.time-inputs input{display:block;width:100%;margin-top:.6rem;padding:.9rem;border:1px solid #122a2f50;border-radius:8px;color:#122a2f;background:#fff;font:inherit}.time-inputs input:focus-visible{outline:2px solid #122a2f;outline-offset:3px}.time-result{display:block;font-family:Georgia,serif;font-size:clamp(2rem,3.5vw,4rem);line-height:1.15;letter-spacing:-.04em;margin:1.5rem 0}@media(max-width:599px){.time-inputs{grid-template-columns:1fr}}</style>

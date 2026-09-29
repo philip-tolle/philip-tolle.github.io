@@ -1,0 +1,13 @@
+---
+import OfferPage from '../../components/OfferPage.astro';
+import { flyingOffer } from '../../data/detail-offers';
+---
+<OfferPage page={flyingOffer} extraLinks={[{ label: 'Mögliche Themen', href: '#themen' }]}>
+  <section class="detail-section" id="themen">
+    <div class="detail-intro"><div><p class="detail-kicker">Das Lernziel zuerst</p><h2>Welches Thema <em>bringt Ihr Team weiter?</em></h2></div><p>Diese Themen können wir mit Ihrem Team im eigenen Haus bearbeiten. Weitere Lernziele besprechen wir individuell.</p></div>
+    <div class="detail-grid detail-grid--two">
+      <article class="detail-card"><h3>KI im Geschäftsalltag</h3><p>KI verstehen, an typischen Aufgaben ausprobieren und Ergebnisse bewusst prüfen. Ein kompakter Einstieg ohne KI-Vorkenntnisse.</p><a class="detail-link" href="/akademie/ki-grundlagen/">Inhalte des KI-Seminars <span aria-hidden="true">↗</span></a></article>
+      <article class="detail-card"><h3>Digitale Zusammenarbeit</h3><p>Veränderungen verständlich erklären, Fragen im Team aufgreifen und gemeinsame Arbeitsweisen vereinbaren.</p><a class="detail-link" href="/akademie/digitale-zusammenarbeit/">Inhalte der Teamschulung <span aria-hidden="true">↗</span></a></article>
+    </div>
+  </section>
+</OfferPage>

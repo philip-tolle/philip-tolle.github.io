@@ -1,60 +1,44 @@
 ---
-title: "EU AI Act im Gastgewerbe: Was Hoteliers und Gastronomen jetzt wissen müssen"
-description: "KI steckt längst in Buchungssystemen, Preisgestaltung und Telefonassistenten. Der EU AI Act bringt dafür neue Pflichten — dieser Überblick zeigt, was Betriebe wirklich betrifft und womit Sie anfangen sollten."
+title: "KI-Kompetenz im Gastgewerbe: Ein praktischer Einstieg"
+description: "KI-Werkzeuge verantwortlich einsetzen: Was ein Team wissen sollte und warum eine passende Schulung bei den Aufgaben Ihres Betriebs beginnt."
 pubDate: 2026-07-04
 tags: ["EU AI Act", "KI im Gastgewerbe"]
-cover: ../../assets/blog-eu-ai-act.png
-coverAlt: "Illustration im Kupferstich-Stil: ein Hotelier mit Tablet, das EU-AI-Act-Gesetzbuch und die drei Pflichten des AI Act im Gastgewerbe"
+cover: ../../assets/blog/ki-kompetenz.png
+coverAlt: "Ein Team aus Hotel und Gastronomie bespricht den verantwortlichen Einsatz von KI anhand seiner täglichen Aufgaben."
+updatedDate: 2026-09-12
 ---
 
-Wenn in Ihrem Betrieb ein Buchungssystem Preise vorschlägt, ein Telefonassistent Anrufe
-annimmt oder ein Tool Dienstpläne optimiert, dann nutzen Sie bereits Künstliche Intelligenz —
-ob Sie es so nennen oder nicht. Genau hier setzt der EU AI Act an, die europäische
-KI-Verordnung. Ab August 2026 gelten weitere Pflichten, die auch inhabergeführte Hotels
-und Restaurants betreffen.
+## Mit dem eigenen Betrieb beginnen
 
-Die gute Nachricht vorweg: Für die allermeisten Gastgewerbebetriebe ist der Aufwand
-überschaubar — wenn man weiß, wo man steht.
+Wer KI im Haus einsetzt, braucht eine gemeinsame Vorstellung davon, wofür das System genutzt wird und wie mit seinen Ergebnissen umzugehen ist. Beginnen Sie mit einer Bestandsaufnahme: Welche Anwendungen sind vorhanden, welche Personen arbeiten damit und welche Entscheidungen werden unterstützt?
 
-## Was der AI Act von Betrieben verlangt
+Erfragen Sie bei Ihren Anbietern, welche Funktionen tatsächlich auf KI beruhen. Eine automatische Funktion allein sagt noch nichts über die technische oder rechtliche Einordnung aus.
 
-Die Verordnung sortiert KI-Systeme nach Risiko. Das meiste, was im Gastgewerbe im Einsatz
-ist, fällt in die unteren Kategorien. Trotzdem gibt es drei Punkte, die jeden Betrieb
-betreffen können:
+## Was mit KI-Kompetenz gemeint ist
 
-1. **Wissen, was im Einsatz ist.** Sie sollten benennen können, welche Ihrer Systeme
-   KI enthalten — vom Channel-Manager bis zur Telefonanlage. Viele Betriebe sind hier
-   überrascht, wie viel zusammenkommt.
-2. **Geschulte Mitarbeiter (Artikel 4).** Wer KI-Systeme einsetzt, muss dafür sorgen,
-   dass die Menschen, die damit arbeiten, ausreichend KI-Kompetenz haben. Eine kompakte,
-   dokumentierte Schulung erfüllt diese Pflicht — und macht das Team ganz nebenbei besser.
-3. **Transparenz gegenüber Gästen.** Wo Gäste mit einer KI interagieren — etwa mit einem
-   Telefon- oder Chat-Assistenten — muss das erkennbar sein.
+Artikel 4 der europäischen KI-Verordnung knüpft den Kompetenzaufbau unter anderem an Kenntnisse, Erfahrung, Ausbildung und den jeweiligen Einsatzkontext. Ein passender Ansatz berücksichtigt deshalb, welche Systeme Menschen für welche Aufgaben verwenden. [Wortlaut von Artikel 4 bei der EU-Kommission](https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-4).
 
-## Was das konkret bedeutet
+Die Kommission erläutert in ihren Fragen und Antworten, dass kein bestimmtes externes Zertifikat vorgeschrieben ist. Ein einzelner Standardkurs bestätigt daher nicht automatisch, dass ein Betrieb sämtliche Anforderungen erfüllt. [Fragen und Antworten zur KI-Kompetenz](https://digital-strategy.ec.europa.eu/de/faqs/ai-literacy-questions-answers).
 
-> Der AI Act ist kein Grund zur Panik — aber ein guter Anlass, Ordnung ins Thema zu bringen.
+## Was Ihr Team im Alltag klären sollte
 
-Unsere Empfehlung für den Einstieg, in dieser Reihenfolge:
+Eine praktische Einführung kann mit vier Fragen beginnen:
 
-- **Bestandsaufnahme:** Eine einfache Liste aller Systeme mit KI-Anteil. Das ist die
-  Grundlage für alles Weitere.
-- **Einordnung:** Welche Systeme lösen Pflichten aus, welche sind unkritisch? Hier trennt
-  sich Handlungsbedarf von Beobachten-reicht.
-- **Schulung dokumentieren:** Ein Schulungstag für das Team, schriftlich festgehalten —
-  damit ist die Kompetenzpflicht aus Artikel 4 abgedeckt.
+1. **Wofür nutzen wir das Werkzeug?** Definieren Sie die Aufgabe und den erlaubten Einsatz.
+2. **Welche Daten dürfen hinein?** Klären Sie den Umgang mit Gäste-, Personal- und Betriebsinformationen.
+3. **Wie prüfen wir Ergebnisse?** Legen Sie fest, wer Entwürfe kontrolliert, bevor sie verwendet werden.
+4. **Wann fragen wir nach?** Benennen Sie einen Ansprechpartner für Unsicherheiten, Fehler und Sonderfälle.
 
-Wer diese drei Schritte gegangen ist, hat den größten Teil der Hausaufgaben erledigt und
-kann dem Thema gelassen begegnen.
+Üben Sie anhand typischer Situationen im Haus. Eine Gästemail benötigt andere Fachkenntnisse und Prüfungen als eine interne Ideensammlung.
 
-## Der schnellste Weg zur Klarheit
+## Lernen und Zuständigkeiten festhalten
 
-Genau diese drei Schritte sind der Kern unseres
-[EU AI Act Quick-Checks](/consulting/quick-check/): Bestandsaufnahme, Einordnung nach den
-Kategorien der Verordnung und ein priorisierter Maßnahmenplan in klarer Sprache. Und wer
-die Schulungspflicht direkt miterledigen will: Unser Kurs
-[KI-Grundlagen für Gastgeber & KMU](/akademie/) erfüllt die Anforderung aus Artikel 4 —
-praxisnah statt paragraphenlastig.
+Dokumentieren Sie, welche Themen mit wem behandelt wurden und welche betrieblichen Regeln gelten. Prüfen Sie erneut, wenn neue Systeme, Aufgaben oder Mitarbeitende hinzukommen. So bleibt Wissen im Alltag nutzbar.
 
-Fragen dazu? [Sprechen wir unverbindlich darüber](/kontakt/) — am Telefon oder bei Ihnen
-im Haus.
+Unser [KI-Grundlagenseminar](/akademie/ki-grundlagen/) bietet einen praktischen Einstieg. Über die [Flying Academy](/akademie/flying-academy/) können Inhalte auf Ihr Team und die Arbeit im eigenen Haus abgestimmt werden.
+
+## Offene Fragen gezielt einordnen
+
+Kompetenzaufbau ist ein Teil des verantwortungsvollen KI-Einsatzes. Welche weiteren Anforderungen für ein konkretes System gelten, muss anhand seiner Nutzung und der aktuellen Rechtslage geprüft werden. Bei rechtlichen Einzelfragen ist eine entsprechend qualifizierte Beratung sinnvoll.
+
+Der [Quick-Check](/management/quick-check/) hilft, eingesetzte Anwendungen, Zuständigkeiten und offene Prüfpunkte zu ordnen. Die anschließenden Schritte richten sich nach der Situation Ihres Betriebs.

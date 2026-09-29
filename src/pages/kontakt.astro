@@ -1,121 +1,66 @@
 ---
-import Base from '../layouts/Base.astro';
+import DetailLayout from '../layouts/DetailLayout.astro';
+import {Image} from 'astro:assets';
+import philip from '../assets/philip.png';
 ---
-<Base
-  title="Kontakt | NextCourse Consulting"
-  description="Sprechen Sie mit NextCourse Consulting über ein digitales Betriebshandbuch, einen Digital Audit oder ein klar abgegrenztes Digitalprojekt für Ihren Hotelbetrieb."
->
-  <div class="pagehead">
-    <div class="wrap">
-      <p class="eyebrow">Kontakt</p>
-      <h1>Lernen wir uns kennen.</h1>
-      <p class="lead">Kostenlos, unverbindlich, per Telefon oder bei Ihnen im Haus.</p>
-    </div>
-  </div>
-
-  <div class="floor--auto floor">
-    <div class="wrap result">
-      <form class="form reveal" id="contactform" novalidate
-        action="https://formsubmit.co/kontakt@next-course.de" method="POST">
-        <input type="hidden" name="_subject" value="Neue Anfrage über die NextCourse-Website">
-        <input type="hidden" name="_next" value="https://www.next-course.de/danke/">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="field"><label for="f-name">Name *</label>
-          <input id="f-name" name="Name" type="text" autocomplete="name" required aria-describedby="e-name">
-          <p class="err" id="e-name">Bitte geben Sie Ihren Namen an.</p></div>
-        <div class="field"><label for="f-betrieb">Betrieb</label>
-          <input id="f-betrieb" name="Betrieb" type="text" autocomplete="organization"></div>
-        <div class="field"><label for="f-mail">E-Mail *</label>
-          <input id="f-mail" name="E-Mail" type="email" autocomplete="email" required aria-describedby="e-mail">
-          <p class="err" id="e-mail">Bitte geben Sie eine gültige E-Mail-Adresse an.</p></div>
-        <div class="field"><label for="f-tel">Telefon (optional)</label>
-          <input id="f-tel" name="Telefon" type="tel" autocomplete="tel"></div>
-        <div class="field"><label for="f-thema">Worum geht es?</label>
-          <select id="f-thema" name="Thema">
-            <option value="">Bitte wählen</option>
-            <option value="betriebshandbuch">Digitales Betriebshandbuch</option>
-            <option value="digital-audit">Digital Audit</option>
-            <option value="telefonassistent">KI-Telefonassistent</option>
-            <option value="entlastung">Entlastung im Betriebsalltag</option>
-          </select></div>
-        <div class="field"><label for="f-msg">Ihre Nachricht *</label>
-          <textarea id="f-msg" name="Nachricht" rows="5" required aria-describedby="e-msg"></textarea>
-          <p class="err" id="e-msg">Bitte schreiben Sie kurz, worum es geht.</p></div>
-        <div class="check" id="dsfield"><input type="checkbox" id="f-ds" name="Datenschutz-Zustimmung" value="ja" aria-describedby="e-ds">
-          <span>Ich habe die <a href="/datenschutz/">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage einverstanden. *
-          <span class="err" id="e-ds"><br>Bitte bestätigen Sie die Datenschutzerklärung.</span></span></div>
-        <div><button type="submit" class="btn">Anfrage senden</button></div>
-      </form>
-      <div class="reveal">
-        <div class="offercard" style="margin-bottom:2.2rem">
-          <p class="forkcard__aud">Der schnellste Weg</p>
-          <h3>Termin direkt buchen</h3>
-          <p>Suchen Sie sich in wenigen Klicks einen freien Termin für Ihr kostenloses Erstgespräch aus — landet sofort in beiden Kalendern.</p>
-          <div class="btnrow" style="margin-top:1.2rem">
-            <a href="https://cal.com/philip-tolle-yxp7ih/erstgesprach" target="_blank" rel="noopener" class="btn">Erstgespräch buchen</a>
-          </div>
-        </div>
-        <h3 style="margin-bottom:.7rem">Direkt</h3>
-        <p class="dim">Telefon: <a href="tel:+4915120220983" style="color:var(--green);font-weight:500">+49 151 20220983</a><br>
-        E-Mail: <a href="mailto:kontakt@next-course.de" style="color:var(--green);font-weight:500">kontakt@next-course.de</a><br>
-        Standort: Würzburg — im Einsatz in Mainfranken und Umgebung</p>
-      </div>
-    </div>
-  </div>
-</Base>
-
+<DetailLayout title="Kontakt | NextCourse" description="Sprechen Sie mit Philip Tolle über Ihren Betrieb: Abläufe, Betriebshandbuch, Weiterbildung oder Entlastung im Tagesgeschäft." label="Kontakt" heading="Erzählen Sie uns" emphasis="von Ihrem Haus." lead="Was beschäftigt Sie gerade? Eine kurze Nachricht genügt. Gemeinsam finden wir heraus, welcher nächste Schritt Ihren Alltag leichter machen kann." secondary={{label:'Nachricht schreiben',href:'#contactform'}} contact={false} facts={['Kostenloses Erstgespräch','Für Hotels & Gastronomie in Mainfranken']}>
+<section class="detail-section detail-aside-layout contact-layout"><div class="contact-panel"><p class="detail-kicker">Ihr Anliegen</p><h2>Hier beginnt <em>unser Gespräch.</em></h2><p>Die mit * markierten Felder benötigen wir, um Ihre Anfrage zu bearbeiten.</p>
+<form class="contact-form" id="contactform" action="https://formsubmit.co/kontakt@next-course.de" method="POST">
+<input type="hidden" name="_subject" value="Neue Anfrage über die NextCourse-Website"><input type="hidden" name="_next" value="https://www.next-course.de/danke/"><input type="hidden" name="_captcha" value="false"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+<div class="field"><label for="f-name">Name *</label><input id="f-name" name="Name" autocomplete="name" required aria-describedby="e-name"><p class="err" id="e-name">Bitte geben Sie Ihren Namen an.</p></div>
+<div class="field"><label for="f-betrieb">Betrieb</label><input id="f-betrieb" name="Betrieb" autocomplete="organization"></div>
+<div class="field"><label for="f-mail">E-Mail *</label><input id="f-mail" name="E-Mail" type="email" autocomplete="email" required aria-describedby="e-mail"><p class="err" id="e-mail">Bitte geben Sie eine gültige E-Mail-Adresse an.</p></div>
+<div class="field"><label for="f-tel">Telefon (optional)</label><input id="f-tel" name="Telefon" type="tel" autocomplete="tel"></div>
+<div class="field"><label for="f-thema">Worum geht es?</label><select id="f-thema" name="Thema"><option value="">Bitte wählen</option><option value="betriebshandbuch">Digitales Betriebshandbuch</option><option value="mystery-check">Mystery Check</option><option value="digital-audit">Digital Audit</option><option value="management">Management &amp; Abläufe</option><option value="academy">Academy &amp; Weiterbildung</option><option value="telefonassistent">Telefonassistent</option><option value="entlastung">Entlastung im Betriebsalltag</option></select></div>
+<input type="hidden" name="Angebot" id="f-angebot" value=""><p class="contact-selection" id="offer-selection" hidden></p>
+<div class="field"><label for="f-msg">Ihre Nachricht *</label><textarea id="f-msg" name="Nachricht" rows="5" required aria-describedby="e-msg"></textarea><p class="err" id="e-msg">Bitte schreiben Sie kurz, worum es geht.</p></div>
+<div class="check"><input type="checkbox" id="f-ds" name="Datenschutz-Zustimmung" value="ja" required aria-describedby="e-ds"><label for="f-ds">Ich habe die <a href="/datenschutz/">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage einverstanden. *<span class="err" id="e-ds">Bitte bestätigen Sie die Datenschutzerklärung.</span></label></div>
+<div><button type="submit" class="detail-button">Anfrage senden ↗</button></div>
+</form></div>
+<aside class="detail-card contact-person"><Image src={philip} alt="Philip Tolle, Ihr Ansprechpartner" width={220} format="webp"/><p class="detail-kicker">Persönlich für Sie da</p><h3>Philip Tolle</h3><p>Sie möchten lieber direkt sprechen? Wählen Sie einen Termin für ein kostenloses Erstgespräch.</p><a class="detail-button" href="https://cal.com/philip-tolle-yxp7ih/erstgesprach" target="_blank" rel="noopener">Gesprächstermin wählen ↗</a><ul class="detail-list"><li><strong>Telefon</strong><a href="tel:+4915120220983">+49 151 20220983</a></li><li><strong>E-Mail</strong><a href="mailto:kontakt@next-course.de">kontakt@next-course.de</a></li><li><strong>Vor Ort und digital</strong>Würzburg · Mainfranken und Umgebung</li></ul><p class="detail-note">Nach Ihrer Nachricht melden wir uns in der Regel innerhalb eines Werktags.</p></aside></section>
+</DetailLayout>
 <script>
-  const form = document.getElementById('contactform') as HTMLFormElement;
-  const topic = document.getElementById('f-thema') as HTMLSelectElement;
-  const allowedTopics = new Set([
-    'betriebshandbuch',
-    'digital-audit',
-    'telefonassistent',
-    'entlastung',
-  ]);
-  const requestedTopic = new URLSearchParams(window.location.search).get('thema');
-
-  if (requestedTopic && allowedTopics.has(requestedTopic)) {
-    topic.value = requestedTopic;
-  }
-
-  form.addEventListener('submit', (e) => {
-    let ok = true;
-    function flag(fieldEl: Element | null, bad: boolean) {
-      fieldEl?.classList.toggle('has-err', bad);
-      if (bad) { ok = false; }
-    }
-    const name = document.getElementById('f-name') as HTMLInputElement;
-    const mail = document.getElementById('f-mail') as HTMLInputElement;
-    const msg = document.getElementById('f-msg') as HTMLTextAreaElement;
-    const ds = document.getElementById('f-ds') as HTMLInputElement;
-    flag(name.closest('.field'), name.value.trim() === '');
-    flag(mail.closest('.field'), !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail.value.trim()));
-    flag(msg.closest('.field'), msg.value.trim() === '');
-    flag(document.getElementById('dsfield'), !ds.checked);
-    if (!ok) {
-      e.preventDefault();
-      const firstErr = document.querySelector('.has-err input, .has-err textarea') as HTMLElement | null;
-      if (firstErr) { firstErr.focus(); }
-    }
-  });
+const form=document.querySelector<HTMLFormElement>('#contactform')!;
+const topic=document.querySelector<HTMLSelectElement>('#f-thema')!;
+const params=new URLSearchParams(location.search);const requested=params.get('thema');
+if(requested&&Array.from(topic.options).some(o=>o.value===requested))topic.value=requested;
+const offer=params.get('angebot')?.trim();
+if(offer&&offer.length<=120&&!/[<>\r\n]/.test(offer)){
+ document.querySelector<HTMLInputElement>('#f-angebot')!.value=offer;
+ const selection=document.querySelector<HTMLElement>('#offer-selection')!;
+ selection.textContent='Ihre Anfrage zu: '+offer;selection.hidden=false;
+}
+form.addEventListener('invalid',event=>{
+ const field=event.target as HTMLInputElement;field.setAttribute('aria-invalid','true');field.closest('.field,.check')?.classList.add('has-err');
+},true);
+form.addEventListener('input',event=>{
+ const field=event.target as HTMLInputElement;if(field.validity?.valid){field.removeAttribute('aria-invalid');field.closest('.field,.check')?.classList.remove('has-err');}
+});
+form.addEventListener('submit',event=>{
+ for(const id of ['f-name','f-msg']){
+ const field=document.getElementById(id) as HTMLInputElement;
+ if(!field.value.trim()){event.preventDefault();field.setCustomValidity('Bitte füllen Sie dieses Feld aus.');field.reportValidity();field.addEventListener('input',()=>field.setCustomValidity(''),{once:true});break;}
+ }
+});
 </script>
-
 <style>
-  .field select {
-    width: 100%;
-    min-height: 3.25rem;
-    padding: .8rem 2.8rem .8rem 1rem;
-    border: 1px solid rgba(var(--forest-rgb), .5);
-    border-radius: 12px;
-    background: rgba(var(--sand-rgb), .7);
-    color: var(--ink);
-    font: inherit;
-  }
-
-  .field select:focus-visible {
-    outline: 2px solid var(--green);
-    outline-offset: 1px;
-  }
-</style>
+.contact-form{--error:#932e1b;display:grid;grid-template-columns:1fr 1fr;gap:1.35rem;margin-top:2rem;max-width:unset}.contact-form .field{margin:0}.contact-form .field:has(select),.contact-form .field:has(textarea),.contact-form .check,.contact-selection{grid-column:1/-1}
+.contact-form label{display:block;font-size:.86rem;font-weight:500;color:#122a2f;margin-bottom:.55rem}.contact-form :is(input:not([type=checkbox],[type=hidden]),select,textarea){display:block;width:100%;border:1px solid #122a2f50;border-radius:8px;background:#fff;color:#122a2f;padding:.85rem 1rem;font:inherit;min-height:3.3rem}.contact-form textarea{resize:vertical;min-height:10rem}.contact-form :is(input,select,textarea):focus-visible{outline:2px solid #122a2f;outline-offset:3px}.contact-form .check{display:flex;align-items:start;gap:.8rem}.contact-form input[type=checkbox]{margin-top:.3rem;accent-color:#122a2f;flex:none;width:1.15rem;height:1.15rem}.contact-form .check label{font-size:.8rem;line-height:1.75;font-weight:400}.contact-form .err{display:none;color:#932e1b;font-size:.77rem;margin:.4rem 0 0}.contact-form .has-err .err{display:block}.contact-form .has-err :is(input,textarea){border-color:#932e1b}.contact-person>img{width:5rem;height:5rem;border-radius:50%;object-fit:cover;margin-bottom:1.5rem}.contact-person a{color:inherit;overflow-wrap:anywhere}.contact-person .detail-button{color:#f9f7f3}.contact-selection{padding:1rem;border-left:3px solid #ff6b4a;background:#fff;font-weight:500}.contact-selection[hidden]{display:none}@media(max-width:599px){.contact-form{grid-template-columns:1fr}}
+.contact-panel{padding:clamp(1.4rem,3vw,2.25rem);border:1px solid #122a2f20;border-radius:12px;background:#fff;box-shadow:0 18px 45px -38px #122a2f66}
+.contact-layout{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
+.contact-layout>.contact-person{position:static;display:flex;flex-direction:column;align-items:flex-start;padding:clamp(1.4rem,3vw,2.25rem)}
+.contact-form{gap:1rem;margin-top:1.5rem;font-size:1rem}
+.contact-form :is(input:not([type=checkbox],[type=hidden]),select,textarea){min-height:48px;padding:.7rem .8rem;background:#f9f7f3}
+.contact-form textarea{min-height:8rem}
+.contact-form label{font-size:.82rem;margin-bottom:.4rem}
+.contact-form .check a{color:#122a2f;text-decoration:underline;text-underline-offset:.2em}
+.contact-person{background:#122a2f;color:#f9f7f3;--detail-text:#f9f7f3;--detail-muted:#c6d0ce;--detail-rule:#f9f7f335;border:0;box-shadow:0 18px 45px -38px #122a2f88}
+:global(.detail-page) .contact-person h3{color:#f9f7f3;font-size:1.65rem}
+:global(.detail-page) .contact-person .detail-button{background:#ff6b4a;color:#122a2f}
+:global(.detail-page) .contact-person .detail-button:hover{background:#ff866b}
+.contact-person>img{width:4.5rem;height:4.5rem;margin-bottom:1rem}
+.contact-person .detail-list{width:100%;margin:auto 0 0;padding-top:2rem}
+.contact-person .detail-list li{font-size:.9rem}
+.contact-person .detail-list strong{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:#c6d0ce}
+.contact-selection{background:#e8eeeb;border-radius:4px;padding:.8rem}
+@media(max-width:899px){.contact-layout{grid-template-columns:1fr}.contact-person .detail-list{margin-top:1.5rem;padding-top:0}}</style>

@@ -1,62 +1,44 @@
 ---
-import { getCollection, render } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import BlogCover from '../../components/BlogCover.astro';
-
-export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
-}
-
-const { post } = Astro.props;
-const { Content } = await render(post);
-const fmt = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
-
-const articleSchema = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'Article',
-  headline: post.data.title,
-  description: post.data.description,
-  datePublished: post.data.pubDate.toISOString(),
-  ...(post.data.updatedDate && { dateModified: post.data.updatedDate.toISOString() }),
-  author: { '@type': 'Person', name: 'Philip Tolle' },
-  publisher: { '@type': 'Organization', name: 'NextCourse' },
-  mainEntityOfPage: new URL(`/blog/${post.id}/`, Astro.site).toString(),
-});
+import {getCollection,render} from 'astro:content';
+import DetailLayout from '../../layouts/DetailLayout.astro';
+import { Image } from 'astro:assets';
+import philip from '../../assets/philip.png';
+export async function getStaticPaths(){return(await getCollection('blog')).map(post=>({params:{id:post.id},props:{post}}));}
+const {post}=Astro.props;const {Content,headings}=await render(post);
+const fmt=new Intl.DateTimeFormat('de-DE',{day:'numeric',month:'long',year:'numeric'});
+const schema=JSON.stringify({'@context':'https://schema.org','@type':'Article',headline:post.data.title,description:post.data.description,datePublished:post.data.pubDate.toISOString(),...(post.data.updatedDate&&{dateModified:post.data.updatedDate.toISOString()}),author:{'@type':'Person',name:'Philip Tolle'},publisher:{'@type':'Organization',name:'NextCourse'},mainEntityOfPage:new URL('/blog/'+post.id+'/',Astro.site).toString()}).replace(/</g,'\\u003c');
 ---
-<Base title={`${post.data.title} — NextCourse Blog`} description={post.data.description}>
-  <script type="application/ld+json" set:html={articleSchema} slot="head" />
-  <div class="pagehead" style="min-height:38svh">
-    <div class="wrap" style="max-width:840px">
-      <p class="eyebrow">Blog · <time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time></p>
-      <h1 style="font-size:clamp(2rem,6vw,3.4rem)">{post.data.title}</h1>
-      <p class="lead">{post.data.description}</p>
-    </div>
-  </div>
-
-  {post.data.cover && (
-    <div class="wrap" style="max-width:840px">
-      <div class="articlecover reveal cover-frame">
-        <BlogCover post={post} width={880} />
-      </div>
-    </div>
-  )}
-
-  <div class="floor--auto floor" style="padding-top:1.5rem">
-    <div class="wrap" style="max-width:840px">
-      <article class="prose reveal">
-        <Content />
-      </article>
-      <div class="postfoot reveal">
-        <p class="small faint">Philip Tolle · NextCourse, Würzburg</p>
-        <a class="arrowlink" href="/blog/">Alle Artikel</a>
-      </div>
-    </div>
-  </div>
-</Base>
-
+<DetailLayout title={post.data.title+' | NextCourse Journal'} description={post.data.description} label="Journal" heading={post.data.title} image={post.data.cover} imageAlt={post.data.coverAlt} caption="Gedanken aus dem Betriebsalltag." secondary={{label:'Zum Artikel',href:'#artikel'}} facts={['Philip Tolle',fmt.format(post.data.pubDate),...(post.data.updatedDate?['Aktualisiert: '+fmt.format(post.data.updatedDate)]:[])]}>
+<script type="application/ld+json" set:html={schema} slot="head"/>
+<section class="detail-section article-layout" id="artikel"><aside><details class="article-contents" open><summary>In diesem Artikel <span aria-hidden="true">+</span></summary><nav aria-label="In diesem Artikel"><ol>{headings.filter(h=>h.depth===2).map(h=><li><a href={'#'+h.slug}>{h.text}</a></li>)}</ol></nav></details><a class="detail-link" href="/blog/">← Alle Artikel</a></aside><article class="detail-prose article-body"><Content/><div class="article-author"><Image src={philip} alt="Philip Tolle" width={120} format="webp" loading="lazy"/><div><strong>Philip Tolle</strong><p>Gründer von NextCourse · Würzburg<br/>Erfahrung aus dem Gastgewerbe, Weiterbildung und praktische Umsetzung.</p><a class="detail-link" href="/ueber/">Über NextCourse ↗</a></div></div></article></section>
+</DetailLayout>
 <style>
-  .articlecover{aspect-ratio:16/8;border-radius:20px;overflow:hidden;margin-top:.4rem;
-    border:1px solid var(--glass-edge);box-shadow:var(--shadow)}
-  @media(max-width:640px){.articlecover{aspect-ratio:16/10}}
+:global(.detail-page--info:has(.article-layout)){--service-surface:#e8eeeb}
+:global(.detail-page--info:has(.article-layout) .detail-visual img){aspect-ratio:16/9}
+.article-layout{display:grid;grid-template-columns:255px minmax(0,1fr);gap:clamp(1.75rem,3vw,3rem);align-items:start;max-width:1180px;margin:auto}
+.article-layout>aside{position:sticky;top:7rem;background:#122a2f;color:#f9f7f3;border-radius:10px;padding:1.4rem}
+.article-contents summary{display:flex;justify-content:space-between;align-items:center;gap:1rem;min-height:44px;list-style:none;cursor:pointer;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.article-contents summary::-webkit-details-marker{display:none}
+.article-contents summary span{font-size:1.25rem}
+.article-contents[open] summary span{transform:rotate(45deg)}
+.article-layout nav ol{padding:0;list-style:none;margin:.5rem 0 1rem;counter-reset:chapter}
+.article-layout nav li{counter-increment:chapter;border-top:1px solid #f9f7f32b;font-size:.8rem;line-height:1.6}
+.article-layout nav a{color:#d4ddda;text-decoration:none;display:block;padding:.7rem 0;min-height:44px}
+.article-layout nav a:hover{color:#fff;text-decoration:underline;text-underline-offset:.25em}
+.article-layout>aside>.detail-link{font-size:.78rem;color:#ff947a;margin-top:.35rem}
+.article-body{max-width:none;margin:0;padding:clamp(1.5rem,3vw,2.75rem);border:1px solid #122a2f18;border-radius:12px;background:#fff;box-shadow:0 16px 40px -32px #122a2f55}
+.article-layout .article-body :global(h2){scroll-margin-top:7rem;font-size:clamp(1.45rem,1.8vw,1.85rem);line-height:1.25;max-width:none;margin:2rem 0 .9rem}
+.article-layout .article-body :global(h2:first-child){margin-top:0}
+.article-layout .article-body :global(h3){font-size:1.25rem;margin:1.5rem 0 .8rem}
+.article-layout .article-body :global(p){font-size:1rem;line-height:1.8;color:#465b60;max-width:68ch;margin:0 0 1.2rem}
+.article-layout .article-body :global(ul),.article-layout .article-body :global(ol){font-size:1rem;line-height:1.8}
+.article-body :global(blockquote){background:#fff0e9;border-left:3px solid #ff6b4a;padding:1.2rem 1.4rem;border-radius:0 8px 8px 0}
+.article-author{display:grid;grid-template-columns:56px minmax(0,1fr);gap:1rem;border:0;border-radius:8px;background:#ff6b4a;margin-top:2rem;padding:1.25rem;color:#122a2f}
+.article-author img{width:56px;height:56px;object-fit:cover;object-position:center 25%;border-radius:50%}
+.article-author strong{font-size:1rem}
+.article-layout .article-author p{font-size:.85rem;color:#18363a;margin:.4rem 0 .2rem}
+.article-author .detail-link{font-size:.8rem}
+@media(max-width:1099px){.article-layout{grid-template-columns:220px minmax(0,1fr);gap:1.5rem}.article-layout>aside{padding:1.1rem}}
+@media(max-width:899px){.article-layout{grid-template-columns:1fr;gap:1.25rem}.article-layout>aside{position:static}.article-layout nav ol{display:grid;grid-template-columns:1fr 1fr;gap:0 1.5rem}}
+@media(max-width:599px){.article-layout nav ol{grid-template-columns:1fr}.article-body{padding:1.35rem}.article-author{grid-template-columns:1fr}.article-layout .article-body :global(p){font-size:.98rem}}
 </style>

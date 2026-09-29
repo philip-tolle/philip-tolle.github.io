@@ -1,0 +1,14 @@
+---
+interface Props {
+  from: 'dark' | 'orange' | 'white';
+  to: 'dark' | 'orange' | 'white';
+  reverse?: boolean;
+}
+const { from, to, reverse = false } = Astro.props;
+const colours = { dark: 'var(--nc-forest)', orange: 'var(--nc-coral)', white: 'var(--nc-paper)' };
+---
+<div class:list={['home-transition', reverse && 'home-transition--reverse']} style={`--transition-from:${colours[from]};--transition-to:${colours[to]}`} aria-hidden="true">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none" focusable="false">
+    <path d="M0 44C240 104 420 104 720 48S1200 0 1440 44V100H0Z" />
+  </svg>
+</div>

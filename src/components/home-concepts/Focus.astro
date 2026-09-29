@@ -1,0 +1,54 @@
+---
+import { Image } from 'astro:assets';
+import philip from '../../assets/philip.png';
+const situations = [
+  { id: 'ablaeufe', number: '01', short: 'Abläufe ordnen', situation: 'Ständig dieselben Rückfragen?', heading: 'Machen Sie gute Abläufe zur gemeinsamen Routine.', text: 'Wir klären Zuständigkeiten, halten Standards fest und machen Ihr Betriebswissen zugänglich. Damit Ihr Team auch ohne ständiges Nachfragen weiterkommt.', area: 'Management', href: '/management/', tasks: ['Abläufe und Zuständigkeiten klären', 'Wissen im Betrieb halten', 'Ein digitales Betriebshandbuch aufbauen'] },
+  { id: 'team', number: '02', short: 'Team stärken', situation: 'Neue Aufgaben. Unsicherheit im Team?', heading: 'Geben Sie Ihrem Team Wissen, das es anwenden kann.', text: 'Wir stärken Fach- und Führungskräfte mit Weiterbildung, die ihren Arbeitsalltag aufgreift. Verständlich, praxisnah und aus der Branche.', area: 'Academy', href: '/akademie/', tasks: ['Fachwissen vertiefen', 'Führungskompetenz entwickeln', 'Gelerntes in der Praxis einsetzen'] },
+  { id: 'entlastung', number: '03', short: 'Arbeit abgeben', situation: 'Die To-do-Liste bleibt länger als der Tag?', heading: 'Geben Sie Aufgaben ab, die sonst liegen bleiben.', text: 'Wir unterstützen Sie im Backoffice, bei der Kommunikation und in Projekten. Mit einem vereinbarten Umfang und einer direkten Ansprechperson.', area: 'Operation', href: '/operation/', tasks: ['Backoffice entlasten', 'Kommunikation unterstützen', 'Projekte voranbringen'] },
+];
+---
+<section class="f-hero" aria-labelledby="f-title">
+  <div class="f-hero-main"><p class="concept-eyebrow">NextCourse / Für Hotels & Gastronomie</p><h1 id="f-title">Ihr Tag<br />hat genug<br /><span>Baustellen.</span></h1><div class="f-hero-bottom"><p>Wir helfen Ihnen, die richtigen zu lösen.<br />Mit klaren Abläufen, einem starken Team<br class="f-desktop-break" /> und Unterstützung, die ankommt.</p><a class="f-circle-button" href="#leistungen" aria-label="Passende Unterstützung finden"><span>Hier wird’s<br />leichter.</span><span aria-hidden="true">↓</span></a></div></div>
+  <aside class="f-person"><span class="f-person-label">IHR DIREKTER DRAHT</span><Image src={philip} alt="Philip Tolle, Ihr Ansprechpartner bei NextCourse" width={760} format="webp" loading="eager" fetchpriority="high" /><div class="f-person-copy"><p>Philip Tolle</p><span>Aus dem Gastgewerbe.<br />Für Ihren Betrieb.</span><a href="/kontakt/">Sprechen wir darüber <span aria-hidden="true">↗</span></a></div></aside>
+</section>
+<section class="f-finder concept-pad concept-section" id="leistungen" aria-labelledby="f-finder-title">
+  <div class="f-finder-heading"><p class="concept-eyebrow">Nicht alles auf einmal. Das Richtige zuerst.</p><h2 id="f-finder-title">Was würde Ihren Alltag<br /><em>gerade leichter machen?</em></h2></div>
+  <div class="f-choices" aria-label="Ihre aktuelle Aufgabe">{situations.map((s, i) => <a href={`#${s.id}`} class:list={['f-choice', i === 0 && 'is-active']} data-choice={s.id} aria-controls={s.id}><span>{s.number}</span><strong>{s.short}</strong><span aria-hidden="true">↗</span></a>)}</div>
+  <div class="f-results">{situations.map(s => <article class="f-result" id={s.id} data-result={s.id} aria-labelledby={`${s.id}-heading`}>
+    <div class="f-result-copy"><span class="f-area">{s.area}</span><p class="f-situation">{s.situation}</p><h3 id={`${s.id}-heading`}>{s.heading}</h3><p>{s.text}</p><a class="concept-button" href={s.href}>{s.area} entdecken <span aria-hidden="true">↗</span></a></div>
+    <div class="f-result-outcome"><span class="concept-eyebrow">Daran arbeiten wir gemeinsam</span><ul>{s.tasks.map((task, i) => <li><span>0{i + 1}</span>{task}</li>)}</ul><span class="f-result-note">Ein klarer Auftrag. Ein sinnvoller nächster Schritt.</span></div>
+  </article>)}</div>
+</section>
+<section class="f-book concept-pad concept-section" aria-labelledby="f-book-title"><p class="concept-eyebrow">Ein konkreter Einstieg / Management</p><div class="f-book-grid"><h2 id="f-book-title">„Wie machen<br />wir das hier?“<br /><em>Steht im Handbuch.</em></h2><div><p>Von der Übergabe bis zur Einarbeitung: Wir machen aus dem Wissen Ihres Hauses eine gemeinsame Arbeitsgrundlage.</p><a class="concept-link" href="/management/betriebshandbuch/">Digitales Betriebshandbuch kennenlernen <span aria-hidden="true">↗</span></a></div></div></section>
+<section class="f-process concept-pad concept-section" aria-labelledby="f-process-title"><p class="concept-eyebrow">So kommen wir ins Tun</p><h2 id="f-process-title">Kein großer Anlauf.<br /><em>Ein guter Anfang.</em></h2><ol><li><span>01</span><h3>Wir hören zu.</h3><p>Sie erzählen, wo es hakt. Wir schauen gemeinsam auf Ihren Alltag.</p></li><li><span>02</span><h3>Wir werden konkret.</h3><p>Wir vereinbaren einen überschaubaren Auftrag mit einem klaren Ergebnis.</p></li><li><span>03</span><h3>Wir setzen um.</h3><p>Gemeinsam mit Ihrem Team. Damit die Veränderung im Betrieb ankommt.</p></li></ol></section>
+<section class="f-contact concept-pad"><div><p class="concept-eyebrow">Der erste Schritt ist ein Gespräch.</p><h2>Was bleibt bei Ihnen<br />gerade liegen?</h2><span class="concept-note">Kostenlos & unverbindlich · Mit Philip Tolle</span></div><a class="concept-button" href="/kontakt/">Lassen Sie uns sprechen <span aria-hidden="true">↗</span></a></section>
+<script>
+  const choices = [...document.querySelectorAll<HTMLAnchorElement>('[data-choice]')];
+  const results = [...document.querySelectorAll<HTMLElement>('[data-result]')];
+  const validIds = results.map(result => result.dataset.result);
+  function showResult(id: string, moveFocus = false) {
+    if (!validIds.includes(id)) return;
+    choices.forEach(choice => {
+      const active = choice.dataset.choice === id;
+      choice.classList.toggle('is-active', active);
+      if (active) choice.setAttribute('aria-current', 'true');
+      else choice.removeAttribute('aria-current');
+    });
+    results.forEach(result => {
+      result.hidden = result.dataset.result !== id;
+      if (!result.hidden && moveFocus) {
+        const heading = result.querySelector<HTMLElement>('h3');
+        heading?.setAttribute('tabindex', '-1');
+        heading?.focus({ preventScroll: true });
+      }
+    });
+  }
+  choices.forEach(choice => choice.addEventListener('click', event => {
+    event.preventDefault();
+    const id = choice.dataset.choice!;
+    history.replaceState(null, '', `#${id}`);
+    showResult(id, true);
+  }));
+  showResult(validIds.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'ablaeufe');
+  window.addEventListener('hashchange', () => showResult(location.hash.slice(1)));
+</script>

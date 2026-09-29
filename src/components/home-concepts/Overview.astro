@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import BrandMark from './BrandMark.astro';
+import hotel from '../../assets/landing/hero-hotel-owner.png';
+import philip from '../../assets/philip.png';
+---
+<section class="o-page concept-pad">
+  <header class="o-heading"><p class="concept-eyebrow">NextCourse / Die Startseite weitergedacht</p><h1>Drei Perspektiven.<br /><span>Unverkennbar NextCourse.</span></h1><p>Die Marke bleibt. Der Auftritt bekommt mehr Klarheit, Charakter und Zugkraft.<br />Drei vollständige Entwürfe zum Öffnen, Scrollen und Vergleichen.</p></header>
+  <div class="o-grid">
+    <a class="o-card" href="/entwuerfe/1/" aria-label="Variante 1: Marke mit Strahlkraft öffnen">
+      <div class="o-preview o-preview-one" aria-hidden="true"><div class="o-mini-nav">NextCourse <span>Leistungen &nbsp; Über &nbsp; Kontakt ↗</span></div><div class="o-mini-one"><h2>Mehr Zeit<br />für das,<br />was <em>zählt.</em></h2><BrandMark large /></div><span class="o-mini-button">Über Ihren Betrieb sprechen ↗</span><div class="o-mini-service"><span>Management ↗</span><span>Academy ↗</span><span>Operation ↗</span></div></div>
+      <div class="o-card-copy"><div class="o-card-label"><span>01 / MARKANT</span><span>NAH AN EURER MARKE</span></div><h2>Marke mit Strahlkraft <span aria-hidden="true">↗</span></h2><p>Das Holzlogo als Blickfang. Große Typografie, dunkles Grün und ein klares Nutzenversprechen.</p><div class="o-marketing"><strong>Marketing-Idee</strong><span>Die Marke bleibt im Kopf. Der Nutzen wird sofort verständlich.</span></div><span class="o-open">Entwurf entdecken <span aria-hidden="true">→</span></span></div>
+    </a>
+    <a class="o-card" href="/entwuerfe/2/" aria-label="Variante 2: Gastlichkeit als Haltung öffnen">
+      <div class="o-preview o-preview-two" aria-hidden="true"><div class="o-mini-nav">NextCourse <span>Leistungen &nbsp; Über &nbsp; Kontakt ↗</span></div><h2>Gastlichkeit<br />braucht <em>Raum.</em></h2><div class="o-mini-editorial"><Image src={hotel} alt="" width={480} format="webp" /><span>Wir kümmern<br />uns um das<br /><strong>Dahinter.</strong><b>Ins Gespräch kommen ↗</b></span></div><div class="o-mini-rule">Ein guter Betrieb. Hat viele Seiten. ↗</div></div>
+      <div class="o-card-copy"><div class="o-card-label"><span>02 / EDITORIAL</span><span>RUHIG & HOCHWERTIG</span></div><h2>Gastlichkeit als Haltung <span aria-hidden="true">↗</span></h2><p>Ein großzügiger Magazinlook mit Serifenschrift, Bildgeschichte und persönlicher Note.</p><div class="o-marketing"><strong>Marketing-Idee</strong><span>Identifikation mit dem Gastgewerbe schafft Nähe und Vertrauen.</span></div><span class="o-open">Entwurf entdecken <span aria-hidden="true">→</span></span></div>
+    </a>
+    <a class="o-card" href="/entwuerfe/3/" aria-label="Variante 3: Mehr Luft im Alltag öffnen">
+      <div class="o-preview o-preview-three" aria-hidden="true"><div class="o-mini-nav">NextCourse <span>Leistungen &nbsp; Über &nbsp; Kontakt ↗</span></div><div class="o-mini-focus"><div><h2>Ihr Tag<br />hat genug<br /><em>Baustellen.</em></h2><span>Hier wird’s leichter. ↓</span></div><Image src={philip} alt="" width={320} format="webp" /></div><h3>Was würde Ihren Alltag leichter machen?</h3><div class="o-mini-choices"><span>Abläufe ordnen ↗</span><span>Team stärken ↗</span><span>Arbeit abgeben ↗</span></div></div>
+      <div class="o-card-copy"><div class="o-card-label"><span>03 / FOKUSSIERT</span><span>DIREKT & AKTIVIEREND</span></div><h2>Mehr Luft im Alltag <span aria-hidden="true">↗</span></h2><p>Ein mutiger Auftakt in Orange. Die konkrete Alltagssituation führt zur passenden Leistung.</p><div class="o-marketing"><strong>Marketing-Idee</strong><span>Besucher erkennen ihr Problem und finden schneller ihren nächsten Schritt.</span></div><span class="o-open">Entwurf entdecken <span aria-hidden="true">→</span></span></div>
+    </a>
+  </div>
+  <div class="o-bottom"><p><strong>Mein Favorit für eure Weiterentwicklung: 01.</strong><br />Den Markenauftritt aus 01 mit der klaren Leistungsauswahl aus 03 verbinden.</p><a href="/">Aktuelle Startseite zum Vergleich ↗</a></div>
+  <p class="o-footnote">Alle Entwürfe ohne Blogteaser und „Neuigkeiten & Angebote“. Vorschau, keine Live-Veröffentlichung. Das Hotelbild in Variante 02 ist ein illustratives Entwurfsmotiv.</p>
+</section>

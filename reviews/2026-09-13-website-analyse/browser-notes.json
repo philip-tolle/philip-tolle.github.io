@@ -1,0 +1,34 @@
+{
+  "date": "2026-09-13",
+  "site": "https://www.next-course.de/",
+  "method": "Read-only browser inspection through CUA, DOM geometry and visual review; observations recorded from the audit session.",
+  "mobile_viewport": { "width": 390, "height": 844, "observed_document_client_width": 375 },
+  "mobile_document_heights_approx_px": {
+    "/": 6362,
+    "/management/": 5728,
+    "/management/betriebshandbuch/": 6557,
+    "/operation/": 5051,
+    "/akademie/": 5199,
+    "/kontakt/": 3688,
+    "/ueber/": 5649,
+    "/blog/fachkraeftemangel-ki-entlastung/": 6468
+  },
+  "horizontal_overflow_observed_on_these_routes": false,
+  "desktop_contact_cards_at_1440x900": {
+    "form": { "width": 640.516, "height": 854.406 },
+    "person": { "width": 640.516, "height": 854.406 }
+  },
+  "interaction_observations": [
+    "Mobile navigation opened; first menu item received focus; Management navigation succeeded.",
+    "Service card Details and return-to-image buttons changed the displayed face successfully.",
+    "Mobile article contents were open and occupied about 378 px before the body; Zum Artikel landed before the contents and body.",
+    "Temporary viewport override was reset after inspection."
+  ],
+  "limits": [
+    "Document heights include shared navigation, footer and other page components, and change with open cards.",
+    "No physical touch device test.",
+    "No contact message was sent and no calendar appointment was booked.",
+    "No complete WCAG, Lighthouse or Core Web Vitals audit.",
+    "Geometry is a sample, not evidence for all devices or viewport sizes."
+  ]
+}

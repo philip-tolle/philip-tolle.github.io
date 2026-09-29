@@ -1,0 +1,14 @@
+/* Fluid layout and responsive fixes; retain the established brand styling. */
+html{scroll-padding-top:7rem}
+body{font-size:clamp(17px,15px + .17vw,21px)}
+.nav a{white-space:nowrap;min-height:44px;display:inline-flex;align-items:center}
+.footer__grid a{display:inline-block;min-height:36px;padding-block:.2rem;hyphens:auto}
+.pagehead .lead,.lead{max-width:58ch}
+.menuhead .lead{max-width:56ch}
+.station__card{max-width:44rem}
+@media(max-width:859px){.kurs .station .station__card{width:calc(100% - 64px);max-width:calc(100% - 64px);min-width:0}}
+@media(max-width:599px){.kurs .station .station__card{padding:1.5rem 1rem}.kurs .station .station__card h3{font-size:1.45rem}}
+@media(min-width:1800px){.result{gap:5vw}.footer__grid{gap:4vw}.offercard{padding:2.2rem}.menuhead{margin-bottom:3rem}}
+@media(max-width:1099px){.nav{display:none}.burger{display:inline-flex}}
+@media(max-width:599px){.footer__grid{gap:2rem}.footer__base{gap:1rem}.header__in{padding-block:.7rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{transition:none}}

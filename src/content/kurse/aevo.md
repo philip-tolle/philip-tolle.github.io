@@ -1,9 +1,9 @@
 ---
 title: "AEVO-Vorbereitungskurs"
 botschaft: "Der Weg zum Ausbilderschein (IHK) — kompakt und praxisnah."
-kurz: "Vorbereitung auf die IHK-Ausbildereignungsprüfung — mit modernen Lernwerkzeugen statt Frontalunterricht."
+kurz: "In Vorbereitung: ein kompakter Kurs für angehende Ausbilderinnen und Ausbilder im Gastgewerbe. Mit Übungen und Bezug zu Ihrem Ausbildungsalltag."
 kategorie: "Kurs"
-status: "buchbar"
+status: "geplant"
 reihenfolge: 2
 dauer: "Kompakt"
 format: "Kurs mit Prüfungsvorbereitung"
@@ -18,7 +18,7 @@ module:
   - { titel: "Ausbildung durchführen", text: "Handlungsfeld 3: Lernen im Arbeitsalltag, Motivation, schwierige Situationen — der Kern der Prüfung." }
   - { titel: "Abschließen & weiterdenken", text: "Handlungsfeld 4 plus KI-Modul: Prüfungsvorbereitung für Azubis und moderne Lernwerkzeuge für Ausbilder." }
 ergebnisse:
-  - "Bereit für die schriftliche und praktische IHK-Prüfung"
+  - "Gezielte Vorbereitung auf schriftliche und praktische Prüfungsaufgaben"
   - "Unterweisungsprobe geübt und mit Feedback verfeinert"
   - "KI-Werkzeuge, die Ausbildern Vorbereitung abnehmen"
   - "Vorlagen für Ausbildungsplan und Beurteilung"
@@ -27,7 +27,6 @@ termine:
   - { label: "Termine auf Anfrage" }
 ---
 
-Der Ausbilderschein öffnet Türen: für Ihre Karriere und für Betriebe, die endlich wieder
-selbst ausbilden wollen. Dieser Kurs bereitet kompakt auf die IHK-Ausbildereignungsprüfung
-vor — alle vier Handlungsfelder, geübte Unterweisungsprobe, und dazu ein Modul, das kein
-klassischer Anbieter hat: moderne, KI-gestützte Lernwerkzeuge für den Ausbildungsalltag.
+Gute Ausbildung beginnt mit Menschen, die erklären, begleiten und Rückmeldung geben können. Wir bereiten einen Kurs vor, der die vier Handlungsfelder der Ausbildereignung mit Situationen aus dem Gastgewerbe verbindet.
+
+Geplant sind Übungen zur Unterweisung, Vorlagen für den Ausbildungsalltag und die Auseinandersetzung mit digitalen Lernwerkzeugen. Die IHK-Prüfung wird gesondert abgelegt. Termine, Umfang und Konditionen geben wir bekannt, sobald die Planung abgeschlossen ist.

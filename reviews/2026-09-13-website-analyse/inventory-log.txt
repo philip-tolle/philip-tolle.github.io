@@ -1,0 +1,112 @@
+{
+  "html_pages": 38,
+  "sitemap_urls": 30,
+  "missing_h1": [
+    "/consulting/implementierungsprojekte/",
+    "/consulting/",
+    "/consulting/mystery-check/",
+    "/consulting/pilotprojekte/",
+    "/consulting/quick-check/",
+    "/consulting/referenzbetrieb/"
+  ],
+  "multiple_h1": [],
+  "missing_description": [
+    "/consulting/implementierungsprojekte/",
+    "/consulting/",
+    "/consulting/mystery-check/",
+    "/consulting/pilotprojekte/",
+    "/consulting/quick-check/",
+    "/consulting/referenzbetrieb/"
+  ],
+  "duplicates_titles": {
+    "Redirecting to: /management/implementierungsprojekte/": 2
+  },
+  "duplicates_descriptions": {
+    "": 6
+  },
+  "missing_alt": [],
+  "unreachable_from_home": [
+    "/404.html",
+    "/akademie/aevo/",
+    "/akademie/barista/",
+    "/akademie/fuehren-mit-ki/",
+    "/consulting/implementierungsprojekte/",
+    "/consulting/",
+    "/consulting/mystery-check/",
+    "/consulting/pilotprojekte/",
+    "/consulting/quick-check/",
+    "/consulting/referenzbetrieb/",
+    "/danke/"
+  ],
+  "missing_local_refs": [],
+  "sitemap": [
+    "https://www.next-course.de/",
+    "https://www.next-course.de/akademie/",
+    "https://www.next-course.de/akademie/aevo/",
+    "https://www.next-course.de/akademie/barista/",
+    "https://www.next-course.de/akademie/flying-academy/",
+    "https://www.next-course.de/akademie/foerderung/",
+    "https://www.next-course.de/akademie/fuehren-mit-ki/",
+    "https://www.next-course.de/akademie/ki-grundlagen/",
+    "https://www.next-course.de/blog/",
+    "https://www.next-course.de/blog/eu-ai-act-gastgewerbe/",
+    "https://www.next-course.de/blog/fachkraeftemangel-ki-entlastung/",
+    "https://www.next-course.de/blog/ki-telefonassistent-hotel/",
+    "https://www.next-course.de/datenschutz/",
+    "https://www.next-course.de/digital-audit-demo/",
+    "https://www.next-course.de/faq/",
+    "https://www.next-course.de/impressum/",
+    "https://www.next-course.de/kontakt/",
+    "https://www.next-course.de/management/",
+    "https://www.next-course.de/management/betriebshandbuch/",
+    "https://www.next-course.de/management/digital-audit/",
+    "https://www.next-course.de/management/implementierungsprojekte/",
+    "https://www.next-course.de/management/mystery-check/",
+    "https://www.next-course.de/management/quick-check/",
+    "https://www.next-course.de/management/referenzbetrieb/",
+    "https://www.next-course.de/mystery-check-demo/",
+    "https://www.next-course.de/operation/",
+    "https://www.next-course.de/operation/30-tage-test/",
+    "https://www.next-course.de/operation/monatspakete/",
+    "https://www.next-course.de/operation/projekte/",
+    "https://www.next-course.de/ueber/"
+  ]
+}
+/404.html 78 ['Organization'] Seite nicht gefunden | NextCourse | Diese Adresse wurde nicht gefunden. Hier gelangen Sie zu den Leistungen und zum Kontakt.
+/akademie/aevo/ 341 ['Organization', 'Course'] AEVO-Vorbereitungskurs | NextCourse Academy | In Vorbereitung: ein kompakter Kurs für angehende Ausbilderinnen und Ausbilder im Gastgewerbe. Mit Übungen und Bezug zu Ihrem Ausbildungsalltag.
+/akademie/barista/ 318 ['Organization', 'Course'] Barista-Kurs | NextCourse Academy | Ein Praxistag an der Maschine — für Teams, die Kaffee ernst nehmen, und Gastgeber, die ihn verkaufen.
+/akademie/flying-academy/ 348 ['Organization'] Inhouse-Schulungen fürs Gastgewerbe | NextCourse | Wir kommen zu Ihnen und arbeiten mit Situationen, die Ihr Team kennt. So wird aus einer Schulung gemeinsames Können für den nächsten Arbeitstag.
+/akademie/foerderung/ 314 ['Organization'] Weiterbildung & Förderung | NextCourse Academy | Förderwege einordnen: Bildungsgutschein, Förderung Beschäftigter und Qualifizierungsgeld. Der Stand bei NextCourse und Ihre nächsten Schritte.
+/akademie/fuehren-mit-ki/ 346 ['Organization', 'Course'] Führen & Kommunizieren mit KI | NextCourse Academy | Ein Lehrgang zu Führung, Kommunikation und dem verantwortungsvollen Einsatz von KI wird vorbereitet. Mit einem Praxisvorhaben aus dem Gastgewerbe.
+/akademie/ 462 ['Organization'] Academy für Hotels & Gastronomie | NextCourse | Weiterbildung, die im Betriebsalltag ankommt. Seminare, Webinare und Schulungen im eigenen Haus für Hotels und Gastronomie in Mainfranken.
+/akademie/ki-grundlagen/ 388 ['Organization', 'Course'] KI-Grundlagen für Gastgeber & KMU | NextCourse Academy | KI verstehen und mit Aufgaben aus Ihrem Haus ausprobieren. Ein kompakter Einstieg für Gastgeber und Teams – mit Vorlagen und dokumentierter Teilnahme.
+/blog/eu-ai-act-gastgewerbe/ 489 ['Organization', 'Article'] KI-Kompetenz im Gastgewerbe: Ein praktischer Einstieg | NextCourse Journal | KI-Werkzeuge verantwortlich einsetzen: Was ein Team wissen sollte und warum eine passende Schulung bei den Aufgaben Ihres Betriebs beginnt.
+/blog/fachkraeftemangel-ki-entlastung/ 498 ['Organization', 'Article'] Mehr Luft im Team: Bei wiederkehrender Arbeit anfangen | NextCourse Journal | Wenn im Betriebsalltag Zeit fehlt, lohnt sich ein Blick auf Übergaben, Rückfragen und doppelte Arbeit. Drei Ansatzpunkte für eine spürbare Entlastung.
+/blog/ 197 ['Organization'] Wissen für Gastgeber | NextCourse Blog | Gedanken und praktische Einblicke zu Abläufen, Weiterbildung und digitalen Werkzeugen für Hotels und Gastronomie.
+/blog/ki-telefonassistent-hotel/ 508 ['Organization', 'Article'] Telefonassistenz im Hotel: Wo ein guter Ablauf beginnt | NextCourse Journal | Wenn das Telefon in der Stoßzeit klingelt, braucht die Rezeption verlässliche Unterstützung. Worauf es bei der Planung eines Telefonassistenten ankommt.
+/consulting/implementierungsprojekte/ 8 [] Redirecting to: /management/implementierungsprojekte/ | 
+/consulting/ 8 [] Redirecting to: /management/ | 
+/consulting/mystery-check/ 8 [] Redirecting to: /management/mystery-check/ | 
+/consulting/pilotprojekte/ 8 [] Redirecting to: /management/implementierungsprojekte/ | 
+/consulting/quick-check/ 8 [] Redirecting to: /management/quick-check/ | 
+/consulting/referenzbetrieb/ 8 [] Redirecting to: /management/referenzbetrieb/ | 
+/danke/ 62 ['Organization'] Vielen Dank | NextCourse | Vielen Dank für Ihre Nachricht an NextCourse.
+/datenschutz/ 721 ['Organization'] Datenschutzerklärung | NextCourse | Datenschutzerklärung der NextCourse UG (haftungsbeschränkt), Würzburg.
+/digital-audit-demo/ 431 ['Organization'] Digital Audit: Demo-Auswertung ansehen | NextCourse | Blättern Sie durch eine vollständige, fiktive Digital-Audit-Auswertung: sechs Arbeitsbereiche, konkrete Befunde, acht Maßnahmen und ein transparentes Zeitmodell.
+/faq/ 468 ['Organization', 'FAQPage'] Häufige Fragen | NextCourse | Antworten zu Leistungen, Kosten, Weiterbildung und Zusammenarbeit mit NextCourse für Hotels und Gastronomie in Mainfranken.
+/impressum/ 71 ['Organization'] Impressum | NextCourse | Impressum der NextCourse UG (haftungsbeschränkt), Würzburg.
+/ 348 ['Organization'] NextCourse | Management, Academy & Operation fürs Gastgewerbe | Klare Abläufe, starke Teams und Entlastung im Alltag. NextCourse begleitet Hotels und Gastronomie in Mainfranken – mit Management, Academy und Operation.
+/kontakt/ 187 ['Organization'] Kontakt | NextCourse | Sprechen Sie mit Philip Tolle über Ihren Betrieb: Abläufe, Betriebshandbuch, Weiterbildung oder Entlastung im Tagesgeschäft.
+/management/betriebshandbuch/ 459 ['Organization'] Digitales Betriebshandbuch für Hotels | NextCourse | Hausstandards, Arbeitsabläufe und Erfahrung an einem Ort. Wir machen aus Ihrem Betriebswissen ein digitales Handbuch, das Ihrem Team im Alltag Orientierung gibt.
+/management/digital-audit/ 468 ['Organization'] Digital Audit für Hotels & Gastronomie | NextCourse | Anfragen neu schreiben, Zimmerstatus telefonisch abgleichen, Belege zweimal eingeben. Wir prüfen mit Ihnen, wo digitale Arbeitsmittel und Abläufe besser zusammenspielen können.
+/management/implementierungsprojekte/ 428 ['Organization'] Umsetzungsprojekte für Hotels & Gastronomie | NextCourse | Ein Vorhaben mit klarem Ziel, vereinbartem Umfang und Festpreis. Wir begleiten Auswahl, Einrichtung und Einführung, damit die Veränderung im Betriebsalltag ankommt.
+/management/ 497 ['Organization'] Management für Hotels & Gastronomie | NextCourse | Weniger Rückfragen, klare Abläufe und Wissen, das im Haus bleibt. Digitales Betriebshandbuch, Mystery Check und Digital Audit für Hotels und Gastronomie in Mainfranken.
+/management/mystery-check/ 461 ['Organization'] Mystery Check für Hotels & Restaurants | NextCourse | Vom ersten Suchen bis zum Nachkontakt erleben wir Ihren Betrieb aus Gästesicht. Sie erfahren, was überzeugt, wo Reibung entsteht und welche Veränderungen zuerst sinnvoll sind.
+/management/quick-check/ 365 ['Organization'] KI-Quick-Check für Ihren Betrieb | NextCourse | Welche KI-Werkzeuge nutzt Ihr Haus, wer arbeitet damit und welche Fragen sind noch offen? Wir schaffen eine praktische Bestandsaufnahme und ordnen die nächsten Schritte für Ihren Betrieb.
+/management/referenzbetrieb/ 250 ['Organization'] Zeitpotenziale einschätzen | NextCourse | Wie viel Zeit können kürzere, häufig wiederkehrende Abläufe freigeben? Rechnen Sie mit Ihren eigenen Annahmen.
+/mystery-check-demo/ 428 ['Organization'] Mystery Check: Demo-Auswertung ansehen | NextCourse | Blättern Sie durch eine vollständige, fiktive Mystery-Check-Auswertung: sechs Kontaktpunkte, konkrete Beobachtungen und acht priorisierte Maßnahmen.
+/operation/30-tage-test/ 391 ['Organization'] 30-Tage-Test: Entlastung kennenlernen | NextCourse | Lernen Sie die Zusammenarbeit an echten Aufgaben Ihres Hauses kennen. Ein klarer Umfang, feste Ansprechpartner und am Ende ein gemeinsamer Blick auf das Ergebnis.
+/operation/ 406 ['Organization'] Operation für Hotels & Gastronomie | NextCourse | Mehr Zeit für Gäste und Team: NextCourse übernimmt Backoffice, Kommunikation und Projekte. Klar vereinbarter Umfang und Festpreis für Hotels und Gastronomie in Mainfranken.
+/operation/monatspakete/ 612 ['Organization'] Monatspakete für Hotels & Gastronomie | NextCourse | Karten, Kommunikation und laufende Projekte brauchen Aufmerksamkeit. Mit einem Monatspaket geben Sie einen klaren Aufgabenbereich ab und behalten die Entscheidungen in der Hand.
+/operation/projekte/ 497 ['Organization'] Projekte & Events für Gastgeber | NextCourse | Eine Saisonaktion, eine neue Gästemappe oder ein Fest für Ihr Team: Wir übernehmen Planung, Gestaltung und Koordination im vereinbarten Rahmen. Mit Anfang, Ende und klarer Übergabe.
+/ueber/ 346 ['Organization'] Philip Tolle & NextCourse | Aus der Branche. An Ihrer Seite. | Philip Tolle verbindet Erfahrung aus Hotellerie und Gastronomie mit Weiterbildung und praktischer Umsetzung. Für Gastgeber in Mainfranken.

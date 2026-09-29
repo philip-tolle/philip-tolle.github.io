@@ -1,60 +1,33 @@
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
-import Base from '../../layouts/Base.astro';
+import {getCollection} from 'astro:content';
+import DetailLayout from '../../layouts/DetailLayout.astro';
 import BlogCover from '../../components/BlogCover.astro';
-import bannerBlog from '../../assets/banner-blog.png';
-
-const posts = (await getCollection('blog'))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const fmt = new Intl.DateTimeFormat('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
+const posts=(await getCollection('blog')).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf());
+const fmt=new Intl.DateTimeFormat('de-DE',{day:'numeric',month:'long',year:'numeric'});
 ---
-<Base
-  title="Blog — NextCourse"
-  description="KI, Digitalisierung und Weiterbildung für das Gastgewerbe — praxisnah erklärt. Der NextCourse-Blog für Hoteliers, Gastronomen und alle, die weiterkommen wollen."
->
-  <div class="pagehead pagehead--art">
-    <Image class="pagehead__bg" src={bannerBlog} alt="" width={1600} format="webp" quality={78} loading="eager" />
-    <div class="wrap">
-      <p class="eyebrow">Blog</p>
-      <h1>Wissen für Gastgeber.</h1>
-      <p class="lead">KI, Digitalisierung und Weiterbildung im Gastgewerbe — praxisnah statt paragraphenlastig.</p>
-    </div>
-  </div>
-
-  <div class="floor--auto floor" style="padding-top:1rem">
-    <div class="wrap" style="max-width:840px">
-      <div class="postlist reveal stagger">
-        {posts.map((post) => (
-          <a class="offercard postcard" href={`/blog/${post.id}/`}>
-            <span class="postcard__cover cover-frame"><BlogCover post={post} width={560} /></span>
-            <span class="postcard__main">
-              <p class="postmeta">
-                <time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time>
-                {post.data.tags.map((t) => <span class="chip">{t}</span>)}
-              </p>
-              <h2 class="postcard__title">{post.data.title}</h2>
-              <p>{post.data.description}</p>
-              <span class="forkcard__go">Weiterlesen</span>
-            </span>
-          </a>
-        ))}
-      </div>
-      {posts.length === 0 && (
-        <p class="dim" style="text-align:center;margin-top:3rem">Die ersten Artikel erscheinen in Kürze.</p>
-      )}
-    </div>
-  </div>
-</Base>
-
+<DetailLayout title="Wissen für Gastgeber | NextCourse Blog" description="Gedanken und praktische Einblicke zu Abläufen, Weiterbildung und digitalen Werkzeugen für Hotels und Gastronomie." label="Journal" heading="Gedanken aus der Praxis." emphasis="Für Ihren nächsten Schritt." lead="Was hilft im Betriebsalltag weiter? Hier teilen wir Anregungen zu guten Abläufen, Zusammenarbeit und dem sinnvollen Einsatz digitaler Werkzeuge." secondary={{label:'Artikel entdecken',href:'#artikel'}}>
+<section class="detail-section" id="artikel"><div class="journal-grid">{posts.map((post,i)=><a class:list={['journal-card',i===0&&'journal-card--featured']} href={'/blog/'+post.id+'/'}><span class="journal-cover"><BlogCover post={post} width={i===0?1000:720}/></span><span class="journal-copy"><span class="detail-kicker">{post.data.tags.join(' · ')}</span><h2>{post.data.title}</h2><p>{post.data.description}</p><span class="journal-bottom"><time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time><span class="detail-link">Artikel lesen ↗</span></span></span></a>)}</div></section>
+</DetailLayout>
 <style>
-  /* Blog-Uebersicht: kompaktere Karten im Raster, Querformat-Titelbilder */
-  .postlist{grid-template-columns:1fr;gap:1.8rem}
-  @media(min-width:700px){.postlist{grid-template-columns:1fr 1fr}}
-  .postcard{padding:0;overflow:hidden}
-  .postcard__cover{display:block;aspect-ratio:16/9;overflow:hidden}
-  .postcard__main{display:flex;flex-direction:column;gap:.5rem;padding:1.35rem 1.5rem 1.55rem}
-  .postcard__title{font-size:clamp(1.2rem,2.6vw,1.5rem)}
-  .postcard__main > p:not(.postmeta){font-size:.92rem;line-height:1.55;
-    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.journal-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.journal-card{border:1px solid #122a2f20;border-radius:12px;overflow:hidden;text-decoration:none;background:#fff;color:#122a2f;display:flex;flex-direction:column;box-shadow:0 14px 35px -28px #122a2f44}
+.journal-cover{display:block;aspect-ratio:16/9;overflow:hidden}
+.journal-cover :global(img){display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.journal-card:hover :global(img){transform:scale(1.02)}
+.journal-copy{padding:clamp(1.4rem,2.5vw,2rem);display:flex;flex-direction:column;flex:1}
+.journal-copy :global(h2){font-size:clamp(1.45rem,1.8vw,1.9rem)!important;max-width:30ch!important}
+.journal-copy .detail-kicker{font-size:.64rem;margin-bottom:.8rem}
+.journal-copy>p{font-size:.94rem;margin-bottom:1.25rem}
+.journal-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:auto;padding-top:.8rem;border-top:1px solid #122a2f25}
+.journal-bottom time{font-size:.72rem;color:#526368}
+.journal-bottom .detail-link{font-size:.82rem}
+.journal-card--featured{grid-column:1/-1;display:grid;grid-template-columns:1fr 1.1fr;background:#122a2f;color:#f9f7f3;--detail-muted:#c6d0ce}
+.journal-card--featured .journal-cover{height:100%;aspect-ratio:auto;min-height:310px}
+:global(.detail-page) .journal-card--featured :global(h2){color:#f9f7f3;font-size:clamp(1.65rem,2.3vw,2.3rem)!important}
+.journal-card--featured .journal-bottom{border-color:#f9f7f330}
+.journal-card--featured .journal-bottom time{color:#c6d0ce}
+.journal-card--featured .detail-link{color:#ff947a}
+@media(max-width:899px){.journal-card--featured{display:flex}.journal-card--featured .journal-cover{aspect-ratio:16/9;min-height:0}}
+@media(max-width:599px){.journal-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.journal-cover :global(img){transition:none}}
 </style>

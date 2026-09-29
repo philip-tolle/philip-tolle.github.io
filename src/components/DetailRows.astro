@@ -1,0 +1,6 @@
+---
+interface Item { title: string; text: string; price?: string; href?: string; action?: string; }
+interface Props { items: Item[]; }
+const { items } = Astro.props;
+---
+<div class="detail-rows">{items.map((item, i) => <article class="detail-row"><span class="detail-row__number" aria-hidden="true">{String(i+1).padStart(2,'0')}</span><div><h3>{item.title}</h3><p>{item.text}</p></div>{(item.price || item.href) && <div class="detail-row__end">{item.price && <strong>{item.price}</strong>}{item.href && <a class="detail-link" href={item.href}>{item.action || 'Mehr erfahren'} <span aria-hidden="true">↗</span></a>}</div>}</article>)}</div>

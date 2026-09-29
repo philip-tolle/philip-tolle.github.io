@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-09-12T07:55:49.089Z",
+  "pages": [
+    {
+      "path": "/entwuerfe/",
+      "status": 200,
+      "h1": 1,
+      "noindex": true
+    },
+    {
+      "path": "/entwuerfe/1/",
+      "status": 200,
+      "h1": 1,
+      "noindex": true
+    },
+    {
+      "path": "/entwuerfe/2/",
+      "status": 200,
+      "h1": 1,
+      "noindex": true
+    },
+    {
+      "path": "/entwuerfe/3/",
+      "status": 200,
+      "h1": 1,
+      "noindex": true
+    }
+  ],
+  "resourcesChecked": 35,
+  "homepageWithoutRemovedSections": true,
+  "conceptPagesExcludedFromProduction": true,
+  "conceptsExcludedFromSitemap": true,
+  "errors": []
+}

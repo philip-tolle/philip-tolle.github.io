@@ -1,0 +1,158 @@
+---
+import { Image, Picture } from 'astro:assets';
+import heroHotelOwner from '../../assets/landing/hero-hotel-owner.png';
+import housekeepingDetail from '../../assets/landing/housekeeping-detail.png';
+import nextcourseMark from '../../assets/landing/nextcourse-mark.png';
+import brandLine from '../../assets/landing/brand-line.png';
+import brandVase from '../../assets/landing/brand-vase.png';
+import brandOrganic from '../../assets/landing/brand-organic.png';
+import brandHalftone from '../../assets/landing/brand-halftone.png';
+import brandSpine from '../../assets/landing/brand-spine.png';
+import brandPattern from '../../assets/landing/brand-pattern.png';
+import brandFrame from '../../assets/landing/brand-frame.png';
+import brandSwatch from '../../assets/landing/brand-swatch.png';
+import frameStepMask from '../../assets/landing/frame-step-mask.png';
+import frameStepBorder from '../../assets/landing/frame-step-border.png';
+import frameBookMask from '../../assets/landing/frame-book-mask.png';
+import frameBookBorder from '../../assets/landing/frame-book-border.png';
+
+const contactHref = '/kontakt/?thema=betriebshandbuch#contactform';
+
+interface Props {
+  lead: string;
+}
+
+const { lead } = Astro.props;
+const cssUrl = (src: string) => `url("${src.replaceAll('"', '%22')}")`;
+const organicMask = `--asset-mask: ${cssUrl(brandOrganic.src)}`;
+const halftoneMask = `--asset-mask: ${cssUrl(brandHalftone.src)}`;
+const spineMask = `--asset-mask: ${cssUrl(brandSpine.src)}`;
+const patternMask = `--asset-mask: ${cssUrl(brandPattern.src)}`;
+const stepMask = `--frame-mask: ${cssUrl(frameStepMask.src)}`;
+const bookMask = `--frame-mask: ${cssUrl(frameBookMask.src)}`;
+---
+
+<section class="landing-hero" aria-labelledby="landing-title">
+  <div class="landing-hero__waves" aria-hidden="true">
+    <svg viewBox="0 0 1600 520" preserveAspectRatio="none">
+      <path d="M-90 106C172 22 344 204 589 116S976 25 1194 111s349 81 505-18"></path>
+      <path d="M-104 184C158 100 330 282 575 194s387-91 605-5 349 81 505-18"></path>
+      <path d="M-120 262C142 178 314 360 559 272s387-91 605-5 349 81 505-18"></path>
+    </svg>
+  </div>
+
+  <div class="landing-hero__paper" aria-hidden="true"></div>
+
+  <div class="landing-shell landing-hero__stage">
+    <header class="landing-hero__brand">
+      <p>NextCourse</p>
+      <span>Digitalisierung · Beratung im Gastgewerbe</span>
+    </header>
+
+    <div class="landing-hero__ribbons" data-reveal>
+      <p class="hero-ribbon hero-ribbon--product">
+        <span>Digitales Betriebshandbuch</span>
+        <i style={patternMask} aria-hidden="true"></i>
+      </p>
+      <h1 id="landing-title">
+        <span class="hero-ribbon hero-ribbon--headline">
+          <span>Betriebswissen,</span>
+          <i style={patternMask} aria-hidden="true"></i>
+        </span>
+        <span class="hero-ribbon hero-ribbon--headline hero-ribbon--last">
+          <span>das im Alltag trägt.</span>
+          <i style={patternMask} aria-hidden="true"></i>
+        </span>
+      </h1>
+    </div>
+
+    <div class="landing-hero__organic landing-hero__organic--left" style={organicMask} aria-hidden="true"></div>
+    <div class="landing-hero__organic landing-hero__organic--right" style={organicMask} aria-hidden="true"></div>
+
+    <div class="landing-hero__signature" style={spineMask} aria-hidden="true">
+      <Image src={nextcourseMark} alt="" width={76} format="webp" quality={95} loading="eager" />
+    </div>
+
+    <Image
+      class="landing-hero__inkline"
+      src={brandLine}
+      alt=""
+      format="webp"
+      quality={96}
+      loading="eager"
+      aria-hidden="true"
+    />
+
+    <Image
+      class="landing-hero__vase"
+      src={brandVase}
+      alt=""
+      format="webp"
+      quality={94}
+      loading="eager"
+      aria-hidden="true"
+    />
+
+    <div class="landing-hero__pitch" data-reveal>
+      <p>{lead}</p>
+      <a class="landing-cta" href={contactHref}>Kennenlerngespräch anfragen</a>
+      <span>Persönlich in Würzburg und Mainfranken</span>
+    </div>
+
+    <div class="landing-hero__proof" aria-label="Visueller Prototyp einer späteren Foto- und Handbuchcollage">
+      <Image class="landing-hero__proof-frame" src={brandFrame} alt="" format="webp" quality={94} aria-hidden="true" />
+
+      <figure class="hero-proof__photo hero-proof__photo--step" style={stepMask}>
+        <Picture
+          src={heroHotelOwner}
+          formats={['avif', 'webp']}
+          widths={[320, 480, 640]}
+          sizes="(max-width: 839px) 34vw, 12rem"
+          alt="Bildprototyp: Zwei Hotelmitarbeitende stimmen sich an der Rezeption ab"
+          loading="eager"
+          quality={82}
+        />
+        <Image class="hero-proof__photo-border" src={frameStepBorder} alt="" format="webp" quality={96} aria-hidden="true" />
+      </figure>
+
+      <article class="hero-proof__manual" aria-label="Beispiel eines dokumentierten Hotelstandards">
+        <header>
+          <span>Standard 03</span>
+          <strong>NC</strong>
+        </header>
+        <p>Zimmerfreigabe</p>
+        <ol>
+          <li><i></i><span>Sichtprüfung durchführen</span></li>
+          <li><i></i><span>Status digital bestätigen</span></li>
+          <li><i></i><span>Abweichung direkt melden</span></li>
+        </ol>
+      </article>
+
+      <Image class="hero-proof__swatch" src={brandSwatch} alt="" format="webp" quality={92} aria-hidden="true" />
+
+      <figure class="hero-proof__photo hero-proof__photo--book" style={bookMask}>
+        <Picture
+          src={housekeepingDetail}
+          formats={['avif', 'webp']}
+          widths={[320, 480, 640]}
+          sizes="(max-width: 839px) 34vw, 12rem"
+          alt="Bildprototyp: Ein konkreter Housekeeping-Arbeitsschritt im Hotelzimmer"
+          loading="lazy"
+          quality={82}
+        />
+        <Image class="hero-proof__photo-border" src={frameBookBorder} alt="" format="webp" quality={96} aria-hidden="true" />
+      </figure>
+
+      <div class="hero-proof__halftone" style={halftoneMask} aria-hidden="true"></div>
+      <p class="hero-proof__note">Foto- und Handbuchansichten · lokaler Prototyp</p>
+    </div>
+
+    <dl class="landing-facts" aria-label="Eckdaten des digitalen Betriebshandbuchs">
+      <div><dt>40</dt><dd>angepasste Standards</dd></div>
+      <div><dt>3</dt><dd>Sprachen</dd></div>
+      <div><dt>8–10</dt><dd>Wochen bei rechtzeitiger Mitwirkung</dd></div>
+      <div><dt>8.900&nbsp;€</dt><dd>netto zzgl. USt.</dd></div>
+    </dl>
+  </div>
+
+</section>

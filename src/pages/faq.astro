@@ -1,103 +1,27 @@
 ---
-import Base from '../layouts/Base.astro';
-
-const faqs = [
-  {
-    q: 'Was kostet das Erstgespräch?',
-    a: 'Nichts. Das Erstgespräch ist kostenlos und unverbindlich — am Telefon oder bei Ihnen im Haus. Danach entscheiden Sie in Ruhe, ob und wie es weitergeht.',
-  },
-  {
-    q: 'Für wen ist NextCourse gedacht?',
-    a: 'Für inhabergeführte Hotels mit 20 bis 150 Zimmern, für die gehobene Individualgastronomie — und für alle Menschen, die sich für die Zukunft des Gastgewerbes weiterbilden wollen, vom Team-Mitglied bis zum Quereinsteiger.',
-  },
-  {
-    q: 'Betrifft der EU AI Act auch meinen Betrieb?',
-    a: 'Sehr wahrscheinlich ja. KI steckt heute in vielen alltäglichen Werkzeugen — vom Buchungssystem über die Preisgestaltung bis zur Telefonanlage. Die Verordnung verlangt unter anderem, dass Mitarbeiter im Umgang mit KI geschult sind. Der EU AI Act Quick-Check zeigt Ihnen in kurzer Zeit, was konkret zu tun ist.',
-  },
-  {
-    q: 'Ich habe kein Technik-Vorwissen — ist das ein Problem?',
-    a: 'Nein, im Gegenteil: Genau dafür gibt es NextCourse. Wir erklären praxisnah statt paragraphenlastig und bauen alles so auf, dass es im Betriebsalltag funktioniert — nicht nur auf dem Papier.',
-  },
-  {
-    q: 'Was ist ein Bildungsgutschein und wer bekommt ihn?',
-    a: 'Der Bildungsgutschein ist ein Förderinstrument der Agentur für Arbeit (§ 81 SGB III): Er übernimmt bis zu 100 Prozent der Kurskosten, vor allem für Arbeitssuchende. Beschäftigte können über das Qualifizierungsgeld (§ 82 SGB III) gefördert werden — der Arbeitgeber stellt den Antrag. Auf unserer Förderung-Seite erklären wir beide Wege.',
-  },
-  {
-    q: 'Sind die Kurse schon AZAV-gefördert buchbar?',
-    a: 'Noch nicht — die AZAV-Zertifizierung ist in Vorbereitung, der erste geförderte Lehrgang („Führen & Kommunizieren mit KI“) ist für Ende 2026 geplant. Unsere Kurse ohne Förderung — KI-Grundlagen, AEVO-Vorbereitung und Barista — sind bereits buchbar.',
-  },
-  {
-    q: 'In welcher Region arbeitet NextCourse?',
-    a: 'Vor Ort in Würzburg, Mainfranken und Bayern — mit der Flying Academy kommen wir direkt in Ihren Betrieb. Vieles geht außerdem remote, etwa Beratungsgespräche und Teile des Quick-Checks.',
-  },
-  {
-    q: 'Wie schnell sehe ich Ergebnisse?',
-    a: 'Implementierungsprojekte sind bewusst klein geschnitten und messbar — der KI-Telefonassistent liefert zum Beispiel den schnellsten spürbaren Effekt. Wie groß die Hebel in Ihrem Haus sind, zeigt unsere Modellrechnung am Referenzbetrieb.',
-  },
-  {
-    q: 'Was unterscheidet NextCourse von anderen Beratungen?',
-    a: 'Drei Dinge: Wir kommen selbst aus der Branche (über 13 Jahre Gastgewerbe, vom Sternerestaurant bis zur Restaurantleitung). Wir verbinden Bildung, Umsetzung und laufende Begleitung zu einem Kreislauf, statt nur ein Gutachten abzugeben. Und in jedem unserer Kurse steckt ein KI-Modul — als einziger Anbieter spezifisch für das Gastgewerbe.',
-  },
-  {
-    q: 'Wie läuft der Mystery Check ab, ohne dass mein Team es merkt?',
-    a: 'Wir vereinbaren nur einen Zeitraum — der genaue Termin bleibt geheim, auch für Ihr Team. Der Besuch ist diskret und wohlwollend: Es geht um Abläufe und Gästeerlebnis, nicht um die Kontrolle einzelner Mitarbeiter.',
-  },
+import DetailLayout from '../layouts/DetailLayout.astro';
+const groups=[
+ {id:'einstieg',title:'Der Einstieg',items:[
+ ['Für wen ist NextCourse gedacht?','Für Hotels und Gastronomiebetriebe, die ihre Abläufe verbessern, ihr Team entwickeln oder im Tagesgeschäft Aufgaben abgeben möchten. Unser Schwerpunkt liegt in Mainfranken.'],
+ ['Was kostet das Erstgespräch?','Das Erstgespräch ist kostenlos und unverbindlich. Wir besprechen Ihre Situation und einen sinnvollen nächsten Schritt. Danach entscheiden Sie in Ruhe.'],
+ ['Muss ich schon wissen, welches Angebot passt?','Nein. Erzählen Sie uns, wo es im Alltag hakt. Wir ordnen mit Ihnen ein, ob ein klarerer Ablauf, eine Schulung oder konkrete Unterstützung weiterhilft.'],
+ ['Brauche ich technisches Vorwissen?','Nein. Wir erklären die Arbeitsweise verständlich und beziehen Ihr Team ein. Umfang und Tempo richten sich nach der Aufgabe und den Voraussetzungen im Haus.']]},
+ {id:'zusammenarbeit',title:'Die Zusammenarbeit',items:[
+ ['Wie unterscheiden sich Management, Academy und Operation?','Management klärt Abläufe und schafft gemeinsame Grundlagen. Academy vermittelt Können für den Arbeitsalltag. Operation übernimmt vereinbarte Aufgaben. Die Bereiche lassen sich bei Bedarf verbinden.'],
+ ['Was steht im digitalen Betriebshandbuch?','Die Standards, Abläufe, Zuständigkeiten und Antworten Ihres Hauses. Wir ordnen vorhandenes Wissen, ergänzen Lücken gemeinsam mit Ihnen und führen das Team in die Nutzung ein.'],
+ ['Wie wird ein Mystery Check abgestimmt?','Wir vereinbaren Umfang und Besuchszeitraum. Sie erhalten konkrete Beobachtungen aus Gästesicht und priorisierte Ansatzpunkte für das Gästeerlebnis. Der Blick gilt dem Betrieb und seinen Abläufen.'],
+ ['Welche Kosten und Laufzeiten gelten?','Sie erhalten vor Beginn ein Angebot mit Leistungen, Preis und Zeitrahmen. Monatspakete haben eine Mindestlaufzeit von sechs Monaten. Der 30-Tage-Test endet nach dem vereinbarten Zeitraum; ein Anschluss wird gesondert vereinbart.'],
+ ['Arbeiten Sie auch vor Ort?','Ja, vor allem in Würzburg und Mainfranken. Beratung und Abstimmungen sind außerdem digital möglich. Anfahrt und Vor-Ort-Termine klären wir im Angebot.']]},
+ {id:'lernen',title:'Weiterbildung',items:[
+ ['Kann unser Team im eigenen Betrieb lernen?','Ja. Mit der Flying Academy kommen wir zu Ihnen. Inhalte, Gruppengröße und Dauer stimmen wir auf Ihre Aufgaben und Ihren Arbeitsalltag ab.'],
+ ['Sind die Lehrgänge schon AZAV-gefördert buchbar?','Noch nicht. Die AZAV-Zulassung ist in Vorbereitung. Verbindliche Termine und mögliche Förderbedingungen nennen wir, sobald sie feststehen. Seminare und individuelle Schulungen können Sie unabhängig davon anfragen.'],
+ ['Welche Förderung passt zu mir?','Das hängt von Ihrer beruflichen Situation und dem konkreten Angebot ab. Unsere Förderübersicht erklärt die unterschiedlichen Wege. Über eine Bewilligung entscheidet die zuständige Stelle.']]}
 ];
-
-const faqSchema = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
-});
+const schema=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:groups.flatMap(g=>g.items.map(([q,a])=>({'@type':'Question',name:q,acceptedAnswer:{'@type':'Answer',text:a}})))}).replace(/</g,'\\u003c');
 ---
-<Base
-  title="Häufige Fragen — NextCourse"
-  description="Antworten auf die häufigsten Fragen zu NextCourse: Kosten, EU AI Act, Bildungsgutschein und Förderung, Region, Ablauf von Beratung und Kursen."
->
-  <script type="application/ld+json" set:html={faqSchema} slot="head" />
-  <div class="pagehead" style="min-height:38svh">
-    <div class="wrap">
-      <p class="eyebrow">Häufige Fragen</p>
-      <h1>Kurz beantwortet.</h1>
-      <p class="lead">Die Fragen, die uns am häufigsten gestellt werden — ehrlich beantwortet. Ihre fehlt? <a href="/kontakt/" style="color:var(--green);font-weight:500">Stellen Sie sie uns direkt.</a></p>
-    </div>
-  </div>
-
-  <div class="floor--auto floor" style="padding-top:1rem">
-    <div class="wrap" style="max-width:840px">
-      <div class="faq reveal">
-        {faqs.map((f) => (
-          <details class="faqrow">
-            <summary>
-              <span>{f.q}</span>
-              <b aria-hidden="true">+</b>
-            </summary>
-            <p>{f.a}</p>
-          </details>
-        ))}
-      </div>
-      <div class="btnrow reveal" style="justify-content:center;margin-top:3rem">
-        <a href="/kontakt/" class="btn">Kostenloses Erstgespräch</a>
-      </div>
-    </div>
-  </div>
-</Base>
-
-<style>
-  .faq{display:flex;flex-direction:column;gap:.6rem}
-  .faqrow{background:rgba(var(--sand-rgb),.6);border:1px solid var(--glass-edge);
-    border-radius:15px;overflow:hidden;transition:background .25s,border-color .25s}
-  .faqrow[open]{background:rgba(var(--coral-rgb),.09);border-color:rgba(var(--coral-rgb),.4)}
-  .faqrow summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;
-    padding:1.05rem 1.4rem;cursor:pointer;list-style:none;
-    font-family:var(--body);font-weight:500;font-size:1rem;color:var(--ink)}
-  .faqrow summary::-webkit-details-marker{display:none}
-  .faqrow summary b{width:22px;text-align:center;font-size:1.25rem;font-weight:400;
-    color:var(--wood);flex:none;transition:transform .25s}
-  .faqrow[open] summary b{transform:rotate(45deg)}
-  .faqrow p{margin:0;padding:0 1.4rem 1.2rem;color:var(--dim);line-height:1.65}
-</style>
+<DetailLayout title="Häufige Fragen | NextCourse" description="Antworten zu Leistungen, Kosten, Weiterbildung und Zusammenarbeit mit NextCourse für Hotels und Gastronomie in Mainfranken." label="Häufige Fragen" heading="Gut zu wissen." emphasis="Klar beantwortet." lead="Was Sie vor einer Zusammenarbeit wissen möchten. Und wenn Ihre Frage noch offen ist, sprechen wir persönlich darüber." action="Ihre Frage stellen" secondary={{label:'Antworten lesen',href:'#einstieg'}}>
+<script type="application/ld+json" set:html={schema} slot="head"/>
+<nav class="detail-actions" aria-label="Fragen nach Thema">{groups.map(g=><a class="detail-link" href={'#'+g.id}>{g.title} ↓</a>)}</nav>
+{groups.map(g=><section class="detail-section" id={g.id}><div class="detail-faq"><p class="detail-kicker">Ihre Fragen zu NextCourse</p><h2>{g.title}</h2>{g.items.map(([q,a])=><details><summary>{q}</summary><p>{a}</p></details>)}</div></section>)}
+<section class="detail-section"><div class="detail-grid">{[['Betriebshandbuch','/management/betriebshandbuch/'],['Schulung im Haus','/akademie/flying-academy/'],['Fördermöglichkeiten','/akademie/foerderung/']].map(([label,href])=><a class="detail-card detail-link" href={href}>{label} ↗</a>)}</div></section>
+</DetailLayout>

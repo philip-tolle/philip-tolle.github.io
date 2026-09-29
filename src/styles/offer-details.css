@@ -1,0 +1,123 @@
+/* Shared compact scale for offer, information and article pages. Main overviews keep their own scale. */
+.detail-page--compact .detail-shell{max-width:1440px;margin-inline:auto;padding-inline:clamp(1.25rem,3vw,3rem)}
+.detail-page--compact .detail-head{padding-top:6.6rem}
+.detail-page--compact .detail-hero{gap:clamp(2rem,4vw,4.5rem);padding-block:2.5rem 2rem}
+.detail-page--compact .detail-hero h1{font-size:clamp(2.25rem,3.3vw,3.65rem);margin-bottom:1.25rem;max-width:22ch}
+.detail-page--compact .detail-lead{font-size:1.02rem;line-height:1.75;max-width:52ch}
+.detail-page--compact .detail-kicker,.detail-page--compact .detail-surface .detail-kicker{font-size:.65rem;margin-bottom:1rem}
+.detail-page--compact .detail-visual{max-width:34rem;width:100%;justify-self:end}
+.detail-page--compact .detail-visual figcaption{font-size:1.1rem;padding:.85rem 1.25rem}
+.detail-page--compact .detail-actions{margin-top:1.5rem;gap:.75rem 1.25rem}
+.detail-page--compact .detail-button{min-height:48px;padding:.7rem 1.25rem;font-size:.85rem}
+.detail-page--compact .detail-facts{margin-top:1.1rem;font-size:.7rem}
+.detail-page--compact .detail-wave{height:clamp(2rem,4vw,4rem)}
+.detail-page--compact .detail-content{padding-top:1rem;padding-bottom:1rem}
+.detail-page--compact .detail-section{padding-block:clamp(1.75rem,2.5vw,2.5rem)}
+.detail-page--compact .detail-section+.detail-section{border-top:0}
+.detail-page--compact .detail-surface h2{font-size:clamp(1.9rem,2.45vw,2.7rem);max-width:27ch;margin-bottom:1rem}
+.detail-page--compact .detail-surface h3{font-size:1.3rem;line-height:1.3;margin-bottom:.65rem}
+.detail-page--compact .detail-surface p{font-size:.97rem;line-height:1.75}
+.detail-page--compact .detail-intro{gap:clamp(1.5rem,4vw,4rem);margin-bottom:1.8rem;grid-template-columns:1.15fr 1fr}
+.detail-page--compact .detail-intro>p{max-width:47ch}
+.detail-page--compact .detail-note,.detail-page--compact .detail-surface .detail-note{font-size:.76rem;line-height:1.7;margin-top:1rem}
+.detail-page--compact .detail-card{padding:1.6rem}
+.detail-page--compact .detail-row{padding-block:1.35rem}
+.detail-page--compact .detail-list li{font-size:.9rem;padding-block:.65rem}
+.detail-page--compact .detail-aside-layout{gap:clamp(2rem,4vw,4rem)}
+.detail-page--compact .detail-faq summary{padding-block:1.1rem;font-size:.96rem}
+.detail-page--compact .detail-faq summary::after{top:.9rem}
+.offer-navigation{display:flex;flex-wrap:wrap;gap:.25rem 1.65rem;padding-bottom:.9rem;border-bottom:1px solid var(--detail-rule)}
+.offer-navigation a{display:inline-flex;align-items:center;min-height:44px;font-size:.76rem;font-weight:500;color:var(--detail-text);text-decoration:none}
+.offer-navigation a:hover{text-decoration:underline;text-underline-offset:.4em}
+
+/* Numbered benefits are read together rather than stretched into full-width rows. */
+.offer-benefits .detail-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;border:0}
+.offer-benefits--three .detail-rows{grid-template-columns:repeat(3,minmax(0,1fr))}
+.offer-benefits .detail-row{grid-template-columns:1.7rem minmax(0,1fr);gap:.9rem;padding:1.65rem;border:0;border-radius:10px;background:#f9f7f3;--detail-text:#122a2f;--detail-muted:#465b60;color:var(--detail-text)}
+.detail-page--management .offer-benefits .detail-row{background:#ff6b4a;--detail-muted:#18363a}
+.offer-benefits .detail-row__number{display:grid;place-items:center;width:1.7rem;height:1.7rem;padding:0;border:1px solid #122a2f40;border-radius:50%;font-size:.62rem;color:#122a2f}
+.detail-page--compact .offer-benefits .detail-row p{font-size:.92rem;line-height:1.7}
+.detail-page--compact .offer-benefits h3{font-size:1.2rem;max-width:31ch}
+
+/* The handbook and report samples have a dark stage, so the product is distinct. */
+.offer-handbook{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(1.75rem,4vw,4rem);align-items:center;background:#122a2f;border-radius:12px;overflow:hidden;color:#f9f7f3;--detail-text:#f9f7f3;--detail-muted:#c6d0ce}
+.offer-handbook .detail-demo-hotel{border:0;border-radius:0;background:#fff}
+.offer-handbook .detail-demo-hotel>img{aspect-ratio:16/9;object-fit:cover}
+.offer-handbook .detail-demo-hotel>span{padding:1.2rem 1.5rem}
+.offer-handbook .detail-demo-hotel strong{font-size:1.65rem}
+.offer-handbook__copy{padding:2rem 2.5rem 2rem 0}
+.detail-page--compact .offer-handbook h2{color:#f9f7f3}
+.detail-page--compact .offer-handbook h2 em{color:#ff947a}
+.detail-page--compact .detail-demo :is(.mc-preview,.da-preview){background:#122a2f;color:#f9f7f3;border:0;border-radius:12px;grid-template-columns:minmax(180px,.75fr) minmax(0,1.25fr);padding:2.75rem clamp(1.5rem,4vw,4rem);gap:3rem;--detail-muted:#c6d0ce;--preview-heading:#f9f7f3;--preview-title:clamp(1.8rem,2.35vw,2.5rem);--preview-muted:#c6d0ce;--preview-check:#ff947a;--preview-arrow:#122a2f}
+.detail-page--compact .detail-demo :is(.mc-preview__paper,.da-preview__paper){max-width:205px}
+.detail-page--compact .detail-demo :is(.mc-preview,.da-preview) h2{color:#f9f7f3;font-size:clamp(1.8rem,2.35vw,2.5rem)}
+.detail-page--compact .detail-demo :is(.mc-preview__label,.da-preview__label){color:#c6d0ce;font-size:.65rem}
+.detail-page--compact .detail-demo :is(.mc-preview__copy,.da-preview__copy)>p:not([class$="__label"]){color:#c6d0ce;font-size:.95rem;max-width:53ch}
+.detail-page--compact .detail-demo :is(.mc-preview__pagecount,.da-preview__pagecount,small){color:#c6d0ce}
+.detail-page--compact .detail-demo :is(.mc-preview,.da-preview) li::before{color:#ff947a}
+.detail-page--compact .detail-demo :is(.mc-preview__link,.da-preview__link){background:#ff6b4a;color:#122a2f;border-color:transparent}
+.detail-page--compact .detail-demo :is(.mc-preview__link,.da-preview__link) span{color:#122a2f}
+.detail-page--compact .detail-demo :is(.mc-preview__link,.da-preview__link):hover{background:#ff866b}
+
+/* A quiet, clearly bounded process after the benefits and examples. */
+.offer-process{padding:clamp(1.5rem,3vw,2.5rem);border-radius:12px;background:#e8eeeb;color:#122a2f;--detail-text:#122a2f;--detail-muted:#465b60;--detail-rule:#122a2f30}
+.detail-page--academy .offer-process,.detail-page--operation .offer-process{background:#122a2f;color:#f9f7f3;--detail-text:#f9f7f3;--detail-muted:#c6d0ce;--detail-rule:#f9f7f340}
+.detail-page--compact .offer-process h2{color:var(--detail-text);font-size:clamp(1.8rem,2.2vw,2.35rem)}
+.offer-process .detail-intro{align-items:center}
+.detail-page--compact .detail-steps{gap:1.7rem;margin:1.5rem 0 0}
+.detail-page--compact .detail-steps li{position:relative;padding-top:1.1rem}
+.detail-page--compact .detail-steps li::before{display:grid;place-items:center;width:2.15rem;height:2.15rem;background:#ff6b4a;color:#122a2f;border-radius:50%;font-family:var(--body);font-size:.72rem;font-style:normal;margin-bottom:1rem}
+.detail-page--compact .detail-steps h3{font-size:1.2rem}
+.detail-page--compact .detail-steps p{font-size:.9rem}
+.offer-faq{display:grid;grid-template-columns:1fr 1.5fr;gap:3rem;max-width:none}
+.detail-page--compact .detail-faq details p{font-size:.93rem}
+.detail-page--compact #modellrechnung>.detail-intro{padding:2rem 2.5rem;background:#ff6b4a;color:#122a2f;--detail-muted:#18363a;border-radius:12px;margin:0}
+.detail-page--compact #modellrechnung h2{font-size:clamp(1.8rem,2.2vw,2.35rem)}
+.detail-page--compact .detail-package h3{min-height:2.6em}
+.detail-page--compact .detail-price{font-size:2rem!important}
+.detail-page--compact .detail-prose h2{font-size:1.6rem;margin-top:1.75rem}
+.detail-page--compact .detail-prose h3{margin-top:1.5rem}
+
+/* Text-only introductions use both columns instead of a tall, empty hero. */
+.detail-page--compact .detail-hero--text .detail-hero__copy{display:grid;grid-template-columns:1.15fr 1fr;gap:0 clamp(2rem,4vw,4rem);align-items:start;width:100%}
+.detail-page--compact .detail-hero--text .detail-kicker{grid-column:1/-1}
+.detail-page--compact .detail-hero--text h1{grid-column:1;grid-row:2/5;margin-bottom:0;max-width:23ch}
+.detail-page--compact .detail-hero--text .detail-lead{grid-column:2;grid-row:2}
+.detail-page--compact .detail-hero--text .detail-actions{grid-column:2;grid-row:3}
+.detail-page--compact .detail-hero--text .detail-facts{grid-column:2;grid-row:4}
+
+@media(max-width:1099px){
+  .offer-benefits--three .detail-rows{grid-template-columns:1fr}
+  .detail-page--compact .detail-steps{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .detail-page--compact .detail-intro{grid-template-columns:1fr 1fr;gap:1.75rem}
+  .offer-handbook__copy{padding-right:1.75rem}
+}
+@media(max-width:899px){
+  .detail-page--compact .detail-hero--text .detail-hero__copy{display:block}
+  .detail-page--compact .detail-hero--text h1{margin-bottom:1.25rem}
+  .detail-page--compact .detail-hero{grid-template-columns:1fr;gap:2rem}
+  .detail-page--compact .detail-visual{justify-self:center;max-width:34rem}
+  .detail-page--compact .detail-intro{grid-template-columns:1fr;gap:1rem}
+  .detail-page--compact .detail-intro>p{justify-self:start}
+  .detail-page--compact .detail-demo :is(.mc-preview,.da-preview){gap:2rem}
+  .offer-faq{grid-template-columns:1fr;gap:1.25rem}
+}
+@media(max-width:699px){
+  .detail-page--compact .detail-head{padding-top:6rem}
+  .detail-page--compact .detail-hero h1{font-size:clamp(2.2rem,8vw,3rem)}
+  .detail-page--compact .detail-surface h2{font-size:2rem}
+  .detail-page--compact .detail-lead{font-size:.97rem}
+  .offer-navigation{gap:.2rem 1.1rem}
+  .offer-navigation a{font-size:.71rem}
+  .offer-benefits .detail-rows,.detail-page--compact .detail-steps{grid-template-columns:1fr}
+  .offer-benefits .detail-row{padding:1.3rem;gap:.75rem}
+  .offer-handbook{grid-template-columns:1fr;gap:0}
+  .offer-handbook__copy{padding:1.65rem}
+  .detail-page--compact .detail-demo :is(.mc-preview,.da-preview){grid-template-columns:1fr;padding:1.75rem 1.4rem 3.5rem;gap:2rem}
+  .detail-page--compact .detail-demo :is(.mc-preview__paper,.da-preview__paper){order:2;max-width:160px;margin-top:.5rem}
+  .detail-page--compact .detail-demo :is(.mc-preview__copy,.da-preview__copy){order:1}
+  .detail-page--compact .detail-steps{gap:1.4rem}
+  .detail-page--compact .detail-steps li{padding-left:3rem;min-height:2.15rem}
+  .detail-page--compact .detail-steps li::before{position:absolute;left:0;top:1.1rem}
+  .detail-page--compact #modellrechnung>.detail-intro{padding:1.5rem}
+}

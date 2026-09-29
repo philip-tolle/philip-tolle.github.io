@@ -1,22 +1,6 @@
 ---
-import Base from '../layouts/Base.astro';
+import DetailLayout from '../layouts/DetailLayout.astro';
 ---
-<Base title="Seite nicht gefunden — NextCourse" description="Diese Seite existiert nicht (mehr).">
-  <meta name="robots" content="noindex" slot="head" />
-  <div class="pagehead" style="min-height:50svh">
-    <span class="ghostglyph" aria-hidden="true">404</span>
-    <div class="wrap">
-      <p class="eyebrow">Seite nicht gefunden</p>
-      <h1>Dieser Weg führt ins Leere.</h1>
-      <p class="lead">Die Adresse existiert nicht (mehr) — aber von hier kommen Sie überall hin.</p>
-      <div class="btnrow">
-        <a href="/" class="btn">Zur Startseite</a>
-        <a href="/kontakt/" class="btn btn--line">Kontakt aufnehmen</a>
-      </div>
-    </div>
-  </div>
-</Base>
-
-<style>
-  .ghostglyph{font-size:clamp(9rem,26vw,20rem)}
-</style>
+<DetailLayout title="Seite nicht gefunden | NextCourse" description="Diese Adresse wurde nicht gefunden. Hier gelangen Sie zu den Leistungen und zum Kontakt." label="404 · Seite nicht gefunden" heading="Hier geht es" emphasis="auf einem anderen Weg weiter." lead="Diese Adresse gibt es nicht oder sie hat sich geändert. Über unsere Startseite und die drei Leistungsbereiche finden Sie wieder zum passenden Angebot." action="Zur Startseite" href="/" secondary={{label:'Kontakt aufnehmen',href:'/kontakt/'}} contact={false} noindex>
+<section class="detail-section"><div class="detail-grid">{[['Management','Abläufe ordnen und Wissen im Haus halten.','/management/'],['Academy','Können entwickeln und Teams stärken.','/akademie/'],['Operation','Aufgaben abgeben und im Alltag entlasten.','/operation/']].map(([title,text,href])=><a href={href} class="detail-card"><h2>{title}</h2><p>{text}</p><span class="detail-link">Entdecken ↗</span></a>)}</div></section>
+</DetailLayout>

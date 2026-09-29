@@ -1,100 +1,26 @@
 ---
-import { getCollection, render } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-
-export async function getStaticPaths() {
-  const kurse = await getCollection('kurse');
-  return kurse.map((kurs) => ({ params: { id: kurs.id }, props: { kurs } }));
-}
-
-const { kurs } = Astro.props;
-const { Content } = await render(kurs);
-const d = kurs.data;
-
-const courseSchema = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'Course',
-  name: d.title,
-  description: d.kurz,
-  provider: { '@type': 'Organization', name: 'NextCourse', sameAs: 'https://philip-tolle.github.io/' },
-  availableLanguage: 'de',
-});
+import {getCollection,render} from 'astro:content';
+import DetailLayout from '../../layouts/DetailLayout.astro';
+import DetailRows from '../../components/DetailRows.astro';
+import training from '../../assets/offers/inhouse-schulung.png';
+import seminar from '../../assets/services/academy-team-orange.png';
+export async function getStaticPaths(){return(await getCollection('kurse')).map(kurs=>({params:{id:kurs.id},props:{kurs}}));}
+const {kurs}=Astro.props;
+const {Content}=await render(kurs);const d=kurs.data;
+const isKi=kurs.id==='ki-grundlagen';
+const href='/kontakt/?thema=academy&angebot='+encodeURIComponent(d.title)+'#contactform';
+const schema=JSON.stringify({'@context':'https://schema.org','@type':'Course',name:d.title,description:d.kurz,provider:{'@type':'Organization',name:'NextCourse',sameAs:'https://www.next-course.de/'},availableLanguage:'de'}).replace(/</g,'\\u003c');
 ---
-<Base title={`${d.title} — NextCourse Akademie`} description={d.kurz} accent="blue">
-  <script type="application/ld+json" set:html={courseSchema} slot="head" />
-  <div class="pagehead" style="min-height:42svh">
-    <div class="wrap">
-      <p class="eyebrow">Academy · {d.kategorie}</p>
-      <h1>{d.title}</h1>
-      <p class="lead" style="font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2.6vw,1.4rem)">„{d.botschaft}“</p>
-    </div>
-  </div>
-
-  <div class="floor--auto floor" style="padding-top:1rem">
-    <div class="wrap" style="max-width:960px">
-
-      <div class="trio reveal">
-        {d.trio.map((t) => (
-          <div class="trio__cell"><span class="trio__big">{t.wert}</span><span class="trio__sub">{t.label}</span></div>
-        ))}
-      </div>
-
-      <div class="offer" style="margin-top:3.5rem">
-        <div>
-          <h2 class="reveal" style="margin-top:0">Worum es geht</h2>
-          <div class="prose reveal" style="max-width:none;margin:0">
-            <Content />
-          </div>
-
-          <h2 class="reveal">Die Module</h2>
-          <ol class="tl reveal stagger">
-            {d.module.map((m, i) => (
-              <li>
-                <h3><span class="tl__num">{String(i + 1).padStart(2, '0')}</span>{m.titel}</h3>
-                <p>{m.text}</p>
-              </li>
-            ))}
-          </ol>
-
-          <h2 class="reveal">Was Sie mitnehmen</h2>
-          <ul class="quali reveal stagger">
-            {d.ergebnisse.map((e) => <li>{e}</li>)}
-          </ul>
-
-          <p class="voice reveal" style="margin-top:2.6rem">{d.zielgruppe}</p>
-          <a class="arrowlink reveal" href="/akademie/">Alle Kurse der Akademie</a>
-        </div>
-
-        <aside class="offer__aside reveal">
-          <div class="bill" style="margin:0">
-            <p class="bill__head">Auf einen Blick</p>
-            <div class="bl"><b>Dauer</b><span class="dots"></span><span>{d.dauer}</span></div>
-            <div class="bl"><b>Format</b><span class="dots"></span><span style="text-align:right">{d.format}</span></div>
-            <div class="bl"><b>Förderung</b><span class="dots"></span><span style="text-align:right">{d.foerderung}</span></div>
-            <p class="bill__head" style="margin-top:1.6rem;border-top:1px solid var(--line);padding-top:1.4rem">Termine</p>
-            {d.termine.length > 0 ? d.termine.map((t) => (
-              <div class="bl"><b>{t.label}</b>{t.hinweis && <><span class="dots"></span><span style="text-align:right;white-space:normal">{t.hinweis}</span></>}</div>
-            )) : (
-              <div class="bl"><b>Termine auf Anfrage</b></div>
-            )}
-            <div class="btnrow" style="justify-content:center;margin-top:1.6rem">
-              <a href="/kontakt/" class="btn">{d.status === 'geplant' ? 'Auf die Interessentenliste' : 'Platz anfragen'}</a>
-            </div>
-            {d.status === 'geplant' && (
-              <p class="bill__fine">Unverbindlich — Sie erfahren als Erstes vom Start.</p>
-            )}
-            {d.status === 'buchbar' && (
-              <p class="bill__fine">Oder direkt: <a href="https://cal.com/philip-tolle-yxp7ih/erstgesprach" target="_blank" rel="noopener" style="color:var(--green)">Erstgespräch buchen</a></p>
-            )}
-          </div>
-        </aside>
-      </div>
-    </div>
-  </div>
-</Base>
-
-<style>
-  /* Trio-Blaupause liegt in global.css — hier nur der Akademie-Akzent */
-  .trio__big{color:var(--blue)}
-  .bl b{white-space:normal}
-</style>
+<DetailLayout offer title={d.title+' | NextCourse Academy'} description={d.kurz} area="academy" label={d.kategorie} heading={isKi?'KI im Geschäftsalltag.':d.title} emphasis={isKi?'Für Hotel & Gastronomie.':undefined} lead={d.kurz} image={isKi?seminar:training} imageAlt="Illustration einer Schulung mit einem Serviceteam im eigenen Betrieb" caption={d.botschaft} action={d.status==='geplant'?'Interesse vormerken':'Termin anfragen'} href={href} secondary={{label:'Inhalte entdecken',href:'#inhalte'}} facts={[d.status==='geplant'?'In Vorbereitung':'Termin auf Anfrage',d.dauer,d.format]}>
+<script type="application/ld+json" set:html={schema} slot="head" />
+<nav class="offer-navigation" aria-label="Auf dieser Schulungsseite"><a href="#inhalte">Für wen &amp; warum</a><a href="#lerninhalte">Lerninhalte</a><a href="#ergebnisse">Das nehmen Sie mit</a><a href="#rahmen">Termin &amp; Rahmen</a>{isKi && <a href="#seminarfragen">Häufige Fragen</a>}</nav>
+<section class="detail-section detail-aside-layout" id="inhalte"><div><p class="detail-kicker">Lernen mit Bezug zu Ihrem Alltag</p><h2>Verstehen. Ausprobieren. <em>Im Haus anwenden.</em></h2><div class="detail-prose"><Content /></div><h3>Für wen das Angebot gedacht ist</h3><p>{d.zielgruppe}</p></div><aside class="detail-card" id="rahmen" style="scroll-margin-top:7rem"><p class="detail-kicker">Gut zu wissen</p><h3>Der Rahmen</h3><ul class="detail-list"><li><strong>Dauer</strong>{d.dauer}</li><li><strong>Format</strong>{d.format}</li><li><strong>Preis &amp; Voraussetzungen</strong>{d.foerderung}</li><li><strong>Verfügbarkeit</strong>{d.status==='geplant'?'Das Angebot wird vorbereitet. Termine und verbindlicher Umfang stehen noch nicht fest.':'Den passenden Termin und den Umfang stimmen wir persönlich ab.'}</li></ul><a class="detail-button" href={href}>{d.status==='geplant'?'Interesse mitteilen':'Angebot anfragen'} <span aria-hidden="true">↗</span></a><p class="detail-note">Ihre Anfrage ist unverbindlich. Sie erhalten die konkreten Konditionen vor einer Buchung.</p></aside></section>
+<section class="detail-section offer-benefits" id="lerninhalte"><div class="detail-intro"><h2>{d.status==='geplant'?'Die geplanten Inhalte.':'Das bearbeiten wir gemeinsam.'}</h2><p>Die Beispiele kommen aus Hotel und Gastronomie. So lässt sich das Gelernte auf Ihren Betrieb übertragen.</p></div><DetailRows items={d.module.map(m=>({title:m.titel,text:m.text}))} /></section>
+<section class="detail-section detail-intro" id="ergebnisse"><div><p class="detail-kicker">Ihr Nutzen</p><h2>{d.status==='geplant'?'Was Sie künftig':'Was Sie'} <em>mitnehmen{d.status==='geplant'?' sollen.':'.'}</em></h2></div><ul class="detail-list">{d.ergebnisse.map(e=><li>{e}</li>)}</ul></section>
+{isKi && <section class="detail-section" id="seminarfragen"><div class="detail-faq offer-faq"><div><p class="detail-kicker">Vor der Anmeldung</p><h2>Ihre Fragen <em>zum Einstieg.</em></h2></div><div>
+  <details><summary>Brauche ich KI-Vorkenntnisse?</summary><p>Nein. Wir beginnen mit den Grundlagen und arbeiten mit Aufgaben aus Hotel und Gastronomie. Welches Gerät und welche Zugänge für die Übungen gebraucht werden, klären wir vor dem Termin.</p></details>
+  <details><summary>Kann unser ganzes Team teilnehmen?</summary><p>Ja. Als <a class="detail-link" href="/akademie/flying-academy/">Flying Academy</a> findet die Schulung in Ihrem Haus statt. Gruppengröße, Vorkenntnisse und geeignete Beispiele stimmen wir vorab mit Ihnen ab.</p></details>
+  <details><summary>Was nehme ich aus der Schulung mit?</summary><p>Sie nehmen konkrete Anwendungsfälle, Prompts und Vorlagen sowie einen Teilnahmenachweis mit. Gemeinsam besprechen wir, welche Anwendungen zu Ihren Aufgaben passen und was Sie weiter üben können.</p></details>
+  <details><summary>Wie buche ich einen Termin?</summary><p>Fragen Sie mit Ihrer gewünschten Teilnehmerzahl und einem groben Zeitraum an. Vor der Buchung erhalten Sie ein Angebot mit Termin, Umfang und Preis.</p><a class="detail-link" href={href}>KI-Seminar anfragen <span aria-hidden="true">↗</span></a></details>
+</div></div></section>}
+</DetailLayout>

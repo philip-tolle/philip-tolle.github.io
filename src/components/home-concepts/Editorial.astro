@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import hotel from '../../assets/landing/hero-hotel-owner.png';
+import philip from '../../assets/philip.png';
+---
+<section class="e-hero concept-pad" aria-labelledby="e-title">
+  <div class="e-hero-top"><p class="concept-eyebrow">Für Menschen, die Gastgeber sind.</p><span>Management / Academy / Operation</span></div>
+  <h1 id="e-title">Gastlichkeit braucht<br /><em>Raum.</em></h1>
+  <div class="e-hero-grid">
+    <figure class="e-photo"><Image src={hotel} alt="Illustrative Hotelszene: Zwei Personen stimmen sich an der Rezeption ab" width={1400} format="webp" quality={83} loading="eager" fetchpriority="high" /><figcaption>Gute Zusammenarbeit beginnt im Alltag. <span>Illustratives Entwurfsmotiv</span></figcaption><span class="e-photo-tag">MEHR MITEINANDER.<br />WENIGER NEBENSACHEN.</span></figure>
+    <div class="e-hero-note"><span class="e-small-line" aria-hidden="true"></span><h2>Wir kümmern uns um das Dahinter.</h2><p>Klare Abläufe. Menschen, die sich weiterentwickeln. Aufgaben, die endlich vom Tisch kommen.</p><p>NextCourse begleitet Hotels und Gastronomie dabei, wieder mehr Raum für das Wesentliche zu schaffen.</p><a class="concept-button" href="/kontakt/">Ins Gespräch kommen <span aria-hidden="true">↗</span></a><a class="concept-link" href="#leistungen">Unsere drei Bereiche ↓</a></div>
+  </div>
+</section>
+<section class="e-services concept-pad concept-section" id="leistungen" aria-labelledby="e-services-title">
+  <div class="e-section-head"><p class="concept-eyebrow">Was wir für Sie tun</p><h2 id="e-services-title">Ein guter Betrieb.<br /><em>Hat viele Seiten.</em></h2></div>
+  <a class="e-service-row" href="/management/"><span class="e-service-index">01 / MANAGEMENT</span><h3>Ordnung, die<br />Freiraum schafft.</h3><p>Wir prüfen Abläufe, sichern Betriebswissen und begleiten Veränderungen. Gemeinsam mit Ihnen und Ihrem Team.</p><span class="e-round-arrow" aria-hidden="true">↗</span></a>
+  <a class="e-service-row" href="/akademie/"><span class="e-service-index">02 / ACADEMY</span><h3>Wissen, das<br />Menschen stärkt.</h3><p>Weiterbildung aus dem Gastgewerbe. Mit Inhalten, die Fach- und Führungskräfte in ihrer täglichen Arbeit unterstützen.</p><span class="e-round-arrow" aria-hidden="true">↗</span></a>
+  <a class="e-service-row" href="/operation/"><span class="e-service-index">03 / OPERATION</span><h3>Unterstützung,<br />die mitarbeitet.</h3><p>Backoffice, Kommunikation und Projekte. Wir übernehmen Aufgaben, für die Ihrem Haus gerade die Zeit fehlt.</p><span class="e-round-arrow" aria-hidden="true">↗</span></a>
+</section>
+<section class="e-feature concept-pad concept-section" aria-labelledby="e-book-title">
+  <div class="e-feature-title"><p class="concept-eyebrow">Ein guter Anfang</p><h2 id="e-book-title">Das Wissen<br />Ihres Hauses.<br /><em>Gut aufgehoben.</em></h2></div>
+  <div class="e-feature-copy"><span class="e-feature-number" aria-hidden="true">Aa.</span><h3>Ihr digitales Betriebshandbuch.</h3><p>Was macht Ihren Betrieb aus? Wie arbeitet Ihr Team zusammen? Wir übersetzen die Antworten in verständliche Anleitungen und gemeinsame Standards.</p><a class="concept-link" href="/management/betriebshandbuch/">Mehr über das Betriebshandbuch <span aria-hidden="true">↗</span></a></div>
+</section>
+<section class="e-founder concept-pad concept-section" aria-labelledby="e-founder-title">
+  <div class="e-founder-picture"><Image src={philip} alt="Philip Tolle, Gründer von NextCourse" width={680} format="webp" loading="lazy" /><span>Philip Tolle / Gründer von NextCourse</span></div>
+  <div><p class="concept-eyebrow">Ein Mensch. Ein direkter Draht.</p><h2 id="e-founder-title">Ihr Betrieb ist persönlich.<br /><em>Unsere Zusammenarbeit auch.</em></h2><p>Am Anfang steht kein fertiges Konzept, sondern ein Gespräch über Ihren Alltag. Was läuft gut? Was kostet Kraft? Und was würde wirklich helfen?</p><a class="concept-button" href="/kontakt/">Lernen wir uns kennen <span aria-hidden="true">↗</span></a><span class="concept-note">Kostenloses, unverbindliches Erstgespräch · Würzburg & Mainfranken</span></div>
+</section>

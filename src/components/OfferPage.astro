@@ -1,0 +1,21 @@
+---
+import DetailLayout from '../layouts/DetailLayout.astro';
+import DetailRows from './DetailRows.astro';
+import DigitalAuditDemoPreview from './DigitalAuditDemoPreview.astro';
+import MysteryDemoPreview from './MysteryDemoPreview.astro';
+import HandbookOfferExample from './HandbookOfferExample.astro';
+import type { DetailOffer } from '../data/detail-offers';
+interface Props { page: DetailOffer; extraLinks?: { label: string; href: string }[]; }
+const { page, extraLinks = [] } = Astro.props;
+const demoHref = page.demo === 'handbook' ? '#demo' : page.demo === 'audit' ? '/digital-audit-demo/' : page.demo === 'mystery' ? '/mystery-check-demo/' : '#leistungen';
+---
+<DetailLayout {...page} offer href={`/kontakt/?thema=${page.topic}&angebot=${encodeURIComponent(page.label)}#contactform`} secondary={{label:page.demo === 'handbook' ? 'Beispiel & Demo ansehen' : page.demo ? 'Beispiel-Auswertung ansehen' : 'Das ist enthalten',href:demoHref}}>
+  <nav class="offer-navigation" aria-label="Auf dieser Angebotsseite"><a href="#leistungen">Das ist enthalten</a>{page.demo && <a href="#demo">{page.demo === 'handbook' ? 'Beispiel & Demo' : 'Demo ansehen'}</a>}{extraLinks.map(link => <a href={link.href}>{link.label}</a>)}<a href="#ablauf">Zusammenarbeit</a><a href="#fragen">Häufige Fragen</a></nav>
+  <section class:list={['detail-section', 'offer-benefits', page.benefits.length === 3 && 'offer-benefits--three']} id="leistungen"><div class="detail-intro"><div><p class="detail-kicker">Was sich für Sie verändert</p><h2>{page.intro}<em>{page.introEmphasis}</em></h2></div><p>{page.introText}</p></div><DetailRows items={page.benefits} /></section>
+  {page.demo === 'audit' && <section class="detail-section detail-demo" id="demo"><DigitalAuditDemoPreview /></section>}
+  {page.demo === 'mystery' && <section class="detail-section detail-demo" id="demo"><MysteryDemoPreview /></section>}
+  {page.demo === 'handbook' && <section class="detail-section" id="demo" aria-labelledby="handbook-example-title"><HandbookOfferExample /></section>}
+  <slot />
+  <section class="detail-section" id="ablauf"><div class="offer-process"><div class="detail-intro"><div><p class="detail-kicker">So arbeiten wir zusammen</p><h2>In drei Schritten<em>in Ihren Alltag.</em></h2></div><p>Leistungen, Rahmen und nächste Schritte sind vor dem Start geklärt.</p></div><ol class="detail-steps">{page.steps.map(step => <li><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol></div></section>
+  <section class="detail-section" id="fragen"><div class="detail-faq offer-faq"><div><p class="detail-kicker">Vorab geklärt</p><h2>Gut zu wissen.</h2></div><div>{page.questions.map(([q,a]) => <details><summary>{q}</summary><p>{a}</p></details>)}{page.note && <p class="detail-note">{page.note}</p>}</div></div></section>
+</DetailLayout>

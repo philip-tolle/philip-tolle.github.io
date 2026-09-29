@@ -1,12 +1,7 @@
 ---
-import Base from '../layouts/Base.astro';
+import DetailLayout from '../layouts/DetailLayout.astro';
 ---
-<Base title="Impressum — NextCourse" description="Impressum der NextCourse UG (haftungsbeschränkt), Würzburg.">
-  <div class="pagehead" style="min-height:32svh"><div class="wrap">
-    <h1>Impressum</h1>
-  </div></div>
-  <div class="floor--auto floor" style="padding-top:1rem"><div class="wrap">
-    <div class="prose" style="margin:0">
+<DetailLayout title="Impressum | NextCourse" description="Impressum der NextCourse UG (haftungsbeschränkt), Würzburg." label="Rechtliche Informationen" heading="Impressum" lead="Angaben zum Anbieter und zur Verantwortlichkeit." contact={false}><section class="detail-section detail-prose legal-prose">
       <h2 style="margin-top:0">Angaben gemäß § 5 DDG</h2>
       <p>
         NextCourse UG (haftungsbeschränkt)<br>
@@ -27,11 +22,8 @@ import Base from '../layouts/Base.astro';
       </p>
       <h2>Streitbeilegung</h2>
       <p>
-        Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
-        <a href="https://ec.europa.eu/consumers/odr/" rel="noopener">https://ec.europa.eu/consumers/odr/</a>.
+
         Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer
         Verbraucherschlichtungsstelle teilzunehmen.
       </p>
-    </div>
-  </div></div>
-</Base>
+    </section></DetailLayout>

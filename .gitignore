@@ -13,6 +13,20 @@ npm-debug.log*
 .env
 .env.production
 
+# local releases, deployment evidence and Praxis-Hub passes
+# (contains raw credentials and machine-specific release packages)
+.local/
+
+# generated review/browser artifacts and temporary work
+artifacts/
+reviews/praxis-hub/
+tmp/
+.superpowers/
+
+# Python helper caches
+__pycache__/
+*.py[cod]
+
 # OS
 Thumbs.db
 .DS_Store

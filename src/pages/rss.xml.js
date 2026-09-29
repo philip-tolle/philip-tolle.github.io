@@ -5,7 +5,7 @@ export async function GET(context) {
   const posts = await getCollection('blog');
   return rss({
     title: 'NextCourse Blog',
-    description: 'KI, Digitalisierung und Weiterbildung für das Gastgewerbe — aus der Praxis.',
+    description: 'Betriebsalltag, Weiterbildung und digitale Werkzeuge für das Gastgewerbe – aus der Praxis.',
     site: context.site,
     items: posts
       .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())

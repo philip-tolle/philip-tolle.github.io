@@ -1,0 +1,711 @@
+{
+  "pages": [
+    {
+      "route": "/404.html",
+      "h1": [
+        "Hier geht es auf einem anderen Weg weiter."
+      ],
+      "canonical": "https://www.next-course.de/404/",
+      "robots": "noindex, follow",
+      "click_depth": null,
+      "css_files": [
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 107614,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/akademie/aevo/",
+      "h1": [
+        "AEVO-Vorbereitungskurs"
+      ],
+      "canonical": "https://www.next-course.de/akademie/aevo/",
+      "robots": "",
+      "click_depth": null,
+      "css_files": [
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 107614,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/akademie/barista/",
+      "h1": [
+        "Barista-Kurs"
+      ],
+      "canonical": "https://www.next-course.de/akademie/barista/",
+      "robots": "",
+      "click_depth": null,
+      "css_files": [
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 107614,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/akademie/flying-academy/",
+      "h1": [
+        "Ihr Betrieb ist der beste Übungsraum."
+      ],
+      "canonical": "https://www.next-course.de/akademie/flying-academy/",
+      "robots": "",
+      "click_depth": 2,
+      "css_files": [
+        "/_astro/flying-academy.BB_YkKxq.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 114687,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/akademie/foerderung/",
+      "h1": [
+        "Weiterkommen. Den passenden Weg finden."
+      ],
+      "canonical": "https://www.next-course.de/akademie/foerderung/",
+      "robots": "",
+      "click_depth": 1,
+      "css_files": [
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 107614,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/akademie/fuehren-mit-ki/",
+      "h1": [
+        "Führen & Kommunizieren mit KI"
+      ],
+      "canonical": "https://www.next-course.de/akademie/fuehren-mit-ki/",
+      "robots": "",
+      "click_depth": null,
+      "css_files": [
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 107614,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/akademie/",
+      "h1": [
+        "Weiterbildung, die wirkt."
+      ],
+      "canonical": "https://www.next-course.de/akademie/",
+      "robots": "",
+      "click_depth": 1,
+      "css_files": [
+        "/_astro/akademie.CmkrLI4r.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 93348,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/akademie/ki-grundlagen/",
+      "h1": [
+        "KI-Grundlagen für Gastgeber & KMU"
+      ],
+      "canonical": "https://www.next-course.de/akademie/ki-grundlagen/",
+      "robots": "",
+      "click_depth": 2,
+      "css_files": [
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 107614,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/blog/eu-ai-act-gastgewerbe/",
+      "h1": [
+        "KI-Kompetenz im Gastgewerbe: Ein praktischer Einstieg"
+      ],
+      "canonical": "https://www.next-course.de/blog/eu-ai-act-gastgewerbe/",
+      "robots": "",
+      "click_depth": 2,
+      "css_files": [
+        "/_astro/_id_.BedxpDso.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 112327,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/blog/fachkraeftemangel-ki-entlastung/",
+      "h1": [
+        "Mehr Luft im Team: Bei wiederkehrender Arbeit anfangen"
+      ],
+      "canonical": "https://www.next-course.de/blog/fachkraeftemangel-ki-entlastung/",
+      "robots": "",
+      "click_depth": 2,
+      "css_files": [
+        "/_astro/_id_.BedxpDso.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 112327,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/blog/",
+      "h1": [
+        "Gedanken aus der Praxis. Für Ihren nächsten Schritt."
+      ],
+      "canonical": "https://www.next-course.de/blog/",
+      "robots": "",
+      "click_depth": 1,
+      "css_files": [
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 107614,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/blog/ki-telefonassistent-hotel/",
+      "h1": [
+        "Telefonassistenz im Hotel: Wo ein guter Ablauf beginnt"
+      ],
+      "canonical": "https://www.next-course.de/blog/ki-telefonassistent-hotel/",
+      "robots": "",
+      "click_depth": 2,
+      "css_files": [
+        "/_astro/_id_.BedxpDso.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 112327,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/danke/",
+      "h1": [
+        "Danke für Ihr Vertrauen. Wir melden uns bei Ihnen."
+      ],
+      "canonical": "https://www.next-course.de/danke/",
+      "robots": "noindex, follow",
+      "click_depth": null,
+      "css_files": [
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 107614,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/datenschutz/",
+      "h1": [
+        "Datenschutzerklärung"
+      ],
+      "canonical": "https://www.next-course.de/datenschutz/",
+      "robots": "",
+      "click_depth": 1,
+      "css_files": [
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 107614,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/digital-audit-demo/",
+      "h1": [
+        "Ein Blick in das, was Sie bekommen."
+      ],
+      "canonical": "https://www.next-course.de/digital-audit-demo/",
+      "robots": "",
+      "click_depth": 3,
+      "css_files": [
+        "/_astro/digital-audit-demo.DjZjFiDs.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 72217,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/faq/",
+      "h1": [
+        "Gut zu wissen. Klar beantwortet."
+      ],
+      "canonical": "https://www.next-course.de/faq/",
+      "robots": "",
+      "click_depth": 1,
+      "css_files": [
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 107614,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/impressum/",
+      "h1": [
+        "Impressum"
+      ],
+      "canonical": "https://www.next-course.de/impressum/",
+      "robots": "",
+      "click_depth": 1,
+      "css_files": [
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 107614,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/",
+      "h1": [
+        "NextCourse – Management, Academy und Operation für das Gastgewerbe in Mainfranken"
+      ],
+      "canonical": "https://www.next-course.de/",
+      "robots": "",
+      "click_depth": 0,
+      "css_files": [
+        "/_astro/akademie.C_HtbtUS.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/index.D7DqvD7b.css"
+      ],
+      "css_bytes": 96107,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/kontakt/",
+      "h1": [
+        "Erzählen Sie uns von Ihrem Haus."
+      ],
+      "canonical": "https://www.next-course.de/kontakt/",
+      "robots": "",
+      "click_depth": 1,
+      "css_files": [
+        "/_astro/kontakt.l6L3WFij.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 112749,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/management/betriebshandbuch/",
+      "h1": [
+        "Das Wissen Ihres Hauses. Für alle greifbar."
+      ],
+      "canonical": "https://www.next-course.de/management/betriebshandbuch/",
+      "robots": "",
+      "click_depth": 1,
+      "css_files": [
+        "/_astro/flying-academy.BB_YkKxq.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 114687,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/management/digital-audit/",
+      "h1": [
+        "Viele Systeme. Weniger doppelte Arbeit."
+      ],
+      "canonical": "https://www.next-course.de/management/digital-audit/",
+      "robots": "",
+      "click_depth": 2,
+      "css_files": [
+        "/_astro/flying-academy.BB_YkKxq.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 114687,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/management/implementierungsprojekte/",
+      "h1": [
+        "Aus einer guten Idee wird ein guter Ablauf."
+      ],
+      "canonical": "https://www.next-course.de/management/implementierungsprojekte/",
+      "robots": "",
+      "click_depth": 2,
+      "css_files": [
+        "/_astro/flying-academy.BB_YkKxq.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 114687,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/management/",
+      "h1": [
+        "Ein Betrieb, der auf klaren Abläufen steht."
+      ],
+      "canonical": "https://www.next-course.de/management/",
+      "robots": "",
+      "click_depth": 1,
+      "css_files": [
+        "/_astro/akademie.CmkrLI4r.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 93348,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/management/mystery-check/",
+      "h1": [
+        "Ihr Haus. Mit den Augen Ihrer Gäste."
+      ],
+      "canonical": "https://www.next-course.de/management/mystery-check/",
+      "robots": "",
+      "click_depth": 2,
+      "css_files": [
+        "/_astro/flying-academy.BB_YkKxq.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 114687,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/management/quick-check/",
+      "h1": [
+        "KI im Einsatz. Mit mehr Überblick."
+      ],
+      "canonical": "https://www.next-course.de/management/quick-check/",
+      "robots": "",
+      "click_depth": 3,
+      "css_files": [
+        "/_astro/flying-academy.BB_YkKxq.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 114687,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/management/referenzbetrieb/",
+      "h1": [
+        "Kleine Schritte. Spürbar mehr Zeit."
+      ],
+      "canonical": "https://www.next-course.de/management/referenzbetrieb/",
+      "robots": "",
+      "click_depth": 3,
+      "css_files": [
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 107614,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/mystery-check-demo/",
+      "h1": [
+        "Ein Blick in das, was Sie bekommen."
+      ],
+      "canonical": "https://www.next-course.de/mystery-check-demo/",
+      "robots": "",
+      "click_depth": 3,
+      "css_files": [
+        "/_astro/digital-audit-demo.DjZjFiDs.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 72217,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/operation/30-tage-test/",
+      "h1": [
+        "Ein Monat Entlastung. Danach entscheiden Sie."
+      ],
+      "canonical": "https://www.next-course.de/operation/30-tage-test/",
+      "robots": "",
+      "click_depth": 2,
+      "css_files": [
+        "/_astro/flying-academy.BB_YkKxq.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 114687,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/operation/",
+      "h1": [
+        "Entlastung mit Wert."
+      ],
+      "canonical": "https://www.next-course.de/operation/",
+      "robots": "",
+      "click_depth": 1,
+      "css_files": [
+        "/_astro/akademie.CmkrLI4r.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 93348,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/operation/monatspakete/",
+      "h1": [
+        "Wiederkehrendes erledigt. Monat für Monat."
+      ],
+      "canonical": "https://www.next-course.de/operation/monatspakete/",
+      "robots": "",
+      "click_depth": 2,
+      "css_files": [
+        "/_astro/flying-academy.BB_YkKxq.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 114687,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/operation/projekte/",
+      "h1": [
+        "Aus „müssten wir mal“ wird ein fertiges Projekt."
+      ],
+      "canonical": "https://www.next-course.de/operation/projekte/",
+      "robots": "",
+      "click_depth": 2,
+      "css_files": [
+        "/_astro/flying-academy.BB_YkKxq.css",
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 114687,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    },
+    {
+      "route": "/ueber/",
+      "h1": [
+        "Aus der Branche. An Ihrer Seite."
+      ],
+      "canonical": "https://www.next-course.de/ueber/",
+      "robots": "",
+      "click_depth": 1,
+      "css_files": [
+        "/_astro/index.DiQfh1OS.css",
+        "/_astro/ueber.dYamzRxG.css",
+        "/_astro/akademie.YaHAG8Y5.css",
+        "/_astro/flying-academy.B9AUACEZ.css",
+        "/_astro/akademie.C_HtbtUS.css"
+      ],
+      "css_bytes": 113963,
+      "external_js_bytes": 5952,
+      "og_image": "https://www.next-course.de/og.jpg",
+      "og_type": "website"
+    }
+  ],
+  "assets": [
+    {
+      "path": "_astro/akademie.C_HtbtUS.css",
+      "bytes": 60482
+    },
+    {
+      "path": "_astro/_variant_.Daza0yZ0.css",
+      "bytes": 33925
+    },
+    {
+      "path": "_astro/inter-latin-500-italic.CmxAJXy_.woff2",
+      "bytes": 25636
+    },
+    {
+      "path": "_astro/inter-latin-400-italic.D1l0FflY.woff2",
+      "bytes": 25040
+    },
+    {
+      "path": "_astro/inter-latin-600-normal.LgqL8muc.woff2",
+      "bytes": 24452
+    },
+    {
+      "path": "_astro/inter-latin-500-normal.Cerq10X2.woff2",
+      "bytes": 24272
+    },
+    {
+      "path": "_astro/inter-latin-400-normal.C38fXH4l.woff2",
+      "bytes": 23664
+    },
+    {
+      "path": "_astro/index.D7DqvD7b.css",
+      "bytes": 23620
+    },
+    {
+      "path": "_astro/flying-academy.B9AUACEZ.css",
+      "bytes": 20795
+    },
+    {
+      "path": "_astro/akademie.YaHAG8Y5.css",
+      "bytes": 14332
+    },
+    {
+      "path": "_astro/plus-jakarta-sans-latin-700-normal.CfpNZvy6.woff2",
+      "bytes": 12244
+    },
+    {
+      "path": "_astro/plus-jakarta-sans-latin-600-normal.DLTa1BUW.woff2",
+      "bytes": 12188
+    },
+    {
+      "path": "_astro/index.DiQfh1OS.css",
+      "bytes": 12005
+    },
+    {
+      "path": "_astro/plus-jakarta-sans-latin-800-normal.CusIZhrK.woff2",
+      "bytes": 11896
+    },
+    {
+      "path": "_astro/plus-jakarta-sans-latin-400-normal.Dhut76fR.woff2",
+      "bytes": 11816
+    },
+    {
+      "path": "_astro/digital-audit-demo.DjZjFiDs.css",
+      "bytes": 11735
+    },
+    {
+      "path": "_astro/flying-academy.BB_YkKxq.css",
+      "bytes": 7073
+    },
+    {
+      "path": "_astro/akademie.CmkrLI4r.css",
+      "bytes": 6529
+    },
+    {
+      "path": "_astro/ueber.dYamzRxG.css",
+      "bytes": 6349
+    },
+    {
+      "path": "_astro/Base.astro_astro_type_script_index_0_lang.D2acAIT6.js",
+      "bytes": 5952
+    },
+    {
+      "path": "_astro/kontakt.l6L3WFij.css",
+      "bytes": 5135
+    },
+    {
+      "path": "_astro/_id_.BedxpDso.css",
+      "bytes": 4713
+    }
+  ]
+}
