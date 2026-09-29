@@ -21,6 +21,8 @@ At 320 px the first-screen homepage hero retains the region and direct contact p
 
 The first 320 px inspection showed the home offer grid's content track expanding its column to 493 px while the section was only 305 px wide. `minmax(0,1fr)` on the responsive grid and `min-width:0` on its intro brought the track back within the phone width. A focused regression test guards those CSS rules; the local browser confirmed a 265 px track after rebuilding.
 
+The final independent code review found that keyboard focus on a mobile home card was clipped by its rounded container. An inset focus outline was added; all three mobile links were then reached in sequence with Tab and showed a solid focus indicator. The review also caught a desktop collaboration paragraph losing its centered/muted styling, an ambiguous mobile trial price phrase and a synchronous animation-frame test stub that could not check repeated swipes. Each was corrected with a red-to-green regression check. Desktop computed styles, the explicit mobile `Preis auf Anfrage` wording and successive swipe test were rechecked after rebuilding.
+
 ## Remaining real-device check
 
 No physical phone was used. Before publishing, confirm natural finger swipe, vertical finger scroll, tap targets and visual spacing on at least one iOS and one Android device. The browser's simulated drag/scroll is useful evidence but does not substitute for real touch hardware.

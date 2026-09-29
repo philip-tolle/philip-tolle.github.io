@@ -5,6 +5,8 @@ import { initMobileHomeFinder } from '../src/scripts/mobile-home-finder.ts';
 function fixture(reducedMotion = false) {
   const listeners = {};
   const scrolls = [];
+  const frames = [];
+  let nextFrameId = 1;
   const cards = [0, 200, 400].map(offsetLeft => ({ offsetLeft }));
   const track = {
     scrollLeft: 0,
@@ -35,9 +37,10 @@ function fixture(reducedMotion = false) {
   };
   const root = { querySelector: selector => nodes[selector] };
   globalThis.window = { matchMedia: () => ({ matches: reducedMotion }) };
-  globalThis.requestAnimationFrame = callback => { callback(); return 1; };
+  globalThis.requestAnimationFrame = callback => { frames.push(callback); return nextFrameId++; };
   initMobileHomeFinder(root);
-  return { track, prev, next, status, scrolls, listeners };
+  const flushFrames = () => { while (frames.length) frames.shift()(); };
+  return { track, prev, next, status, scrolls, listeners, flushFrames };
 }
 
 test('buttons move between all three cards and update the position', () => {
@@ -56,13 +59,27 @@ test('buttons move between all three cards and update the position', () => {
 });
 
 test('a swipe updates the nearest card and reduced motion avoids animation', () => {
-  const { track, next, status, scrolls, listeners } = fixture(true);
+  const { track, next, status, scrolls, listeners, flushFrames } = fixture(true);
   track.scrollLeft = 385;
   listeners.scroll();
+  flushFrames();
   assert.equal(status.textContent, '3 von 3');
   assert.equal(next.disabled, true);
   track.scrollLeft = 0;
   listeners.scroll();
+  flushFrames();
   next.click();
   assert.equal(scrolls[0].behavior, 'auto');
+});
+
+test('successive swipes update the status in both directions', () => {
+  const { track, status, listeners, flushFrames } = fixture();
+  track.scrollLeft = 385;
+  listeners.scroll();
+  flushFrames();
+  assert.equal(status.textContent, '3 von 3');
+  track.scrollLeft = 0;
+  listeners.scroll();
+  flushFrames();
+  assert.equal(status.textContent, '1 von 3');
 });

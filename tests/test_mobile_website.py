@@ -68,6 +68,19 @@ class PageProbe(HTMLParser):
 
 
 class MobileHomeTests(unittest.TestCase):
+    def test_mobile_offer_keyboard_focus_indicator(self):
+        """The link focus ring must be inset rather than clipped by its card."""
+        css = (ROOT / "src" / "styles" / "home.css").read_text(encoding="utf-8")
+        self.assertTrue(".home-finder__mobile-card>a:focus-visible{outline:" in css,
+                        "mobile card link needs an inset focus indicator")
+        self.assertRegex(css, r"\.home-finder__mobile-card>a:focus-visible\{[^}]*outline-offset:-4px")
+
+    def test_collaboration_copy_keeps_desktop_style(self):
+        """Adding a mobile paragraph cannot remove the desktop intro styling."""
+        css = (ROOT / "src" / "styles" / "home.css").read_text(encoding="utf-8")
+        self.assertTrue(".home-approach__intro>p:not(.nc-kicker)" in css,
+                        "both responsive copy variants need the intro styling")
+
     def test_finder_can_shrink_to_phone_width(self):
         """The scroll strip must not force its CSS grid column wider than a phone."""
         css = (ROOT / "src" / "styles" / "home.css").read_text(encoding="utf-8")
@@ -140,3 +153,4 @@ class MobileServiceTests(unittest.TestCase):
         self.assertIn("Festpreis vor dem Start", operation.mobile_copy.get("operation-single", ""))
         self.assertIn("ohne automatische Verlängerung",
                       operation.mobile_copy.get("operation-trial", ""))
+        self.assertIn("Preis auf Anfrage", operation.mobile_copy.get("operation-trial", ""))
