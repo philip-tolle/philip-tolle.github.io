@@ -189,3 +189,13 @@ html[data-page-chrome="light"] .noscript-nav{background:#f9f7f3}
   .service-page .service-hero h1{line-height:1.1;margin-bottom:.4rem}
   .service-page .service-surface h2{font-size:clamp(1.9rem,7vw,2.5rem)}
 }
+/* On narrow screens the image and one question introduce the swipeable offers. */
+@media(max-width:799px){
+  .service-page .service-hero__details,
+  .service-page .service-section-intro .service-kicker,
+  .service-page .service-section-intro>p,
+  .service-page .service-jumps,
+  .service-page .service-start{display:none}
+  .service-page .service-journey{padding-top:1rem}
+  .service-page .service-section-intro{margin-bottom:1.2rem;gap:0}
+}

@@ -86,4 +86,26 @@ test('mobile layout across page types', {
     assert.ok(await page.locator('.footer__desktop-section').first().isVisible());
     assert.equal(await groups.first().isVisible(), false);
   });
+  await t.test('offer overviews go from image and question straight to swipe cards on phones', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    for (const route of ['/management/', '/akademie/', '/operation/']) {
+      await page.goto(base + route);
+      assert.equal(await page.locator('.service-hero__details').isVisible(), false, route);
+      assert.equal(await page.locator('.service-section-intro .service-kicker').isVisible(), false, route);
+      assert.equal(await page.locator('.service-section-intro>p').filter({ visible: true }).count(), 0, route);
+      assert.equal(await page.locator('.service-jumps').isVisible(), false, route);
+      if (route === '/management/') assert.equal(await page.locator('.service-start').isVisible(), false);
+      const heading = page.locator('.service-section-intro h2');
+      const card = page.locator('.service-mobile-card').first();
+      assert.ok(await heading.isVisible(), route);
+      assert.ok(await card.isVisible(), route);
+      const gap = (await card.boundingBox()).y - ((await heading.boundingBox()).y + (await heading.boundingBox()).height);
+      assert.ok(gap < 110, `${route}: ${gap}px between question and first card`);
+    }
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto(base + '/management/');
+    assert.ok(await page.locator('.service-hero__details').isVisible());
+    assert.ok(await page.locator('.service-jumps').isVisible());
+    assert.ok(await page.locator('.service-start').isVisible());
+  });
 });
