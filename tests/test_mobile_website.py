@@ -30,7 +30,7 @@ class PageProbe(HTMLParser):
         if "id" in attrs:
             self.ids.append(attrs["id"])
         self.markers.update(name for name in attrs if name.startswith("data-mobile-"))
-        for control in ("data-mobile-prev", "data-mobile-next"):
+        for control in ("data-mobile-rail-prev", "data-mobile-rail-next"):
             if control in attrs:
                 self.mobile_controls_hidden[control] = "hidden" in attrs
         if tag == "a":
@@ -47,7 +47,7 @@ class PageProbe(HTMLParser):
         if tag == "p" and "data-mobile-copy" in attrs:
             self.current_mobile_copy = attrs["data-mobile-copy"]
             self.mobile_copy[self.current_mobile_copy] = ""
-        if tag == "article" and "data-mobile-service-card" in attrs:
+        if tag == "article" and "data-mobile-rail-card" in attrs:
             self.in_mobile_card = True
             self.mobile_card_links.append([])
         elif self.in_mobile_card and tag == "a":
@@ -96,16 +96,16 @@ class MobileHomeTests(unittest.TestCase):
         )
         self.assertTrue(
             {
-                "data-mobile-finder",
-                "data-mobile-service-track",
-                "data-mobile-prev",
-                "data-mobile-next",
-                "data-mobile-status",
+                "data-mobile-rail",
+                "data-mobile-rail-track",
+                "data-mobile-rail-prev",
+                "data-mobile-rail-next",
+                "data-mobile-rail-status",
             }.issubset(page.markers)
         )
         self.assertEqual(len(page.ids), len(set(page.ids)))
         self.assertEqual(page.mobile_controls_hidden,
-                         {"data-mobile-prev": True, "data-mobile-next": True})
+                         {"data-mobile-rail-prev": True, "data-mobile-rail-next": True})
 
     def test_concise_home_copy(self):
         """Phone overview copy stays short while the demo path remains available."""

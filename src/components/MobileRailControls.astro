@@ -1,0 +1,15 @@
+---
+interface Props {
+  count: number;
+  noun: string;
+}
+
+const { count, noun } = Astro.props;
+---
+<div class="mobile-card-rail__nav">
+  <p data-mobile-rail-status aria-live="polite">{count} {noun} · wischen</p>
+  <div class="mobile-card-rail__buttons">
+    <button type="button" data-mobile-rail-prev aria-label={`Vorheriges ${noun}`} hidden>←</button>
+    <button type="button" data-mobile-rail-next aria-label={`Nächstes ${noun}`} hidden>→</button>
+  </div>
+</div>

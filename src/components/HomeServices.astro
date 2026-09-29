@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { situations } from '../data/home-services';
+import MobileRailControls from './MobileRailControls.astro';
 ---
 <section class="home-finder nc-section nc-shell" id="leistungen" data-wave-tone="dark" aria-labelledby="services-title">
   <div class="home-finder__intro">
@@ -13,9 +14,9 @@ import { situations } from '../data/home-services';
         <span class="home-finder__marker" aria-hidden="true"></span><span class="home-finder__choice-copy"><strong>{situation.short}</strong><small>{situation.guide}</small></span><span class="home-finder__arrow" aria-hidden="true">→</span>
       </a>)}
     </div>
-    <div class="home-finder__mobile" data-mobile-finder>
-      <div class="home-finder__mobile-track" data-mobile-service-track tabindex="0" aria-label="Angebote: horizontal wischen oder mit den Pfeiltasten bewegen">
-        {situations.map((situation) => <article class="home-finder__mobile-card" id={`mobile-${situation.id}`} data-mobile-service-card>
+    <div class="home-finder__mobile" data-mobile-rail>
+      <div class="home-finder__mobile-track" data-mobile-rail-track tabindex="0" aria-label="Angebote: horizontal wischen oder mit den Pfeiltasten bewegen">
+        {situations.map((situation) => <article class="home-finder__mobile-card" id={`mobile-${situation.id}`} data-mobile-rail-card>
           <a href={situation.href} aria-labelledby={`mobile-${situation.id}-heading`}>
             <div class="home-finder__mobile-image">
               <Image src={situation.image} alt={situation.imageAlt} width={720} widths={[360, 480, 720]} sizes="(max-width: 599px) 75vw, 1px" format="webp" quality={82} loading="lazy" decoding="async" />
@@ -29,13 +30,7 @@ import { situations } from '../data/home-services';
           </a>
         </article>)}
       </div>
-      <div class="home-finder__mobile-nav">
-        <p data-mobile-status aria-live="polite">3 Angebote · wischen</p>
-        <div>
-          <button type="button" data-mobile-prev aria-label="Vorheriges Angebot" hidden>←</button>
-          <button type="button" data-mobile-next aria-label="Nächstes Angebot" hidden>→</button>
-        </div>
-      </div>
+      <MobileRailControls count={situations.length} noun="Angebote" />
     </div>
     <p class="home-finder__invitation">Noch unsicher, welcher Bereich passt?<br /><a href="/kontakt/">Den Einstieg gemeinsam finden <span aria-hidden="true">↗</span></a></p>
   </div>
@@ -70,11 +65,7 @@ import { situations } from '../data/home-services';
 </section>
 
 <script>
-  import { initMobileHomeFinder } from '../scripts/mobile-home-finder';
-
   const finder = document.querySelector<HTMLElement>('.home-finder');
-  const mobileFinder = finder?.querySelector<HTMLElement>('[data-mobile-finder]');
-  if (mobileFinder) initMobileHomeFinder(mobileFinder);
   if (finder) {
     const choices = [...finder.querySelectorAll<HTMLAnchorElement>('[data-service-choice]')];
     const panels = [...finder.querySelectorAll<HTMLElement>('[data-service-result]')];
