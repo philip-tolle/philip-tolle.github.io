@@ -22,6 +22,7 @@ class PageProbe(HTMLParser):
         self.in_mobile_summary = False
         self.mobile_service_links = []
         self.desktop_service_links = []
+        self.mobile_controls_hidden = {}
         self.feed(page.read_text(encoding="utf-8"))
 
     def handle_starttag(self, tag, attributes):
@@ -29,6 +30,9 @@ class PageProbe(HTMLParser):
         if "id" in attrs:
             self.ids.append(attrs["id"])
         self.markers.update(name for name in attrs if name.startswith("data-mobile-"))
+        for control in ("data-mobile-prev", "data-mobile-next"):
+            if control in attrs:
+                self.mobile_controls_hidden[control] = "hidden" in attrs
         if tag == "a":
             self.links.append(attrs.get("href"))
             if "data-mobile-service-link" in attrs:
@@ -64,6 +68,12 @@ class PageProbe(HTMLParser):
 
 
 class MobileHomeTests(unittest.TestCase):
+    def test_finder_can_shrink_to_phone_width(self):
+        """The scroll strip must not force its CSS grid column wider than a phone."""
+        css = (ROOT / "src" / "styles" / "home.css").read_text(encoding="utf-8")
+        self.assertRegex(css, r"@media\(max-width:999px\).*?\.home-finder\{grid-template-columns:minmax\(0,1fr\)")
+        self.assertRegex(css, r"\.home-finder__intro\{[^}]*min-width:0")
+
     def test_three_linked_cards_and_controls(self):
         """Removing any phone offer or navigation control breaks discovery."""
         page = PageProbe(ROOT / "dist" / "index.html")
@@ -81,6 +91,8 @@ class MobileHomeTests(unittest.TestCase):
             }.issubset(page.markers)
         )
         self.assertEqual(len(page.ids), len(set(page.ids)))
+        self.assertEqual(page.mobile_controls_hidden,
+                         {"data-mobile-prev": True, "data-mobile-next": True})
 
     def test_concise_home_copy(self):
         """Phone overview copy stays short while the demo path remains available."""
@@ -112,3 +124,19 @@ class MobileServiceTests(unittest.TestCase):
                 self.assertIn("data-mobile-hero", page.markers)
                 self.assertIn("data-mobile-journey-intro", page.markers)
                 self.assertEqual(len(page.ids), len(set(page.ids)))
+
+    def test_supplemental_mobile_copy(self):
+        """Short sections must keep qualification and contract conditions honest."""
+        academy = PageProbe(ROOT / "dist" / "akademie" / "index.html")
+        operation = PageProbe(ROOT / "dist" / "operation" / "index.html")
+        self.assertEqual(academy.mobile_copy.get("academy-format"),
+                         "Wir schulen Ihr Team zu einem vereinbarten Lernziel direkt in Ihrem Haus.")
+        self.assertIn("AZAV-Zulassung ist noch in Vorbereitung",
+                      (ROOT / "dist" / "akademie" / "index.html").read_text(encoding="utf-8"))
+        self.assertEqual(operation.mobile_copy.get("operation-format"),
+                         "Wir vereinbaren Aufgabe, Umfang und Termine vor dem Start.")
+        self.assertIn("festen Leistungen, Abgabezeiten und Ansprechperson",
+                      operation.mobile_copy.get("operation-month", ""))
+        self.assertIn("Festpreis vor dem Start", operation.mobile_copy.get("operation-single", ""))
+        self.assertIn("ohne automatische Verlängerung",
+                      operation.mobile_copy.get("operation-trial", ""))
