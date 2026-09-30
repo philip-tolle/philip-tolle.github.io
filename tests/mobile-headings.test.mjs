@@ -43,7 +43,62 @@ test('mobile layout across page types', {
   });
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
   const base = `http://127.0.0.1:${server.address().port}`;
+  await t.test('phone hero has one clear action with offers close below', async () => {
+    for (const width of [320, 390, 430]) {
+      await page.setViewportSize({ width, height: 844 });
+      await page.goto(base + '/');
+      await page.evaluate(() => document.fonts.ready);
+      const hero = page.locator('.home-hero');
+      assert.match(await hero.locator('h1').innerText(), /Mehr Zeit für das,\s*was zählt\./);
+      const actions = hero.locator('.home-hero__actions a:visible');
+      assert.equal(await actions.count(), 1, `only one primary action at ${width}px`);
+      assert.match(await actions.first().innerText(), /Angebote entdecken/);
+      assert.equal(await actions.first().getAttribute('href'), '#leistungen');
+      assert.equal(await hero.locator('.home-hero__foot').isVisible(), false);
+      assert.ok((await page.locator('#leistungen').boundingBox()).y < 650, `offers too far down at ${width}px`);
+      assert.ok(await page.locator('#heroLogo img').isVisible());
+      assert.equal(await page.locator('h1').count(), 1);
+      assert.ok(await page.locator('.footer a[href="/kontakt/"]').first().count());
+      assert.ok(await page.locator('.footer a[href="/ueber/"]').first().count());
+      assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+    }
+    await page.setViewportSize({ width: 1366, height: 900 });
+    await page.goto(base + '/');
+    assert.match(await page.locator('.home-hero h1').innerText(), /^NextCourse/);
+    assert.equal(await page.locator('.home-hero__actions a:visible').count(), 2);
+    assert.match(await page.locator('.home-hero__actions .nc-button').innerText(), /Passende Unterstützung finden/);
+    assert.ok(await page.locator('.home-hero__foot').isVisible());
+  });
+  await t.test('shared contact ending is compact without losing its topic or conditions', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    const contactPaths = [
+      ['/', '/kontakt/'],
+      ['/management/', '/kontakt/?thema=management#contactform'],
+      ['/akademie/', '/kontakt/?thema=academy#contactform'],
+      ['/operation/', '/kontakt/?thema=entlastung#contactform'],
+    ];
+    for (const [route, expectedHref] of contactPaths) {
+      await page.goto(base + route);
+      const contact = page.locator('.nc-contact');
+      await contact.scrollIntoViewIfNeeded();
+      await page.evaluate(() => document.fonts.ready);
+      assert.ok((await contact.boundingBox()).height < 610, `${route}: contact ending too tall`);
+      assert.ok(await contact.locator('img').isVisible());
+      assert.match(await contact.locator('.nc-note').innerText(), /Kostenlos und unverbindlich/);
+      assert.match(await contact.locator('.nc-contact__signature').innerText(), /Philip Tolle/);
+      const button = contact.locator('.nc-button');
+      const href = await button.getAttribute('href');
+      assert.equal(href, expectedHref, `${route}: exact contact topic and form anchor must survive`);
+      assert.ok((await button.boundingBox()).height >= 44);
+      assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+    }
+    await page.setViewportSize({ width: 1366, height: 900 });
+    await page.goto(base + '/');
+    assert.match(await page.locator('.nc-contact__copy').innerText(), /Erzählen Sie mir, wo es in Ihrem Haus hakt/);
+    assert.ok((await page.locator('.nc-contact__portrait').boundingBox()).width >= 150);
+  });
   await t.test('important phone headings stay compact', async () => {
+    await page.setViewportSize({ width: 390, height: 844 });
     const cases = [
       ['/', '.home-approach h2', 36],
       ['/management/', '.service-hero h1', 34],

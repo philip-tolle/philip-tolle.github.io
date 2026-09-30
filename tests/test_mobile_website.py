@@ -88,7 +88,7 @@ class MobileHomeTests(unittest.TestCase):
     def test_quiet_mobile_opening_keeps_primary_and_secondary_paths(self):
         page = PageProbe(ROOT / "dist" / "index.html")
         self.assertEqual(page.mobile_hero_summary.strip(),
-                         "Abläufe ordnen. Team stärken. Arbeit abgeben.")
+                         "Für Hotels & Gastronomie in Mainfranken.")
         self.assertTrue({"#leistungen", "/kontakt/", "/ueber/"}.issubset(page.links))
         self.assertIn("Wir ordnen Abläufe, schulen Ihr Team und übernehmen laufende Aufgaben.",
                       (ROOT / "dist" / "index.html").read_text(encoding="utf-8"))

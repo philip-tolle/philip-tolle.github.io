@@ -59,3 +59,43 @@ Die 35 öffentlichen, von Astro erzeugten Hauptseiten wurden im Browser bei **32
 Die Browser-Viewport-Prüfung ist kein Test mit echtem iOS- oder Android-Gerät. Insbesondere natürliches Touch-Wischen, Browserleisten, Schriftgrößeneinstellungen und Geräteleistung sollten vor Veröffentlichung je einmal auf iOS und Android kontrolliert werden. Reduzierte Bewegung und No-JS-Fallback wurden automatisiert/statisch, nicht mit entsprechenden Browser-Einstellungen, geprüft. Das Kontaktformular wurde bewusst nicht real abgesendet.
 
 `/consulting/` und Unterpfade sind Weiterleitungen; historische `/entwuerfe/`-Varianten sowie `/prompt-studio/`, Kundenbereiche, Kursplattform und Handbuch waren nicht Teil dieses Umbaus. Es gab **keinen GitHub-Push und keine IONOS-Veröffentlichung**.
+
+## Freigegebener Feinschliff · 30.09.2026
+
+Der Nutzer hat den neuen mobilen Startseiten-Einstieg freigegeben: Logo behalten,
+den zweiten großen NextCourse-Schriftzug weglassen, „Mehr Zeit für das, was zählt.“
+als Hauptüberschrift verwenden, nur die kurze Zielgruppenzeile und einen Button
+„Angebote entdecken“ zeigen. Das Porträt und das Gesprächsangebot werden im
+gemeinsamen Kontaktabschluss gebündelt. Desktop-Inhalte und Desktop-Abstände
+bleiben erhalten; die Änderungen gelten bis 599 CSS-Pixel.
+
+- Der Hero enthält weiterhin genau eine H1. Die Browser-Zugänglichkeitsansicht
+  meldet mobil „Mehr Zeit für das, was zählt.“; die Desktop-H1 bleibt NextCourse.
+  Bei 390 px ist der Hero 482,5 px hoch; der Angebotsbereich beginnt bei 528,5 px.
+  Der Hauptbutton führt tatsächlich zu `/#leistungen`.
+- Der gemeinsame Kontaktabschluss auf Startseite, Management, Akademie und
+  Operation verwendet mobil ein 96-px-Porträt, kürzere Einleitung und geringere
+  Abstände. Seine Höhe beträgt rund 547 px bei 375/390 px, 579 px bei 320 px und
+  554 px bei 430/599 px. Name, Hinweis auf kostenloses/unverbindliches Gespräch
+  und themenbezogene Kontaktlinks bleiben erhalten.
+- Diese vier Seiten wurden bei 320, 375, 390, 430, 599, 600, 768 und 1366 px
+  geprüft: kein horizontaler Dokumentüberlauf. Bis 599 px ist genau ein Hero-
+  Aktionslink sichtbar; ab 600 px bleiben beide ursprünglichen Wege sichtbar.
+  Mobile Hero-/Kontaktansichten und der Desktop-Hero wurden als Screenshots
+  visuell kontrolliert.
+- Mit im Browser tatsächlich deaktiviertem JavaScript wurde die Startseite bei
+  390 px geprüft: Hauptbutton navigiert zum Angebotsanker, alle drei Angebotslinks
+  bleiben sichtbar, der Kontaktabschluss bleibt lesbar. Dies ergänzt die älteren
+  statischen No-JS-Prüfungen, ersetzt aber keinen echten Smartphone-Test.
+- Zwei neue Browser-Regressionsprüfungen scheiterten zunächst an der alten
+  mobilen H1 bzw. am zu hohen Kontaktabschluss und bestehen nach dem Umbau.
+  Abschließend: Produktionsbuild mit 35 Astro-Seiten; Node 16/16, Python 17/17;
+  Site-Prüfung 41 HTML-Seiten, 2622 interne Verweise, keine Fehler.
+- Die unabhängige Code-Prüfung fand keine kritischen oder wichtigen Probleme.
+  Sie bestätigte gleiche Desktop-Elementmaße nach Wiederherstellung der alten
+  Markup-Varianten im Browser bei 600, 1366 und 1920 px. Ihr kleiner Testhinweis
+  wurde übernommen: Die vier Kontaktpfade werden auf das genaue Ziel samt Thema
+  und Formularanker geprüft, nicht nur auf einen vorhandenen Themenparameter.
+
+Der neue Stand bleibt in der isolierten Arbeitskopie `mobile-erlebnis`.
+Kein GitHub-Push, keine IONOS-Veröffentlichung und kein reales Formularversenden.
