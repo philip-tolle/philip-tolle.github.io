@@ -2,7 +2,7 @@
 import OfferPage from '../../components/OfferPage.astro';
 import { monthlyOffer } from '../../data/detail-offers';
 const pakete = [
-  { pname: 'F&B Desk', titel: 'Karten & Bankettunterlagen', preis: 'ab 890 €', einrichtung: 'Einrichtung ab 890 € — entfällt beim Einstieg über den 30-Tage-Test', fuer: 'Für Häuser mit täglich wechselnden Karten — von der Tagung bis zur Halbpension.', einheiten: [
+  { pname: 'F&B Desk', titel: 'Karten & Bankettunterlagen', fuer: 'Für Häuser mit täglich wechselnden Karten — von der Tagung bis zur Halbpension.', einheiten: [
     { titel: 'Übernahme aller laufenden Karten', sub: 'Tages-, Wochen-, Tagungs- & HP' },
     { titel: 'Menü- & Preisänderungen inklusive', sub: 'termingerecht druckfertig' },
     { titel: '4 Event-Menükarten pro Monat', sub: 'aus Vorlagen — individuell gegen Aufpreis' },
@@ -10,7 +10,7 @@ const pakete = [
     { titel: 'Alle Formate geliefert', sub: 'Druck-PDF, Web-PDF & Grafik' },
     { titel: '30 Minuten Planungsgespräch', sub: 'jeden Monat, fester Termin' },
   ] },
-  { pname: 'Content Desk', titel: 'Social Media & Redaktionsplanung', preis: 'ab 1.490 €', einrichtung: 'Einrichtung ab 1.290 €', fuer: 'Für Häuser, die sichtbar bleiben wollen — ohne eigene Contentstelle.', einheiten: [
+  { pname: 'Content Desk', titel: 'Social Media & Redaktionsplanung', fuer: 'Für Häuser, die sichtbar bleiben wollen — ohne eigene Contentstelle.', einheiten: [
     { titel: 'Monatlicher Redaktionsplan', sub: 'saisonale Themen eingebunden' },
     { titel: '6 Beiträge pro Monat', sub: 'Instagram & Facebook' },
     { titel: '8 Story-Elemente', sub: 'passend zu den Beiträgen' },
@@ -18,7 +18,7 @@ const pakete = [
     { titel: 'Monatsbericht', sub: 'Zahlen statt Bauchgefühl' },
     { titel: '45 Minuten Planungsgespräch', sub: 'jeden Monat, fester Termin' },
   ] },
-  { pname: 'Operation Partner', titel: 'Umfassende Begleitung', preis: 'ab 2.690 €', einrichtung: 'Einrichtung ab 1.890 €', fuer: 'Für Häuser mit Restaurant, Bankett und regelmäßigem Projektbedarf.', einheiten: [
+  { pname: 'Operation Partner', titel: 'Umfassende Begleitung', fuer: 'Für Häuser mit Restaurant, Bankett und regelmäßigem Projektbedarf.', einheiten: [
     { titel: 'Beide Desks komplett', sub: 'F&B + Content in vollem Umfang' },
     { titel: '12 Projektstunden pro Quartal', sub: 'flexibel einsetzbar' },
     { titel: 'Saison- & Kampagnenplanung', sub: 'viermal im Jahr' },
@@ -28,10 +28,10 @@ const pakete = [
   ] },
 ];
 ---
-<OfferPage page={monthlyOffer} extraLinks={[{label: 'Pakete & Preise', href: '#pakete'}]}>
- <section class="detail-section" id="pakete"><div class="detail-intro"><div><p class="detail-kicker">Die Pakete im Überblick</p><h2>Ein fester Rahmen.<em>Eine klare Leistung.</em></h2></div><p>Die Preise sind Netto-Ab-Preise pro Monat. Den genauen Umfang und die Einrichtung vereinbaren wir vor dem Start.</p></div>
- <div class="detail-grid">{pakete.map(p => <article class="detail-card detail-package"><p class="detail-kicker">{p.pname}</p><h3>{p.titel}</h3><p class="detail-price">{p.preis}<small>netto / Monat</small></p><p class="detail-note">{p.einrichtung}</p><ul class="detail-list">{p.einheiten.map(e => <li><strong>{e.titel}</strong>{e.sub}</li>)}</ul><p>{p.fuer}</p><a class="detail-button" href={'/kontakt/?thema=entlastung&angebot=' + encodeURIComponent(p.pname) + '#contactform'}>Paket anfragen <span aria-hidden="true">↗</span></a></article>)}</div>
+<OfferPage page={monthlyOffer} extraLinks={[{label: 'Die Pakete', href: '#pakete'}]}>
+ <section class="detail-section" id="pakete"><div class="detail-intro"><div><p class="detail-kicker">Die Pakete im Überblick</p><h2>Ein fester Rahmen.<em>Eine klare Leistung.</em></h2></div><p>Den genauen Umfang und den Preis vereinbaren wir vor dem Start in einem schriftlichen Angebot.</p></div>
+ <div class="detail-grid">{pakete.map(p => <article class="detail-card detail-package"><p class="detail-kicker">{p.pname}</p><h3>{p.titel}</h3><ul class="detail-list">{p.einheiten.map(e => <li><strong>{e.titel}</strong>{e.sub}</li>)}</ul><p>{p.fuer}</p><a class="detail-button" href={'/kontakt/?thema=entlastung&angebot=' + encodeURIComponent(p.pname) + '#contactform'}>Paket anfragen <span aria-hidden="true">↗</span></a></article>)}</div>
  <p class="detail-note">Die Leistungen im Detail: <a href="/operation/karten-unterlagen/">Karten &amp; Unterlagen</a> · <a href="/operation/gaestekommunikation/">Gästekommunikation &amp; Inhalte</a>.</p>
- <p class="detail-note">Mindestlaufzeit: sechs Monate. Zusätzliche Aufgaben und Fremdkosten werden separat vereinbart. Newsletter-Umfang nach gesonderter Abstimmung. Zum Kennenlernen eignet sich der <a href="/operation/30-tage-test/">30-Tage-Test</a>.</p>
+ <p class="detail-note">Mindestlaufzeit sechs Monate, danach monatlich kündbar. Beim Einstieg über den 30-Tage-Test ist die Einrichtung inklusive. Zusätzliche Aufgaben und Fremdkosten werden separat vereinbart. Newsletter-Umfang nach gesonderter Abstimmung. Zum Kennenlernen eignet sich der <a href="/operation/30-tage-test/">30-Tage-Test</a>.</p>
  </section>
 </OfferPage>

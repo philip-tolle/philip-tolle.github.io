@@ -39,7 +39,7 @@ export interface ServicePageContent {
 
 export const management: ServicePageContent = {
   id: 'management', area: 'Management', topic: 'management', title: 'Management für Hotels & Gastronomie | NextCourse',
-  description: 'Weniger Rückfragen, klare Abläufe und Wissen, das im Haus bleibt. Digitales Betriebshandbuch, Mystery Check und Digital Audit für Hotels und Gastronomie in Mainfranken.',
+  description: 'Weniger Rückfragen, klare Abläufe und Wissen, das im Haus bleibt. Digitales Betriebshandbuch, Mystery Check und Digital Audit für inhabergeführte Hotels und Gastronomie in Mainfranken.',
   image: managementImage, imageAlt: 'Eine Mitarbeiterin ordnet die Abläufe von Rezeption, Service und Housekeeping an einer gemeinsamen Übersicht.',
   hero: { heading: 'Ein Betrieb, der auf', emphasis: 'klaren Abläufen steht.', description: 'Wir prüfen Abläufe und Gästeerlebnisse, halten Betriebswissen fest und führen Verbesserungen mit Ihrem Team ein. Sie erhalten klare Standards, konkrete Prioritäten oder einen erprobten neuen Ablauf.', mobileDescription: 'Wir machen Betriebswissen zugänglich, prüfen Abläufe und begleiten konkrete Verbesserungen.', action: 'Über Ihren Betrieb sprechen' },
   journey: {
@@ -89,7 +89,7 @@ export const management: ServicePageContent = {
 
 export const academy: ServicePageContent = {
   id: 'academy', area: 'Academy', topic: 'academy', title: 'Weiterbildung für Hotel & Gastronomie | NextCourse Academy',
-  description: 'KI verstehen und digitale Zusammenarbeit im Team verbessern. Praxisnahe Weiterbildung für Hotels und Gastronomie in Mainfranken – auch bei Ihnen im Betrieb.',
+  description: 'KI verstehen und digitale Zusammenarbeit im Team verbessern. Praxisnahe Weiterbildung für inhabergeführte Hotels und Gastronomie in Mainfranken – auch bei Ihnen im Betrieb.',
   image: academyImage, imageAlt: 'Eine Trainerin vermittelt einem Team aus dem Gastgewerbe Wissen für den Arbeitsalltag.',
   hero: { heading: 'Weiterbildung,', emphasis: 'die im Alltag ankommt.', description: 'KI sinnvoll einsetzen und digitale Veränderungen gemeinsam angehen: Ihr Team lernt mit Beispielen aus Hotel und Gastronomie. In Mainfranken und auf Wunsch direkt in Ihrem Haus.', mobileDescription: 'Praxisnahe Schulungen zu KI und digitaler Zusammenarbeit – auf Wunsch in Ihrem Haus.', action: 'Schulung besprechen' },
   journey: {
@@ -125,7 +125,7 @@ export const academy: ServicePageContent = {
 
 export const operation: ServicePageContent = {
   id: 'operation', area: 'Operation', topic: 'entlastung', title: 'Karten, Kommunikation & Aktionen fürs Gastgewerbe | NextCourse',
-  description: 'Wir erstellen Karten und Unterlagen, betreuen Gästekommunikation und organisieren Aktionen. Unterstützung für Hotels und Gastronomie in Mainfranken.',
+  description: 'Wir erstellen Karten und Unterlagen, betreuen Gästekommunikation und organisieren Aktionen. Unterstützung für inhabergeführte Hotels und Gastronomie in Mainfranken.',
   image: operationImage, imageAlt: 'Eine Mitarbeiterin übergibt Aufgaben an ihre Ansprechpartnerin im Backoffice.',
   hero: { heading: 'Aufgaben abgeben.', emphasis: 'Mehr Zeit für Ihr Haus.', description: 'Wir erstellen Ihre Karten und Unterlagen, kümmern uns um Inhalte für Ihre Gäste und organisieren Aktionen. Für Hotels und Gastronomie in Mainfranken – mit einer festen Ansprechperson und klar vereinbarten Aufgaben.', mobileDescription: 'Wir übernehmen Karten, Gästeinhalte und Aktionen – mit klar vereinbarten Aufgaben.', action: 'Aufgaben besprechen' },
   journey: {

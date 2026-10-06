@@ -2,12 +2,18 @@
 import OfferPage from '../../components/OfferPage.astro';
 import { flyingOffer } from '../../data/detail-offers';
 ---
-<OfferPage page={flyingOffer} extraLinks={[{ label: 'Mögliche Themen', href: '#themen' }]}>
+<OfferPage page={flyingOffer} extraLinks={[{ label: 'Mögliche Themen', href: '#themen' }, { label: 'Gästeblick-Training', href: '#gaesteblick' }]}>
   <section class="detail-section" id="themen">
     <div class="detail-intro"><div><p class="detail-kicker">Das Lernziel zuerst</p><h2>Welches Thema <em>bringt Ihr Team weiter?</em></h2></div><p>Diese Themen können wir mit Ihrem Team im eigenen Haus bearbeiten. Weitere Lernziele besprechen wir individuell.</p></div>
+    <ul class="detail-list flying-themen">{['Service und Gästekommunikation','Wein und Getränke','Einarbeitung von Aushilfen und Quereinsteigern','Prüfungsvorbereitung für Auszubildende','KI im Arbeitsalltag','Führung für neue Abteilungsleitungen'].map(t => <li>{t}</li>)}</ul>
     <div class="detail-grid detail-grid--two">
       <article class="detail-card"><h3>KI im Geschäftsalltag</h3><p>KI verstehen, an typischen Aufgaben ausprobieren und Ergebnisse bewusst prüfen. Ein kompakter Einstieg ohne KI-Vorkenntnisse.</p><a class="detail-link" href="/akademie/ki-grundlagen/">Inhalte des KI-Seminars <span aria-hidden="true">↗</span></a></article>
       <article class="detail-card"><h3>Digitale Zusammenarbeit</h3><p>Veränderungen verständlich erklären, Fragen im Team aufgreifen und gemeinsame Arbeitsweisen vereinbaren.</p><a class="detail-link" href="/akademie/digitale-zusammenarbeit/">Inhalte der Teamschulung <span aria-hidden="true">↗</span></a></article>
     </div>
   </section>
+  <section class="detail-section" id="gaesteblick">
+    <div class="detail-intro"><div><p class="detail-kicker">Gästeblick-Training</p><h2>Einmalig <em>oder laufend.</em></h2></div><p>Erst erleben wir Ihr Haus verdeckt als Gast, im ganz normalen Betrieb. Dann trainieren wir mit Ihrem Team genau die Themen, die dabei aufgefallen sind. Beim nächsten Besuch sehen wir, was angekommen ist.</p></div>
+    <article class="detail-card"><h3>Die Inhalte dokumentieren wir.</h3><p>Auf Wunsch werden sie Teil Ihres digitalen Betriebshandbuchs.</p><a class="detail-link" href="/management/betriebshandbuch/">Zum digitalen Betriebshandbuch <span aria-hidden="true">↗</span></a></article>
+  </section>
 </OfferPage>
+<style>.flying-themen{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 2rem;margin-top:0}@media(max-width:699px){.flying-themen{grid-template-columns:1fr}}</style>
