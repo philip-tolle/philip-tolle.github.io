@@ -1,21 +1,21 @@
+---
+import { wege, kontakt } from '../data/wege';
+---
 <footer class="footer">
   <div class="wrap">
     <div class="footer__grid">
       <div>
         <span class="fw">NextCourse</span><br />
-        <span class="claim">Gute Gastgeber. Klare Abläufe.</span>
-        <p class="faint small" style="margin-top:1rem">Management, Academy und Operation für Hotels und Gastronomie. Persönlich in Mainfranken.</p>
+        <span class="claim">Zuhören. Möglichkeiten erkennen. Umsetzen.</span>
+        <p class="faint small" style="margin-top:1rem">Wir setzen um, wofür im Alltag die Zeit fehlt. Für inhabergeführte Hotels und Gastronomie in Mainfranken.</p>
       </div>
       <div>
-        <h4>Bereiche</h4>
+        <h4>Vier Wege</h4>
         <ul>
-          <li><a href="/management/">Management</a></li>
-          <li><a href="/management/betriebshandbuch/">Digitales Betriebshandbuch</a></li>
-          <li><a href="/akademie/">Akademie</a></li>
-          <li><a href="/operation/">Operation</a></li>
-          <li><a href="/akademie/foerderung/">Förderung</a></li>
-          <li><a href="/prompt-studio/">Prompt Studio</a></li>
+          {wege.map((weg) => <li><a href={weg.href}>{weg.title}</a></li>)}
+          <li><a href="/preise/">Preise und Förderung</a></li>
           <li><a href="/faq/">Häufige Fragen</a></li>
+          <li><a href="/prompt-studio/">Prompt Studio</a></li>
         </ul>
       </div>
       <div>
@@ -39,7 +39,7 @@
       <span>© <span id="year"></span> NextCourse UG (haftungsbeschränkt) · Würzburg</span>
       <span>
         <a href="tel:+4915120220983">+49 151 20220983</a> ·
-        <a href="mailto:kontakt@next-course.de">kontakt@next-course.de</a>
+        <a href={`mailto:${kontakt.email}`}>{kontakt.email}</a>
       </span>
     </div>
   </div>

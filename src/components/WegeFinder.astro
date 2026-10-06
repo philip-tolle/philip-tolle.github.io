@@ -1,0 +1,80 @@
+---
+// Booklet Seite 5 "Vier Wege". Designkammer: effekte/auswahlkarten (echte Checkboxen, Auswahl über :has).
+import { wege } from '../data/wege';
+---
+<section class="wege nc-section nc-shell" id="wege" aria-labelledby="wege-title" data-wege>
+  <div class="wege__intro">
+    <p class="nc-kicker">Vier Wege</p>
+    <h2 id="wege-title" tabindex="-1">Vier Wege.<em>Meist beginnt es mit einem.</em></h2>
+    <p>Haken Sie an, was auf Ihr Haus zutrifft. Der Weg mit den meisten Treffern ist oft ein guter Anfang.</p>
+  </div>
+  <div class="wege__grid">
+    {wege.map(weg => (
+      <fieldset class="wege__card" data-weg={weg.id}>
+        <legend class="wege__legend"><span class="wege__nr" aria-hidden="true">{weg.nr}</span><span class="wege__title">{weg.title}</span></legend>
+        <ul class="wege__checks">
+          {weg.checks.map((check, i) => (
+            <li><label class="wege__check"><input type="checkbox" name={`${weg.id}-${i}`} /><span class="wege__box" aria-hidden="true"></span><span>{check}</span></label></li>
+          ))}
+        </ul>
+        <a class="wege__link" href={weg.href}>{weg.nav} ansehen <span aria-hidden="true">↗</span></a>
+      </fieldset>
+    ))}
+  </div>
+  <div class="wege__result" aria-live="polite">
+    <p class="wege__result-text" data-wege-result>Nicht sicher, wo Sie anfangen sollen? Genau dafür ist das Erstgespräch da. Kostenlos, bei Ihnen im Haus oder telefonisch.</p>
+    <p class="wege__result-em">Wir finden den ersten Schritt gemeinsam.</p>
+    <div class="wege__result-actions"><a class="nc-button" href="/kontakt/" data-wege-cta>Erstgespräch anfragen <span aria-hidden="true">↗</span></a></div>
+  </div>
+</section>
+
+<script>
+  import { wege } from '../data/wege';
+  const root = document.querySelector<HTMLElement>('[data-wege]');
+  if (root) {
+    const result = root.querySelector<HTMLElement>('[data-wege-result]')!;
+    const cta = root.querySelector<HTMLAnchorElement>('[data-wege-cta]')!;
+    const initial = result.textContent;
+    root.addEventListener('change', () => {
+      const counts = wege.map(w => ({ w, n: root.querySelectorAll(`[data-weg="${w.id}"] input:checked`).length }));
+      const best = counts.reduce((a, b) => (b.n > a.n ? b : a));
+      root.querySelectorAll<HTMLElement>('.wege__card').forEach(card => card.classList.toggle('is-best', best.n > 0 && card.dataset.weg === best.w.id));
+      if (best.n === 0) { result.textContent = initial; cta.href = '/kontakt/'; return; }
+      result.textContent = `Ihr möglicher erster Weg: ${best.w.nr} ${best.w.title}. Im Erstgespräch prüfen wir gemeinsam, ob er passt.`;
+      cta.href = `/kontakt/?thema=${best.w.topic}#contactform`;
+    });
+  }
+</script>
+
+<style>
+  .wege{background:var(--nc-coral);color:var(--nc-forest)}
+  .wege .nc-kicker{color:var(--nc-forest)}
+  .wege__intro{max-width:62rem;margin-bottom:clamp(2rem,4vw,3.5rem)}
+  .wege__intro h2{color:var(--nc-forest);margin-bottom:1rem}
+  .wege__intro h2 em{display:block;font-family:Georgia,'Times New Roman',serif;font-weight:400;font-style:italic;letter-spacing:-.04em;font-size:.8em;margin-top:.3rem}
+  .wege__intro h2:focus{outline:none}
+  .wege__intro>p:not(.nc-kicker){color:#18363a;margin:0}
+  .wege__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1rem,2vw,1.5rem)}
+  .wege__card{display:block;margin:0;padding:clamp(1.4rem,2.6vw,2.2rem);border:2px solid transparent;border-radius:16px;background:#f3ede6;min-width:0;transition:border-color .2s,box-shadow .2s}
+  .wege__card.is-best{border-color:var(--nc-forest);box-shadow:0 18px 40px -26px #122a2f}
+  .wege__legend{float:left;width:100%;padding:0}
+  .wege__legend+*{clear:both}
+  .wege__nr{display:block;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:clamp(2.2rem,3.4vw,3rem);line-height:1;color:#c4462b;margin-bottom:.8rem}
+  .wege__title{display:block;font-family:var(--disp);font-weight:700;font-size:clamp(1.25rem,1.7vw,1.7rem);letter-spacing:-.03em;line-height:1.25;margin-bottom:1rem}
+  .wege__checks{list-style:none;margin:0 0 1.2rem;padding:0;display:grid;gap:.35rem}
+  .wege__check{position:relative;display:grid;grid-template-columns:1.4rem minmax(0,1fr);gap:.8rem;align-items:start;padding:.65rem .75rem;border-radius:10px;cursor:pointer;font-size:.92em;line-height:1.5;color:#18363a;min-height:44px}
+  .wege__check input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+  .wege__box{display:grid;place-items:center;width:1.4rem;height:1.4rem;margin-top:.05rem;border:1.5px solid #122a2f80;border-radius:5px;background:#fff}
+  .wege__check:has(input:checked){background:#fff}
+  .wege__check:has(input:checked) .wege__box{background:var(--nc-forest);border-color:var(--nc-forest)}
+  .wege__check:has(input:checked) .wege__box::after{content:'';width:.45rem;height:.75rem;border:solid var(--nc-paper);border-width:0 2px 2px 0;transform:translateY(-1px) rotate(45deg)}
+  .wege__check:has(input:focus-visible){outline:2px solid var(--nc-forest);outline-offset:2px}
+  .wege__link{display:inline-flex;gap:.6rem;align-items:center;min-height:44px;color:var(--nc-forest);font-weight:600;font-size:.9em;text-underline-offset:.3em}
+  .wege__link:focus-visible{outline:2px solid var(--nc-forest);outline-offset:4px}
+  .wege__result{margin-top:clamp(1.5rem,3vw,2.5rem);padding:clamp(1.5rem,3vw,2.5rem);border-radius:16px;background:var(--nc-forest);color:var(--nc-paper);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.4rem 2rem;align-items:center}
+  .wege__result-text{margin:0;font-weight:600}
+  .wege__result-em{margin:0;font-family:Georgia,'Times New Roman',serif;font-style:italic;color:#ff947a;grid-column:1}
+  .wege__result-actions{grid-column:2;grid-row:1/3}
+  @media(max-width:799px){.wege__grid{grid-template-columns:1fr}.wege__result{grid-template-columns:1fr}.wege__result-actions{grid-column:1;grid-row:auto;margin-top:.8rem}}
+  @media(prefers-reduced-motion:reduce){.wege__card{transition:none}}
+</style>

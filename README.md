@@ -27,7 +27,8 @@ npm run preview    # Build lokal testen
 
 - `src/layouts/Base.astro` — Grundgerüst (Head, Fonts, Ambient-Canvas, Header, Footer)
 - `src/components/` — Header (Nav + Mobil-Overlay), Footer
-- `src/pages/` — Seiten für Management, Akademie, Operation und die allgemeinen Inhalte
+- `src/pages/` — Startseite, die vier Wege (`betriebshandbuch`, `entlastung`, `mystery-check-digital-audit`, `training-projekte`), `preise`, FAQ, Über, Kontakt, Blog
+- `src/data/wege.ts` — die vier Wege und die Kontaktdaten; Quelle für Navigation, Startseite, Footer und 404
 - `src/styles/global.css` — komplettes Design-System (Boutique-Hotel-Ästhetik, Glas, gedämpfte Farben)
 - `src/assets/` — Bilder, werden von Astro beim Build optimiert (WebP)
 
@@ -43,6 +44,6 @@ Google-Fonts-CDN, DSGVO-konform.
 - [x] Datenschutzerklärung (vor Domain-Livegang nochmal gegen Generator/Anwalt prüfen)
 - [x] Formular-Backend (FormSubmit — aktiviert und getestet)
 - [x] Terminbuchung (Cal.com-Link: https://cal.com/philip-tolle-yxp7ih/erstgesprach)
-- [ ] LinkedIn-Link im Footer (URL fehlt noch)
+- [x] LinkedIn-Link im Footer (`linkedin.com/in/philiptolle`)
 - [x] Produktivbetrieb bei IONOS unter `https://www.next-course.de`
 - [x] GitHub Pages und automatisches Pages-Deployment entfernt

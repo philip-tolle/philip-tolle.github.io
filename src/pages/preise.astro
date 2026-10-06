@@ -1,0 +1,43 @@
+---
+import DetailLayout from '../layouts/DetailLayout.astro';
+import '../styles/wege-pages.css';
+
+const regeln = [
+  { title: 'Digitales Betriebshandbuch', href: '/betriebshandbuch/', text: 'Festpreis nach Zahl der Abteilungen und Abläufe. Bezahlt in einer Summe oder in drei Teilen: zum Start, zur Mitte, nach Ihrer Abnahme. Danach auf Wunsch monatlich in zwei Stufen. Betreuung: Wir halten Ihr Handbuch erreichbar, gesichert und geschützt. Betreuung und Pflege: Zusätzlich halten wir die Inhalte aktuell, wenn sich Abläufe ändern.' },
+  { title: 'Entlastung im Alltag', href: '/entlastung/', text: '30-Tage-Test zum Festpreis. Danach ein Monatspaket nach Umfang, Mindestlaufzeit sechs Monate.' },
+  { title: 'Mystery Check und Digital Audit', href: '/mystery-check-digital-audit/', text: 'Festpreis. Voll angerechnet, wenn Sie innerhalb von drei Monaten ein Handbuch oder ein größeres Projekt beauftragen.' },
+  { title: 'Training im Haus', href: '/training-projekte/#training', text: 'Tagessatz nach Dauer und Gruppengröße. Gästeblick-Training auch als Monatspaket.' },
+  { title: 'Projekte nach Wunsch', href: '/training-projekte/#projekte', text: 'Festpreis nach Umfang.' },
+];
+---
+<DetailLayout area="info"
+  title="Preise und Förderung | NextCourse"
+  description="Kein Haus ist wie das andere. Deshalb stehen hier die Regeln, nach denen wir rechnen: Festpreise, klare Laufzeiten, Pilotkonditionen und Förderung wie der Digitalbonus Bayern."
+  label="Preise und Förderung" heading="Sie kennen den Preis," emphasis="bevor es losgeht."
+  lead="Kein Haus ist wie das andere. Deshalb stehen hier keine Preise, sondern die Regeln, nach denen wir rechnen. Nach dem Erstgespräch bekommen Sie ein schriftliches Angebot mit festem Preis, Umfang und Zeitplan. Sie entscheiden in Ruhe."
+  action="Angebot anfragen" secondary={{ label: 'So rechnen wir', href: '#regeln' }}
+  facts={['Schriftliches Angebot', 'Fester Preis, Umfang und Zeitplan', 'Fremdkosten immer separat']}
+  contactTitle="Was soll Ihr Angebot enthalten?">
+  <section class="detail-section" id="regeln">
+    <div class="detail-intro"><div><p class="detail-kicker">So rechnen wir</p><h2>Klare Regeln <em>für jeden Weg.</em></h2></div><p>Fremdkosten wie Druck, Verzehr bei Testbesuchen oder Software stehen immer separat im Angebot.</p></div>
+    <div class="detail-rows">{regeln.map((r, i) => <article class="detail-row"><span class="detail-row__number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><div><h3>{r.title}</h3><p>{r.text}</p></div><div class="detail-row__end"><a class="detail-link" href={r.href}>Zum Angebot <span aria-hidden="true">↗</span></a></div></article>)}</div>
+  </section>
+
+  <section class="detail-section" id="pilot">
+    <div class="weg-callout weg-callout--dark">
+      <p class="detail-kicker">Pilotkonditionen</p>
+      <h2>Für die ersten Häuser <em class="weg-callout__em">in Mainfranken.</em></h2>
+      <p>Wir starten mit wenigen Häusern und begleiten sie besonders eng. Dafür gelten Pilotkonditionen. Im Gegenzug wünschen wir uns ehrliches Feedback und die Erlaubnis, über die Zusammenarbeit zu berichten.</p>
+    </div>
+  </section>
+
+  <section class="detail-section" id="foerderung">
+    <div class="weg-split">
+      <div><p class="detail-kicker">Förderung</p><h2>Digitalbonus Bayern <em>vorab prüfen.</em></h2></div>
+      <div>
+        <p>Für Digitalisierungsprojekte kann eine Förderung wie der Digitalbonus Bayern infrage kommen. Wir prüfen das mit Ihnen vor dem Start.</p>
+        <div class="weg-callout" style="margin-top:1.2rem"><p><strong>Wichtig:</strong> Den Antrag stellt Ihr Haus selbst, und beauftragt werden darf erst nach der Eingangsbestätigung. Sonst entfällt die Förderung.</p></div>
+      </div>
+    </div>
+  </section>
+</DetailLayout>

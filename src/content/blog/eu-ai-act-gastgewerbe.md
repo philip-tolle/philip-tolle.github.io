@@ -35,10 +35,10 @@ Eine praktische Einführung kann mit vier Fragen beginnen:
 
 Dokumentieren Sie, welche Themen mit wem behandelt wurden und welche betrieblichen Regeln gelten. Prüfen Sie erneut, wenn neue Systeme, Aufgaben oder Mitarbeitende hinzukommen. So bleibt Wissen im Alltag nutzbar.
 
-Unser [KI-Grundlagenseminar](/akademie/ki-grundlagen/) bietet einen praktischen Einstieg. Über die [Flying Academy](/akademie/flying-academy/) können Inhalte auf Ihr Team und die Arbeit im eigenen Haus abgestimmt werden.
+Ein [Training „KI im Arbeitsalltag“](/training-projekte/#training) bietet einen praktischen Einstieg. Wir kommen dafür zu Ihnen und arbeiten mit Aufgaben aus Ihrem eigenen Haus.
 
 ## Offene Fragen gezielt einordnen
 
 Kompetenzaufbau ist ein Teil des verantwortungsvollen KI-Einsatzes. Welche weiteren Anforderungen für ein konkretes System gelten, muss anhand seiner Nutzung und der aktuellen Rechtslage geprüft werden. Bei rechtlichen Einzelfragen ist eine entsprechend qualifizierte Beratung sinnvoll.
 
-Der [Quick-Check](/management/quick-check/) hilft, eingesetzte Anwendungen, Zuständigkeiten und offene Prüfpunkte zu ordnen. Die anschließenden Schritte richten sich nach der Situation Ihres Betriebs.
+Das [Digital Audit](/mystery-check-digital-audit/#digital-audit) hilft, eingesetzte Anwendungen, Zuständigkeiten und offene Prüfpunkte zu ordnen. Die anschließenden Schritte richten sich nach der Situation Ihres Betriebs.

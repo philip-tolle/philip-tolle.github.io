@@ -1,18 +1,16 @@
 ---
 import {Image} from 'astro:assets';
 import DetailLayout from '../layouts/DetailLayout.astro';
-import DetailRows from '../components/DetailRows.astro';
+import Icon from '../components/Icon.astro';
 import ProfileCard from '../components/ProfileCard.astro';
 import koru from '../assets/motiv-neuseeland.png';
+const werte=[{icon:'herzlichkeit',title:'Gastfreundschaft zuerst'},{icon:'befaehigung',title:'Befähigung statt Abhängigkeit'},{icon:'exzellenz',title:'Qualität mit Augenmaß'},{icon:'nachhaltigkeit',title:'Nachhaltig in der Umsetzung'},{icon:'mut',title:'Mut zur Veränderung'}];
 ---
-<DetailLayout title="Philip Tolle & NextCourse | Aus der Branche. An Ihrer Seite." description="Philip Tolle verbindet Erfahrung aus Hotellerie und Gastronomie mit Weiterbildung und praktischer Umsetzung. Für Gastgeber in Mainfranken." label="Über NextCourse" heading="Aus der Branche." emphasis="An Ihrer Seite." lead="Ich bin Philip Tolle. Ich kenne den Anspruch, ein guter Gastgeber zu sein – und die vielen Aufgaben, die im Hintergrund dafür erledigt werden müssen." action="Lernen wir uns kennen" secondary={{label:'Meine Geschichte',href:'#geschichte'}} facts={['13 Jahre Gastgewerbe','Würzburg · Mainfranken','Management · Academy · Operation']}>
-<section class="detail-section" id="profil"><div class="about-profile"><ProfileCard /><div><p class="detail-kicker">Der Mensch hinter NextCourse</p><h2>Gastfreundschaft braucht <em>Raum im Alltag.</em></h2><p>Meine Stationen reichen von der Traube Tonbach bis zur internationalen Restaurantleitung. Dabei habe ich erlebt, wie viel von guten Übergaben, einem eingespielten Team und zugänglichem Wissen abhängt.</p><p>NextCourse ist meine Antwort darauf: Wir ordnen Abläufe, entwickeln Menschen und übernehmen Aufgaben. Damit Sie sich wieder stärker um Ihr Haus, Ihr Team und Ihre Gäste kümmern können.</p></div></div></section>
+<DetailLayout title="Philip Tolle & NextCourse | Aus der Branche. An Ihrer Seite." description="Philip Tolle verbindet Erfahrung aus Hotellerie und Gastronomie mit Weiterbildung und praktischer Umsetzung. Für Gastgeber in Mainfranken." label="Über NextCourse" heading="Aus der Branche." emphasis="An Ihrer Seite." lead="Ich bin Philip Tolle. Ich kenne den Anspruch, ein guter Gastgeber zu sein – und die vielen Aufgaben, die im Hintergrund dafür erledigt werden müssen." action="Lernen wir uns kennen" secondary={{label:'Meine Geschichte',href:'#geschichte'}} facts={['13 Jahre Gastgewerbe','Würzburg · Mainfranken','Für Hotels und Gastronomie']}>
+<section class="detail-section" id="profil"><div class="about-profile"><ProfileCard /><div><p class="detail-kicker">Der Mensch hinter NextCourse</p><h2>Gastfreundschaft braucht <em>Raum im Alltag.</em></h2><p>Meine Stationen reichen von der Traube Tonbach bis zur internationalen Restaurantleitung. Dabei habe ich erlebt, wie viel von guten Übergaben, einem eingespielten Team und zugänglichem Wissen abhängt.</p><p>NextCourse ist meine Antwort darauf: Wir setzen um, wofür im Alltag die Zeit fehlt. Damit Sie sich wieder stärker um Ihr Haus, Ihr Team und Ihre Gäste kümmern können.</p></div></div></section>
 <section class="detail-section" id="geschichte"><div class="about-story"><div><p class="detail-kicker">Wie alles begann</p><h2>Eine Idee aus Neuseeland. <em>Ein Zuhause in Mainfranken.</em></h2><p>Warum NextCourse? Die Geschichte beginnt am anderen Ende der Welt. Hier können Sie sie in Ruhe anhören.</p></div><div class="detail-card about-audio"><Image src={koru} alt="Farnspirale als Motiv der Gründungsgeschichte" width={150} format="webp" loading="lazy"/><h3>Die Gründungsgeschichte</h3><audio controls preload="metadata" aria-label="Die Gründungsgeschichte von NextCourse" src="/audio/gruendungsgeschichte.mp3"><a href="/audio/gruendungsgeschichte.mp3">Gründungsgeschichte als Audio anhören</a></audio><p class="detail-note">Vorgelesen von einer KI-Stimme. Die Geschichte ist meine.</p></div></div></section>
-<section class="detail-section about-values"><div class="detail-intro"><h2>Worauf Sie sich <em>verlassen können.</em></h2><p>Eine Zusammenarbeit soll Ihren Alltag leichter machen. Daran richten wir unsere Arbeit aus.</p></div><DetailRows items={[
-{title:'Ein Blick für den Betriebsalltag',text:'Wir beginnen bei den Aufgaben und Menschen in Ihrem Haus. Eine Lösung muss zu Ihrem Betrieb passen und in einer vollen Schicht funktionieren.'},
-{title:'Ein klar vereinbarter Auftrag',text:'Sie wissen, was wir gemeinsam vorhaben, was geliefert wird und welchen Beitrag Ihr Team leistet. Umfang, Preis und nächste Schritte werden vor Beginn geklärt.'},
-{title:'Wissen, das bei Ihnen bleibt',text:'Wir erklären, dokumentieren und üben gemeinsam. Ihr Team soll neue Abläufe verstehen und im Alltag eigenständig anwenden können.'}
-]}/></section>
+<section class="detail-section about-values"><div class="detail-intro"><div><p class="detail-kicker">Haltung</p><h2>Wofür NextCourse steht.</h2></div><p>Diese fünf Werte leiten jede Zusammenarbeit, vom Erstgespräch bis zur Übergabe.</p></div><ul class="about-werte">{werte.map(w=><li><span class="about-werte__icon"><Icon name={w.icon} size={44}/></span><span>{w.title}</span></li>)}</ul></section>
+<section class="detail-section about-vision"><div class="about-vision__box"><div><p class="detail-kicker">Wohin es geht</p><h2>Ein Partner für <em>die ganze Region.</em></h2><p>Mein Ziel ist ein ganzheitlicher Partner für inhabergeführte Hotels und Gastronomiebetriebe in Mainfranken, der Bildung, Digitalisierung und praktische Umsetzung verbindet. Dafür baue ich ein Team mit unterschiedlichsten fachlichen Stärken auf.</p><p>Perspektivisch soll in Würzburg eine feste, nach AZAV zertifizierte NextCourse Academy entstehen. Ein Ort, der Betriebe und Menschen aus der Region langfristig weiterbringt.</p></div><blockquote><p>„Wenn wir Wissen, Erfahrung und neue Möglichkeiten verbinden, stärken wir nicht nur einzelne Betriebe. Wir stärken gemeinsam die Gastfreundschaft und die Zukunft unserer Region.“</p><footer>Philip Tolle, Gründer und Geschäftsführer</footer></blockquote></div></section>
 </DetailLayout>
 <style>
 .about-profile{display:grid;grid-template-columns:minmax(230px,.65fr) minmax(0,1.35fr);align-items:center;gap:clamp(2rem,4vw,3.5rem);background:#e8eeeb;border-radius:12px;padding:clamp(1.5rem,3vw,2.5rem)}
@@ -22,11 +20,13 @@ import koru from '../assets/motiv-neuseeland.png';
 .about-audio{width:100%;padding:1.75rem;background:#ff6b4a;border:0;--detail-muted:#122a2f;box-shadow:0 12px 30px -20px #0008}
 .about-audio img{width:56px;height:56px;border-radius:50%;margin-bottom:1rem}
 .about-audio audio{display:block;width:100%;margin-top:1rem}
-.about-values :global(.detail-rows){display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;border:0}
-.about-values :global(.detail-row){display:block;padding:1.5rem;border:1px solid #122a2f20;border-radius:10px;background:#fff}
-.about-values :global(.detail-row__number){display:block;color:#a43e29;margin-bottom:.9rem}
-.about-values :global(.detail-row h3){font-size:1.2rem}
-.about-values :global(.detail-row p){font-size:.92rem}
-@media(max-width:899px){.about-profile{grid-template-columns:minmax(180px,.6fr) minmax(0,1fr);gap:1.5rem}.about-story{grid-template-columns:1fr}.about-values :global(.detail-rows){grid-template-columns:1fr}}
-@media(max-width:599px){.about-profile{grid-template-columns:1fr;padding:1.4rem}.about-story{padding:1.4rem}.about-audio{padding:1.25rem}}
+.about-werte{list-style:none;margin:0;padding:clamp(1.5rem,3vw,2.5rem);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1.5rem;border-radius:12px;background:#122a2f;color:#f9f7f3}
+.about-werte li{display:grid;justify-items:center;gap:.9rem;text-align:center;font-size:.92rem;line-height:1.45}
+.about-werte__icon{display:grid;place-items:center;width:4.6rem;height:4.6rem;border:1.5px solid #ff6b4a;border-radius:50%;color:#ff6b4a}
+.about-vision__box{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:center;padding:clamp(1.5rem,3vw,2.5rem);border-radius:12px;background:#e8eeeb}
+.about-vision blockquote{margin:0;padding:.3rem 0 .3rem 1.5rem;border-left:4px solid #ff6b4a}
+.about-vision blockquote p{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:1.15rem;color:#122a2f;margin:0 0 .8rem}
+.about-vision blockquote footer{font-size:.82rem;color:#526368}
+@media(max-width:899px){.about-werte{grid-template-columns:repeat(3,minmax(0,1fr))}.about-vision__box{grid-template-columns:1fr}.about-profile{grid-template-columns:minmax(180px,.6fr) minmax(0,1fr);gap:1.5rem}.about-story{grid-template-columns:1fr}.about-values :global(.detail-rows){grid-template-columns:1fr}}
+@media(max-width:599px){.about-werte{grid-template-columns:repeat(2,minmax(0,1fr))}.about-profile{grid-template-columns:1fr;padding:1.4rem}.about-story{padding:1.4rem}.about-audio{padding:1.25rem}}
 </style>

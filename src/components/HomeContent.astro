@@ -2,24 +2,35 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/nc-logo.png';
 import philip from '../assets/philip.png';
-import HomeServices from './HomeServices.astro';
 import HomeTransition from './HomeTransition.astro';
+import FuenfMomente from './FuenfMomente.astro';
+import WegeFinder from './WegeFinder.astro';
 import HandbookGateway from './HandbookGateway.astro';
-import PersonalContact from './PersonalContact.astro';
+import Icon from './Icon.astro';
+import { kontakt } from '../data/wege';
 import '../styles/marketing.css';
 import '../styles/home.css';
+
+const werte = [
+  { icon: 'herzlichkeit', title: 'Gastfreundschaft zuerst' },
+  { icon: 'befaehigung', title: 'Befähigung statt Abhängigkeit' },
+  { icon: 'exzellenz', title: 'Qualität mit Augenmaß' },
+  { icon: 'nachhaltigkeit', title: 'Nachhaltig in der Umsetzung' },
+  { icon: 'mut', title: 'Mut zur Veränderung' },
+];
 ---
 <div class="nc-page nc-home">
   <section class="home-hero nc-shell" aria-labelledby="home-title">
     <div class="home-hero__stage">
-      <a class="heroLogo coin" id="heroLogo" href="#leistungen" aria-label="Logo drehen und die passende Unterstützung entdecken">
-        <Image src={logo} alt="NextCourse Logo: Wellen und Pfeil aus warmem Holz" widths={[360, 640, 1080]} sizes="(max-width: 599px) 56vw, min(440px, 70vw, calc(100svh - 550px))" width={1080} format="webp" quality={82} loading="eager" fetchpriority="high" />
+      <a class="heroLogo coin" id="heroLogo" href="#wege" aria-label="Logo drehen und die vier Wege entdecken">
+        <Image src={logo} alt="NextCourse Logo: Wellen und Pfeil aus warmem Holz" widths={[360, 640, 1080]} sizes="(max-width: 599px) 40vw, 260px" width={1080} format="webp" quality={82} loading="eager" fetchpriority="high" />
       </a>
-      <h1 class="heroWord" id="home-title">NextCourse<span class="sr-only"> – Management, Academy und Operation für das Gastgewerbe in Mainfranken</span></h1>
-      <p class="home-hero__promise">Mehr Zeit für das, was zählt.</p>
-      <p class="home-hero__lead">Wir ordnen Abläufe, schulen Ihr Team und übernehmen laufende Aufgaben.<span>Für Hotels und Gastronomie in Mainfranken.</span></p>
+      <h1 class="home-hero__title" id="home-title">Was wäre in Ihrem Haus längst erledigt,<em>wenn Sie die Zeit dafür hätten?</em></h1>
+      <span class="home-hero__bar" aria-hidden="true"></span>
+      <p class="home-hero__promise">Wir setzen um, wofür im Alltag die Zeit fehlt.</p>
+      <p class="home-hero__lead">Für inhabergeführte Hotels und Gastronomie in Mainfranken.</p>
       <div class="nc-actions home-hero__actions">
-        <a class="nc-button" href="#leistungen">Passende Unterstützung finden <span aria-hidden="true">↓</span></a>
+        <a class="nc-button" href="#wege">Den passenden Weg finden <span aria-hidden="true">↓</span></a>
         <a class="home-hero__contact" href="/kontakt/">Erstgespräch anfragen <span aria-hidden="true">↗</span><small>Kostenlos und unverbindlich</small></a>
       </div>
     </div>
@@ -32,34 +43,92 @@ import '../styles/home.css';
     </div>
   </section>
 
-  <HomeTransition from="dark" to="orange" />
-  <HomeServices />
+  <HomeTransition from="dark" to="white" />
+  <section class="home-start nc-section nc-shell nc-paper" aria-labelledby="start-title">
+    <div class="home-start__problem reveal">
+      <div>
+        <p class="nc-kicker">Der Alltag im Haus</p>
+        <h2 id="start-title">Es wird gemacht wie immer.<em>Weil im Alltag die Zeit fehlt, es anders zu denken.</em></h2>
+      </div>
+      <div class="home-start__text">
+        <p>Sie wissen längst, was in Ihrem Haus besser laufen könnte. Neue Mitarbeitende brauchen schneller Orientierung. Informationen sollten an einem Ort stehen. Aufgaben und Projekte, die seit Monaten warten, müssten endlich umgesetzt werden.</p>
+        <p class="home-start__strong">Nicht die Ideen fehlen. Es fehlt die Zeit, sich darum zu kümmern.</p>
+        <p>Der Tag gehört den Gästen, der Abend dem, was liegen geblieben ist, und das Wochenende der nächsten Veranstaltung. Die wichtigen Dinge wandern auf „nach der Saison“. Und wer jeden Tag im eigenen Haus steht, sieht irgendwann nicht mehr, was ein neuer Mitarbeiter oder ein Gast in fünf Minuten bemerkt.</p>
+        <p>Das liegt nicht am Können. In einem inhabergeführten Haus gibt es meist keine Abteilung für Organisation, keine IT und keine Personalentwicklung. Und niemanden, der mal von außen draufschaut.</p>
+      </div>
+    </div>
+    <div class="home-start__answer reveal">
+      <h2>Dafür gibt es NextCourse.</h2>
+      <p>Damit wichtige Dinge nicht länger liegen bleiben. Wir hören zu, bringen einen klaren Blick von außen mit und kümmern uns um die Umsetzung. Persönlich, verbindlich und passend zu Ihrem Haus. Sie behalten die Kontrolle und bekommen Lösungen, die im Alltag funktionieren.</p>
+      <p class="home-start__motto">Zuhören. Möglichkeiten erkennen. Umsetzen.</p>
+    </div>
+  </section>
+
+  <FuenfMomente />
+
+  <HomeTransition from="white" to="orange" />
+  <WegeFinder />
   <HomeTransition from="orange" to="dark" reverse />
 
   <HandbookGateway />
 
   <HomeTransition from="dark" to="white" />
-  <section class="home-approach nc-section nc-shell nc-paper" data-wave-tone="dark" aria-labelledby="approach-title">
-    <div class="home-approach__intro reveal">
-      <p class="nc-kicker">Zusammenarbeit</p>
-      <h2 id="approach-title">Wir fangen bei<br />Ihrem Alltag an.</h2>
-      <p class="desktop-overview-copy">Am Anfang steht Ihr Anliegen. Gemeinsam legen wir fest, was sich ändern soll, welche Unterstützung Sie brauchen und was Sie am Ende erhalten.</p>
-      <p class="mobile-overview-copy" data-mobile-copy="collaboration-intro">Wir klären Ihr Anliegen, vereinbaren den Umfang und begleiten die Umsetzung.</p>
+  <section class="home-brief nc-section nc-shell nc-paper" aria-labelledby="brief-title">
+    <div class="home-brief__letter reveal">
+      <div class="home-brief__portrait coin">
+        <Image src={philip} alt="Philip Tolle, Gründer von NextCourse" widths={[240, 480]} sizes="200px" width={480} format="webp" loading="lazy" />
+      </div>
+      <div>
+        <p class="nc-kicker">Ein persönliches Wort</p>
+        <h2 id="brief-title">Für Mainfrankens Gastgeber.<em>NextCourse entsteht aus Überzeugung.</em></h2>
+        <p>Ich bin seit vielen Jahren in Hotellerie und Gastronomie zu Hause. Ich kenne die Verantwortung, die Inhaber täglich tragen: Gäste begeistern, Mitarbeitende führen und den Betrieb am Laufen halten. Für Weiterbildung, Digitalisierung und Veränderung bleibt oft zu wenig Zeit.</p>
+        <p>Genau hier setzt NextCourse an. Mein Ziel ist, ein ganzheitlicher Partner für inhabergeführte Hotels und Gastronomiebetriebe in Mainfranken zu sein, der Bildung, Digitalisierung und praktische Umsetzung verbindet.</p>
+        <blockquote class="home-brief__quote">
+          <p>„Wenn wir Wissen, Erfahrung und neue Möglichkeiten verbinden, stärken wir nicht nur einzelne Betriebe. Wir stärken gemeinsam die Gastfreundschaft und die Zukunft unserer Region.“</p>
+          <footer>Philip Tolle, Gründer und Geschäftsführer</footer>
+        </blockquote>
+        <a class="nc-textlink" href="/ueber/">Mehr über mich und NextCourse <span aria-hidden="true">↗</span></a>
+      </div>
     </div>
-    <ol class="nc-process">
-      <li class="reveal"><h3>Anliegen klären</h3><p class="desktop-overview-copy">Was kostet Zeit? Wo fehlt Wissen? Welche Aufgaben möchten Sie abgeben? Wir hören zu und ordnen gemeinsam.</p><p class="mobile-overview-copy" data-mobile-copy="collaboration-1">Wir hören zu und ordnen Ihr Anliegen.</p></li>
-      <li class="reveal"><h3>Umfang vereinbaren</h3><p class="desktop-overview-copy">Sie wissen vor dem Start, welche Leistungen Sie erhalten, was sie kosten und wer sich um die nächsten Schritte kümmert.</p><p class="mobile-overview-copy" data-mobile-copy="collaboration-2">Leistung, Preis und nächste Schritte stehen vorab fest.</p></li>
-      <li class="reveal"><h3>Zusammenarbeiten</h3><p class="desktop-overview-copy">Wir führen Abläufe ein, schulen Ihr Team oder übernehmen vereinbarte Aufgaben – mit klaren Ergebnissen und persönlicher Abstimmung.</p><p class="mobile-overview-copy" data-mobile-copy="collaboration-3">Wir setzen um und stimmen uns persönlich mit Ihnen ab.</p></li>
-    </ol>
+    <div class="home-werte reveal">
+      <h3>Wofür NextCourse steht</h3>
+      <ul>
+        {werte.map(w => <li><span class="home-werte__icon"><Icon name={w.icon} size={44} /></span><span>{w.title}</span></li>)}
+      </ul>
+    </div>
   </section>
   <HomeTransition from="white" to="dark" reverse />
-  <PersonalContact />
+
+  <section class="home-gespraech nc-section nc-shell" aria-labelledby="gespraech-title">
+    <div class="home-gespraech__copy reveal">
+      <p class="nc-kicker">So beginnt es</p>
+      <h2 id="gespraech-title">Ein Gespräch.<em>Bei Ihnen im Haus.</em></h2>
+      <p>Sie müssen noch nicht wissen, was Ihr Haus braucht. Dafür ist das Erstgespräch da. Kostenlos und unverbindlich, bei Ihnen vor Ort, digital oder am Telefon.</p>
+      <ol class="home-gespraech__steps">
+        <li><span><strong>Termin vereinbaren.</strong> Wählen Sie einen passenden Termin oder schreiben Sie uns kurz.</span></li>
+        <li><span><strong>Erstgespräch.</strong> Wir stellen Fragen und hören zu. Am Ende sagen wir Ihnen ehrlich, ob und wie wir helfen können.</span></li>
+        <li><span><strong>Angebot.</strong> Sie erhalten ein schriftliches Angebot mit festem Preis, Umfang und Zeitplan. Sie entscheiden in Ruhe.</span></li>
+      </ol>
+    </div>
+    <aside class="home-gespraech__card reveal" aria-label="Kontakt zu Philip Tolle">
+      <div class="home-gespraech__portrait coin"><Image src={philip} alt="" widths={[200, 400]} sizes="120px" width={400} format="webp" loading="lazy" /></div>
+      <p class="home-gespraech__name">Philip Tolle</p>
+      <p class="home-gespraech__role">Gründer und Geschäftsführer</p>
+      <a class="nc-button" href={kontakt.termin} target="_blank" rel="noopener">Termin auswählen <span aria-hidden="true">↗</span><span class="sr-only"> (öffnet Cal.com in einem neuen Tab)</span></a>
+      <a class="home-gespraech__alt" href="/kontakt/#contactform">Lieber eine Nachricht schreiben</a>
+      <ul class="home-gespraech__data">
+        <li><a href={kontakt.telefonHref}>{kontakt.telefon}</a></li>
+        <li><a href={`mailto:${kontakt.email}`}>{kontakt.email}</a></li>
+      </ul>
+      <p class="home-gespraech__note">Ich freue mich auf Ihre Kontaktanfrage.</p>
+    </aside>
+  </section>
 </div>
 
 <script>
   const hero = document.querySelector<HTMLElement>('.home-hero');
   const logo = document.querySelector<HTMLAnchorElement>('.nc-home #heroLogo');
-  const target = document.getElementById('leistungen');
+  const target = document.getElementById('wege');
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let spinning = false;
 
@@ -82,19 +151,18 @@ import '../styles/home.css';
         logo.style.setProperty('--gy', '35%');
       });
     }
-    const goToServices = () => {
+    const goToWays = () => {
       target.scrollIntoView({ behavior: motion.matches ? 'instant' : 'smooth' });
-      const heading = document.getElementById('services-title');
-      heading?.focus({ preventScroll: true });
+      document.getElementById('wege-title')?.focus({ preventScroll: true });
     };
     const spinAndGo = (event: Event) => {
       event.preventDefault();
       if (spinning) return;
-      if (motion.matches) { goToServices(); return; }
+      if (motion.matches) { goToWays(); return; }
       spinning = true;
       logo.style.transform = '';
       logo.classList.add('is-spinning');
-      window.setTimeout(goToServices, 550);
+      window.setTimeout(goToWays, 550);
       const stop = () => {
         logo.classList.remove('is-spinning');
         spinning = false;
@@ -113,3 +181,60 @@ import '../styles/home.css';
     });
   }
 </script>
+
+<style>
+  .nc-home .heroLogo{--coin:min(40vw,250px,max(130px,calc(100svh - 620px)));width:var(--coin);margin-bottom:1.6rem}
+  .home-hero__title{max-width:26ch;margin:0 auto;font-size:clamp(2.2rem,4.3vw,4.6rem)!important;line-height:1.1!important}
+  .home-hero__title em{display:block;font-family:Georgia,'Times New Roman',serif;font-weight:400;font-style:italic;letter-spacing:-.035em;color:#d3ddda;margin-top:.35rem}
+  .home-hero__bar{display:block;width:4.5rem;height:4px;border-radius:4px;background:var(--nc-coral);margin:1.6rem auto 0}
+  .nc-home .home-hero__promise{color:var(--nc-paper);font-weight:600}
+
+  .home-start{background:var(--nc-paper)}
+  .home-start__problem{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(2rem,6vw,7rem);align-items:start}
+  .home-start h2{color:var(--nc-forest)}
+  .home-start h2 em,.home-brief h2 em,.home-gespraech h2 em{display:block;font-family:Georgia,'Times New Roman',serif;font-weight:400;font-style:italic;letter-spacing:-.04em;font-size:.72em;margin-top:.5rem;color:#c4462b}
+  .home-start__text p{color:#3b4f53;margin:0 0 1.1rem}
+  .home-start__text .home-start__strong{color:var(--nc-forest);font-weight:700}
+  .home-start__answer{margin-top:clamp(3rem,6vw,6rem);padding:clamp(1.8rem,4vw,4rem);border-radius:18px;background:var(--nc-forest);color:var(--nc-paper)}
+  .home-start__answer h2{color:var(--nc-paper);font-size:clamp(1.9rem,2.8vw,3.2rem);margin:0 0 1.2rem}
+  .home-start__answer p{color:#d3ddda;max-width:68ch;margin:0}
+  .home-start__answer .home-start__motto{margin-top:1.8rem;padding-top:1.3rem;border-top:3px solid var(--nc-coral);width:fit-content;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:clamp(1.3rem,2vw,2rem);color:#ff947a}
+
+  .home-brief{background:var(--nc-paper)}
+  .home-brief__letter{display:grid;grid-template-columns:clamp(150px,16vw,220px) minmax(0,1fr);gap:clamp(2rem,5vw,5rem);align-items:start;max-width:78rem;margin-inline:auto}
+  .home-brief__portrait.coin{--coin:clamp(150px,16vw,220px)}
+  .home-brief__portrait img{object-position:center 28%}
+  .home-brief h2{color:var(--nc-forest);margin-bottom:1.6rem}
+  .home-brief__letter p{color:#3b4f53}
+  .home-brief__quote{margin:2rem 0;padding:.2rem 0 .2rem 1.6rem;border-left:4px solid var(--nc-coral)}
+  .home-brief__quote p{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:1.12em;color:var(--nc-forest)!important;margin:0 0 .7rem}
+  .home-brief__quote footer{font-size:.8em;color:#526664}
+  .home-werte{max-width:78rem;margin:clamp(3rem,6vw,5rem) auto 0;padding:clamp(1.6rem,3.5vw,3rem);border-radius:18px;background:var(--nc-forest);color:var(--nc-paper)}
+  .home-werte h3{color:var(--nc-paper);margin:0 0 1.8rem;font-size:clamp(1.3rem,1.8vw,1.9rem)}
+  .home-werte ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1.5rem}
+  .home-werte li{display:grid;justify-items:center;gap:.9rem;text-align:center;font-size:.88em;line-height:1.45}
+  .home-werte__icon{display:grid;place-items:center;width:4.6rem;height:4.6rem;border:1.5px solid var(--nc-coral);border-radius:50%;color:var(--nc-coral)}
+
+  .home-gespraech{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(2rem,6vw,7rem);align-items:center;background:var(--nc-forest);color:var(--nc-paper)}
+  .home-gespraech h2{color:var(--nc-paper);margin-bottom:1.5rem}
+  .home-gespraech h2 em{color:#ff947a}
+  .home-gespraech__copy>p:not(.nc-kicker){color:#d3ddda}
+  .home-gespraech__steps{list-style:none;counter-reset:g;margin:2rem 0 0;padding:0;display:grid;gap:1.2rem}
+  .home-gespraech__steps li{counter-increment:g;display:grid;grid-template-columns:2.4rem minmax(0,1fr);gap:1rem;color:#d3ddda;line-height:1.6}
+  .home-gespraech__steps li::before{content:counter(g);font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:1.9rem;line-height:1;color:var(--nc-coral)}
+  .home-gespraech__steps strong{color:var(--nc-paper)}
+  .home-gespraech__card{display:grid;justify-items:center;text-align:center;gap:.5rem;padding:clamp(1.8rem,3vw,2.8rem);border:1px solid #f9f7f333;border-radius:18px;background:#0d2024}
+  .home-gespraech__portrait.coin{--coin:120px;margin-bottom:.6rem}
+  .home-gespraech__portrait img{object-position:center 28%}
+  .home-gespraech__name{font-family:var(--disp);font-weight:700;font-size:1.4em;margin:0}
+  .home-gespraech__role{color:#c6d0ce;font-size:.85em;margin:0 0 1rem}
+  .home-gespraech__alt{color:var(--nc-paper);font-size:.85em;text-underline-offset:.3em;min-height:44px;display:inline-flex;align-items:center}
+  .home-gespraech__data{list-style:none;margin:.6rem 0 0;padding:1rem 0 0;border-top:1px solid #f9f7f333;width:100%;display:grid;gap:.3rem}
+  .home-gespraech__data a{color:var(--nc-paper);font-size:.9em;text-underline-offset:.3em;display:inline-flex;min-height:36px;align-items:center}
+  .home-gespraech__note{color:#c6d0ce;font-size:.8em;margin:.6rem 0 0}
+  .home-gespraech a:focus-visible{outline:2px solid var(--nc-coral);outline-offset:4px}
+
+  @media(max-width:999px){.home-werte ul{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media(max-width:799px){.home-start__problem,.home-gespraech,.home-brief__letter{grid-template-columns:1fr}.home-brief__portrait.coin{--coin:150px}}
+  @media(max-width:599px){.home-werte ul{grid-template-columns:repeat(2,minmax(0,1fr))}.home-hero__title{font-size:clamp(1.9rem,8.4vw,2.6rem)!important}}
+</style>

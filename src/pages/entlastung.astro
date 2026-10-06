@@ -1,0 +1,65 @@
+---
+import DetailLayout from '../layouts/DetailLayout.astro';
+import Zeitleiste from '../components/Zeitleiste.astro';
+import WegFaq from '../components/WegFaq.astro';
+import support from '../assets/offers/entlastung-dunkel.png';
+import '../styles/wege-pages.css';
+
+const test = [
+  { title: 'Aufnahme', meta: '90 Minuten', text: 'Wir klären gemeinsam, welche Aufgaben am meisten Zeit kosten und was zuerst abgegeben wird.' },
+  { title: 'Einrichtung', text: 'Wir richten eine Vorlage für Ihr Haus ein. Sie bleibt bei Ihnen, auch wenn es nach dem Test nicht weitergeht.' },
+  { title: 'Umsetzung', meta: '4 Wochen', text: 'Einen Monat lang übernehmen wir eine wiederkehrende Aufgabe vollständig, die Sie im Aufnahmegespräch festlegen. Das können die Wochenkarten sein, die Beiträge für Instagram, die Tagungsmappen oder das, was bei Ihnen seit Wochen liegen bleibt. Dazu zwei Stunden für das, was im Monat dazwischenkommt.' },
+  { title: 'Fazit', text: 'Ein Abschlussgespräch: Was hat funktioniert, was hat es Ihnen gebracht, welches Paket passt? Gibt es Bereiche, in denen wir Ihnen langfristig weiterhelfen können?' },
+];
+const fragen: [string, string][] = [
+  ['Warum nicht eine Aushilfe oder Minijobberin dafür einstellen?', 'Eine Aushilfe braucht Einarbeitung, hat Urlaub, wird krank und kündigt irgendwann. Wir liefern einen festen Umfang zum festen Preis, jeden Monat. Und die Vorlagen bleiben in Ihrem Haus, auch wenn Sie später doch jemanden einstellen.'],
+  ['Was passiert nach dem Test?', 'Der Test endet nach 30 Tagen automatisch, ohne Kündigung. Entscheiden Sie sich danach für ein Paket, gilt eine Mindestlaufzeit von sechs Monaten, danach ist es monatlich kündbar.'],
+  ['Wer gibt Inhalte frei?', 'Ihr Haus benennt eine Kontaktperson mit Freigaberecht. Preise, Allergene und Gästedaten gibt Ihr Haus frei. Nichts geht ohne Ihr Okay raus.'],
+  ['Sind Korrekturen enthalten?', 'Eine Korrekturrunde ist immer dabei. Eigene Fehler korrigieren wir ohne Diskussion.'],
+  ['Welche Kosten kommen hinzu?', 'Fremdkosten wie Druck, Versand oder Werbebudget stehen immer separat im Angebot. Die Einrichtung ist beim Einstieg über den Test inklusive.'],
+];
+---
+<DetailLayout offer area="operation" topic="entlastung"
+  title="Entlastung im Alltag: Karten, Aushänge, Beiträge | NextCourse"
+  description="Wir übernehmen Karten, Unterlagen und Beiträge für Ihr Hotel oder Restaurant. Verbindlich, mit festen Abgabeterminen und einer festen Ansprechperson. Start mit einem 30-Tage-Test."
+  label="Entlastung im Alltag" heading="Karten, Aushänge, Beiträge." emphasis="Zuverlässig fertig, ohne zusätzliche Stelle."
+  lead="Jede Woche entstehen Aufgaben, die kein Gast sieht, aber jeder bemerkt, wenn sie fehlen: aktualisierte Karten, neue Preise, eine Tagungsmappe oder der Beitrag zum Weinfest. Im laufenden Betrieb bleibt dafür oft wenig Zeit."
+  image={support} imageAlt="Eine Gastgeberin übergibt Unterlagen an ihre Ansprechpartnerin im Backoffice." caption="Abgeben können beginnt mit Vertrauen."
+  action="Aufgaben besprechen" href="/kontakt/?thema=entlastung#contactform" secondary={{ label: 'So beginnt es', href: '#test' }}
+  facts={['Feste Ansprechperson', 'Feste Abgabetermine', 'Start mit einem 30-Tage-Test']}
+  contactTitle="Welche Aufgabe würden Sie gern abgeben?">
+  <nav class="offer-navigation" aria-label="Auf dieser Seite"><a href="#leistungen">Was wir übernehmen</a><a href="#test">30-Tage-Test</a><a href="#zusammenarbeit">So arbeiten wir</a><a href="#fragen">Häufige Fragen</a></nav>
+
+  <section class="detail-section" id="leistungen">
+    <div class="detail-intro"><div><p class="detail-kicker">Was wir übernehmen</p><h2>Verbindlich, passend zu Ihrem Haus <em>und mit klaren Abgabeterminen.</em></h2></div><p>Die Leistungsbereiche geben Orientierung und werden passend zu Ihrem Haus zusammengestellt.</p></div>
+    <div class="weg-cards">
+      <article class="weg-card"><h3>Karten und Unterlagen</h3><ul class="weg-bullets"><li>Tageskarten, Wochenkarten und Menükarten</li><li>Tagungsunterlagen und Angebotsmappen</li><li>Menüänderungen und Preisanpassungen</li><li>Fassungen für Druck und Web</li></ul></article>
+      <article class="weg-card"><h3>Sichtbarkeit</h3><ul class="weg-bullets"><li>Redaktionsplan mit saisonalen Themen</li><li>Beiträge für Website, Facebook und Instagram</li><li>Text, Gestaltung und Veröffentlichung</li></ul></article>
+      <p class="weg-or">oder</p>
+      <article class="weg-card weg-card--wide"><h3>Alles aus einer Hand</h3><ul class="weg-bullets weg-bullets--two"><li>Leistungen aus beiden Bereichen</li><li>Bevorzugte Bearbeitung</li><li>Projektstunden für Aktionen und Mappen</li><li>Monatliches Steuerungsgespräch</li><li>Saisonplanung und Kampagnenplanung</li></ul></article>
+    </div>
+    <div class="weg-callout weg-callout--dark" style="margin-top:1.5rem"><h3>Ihre Aufgabe steht nicht dabei?</h3><p>Sprechen wir darüber. Wir stellen die Leistungen passend zu Ihrem Haus zusammen.</p></div>
+  </section>
+
+  <section class="detail-section" id="test">
+    <div class="offer-process">
+      <div class="detail-intro"><div><p class="detail-kicker">Der Einstieg</p><h2>Erst erleben.<em>Dann entscheiden.</em></h2></div><p>Niemand gibt Aufgaben gern an jemanden ab, den er nicht kennt. Deshalb beginnt jede Entlastung mit einem Monat zum Festpreis. Sie sehen, wie wir arbeiten, bekommen fertige Ergebnisse und entscheiden danach in Ruhe.</p></div>
+      <Zeitleiste steps={test} label="Der 30-Tage-Test in vier Schritten" />
+      <p class="detail-note">Der Test endet nach 30 Tagen automatisch, ohne Kündigung. Entscheiden Sie sich danach für ein Paket, gilt eine Mindestlaufzeit von sechs Monaten, danach monatlich kündbar. Die Einrichtung ist beim Einstieg über den Test inklusive.</p>
+    </div>
+  </section>
+
+  <section class="detail-section" id="zusammenarbeit">
+    <div class="weg-callout weg-callout--paper">
+      <p class="detail-kicker">Versprochen</p>
+      <h2>So arbeiten wir zusammen.</h2>
+      <ul class="weg-bullets">
+        <li>Eine feste Ansprechperson und feste Abgabezeiten.</li>
+        <li>Eine Korrekturrunde ist immer dabei, eigene Fehler korrigieren wir ohne Diskussion.</li>
+        <li>Preise, Allergene und Gästedaten gibt Ihr Haus frei. Nichts geht ohne Ihr Okay raus.</li>
+      </ul>
+    </div>
+  </section>
+
+  <WegFaq name="faq-entlastung" questions={fragen} />
+</DetailLayout>

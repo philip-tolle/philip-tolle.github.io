@@ -1,0 +1,53 @@
+/* Muster der vier Wege-Seiten nach dem Booklet. Baut auf detail-pages.css und offer-details.css auf. */
+
+/* Problem und Lösung nebeneinander ("Was es in Ihrem Haus löst"). */
+.weg-solve{list-style:none;margin:0;padding:0;border-top:1px solid var(--detail-rule)}
+.weg-solve li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem clamp(1.5rem,4vw,4rem);padding:1.15rem 0;border-bottom:1px solid var(--detail-rule)}
+.weg-solve strong{color:var(--detail-text);font-weight:600;line-height:1.5}
+.weg-solve span{color:var(--detail-muted);line-height:1.6}
+.weg-solve span::before{content:'→';color:#ff6b4a;margin-right:.6rem}
+
+/* Hervorgehobene Aussage, etwa das Ziel nach 8 bis 10 Wochen. */
+.weg-callout{padding:clamp(1.5rem,3vw,2.5rem);border-radius:14px;background:#ff6b4a;color:#122a2f;--detail-text:#122a2f;--detail-muted:#18363a}
+.weg-callout--dark{background:#122a2f;color:#f9f7f3;--detail-text:#f9f7f3;--detail-muted:#c6d0ce}
+.weg-callout--paper{background:#f3ede6;color:#122a2f;--detail-text:#122a2f;--detail-muted:#465b60}
+.detail-page .weg-callout h2,.detail-page .weg-callout h3{color:var(--detail-text)}
+.detail-page .weg-callout p{color:var(--detail-muted);margin:0;max-width:72ch}
+.detail-page .weg-callout p+p{margin-top:.8rem}
+.weg-callout__lead{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:clamp(1.2rem,1.7vw,1.7rem)!important;line-height:1.45!important;color:var(--detail-text)!important}
+.weg-callout--dark .weg-callout__em{color:#ff947a!important}
+.weg-callout__em{font-family:Georgia,'Times New Roman',serif;font-style:italic}
+
+/* Drei Kennzahlen ("Was nach 8 bis 10 Wochen steht"). */
+.weg-stats{list-style:none;margin:0;padding:clamp(1.4rem,3vw,2.4rem);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;border-radius:14px;background:#122a2f;color:#f9f7f3}
+.weg-stats strong{display:block;font-family:var(--disp);font-size:clamp(1.6rem,2.6vw,2.6rem);font-weight:700;letter-spacing:-.04em;line-height:1.15}
+.weg-stats span{display:block;color:#c6d0ce;font-size:.85rem;margin-top:.3rem}
+
+/* Karten mit Aufzählung (Leistungsbereiche, Themen). */
+.weg-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem}
+.weg-card{position:relative;padding:clamp(1.5rem,2.6vw,2.2rem);border-radius:14px;background:#f3ede6;color:#122a2f;--detail-text:#122a2f;--detail-muted:#465b60;min-width:0}
+.weg-card::before{content:'';position:absolute;top:0;left:clamp(1.5rem,2.6vw,2.2rem);width:4.5rem;height:4px;border-radius:0 0 4px 4px;background:#ff6b4a}
+.detail-page .weg-card h3{color:#122a2f;margin-top:.4rem}
+.weg-card--wide{grid-column:1/-1}
+.weg-or{grid-column:1/-1;text-align:center;font-weight:600;color:var(--detail-text);margin:-.3rem 0}
+.weg-bullets{list-style:none;margin:.8rem 0 0;padding:0;display:grid;gap:.55rem}
+.weg-bullets li{position:relative;padding-left:1.2rem;color:var(--detail-muted);line-height:1.55;font-size:.95rem}
+.weg-bullets li::before{content:'';position:absolute;left:0;top:.62em;width:.45rem;height:.45rem;border-radius:50%;background:#ff6b4a}
+.weg-bullets--two{grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem 2rem}
+.weg-card--dark{background:#122a2f;color:#f9f7f3;--detail-text:#f9f7f3;--detail-muted:#d3ddda}
+.detail-page .weg-card--dark h3{color:#f9f7f3}
+
+/* Zweispaltige Abschnitte mit Text und Liste. */
+.weg-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,5vw,5rem);align-items:start}
+.weg-split h2 em{color:#c4462b}
+.detail-page--operation .weg-split h2 em,.detail-page--academy .weg-split h2 em{color:inherit}
+.weg-label{font-size:.7rem!important;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--detail-text)!important;margin:1.6rem 0 .2rem!important}
+
+/* Häufige Fragen: immer nur eine Antwort offen (Designkammer: uebergang/exklusives-akkordeon). */
+:root{interpolate-size:allow-keywords}
+.weg-faq details::details-content{block-size:0;opacity:0;overflow:hidden;transition:block-size .34s ease,opacity .34s ease,content-visibility .34s allow-discrete}
+.weg-faq details[open]::details-content{block-size:auto;opacity:1}
+@media(prefers-reduced-motion:reduce){.weg-faq details::details-content{transition:none}}
+
+@media(max-width:899px){.weg-split,.weg-cards{grid-template-columns:1fr}.weg-card--wide{grid-column:auto}}
+@media(max-width:699px){.weg-solve li{grid-template-columns:1fr;gap:.35rem}.weg-stats{grid-template-columns:1fr}.weg-bullets--two{grid-template-columns:1fr}}

@@ -1,0 +1,69 @@
+---
+// Designkammer: effekte/zeitleiste-fuellt-sich. Die Linie füllt sich beim Scrollen, erreichte Schritte leuchten auf.
+interface Step { title: string; meta?: string; text: string; result?: string; }
+interface Props { steps: Step[]; label: string; }
+const { steps, label } = Astro.props;
+---
+<div class="zeitleiste" data-zeitleiste>
+  <div class="zeitleiste__track" aria-hidden="true"><span class="zeitleiste__fill"></span></div>
+  <ol class="zeitleiste__list" aria-label={label}>
+    {steps.map((step, i) => (
+      <li class="zeitleiste__step">
+        <span class="zeitleiste__dot" aria-hidden="true">{i + 1}</span>
+        <div>
+          <h3>{step.title}{step.meta && <span class="zeitleiste__meta"> · {step.meta}</span>}</h3>
+          <p>{step.text}</p>
+          {step.result && <p class="zeitleiste__result">Ergebnis: {step.result}</p>}
+        </div>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<script>
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  document.querySelectorAll<HTMLElement>('[data-zeitleiste]').forEach((root) => {
+    const fill = root.querySelector<HTMLElement>('.zeitleiste__fill');
+    const steps = Array.from(root.querySelectorAll<HTMLElement>('.zeitleiste__step'));
+    if (!fill || !steps.length) return;
+    root.classList.add('is-ready');
+    if (motion.matches) {
+      root.classList.add('is-static');
+      return;
+    }
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const marker = window.innerHeight * 0.6;
+      const first = steps[0].getBoundingClientRect().top;
+      const last = steps[steps.length - 1].getBoundingClientRect().top;
+      const progress = Math.min(1, Math.max(0, (marker - first) / Math.max(1, last - first)));
+      fill.style.transform = `scaleY(${progress})`;
+      steps.forEach((step) => step.classList.toggle('is-reached', step.getBoundingClientRect().top < marker));
+    };
+    const request = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request);
+    update();
+  });
+</script>
+
+<style>
+  .zeitleiste{--zl-line:4px;--zl-dot:2.4rem;position:relative;margin-top:1rem}
+  .zeitleiste__track{position:absolute;left:calc(var(--zl-dot) / 2 - var(--zl-line) / 2);top:1.2rem;bottom:1.2rem;width:var(--zl-line);border-radius:4px;background:var(--detail-rule,#122a2f30)}
+  .zeitleiste__fill{position:absolute;inset:0;border-radius:inherit;background:#ff6b4a;transform:scaleY(1);transform-origin:top}
+  .zeitleiste.is-ready:not(.is-static) .zeitleiste__fill{transform:scaleY(0)}
+  .zeitleiste__list{list-style:none;margin:0;padding:0;display:grid;gap:clamp(1.6rem,3vw,2.6rem)}
+  .zeitleiste__step{position:relative;display:grid;grid-template-columns:var(--zl-dot) minmax(0,1fr);gap:clamp(1rem,2.5vw,2rem);align-items:start}
+  .zeitleiste__dot{position:relative;z-index:1;display:grid;place-items:center;width:var(--zl-dot);height:var(--zl-dot);border-radius:50%;background:#ff6b4a;color:#122a2f;font-size:.8rem;font-weight:600;font-variant-numeric:tabular-nums;transition:background .3s,box-shadow .3s,color .3s}
+  .zeitleiste__step h3{margin:.35rem 0 .45rem!important}
+  .zeitleiste__meta{font-weight:500;color:var(--detail-muted)}
+  .zeitleiste__step p{margin:0;max-width:62ch}
+  .zeitleiste__step p.zeitleiste__result{margin-top:.55rem;font-family:Georgia,'Times New Roman',serif;font-style:italic;color:var(--detail-text)}
+  .zeitleiste.is-ready:not(.is-static) .zeitleiste__step:not(.is-reached) .zeitleiste__dot{background:var(--detail-rule,#122a2f30);color:var(--detail-muted)}
+  .zeitleiste.is-ready:not(.is-static) .zeitleiste__step:not(.is-reached)>div{opacity:.55}
+  .zeitleiste__step>div{transition:opacity .35s}
+  .zeitleiste__step.is-reached .zeitleiste__dot{box-shadow:0 0 0 6px rgba(255,107,74,.22)}
+  @media(max-width:599px){.zeitleiste{--zl-dot:2rem}.zeitleiste__dot{font-size:.72rem}}
+  @media(prefers-reduced-motion:reduce){.zeitleiste__dot,.zeitleiste__step>div{transition:none}}
+</style>

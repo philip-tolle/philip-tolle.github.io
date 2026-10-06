@@ -18,24 +18,53 @@ RewriteEngine On
 # Leave certificate validation paths available without redirecting HTTP requests.
 RewriteRule ^\.well-known/acme-challenge/ - [END]
 
-# Redirect the former project URL directly to its final HTTPS destination.
-# A query string is retained automatically. Match the old Astro index file as well.
+# Former structures (Consulting, then Management/Academy/Operation) now follow the four ways
+# from the booklet. Keep old links, including index.html and queries. Order matters: specific first.
 RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
-RewriteRule ^consulting/pilotprojekte(?:/index\.html|/)?$ https://vorschau.next-course.de/management/implementierungsprojekte/ [R=301,L]
+RewriteRule ^consulting/(?:pilotprojekte|implementierungsprojekte)(?:/index\.html|/)?$ https://vorschau.next-course.de/training-projekte/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^consulting/(?:quick-check|mystery-check)(?:/index\.html|/)?$ https://vorschau.next-course.de/mystery-check-digital-audit/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^consulting(?:/referenzbetrieb)?(?:/index\.html|/)?$ https://vorschau.next-course.de/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^management/betriebshandbuch(?:/index\.html|/)?$ https://vorschau.next-course.de/betriebshandbuch/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^management/(?:mystery-check|digital-audit|quick-check)(?:/index\.html|/)?$ https://vorschau.next-course.de/mystery-check-digital-audit/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^management/implementierungsprojekte(?:/index\.html|/)?$ https://vorschau.next-course.de/training-projekte/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^management(?:/referenzbetrieb)?(?:/index\.html|/)?$ https://vorschau.next-course.de/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^akademie/foerderung(?:/index\.html|/)?$ https://vorschau.next-course.de/preise/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^akademie(?:/[a-z0-9-]+)?(?:/index\.html|/)?$ https://vorschau.next-course.de/training-projekte/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^operation/projekte(?:/index\.html|/)?$ https://vorschau.next-course.de/training-projekte/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^operation(?:/[a-z0-9-]+)?(?:/index\.html|/)?$ https://vorschau.next-course.de/entlastung/ [R=301,L]
 
 RewriteCond %{HTTP_HOST} ^(?:www\.)?next-course\.de(?::[0-9]+)?$ [NC]
-RewriteRule ^consulting/pilotprojekte(?:/index\.html|/)?$ https://www.next-course.de/management/implementierungsprojekte/ [R=301,L]
-
-# Consulting is now Management. Keep old links, including index.html and queries.
-RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
-RewriteRule ^consulting(?:/index\.html|/)?$ https://vorschau.next-course.de/management/ [R=301,L]
-RewriteCond %{HTTP_HOST} ^vorschau\.next-course\.de(?::[0-9]+)?$ [NC]
-RewriteRule ^consulting/(quick-check|mystery-check|implementierungsprojekte|referenzbetrieb)(?:/index\.html|/)?$ https://vorschau.next-course.de/management/$1/ [R=301,L]
-
+RewriteRule ^consulting/(?:pilotprojekte|implementierungsprojekte)(?:/index\.html|/)?$ https://www.next-course.de/training-projekte/ [R=301,L]
 RewriteCond %{HTTP_HOST} ^(?:www\.)?next-course\.de(?::[0-9]+)?$ [NC]
-RewriteRule ^consulting(?:/index\.html|/)?$ https://www.next-course.de/management/ [R=301,L]
+RewriteRule ^consulting/(?:quick-check|mystery-check)(?:/index\.html|/)?$ https://www.next-course.de/mystery-check-digital-audit/ [R=301,L]
 RewriteCond %{HTTP_HOST} ^(?:www\.)?next-course\.de(?::[0-9]+)?$ [NC]
-RewriteRule ^consulting/(quick-check|mystery-check|implementierungsprojekte|referenzbetrieb)(?:/index\.html|/)?$ https://www.next-course.de/management/$1/ [R=301,L]
+RewriteRule ^consulting(?:/referenzbetrieb)?(?:/index\.html|/)?$ https://www.next-course.de/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^management/betriebshandbuch(?:/index\.html|/)?$ https://www.next-course.de/betriebshandbuch/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^management/(?:mystery-check|digital-audit|quick-check)(?:/index\.html|/)?$ https://www.next-course.de/mystery-check-digital-audit/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^management/implementierungsprojekte(?:/index\.html|/)?$ https://www.next-course.de/training-projekte/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^management(?:/referenzbetrieb)?(?:/index\.html|/)?$ https://www.next-course.de/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^akademie/foerderung(?:/index\.html|/)?$ https://www.next-course.de/preise/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^akademie(?:/[a-z0-9-]+)?(?:/index\.html|/)?$ https://www.next-course.de/training-projekte/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^operation/projekte(?:/index\.html|/)?$ https://www.next-course.de/training-projekte/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?next-course\.de(?::[0-9]+)?$ [NC]
+RewriteRule ^operation(?:/[a-z0-9-]+)?(?:/index\.html|/)?$ https://www.next-course.de/entlastung/ [R=301,L]
 
 # THE_REQUEST retains the original URL encoding. Capture the raw path last so %1
 # belongs to this condition. Fixed target hosts prevent Host-header redirects.

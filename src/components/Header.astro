@@ -2,11 +2,11 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/nc-logo.png';
 
+import { wege } from '../data/wege';
+
 const links = [
   { href: '/', label: 'Start', overlayLabel: 'Start' },
-  { href: '/management/', label: 'Management', overlayLabel: 'Management' },
-  { href: '/akademie/', label: 'Academy', overlayLabel: 'Academy' },
-  { href: '/operation/', label: 'Operation', overlayLabel: 'Operation' },
+  ...wege.map((weg) => ({ href: weg.href, label: weg.nav, overlayLabel: weg.title })),
   { href: '/blog/', label: 'Blog', overlayLabel: 'Blog' },
   { href: '/ueber/', label: 'Über', overlayLabel: 'Über NextCourse' },
   { href: '/kontakt/', label: 'Kontakt', overlayLabel: 'Kontakt' },

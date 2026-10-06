@@ -16,9 +16,9 @@ Nehmen Sie für eine Woche die Aufgaben in den Blick, die besonders häufig unte
 
 ## Drei sinnvolle Ansatzpunkte
 
-**Wissen zugänglich machen.** Ein gemeinsamer Ort für Standards, Zuständigkeiten und Arbeitsanweisungen erleichtert das Nachschlagen. Ein [digitales Betriebshandbuch](/management/betriebshandbuch/) wird dann hilfreich, wenn Inhalt und Pflege zu Ihrem Haus passen.
+**Wissen zugänglich machen.** Ein gemeinsamer Ort für Standards, Zuständigkeiten und Arbeitsanweisungen erleichtert das Nachschlagen. Ein [digitales Betriebshandbuch](/betriebshandbuch/) wird dann hilfreich, wenn Inhalt und Pflege zu Ihrem Haus passen.
 
-**Wiederkehrende Unterlagen vereinfachen.** Für Tageskarten, Gästeinformationen und interne Listen können einheitliche Vorlagen und ein klarer Freigabeweg viel Abstimmung ersparen. Fehlt dafür regelmäßig Zeit, können Sie [vereinbarte Aufgaben abgeben](/operation/monatspakete/).
+**Wiederkehrende Unterlagen vereinfachen.** Für Tageskarten, Gästeinformationen und interne Listen können einheitliche Vorlagen und ein klarer Freigabeweg viel Abstimmung ersparen. Fehlt dafür regelmäßig Zeit, können Sie [vereinbarte Aufgaben abgeben](/entlastung/).
 
 **Übergaben klären.** Legen Sie fest, wo eine Anfrage ankommt, wer sie übernimmt und woran andere erkennen, dass sie erledigt ist. So wird aus einer Nachricht eine nachvollziehbare Aufgabe.
 
@@ -32,10 +32,10 @@ Prüfen Sie das Ergebnis fachlich, bevor es verwendet wird. Stimmen Sie im Team 
 
 Eine neue Vorlage hilft wenig, wenn niemand weiß, wann sie zu nutzen ist. Erklären Sie den Zweck, üben Sie mit einer echten Aufgabe und sammeln Sie Rückmeldungen. Oft wird erst in dieser Erprobung sichtbar, was noch fehlt.
 
-Eine [Schulung im eigenen Betrieb](/akademie/flying-academy/) kann diese Einführung unterstützen. Das Team arbeitet dabei mit Situationen, die es kennt.
+Eine [Schulung im eigenen Betrieb](/training-projekte/#training) kann diese Einführung unterstützen. Das Team arbeitet dabei mit Situationen, die es kennt.
 
 ## Ein überschaubarer Anfang
 
 Wählen Sie eine Aufgabe, die häufig vorkommt und deren Verbesserung gut erkennbar wäre. Vereinbaren Sie einen Verantwortlichen, eine kurze Testphase und einen Termin für die Auswertung.
 
-Wenn Sie zunächst klären möchten, wo die größte Reibung entsteht, ist der [Digital Audit](/management/digital-audit/) ein möglicher Einstieg. Wir betrachten dabei Menschen, Abläufe und Arbeitsmittel gemeinsam.
+Wenn Sie zunächst klären möchten, wo die größte Reibung entsteht, ist der [Digital Audit](/mystery-check-digital-audit/#digital-audit) ein möglicher Einstieg. Wir betrachten dabei Menschen, Abläufe und Arbeitsmittel gemeinsam.

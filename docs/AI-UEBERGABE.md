@@ -68,10 +68,21 @@ Wichtige Bereiche:
 - Keine Live-Veröffentlichung, DNS- oder GitHub-Pages-Änderung aus einem allgemeinen
   Entwicklungsauftrag ableiten.
 
-## Bekannter offener Punkt
+## Inhaltliche Grundlage seit Oktober 2026
 
-Im Footer fehlt weiterhin die endgültige LinkedIn-URL. Sie soll erst ergänzt werden,
-wenn der Nutzer die konkrete Adresse vorgibt.
+- Die Website folgt dem Booklet „NextCourse Booklet Hell“ (Entwurf, Oktober 2026) mit
+  vier Wegen: Digitales Betriebshandbuch, Entlastung im Alltag, Mystery Check und
+  Digital Audit, Training und Projekte. Management, Academy und Operation gibt es nicht
+  mehr; die alten Adressen leiten per 301 (`public/.htaccess`) und per Astro-Redirect
+  (`astro.config.mjs`) weiter.
+- Vorerst keine Preise auf der Website, nur die Regeln, nach denen gerechnet wird
+  (`/preise/`). Ausnahme: der Beispiel-Stundensatz im Rechner auf der Startseite.
+- Zielgruppe: inhabergeführte Hotels und Gastronomie in Mainfranken.
+- Sichtbare E-Mail-Adresse: tolle@nextcourse-academy.de. Das Formular sendet weiterhin
+  über FormSubmit an die dort aktivierte Adresse.
+- Gestaltung nach dem Designkammer-Skill; Farben und Schriften bleiben beim
+  Website-System (Forest, Sand, Coral, Graphite; Plus Jakarta Sans und Inter).
+- LinkedIn steht im Footer (`linkedin.com/in/philiptolle`).
 
 ## Empfohlener Startauftrag für einen anderen Agenten
 

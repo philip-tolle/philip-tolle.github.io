@@ -1,0 +1,77 @@
+---
+import DetailLayout from '../layouts/DetailLayout.astro';
+import MysteryDemoPreview from '../components/MysteryDemoPreview.astro';
+import DigitalAuditDemoPreview from '../components/DigitalAuditDemoPreview.astro';
+import WegFaq from '../components/WegFaq.astro';
+import mystery from '../assets/offers/mystery-check-dunkel.png';
+import '../styles/wege-pages.css';
+
+const fragen: [string, string][] = [
+  ['Ist ein verdeckter Check nicht ein Zeichen von Misstrauen?', 'Nicht, wenn man ihn richtig nutzt. Wir bewerten Abläufe und Service, nie einzelne Mitarbeitende mit Namen. Ob und wie Sie Ihr Team einbeziehen, entscheiden Sie. Der Gründer hat dieses Konzept in Neuseeland als sehr wirksam erlebt: Die Checks lieferten die Themen für das nächste Training, und das Team wurde besser.'],
+  ['Was bedeutet ein verdeckter Besuch?', 'Wir stimmen Szenario und Zeitraum mit Ihnen ab. Der Besuch selbst findet ohne Vorwarnung statt, als ganz gewöhnlicher Gast. Im Mittelpunkt stehen Abläufe und Gästeerlebnis.'],
+  ['Was ist die Bewerbersicht?', 'Auf Wunsch erleben wir Ihr Haus zusätzlich als Bewerber: Wie wirkt Ihre Karriereseite, wie schnell kommt eine Antwort, wie verläuft der erste Kontakt?'],
+  ['Müssen wir für das Digital Audit neue Software kaufen?', 'Nein. Wir verkaufen keine Software. Wir prüfen, was sich mit dem Vorhandenen besser machen lässt, und stimmen uns bei Bedarf mit Ihrem IT-Dienstleister oder Kassenanbieter ab.'],
+  ['Was kosten die Checks?', 'Beide Checks gibt es zum Festpreis. Fremdkosten wie der Verzehr beim Testbesuch stehen separat im Angebot. Beauftragen Sie innerhalb von drei Monaten ein digitales Betriebshandbuch oder ein größeres individuelles Projekt, rechnen wir den Preis voll an.'],
+];
+---
+<DetailLayout offer area="management" topic="checks"
+  title="Mystery Check und Digital Audit für Hotels & Gastronomie | NextCourse"
+  description="Ein ehrlicher Blick von außen: Mystery Check aus Sicht Ihrer Gäste und Bewerber, Digital Audit entlang Ihrer digitalen Abläufe. Zum Festpreis und voll anrechenbar."
+  label="Mystery Check und Digital Audit" heading="Noch nicht bereit für ein Projekt?" emphasis="Beginnen Sie mit einem ehrlichen Blick."
+  lead="Wer jeden Tag im eigenen Haus steht, sieht irgendwann nicht mehr, was ein Gast in fünf Minuten bemerkt. Mystery Check und Digital Audit zeigen, wo Ihr Haus steht: aus Sicht Ihrer Gäste und entlang Ihrer digitalen Abläufe."
+  image={mystery} imageAlt="Eine Mitarbeiterin betrachtet den Gästeweg von der Online-Suche über Buchung und Aufenthalt bis zum Feedback." caption="Gute Gastfreundschaft zeigt sich im Detail."
+  action="Check besprechen" href="/kontakt/?thema=checks#contactform" secondary={{ label: 'Die beiden Checks', href: '#mystery-check' }}
+  facts={['Festpreis', 'Persönliches Ergebnisgespräch', 'Voll anrechenbar']}
+  contactTitle="Wie erleben Gäste Ihr Haus?">
+  <nav class="offer-navigation" aria-label="Auf dieser Seite"><a href="#mystery-check">Mystery Check</a><a href="#digital-audit">Digital Audit</a><a href="#anrechnung">Festpreis und Anrechnung</a><a href="#fragen">Häufige Fragen</a></nav>
+
+  <section class="detail-section" id="mystery-check">
+    <div class="weg-split">
+      <div>
+        <p class="detail-kicker">Mystery Check</p>
+        <h2>Wie Gäste Ihr Haus <em>wirklich erleben.</em></h2>
+        <p>Wir erleben Ihr Haus als Gast, verdeckt und ohne Vorwarnung: von der Suche im Netz über Buchung, Empfang und Restaurant bis zur Nachricht nach der Abreise. Und auf Wunsch als Bewerber: Wie wirkt Ihre Karriereseite, wie schnell kommt eine Antwort? Sie sehen, wo Gäste und Bewerber begeistert sind und wo sie leise abspringen.</p>
+      </div>
+      <div class="weg-card">
+        <h3>Sie bekommen</h3>
+        <ul class="weg-bullets">
+          <li>Einen Report entlang der Gästereise, auf Wunsch mit Bewerbersicht</li>
+          <li>Zehn Maßnahmen, geordnet nach Wirkung und Aufwand</li>
+          <li>Die Auswertung zusätzlich zum Anhören</li>
+          <li>Ein persönliches Gespräch zu den Ergebnissen</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="detail-section detail-demo" aria-label="Beispiel-Auswertung Mystery Check"><MysteryDemoPreview /></section>
+
+  <section class="detail-section" id="digital-audit">
+    <div class="weg-split">
+      <div>
+        <p class="detail-kicker">Digital Audit</p>
+        <h2>Wo Ihre digitalen Abläufe <em>Zeit kosten.</em></h2>
+        <p>Wir schauen gemeinsam mit Ihrem Team auf die laufenden Prozesse. Wo gibt es noch Zettelwirtschaft, welche Prozesse sind fehleranfällig oder gar risikobehaftet?</p>
+        <p>Wir verkaufen keine neue Software, sondern stellen gemeinsam die Frage: <strong>Was lässt sich mit dem Vorhandenen besser machen?</strong> Dabei nutzen wir unsere Erfahrung, den Blick von außen und unsere Affinität zur Digitalisierung.</p>
+      </div>
+      <div class="weg-card">
+        <h3>Sie bekommen</h3>
+        <ul class="weg-bullets">
+          <li>Einen Überblick über Ihre Systeme und Informationswege</li>
+          <li>Maßnahmen mit Aufwand, Zuständigkeit und Ziel</li>
+          <li>Nachvollziehbare Zeitpotenziale</li>
+          <li>Einen ersten Pilotablauf, den Sie sofort einsetzen können</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="detail-section detail-demo" aria-label="Beispiel-Auswertung Digital Audit"><DigitalAuditDemoPreview /></section>
+
+  <section class="detail-section" id="anrechnung">
+    <div class="weg-callout">
+      <p class="weg-callout__lead">Beide Checks zum Festpreis. Beauftragen Sie innerhalb von drei Monaten ein digitales Betriebshandbuch oder ein größeres individuelles Projekt, rechnen wir den Preis voll an.</p>
+    </div>
+    <p class="detail-note">Das Digital Audit ist eine Prozess- und Systemaufnahme. Eine technische Sicherheitsprüfung, Zertifizierung oder Rechtsprüfung ist damit nicht verbunden.</p>
+  </section>
+
+  <WegFaq name="faq-checks" questions={fragen} />
+</DetailLayout>

@@ -1,27 +1,35 @@
 ---
 import DetailLayout from '../layouts/DetailLayout.astro';
-const groups=[
- {id:'einstieg',title:'Der Einstieg',items:[
- ['Für wen ist NextCourse gedacht?','Für Hotels und Gastronomiebetriebe, die ihre Abläufe verbessern, ihr Team entwickeln oder im Tagesgeschäft Aufgaben abgeben möchten. Unser Schwerpunkt liegt in Mainfranken.'],
- ['Was kostet das Erstgespräch?','Das Erstgespräch ist kostenlos und unverbindlich. Wir besprechen Ihre Situation und einen sinnvollen nächsten Schritt. Danach entscheiden Sie in Ruhe.'],
- ['Muss ich schon wissen, welches Angebot passt?','Nein. Erzählen Sie uns, wo es im Alltag hakt. Wir ordnen mit Ihnen ein, ob ein klarerer Ablauf, eine Schulung oder konkrete Unterstützung weiterhilft.'],
- ['Brauche ich technisches Vorwissen?','Nein. Wir erklären die Arbeitsweise verständlich und beziehen Ihr Team ein. Umfang und Tempo richten sich nach der Aufgabe und den Voraussetzungen im Haus.']]},
- {id:'zusammenarbeit',title:'Die Zusammenarbeit',items:[
- ['Wie unterscheiden sich Management, Academy und Operation?','Management klärt Abläufe und schafft gemeinsame Grundlagen. Academy vermittelt Können für den Arbeitsalltag. Operation übernimmt vereinbarte Aufgaben. Die Bereiche lassen sich bei Bedarf verbinden.'],
- ['Was steht im digitalen Betriebshandbuch?','Die Standards, Abläufe, Zuständigkeiten und Antworten Ihres Hauses. Wir ordnen vorhandenes Wissen, ergänzen Lücken gemeinsam mit Ihnen und führen das Team in die Nutzung ein.'],
- ['Wie wird ein Mystery Check abgestimmt?','Wir vereinbaren Umfang und Besuchszeitraum. Sie erhalten konkrete Beobachtungen aus Gästesicht und priorisierte Ansatzpunkte für das Gästeerlebnis. Der Blick gilt dem Betrieb und seinen Abläufen.'],
- ['Welche Kosten und Laufzeiten gelten?','Sie erhalten vor Beginn ein Angebot mit Leistungen, Preis und Zeitrahmen. Monatspakete haben eine Mindestlaufzeit von sechs Monaten. Der 30-Tage-Test endet nach dem vereinbarten Zeitraum; ein Anschluss wird gesondert vereinbart.'],
- ['Arbeiten Sie auch vor Ort?','Ja, vor allem in Würzburg und Mainfranken. Beratung und Abstimmungen sind außerdem digital möglich. Anfahrt und Vor-Ort-Termine klären wir im Angebot.']]},
- {id:'lernen',title:'Weiterbildung',items:[
- ['Kann unser Team im eigenen Betrieb lernen?','Ja. Mit der Flying Academy kommen wir zu Ihnen. Inhalte, Gruppengröße und Dauer stimmen wir auf Ihre Aufgaben und Ihren Arbeitsalltag ab.'],
- ['Sind die Lehrgänge schon AZAV-gefördert buchbar?','Noch nicht. Die AZAV-Zulassung ist in Vorbereitung. Verbindliche Termine und mögliche Förderbedingungen nennen wir, sobald sie feststehen. Seminare und individuelle Schulungen können Sie unabhängig davon anfragen.'],
- ['Welche Förderung passt zu mir?','Das hängt von Ihrer beruflichen Situation und dem konkreten Angebot ab. Unsere Förderübersicht erklärt die unterschiedlichen Wege. Über eine Bewilligung entscheidet die zuständige Stelle.']]}
+import { wege } from '../data/wege';
+import '../styles/wege-pages.css';
+
+const groups = [
+  { id: 'unbequem', title: 'Die unbequemen Fragen', items: [
+    ['Warum ein neues kleines Unternehmen und keine große Beratung?', 'NextCourse ist neu, die Erfahrung dahinter nicht: Service, Restaurantleitung, Bankett und Ausbildung, in inhabergeführten Häusern wie Ihrem. Große Beratungen sind für Ketten gebaut. Bei uns sprechen Sie mit dem Gründer selbst oder mit einem kleinen Team, nicht mit jemandem, den Sie nach dem Angebot nie wiedersehen.'],
+    ['Lohnt sich das für ein Haus unserer Größe?', 'Wenn Sie mehrere Abteilungen haben, im Team immer wieder Wechsel erleben und zu viel an wenigen Personen hängt: ja. Bei sehr kleinen Betrieben ohne eigene Abteilungen schauen wir gemeinsam, ob unsere Lösungen helfen oder ob gerade andere Schritte Vorrang haben. Das sagen wir Ihnen dann auch.'],
+    ['Warum nicht eine Aushilfe oder Minijobberin dafür einstellen?', 'Eine Aushilfe braucht Einarbeitung, hat Urlaub, wird krank und kündigt irgendwann. Wir liefern einen festen Umfang zum festen Preis, jeden Monat. Und die Vorlagen bleiben in Ihrem Haus, auch wenn Sie später doch jemanden einstellen.'],
+    ['Ist ein verdeckter Check nicht ein Zeichen von Misstrauen?', 'Nicht, wenn man ihn richtig nutzt. Wir bewerten Abläufe und Service, nie einzelne Mitarbeitende mit Namen. Ob und wie Sie Ihr Team einbeziehen, entscheiden Sie. Der Gründer hat dieses Konzept in Neuseeland als sehr wirksam erlebt: Die Checks lieferten die Themen für das nächste Training, und das Team wurde besser.'],
+    ['Sie arbeiten im kleinen Team. Was passiert, wenn Sie einmal ausfallen?', 'Ihr Haus steht deshalb nicht still. Handbuch und Unterlagen gehören Ihnen und liegen in Ihrer eigenen Cloud. Laufende Aufgaben erledigen wir mit festen Vorlagen und dokumentierten Abläufen. Genau das, was wir auch Ihnen empfehlen.'],
+    ['Arbeiten Sie mit meinem IT-Dienstleister oder Kassenanbieter zusammen?', 'Gern. Wir ersetzen weder Ihren IT-Dienstleister noch Ihr Kassensystem noch Ihren Steuerberater. Wir sorgen dafür, dass das Vorhandene besser zusammenspielt, und stimmen uns dort ab, wo es nötig ist.'],
+  ] },
+  { id: 'einstieg', title: 'Der Einstieg', items: [
+    ['Für wen ist NextCourse gedacht?', 'Für inhabergeführte Hotels und Gastronomiebetriebe in Mainfranken, die Abläufe ordnen, ihr Team stärken oder Aufgaben abgeben möchten.'],
+    ['Was kostet das Erstgespräch?', 'Nichts. Das Erstgespräch ist kostenlos und unverbindlich, bei Ihnen vor Ort, digital oder am Telefon. Am Ende sagen wir Ihnen ehrlich, ob und wie wir helfen können.'],
+    ['Muss ich schon wissen, welcher Weg passt?', 'Nein. Dafür ist das Erstgespräch da. Erzählen Sie uns, wo es im Alltag hakt. Wir finden den ersten Schritt gemeinsam.'],
+    ['Brauche ich technisches Vorwissen?', 'Nein. Sie bringen Ihre Betriebserfahrung mit, wir erklären den Rest verständlich und beziehen Ihr Team ein.'],
+  ] },
+  { id: 'zusammenarbeit', title: 'Die Zusammenarbeit', items: [
+    ['Welche Kosten und Laufzeiten gelten?', 'Nach dem Erstgespräch erhalten Sie ein schriftliches Angebot mit festem Preis, Umfang und Zeitplan. Monatspakete der Entlastung haben eine Mindestlaufzeit von sechs Monaten, der 30-Tage-Test endet automatisch. Die Regeln für jeden Weg stehen auf der Seite Preise und Förderung.'],
+    ['Wer gibt Inhalte frei?', 'Immer Ihr Haus. Preise, Allergene und Gästedaten geben Sie frei. Nichts geht ohne Ihr Okay raus.'],
+    ['Arbeiten Sie auch vor Ort?', 'Ja, vor allem in Würzburg und Mainfranken. Abstimmungen sind außerdem digital möglich.'],
+    ['Gibt es Fördermöglichkeiten?', 'Für Digitalisierungsprojekte kann eine Förderung wie der Digitalbonus Bayern infrage kommen. Wir prüfen das mit Ihnen vor dem Start. Den Antrag stellt Ihr Haus selbst, beauftragt werden darf erst nach der Eingangsbestätigung.'],
+  ] },
 ];
-const schema=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:groups.flatMap(g=>g.items.map(([q,a])=>({'@type':'Question',name:q,acceptedAnswer:{'@type':'Answer',text:a}})))}).replace(/</g,'\\u003c');
+const schema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: groups.flatMap(g => g.items.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } }))) }).replace(/</g, '\\u003c');
 ---
-<DetailLayout title="Häufige Fragen | NextCourse" description="Antworten zu Leistungen, Kosten, Weiterbildung und Zusammenarbeit mit NextCourse für Hotels und Gastronomie in Mainfranken." label="Häufige Fragen" heading="Gut zu wissen." emphasis="Klar beantwortet." lead="Was Sie vor einer Zusammenarbeit wissen möchten. Und wenn Ihre Frage noch offen ist, sprechen wir persönlich darüber." action="Ihre Frage stellen" secondary={{label:'Antworten lesen',href:'#einstieg'}}>
-<script type="application/ld+json" set:html={schema} slot="head"/>
-<nav class="detail-actions" aria-label="Fragen nach Thema">{groups.map(g=><a class="detail-link" href={'#'+g.id}>{g.title} ↓</a>)}</nav>
-{groups.map(g=><section class="detail-section" id={g.id}><div class="detail-faq"><p class="detail-kicker">Ihre Fragen zu NextCourse</p><h2>{g.title}</h2>{g.items.map(([q,a])=><details><summary>{q}</summary><p>{a}</p></details>)}</div></section>)}
-<section class="detail-section"><div class="detail-grid">{[['Betriebshandbuch','/management/betriebshandbuch/'],['Schulung im Haus','/akademie/flying-academy/'],['Fördermöglichkeiten','/akademie/foerderung/']].map(([label,href])=><a class="detail-card detail-link" href={href}>{label} ↗</a>)}</div></section>
+<DetailLayout title="Häufige Fragen | NextCourse" description="Antworten auf die Fragen, die Inhaber wirklich stellen. Auch die unbequemen: zu Größe, Kosten, Ausfall, Mystery Check und Zusammenarbeit mit NextCourse." label="Häufige Fragen" heading="Fragen, die Sie wirklich stellen." emphasis="Auch die unbequemen." lead="Was Sie vor einer Zusammenarbeit wissen möchten. Und wenn Ihre Frage nicht dabei ist: Stellen Sie sie uns im Erstgespräch. Genau dafür ist es da." action="Ihre Frage stellen" secondary={{ label: 'Antworten lesen', href: '#unbequem' }}>
+  <script type="application/ld+json" set:html={schema} slot="head" />
+  <nav class="detail-actions" aria-label="Fragen nach Thema">{groups.map(g => <a class="detail-link" href={'#' + g.id}>{g.title} ↓</a>)}</nav>
+  {groups.map(g => <section class="detail-section" id={g.id}><div class="detail-faq weg-faq"><p class="detail-kicker">Ihre Fragen zu NextCourse</p><h2>{g.title}</h2>{g.items.map(([q, a]) => <details name={`faq-${g.id}`}><summary>{q}</summary><p>{a}</p></details>)}</div></section>)}
+  <section class="detail-section"><div class="detail-grid detail-grid--two">{wege.map(w => <a class="detail-card detail-link" href={w.href}>{w.nr} {w.title} ↗</a>)}</div></section>
 </DetailLayout>

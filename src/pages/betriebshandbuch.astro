@@ -1,0 +1,88 @@
+---
+import DetailLayout from '../layouts/DetailLayout.astro';
+import HandbookOfferExample from '../components/HandbookOfferExample.astro';
+import Zeitleiste from '../components/Zeitleiste.astro';
+import WegFaq from '../components/WegFaq.astro';
+import handbook from '../assets/offers/betriebshandbuch-dunkel.png';
+import '../styles/wege-pages.css';
+
+const loest = [
+  ['Eine erfahrene Kraft geht. Wichtiges Wissen droht verloren zu gehen.', 'Abläufe, Standards und Erfahrungen bleiben im Haus.'],
+  ['Bei der Einarbeitung entstehen dieselben Fragen immer wieder.', 'Neue finden Antworten selbstständig. Erfahrene werden entlastet.'],
+  ['„Wo finde ich noch einmal …?“', 'Eine Suche statt mehrerer Rückfragen.'],
+  ['Ihr Team spricht verschiedene Sprachen.', 'Inhalte lassen sich passend für Ihr Team übersetzen.'],
+  ['Nachweise und Unterlagen liegen an verschiedenen Orten.', 'Hygiene, Allergene und Unterweisungen sind geordnet und schnell verfügbar.'],
+  ['Bei einer Übergabe müssen Wissen und Abläufe nachvollziehbar sein.', 'Ihr Haus ist besser auf Übergabe oder Verkauf vorbereitet.'],
+];
+const schritte = [
+  { title: 'Prioritäten festlegen', meta: 'Woche 1', text: 'Wir sichten Ihre Unterlagen und sprechen mit den Verantwortlichen. Gemeinsam legen wir Arbeitsbereiche und Kerninhalte fest.', result: 'ein klar vereinbarter Umfang.' },
+  { title: 'Praxiswissen aufnehmen', meta: 'Woche 2 bis 5', text: 'Wir begleiten ausgewählte Abläufe direkt im Betrieb, beobachten, fragen nach und gleichen das Erlebte mit Ihren Unterlagen ab.', result: 'gelebtes Wissen wird verständlich dokumentiert.' },
+  { title: 'Handbuch aufbauen', meta: 'Woche 5 bis 8', text: 'Wir strukturieren Inhalte, Zuständigkeiten, Zugriffsrechte und Sprachen. Ihre Verantwortlichen prüfen die Inhalte und geben sie frei.', result: 'ein Handbuch, das zu Ihrem Haus passt.' },
+  { title: 'Im Team einführen', meta: 'Woche 8 bis 9', text: 'An einem abgestimmten Einführungstag schulen wir Leitung und ausgewählte Ansprechpersonen. Bei Bedarf finden mehrere kurze Einführungen am selben Tag statt. QR-Codes führen direkt zu den passenden Informationen.', result: 'Ihr Team kann sicher damit arbeiten.' },
+  { title: 'Pflege und Weiterentwicklung', meta: 'ab Woche 10', text: 'Sie pflegen selbst oder buchen Unterstützung durch NextCourse, vom Pflegekontingent bis zur vollständigen Betreuung mit Hosting und Servergebühren.', result: 'Sie bestimmen, wie viel Verantwortung bei Ihnen bleibt.' },
+];
+const fragen: [string, string][] = [
+  ['Ist das eine fertige Vorlage?', 'Nein. Ihr Handbuch entsteht individuell für Ihr Haus. Arbeitsbereiche, Abläufe, Zugriffsrechte und Sprachen legen wir gemeinsam fest.'],
+  ['Können wir bestehende Unterlagen verwenden?', 'Ja. Checklisten, Anleitungen und Dokumentationen sind ein guter Ausgangspunkt. Gemeinsam prüfen wir, was aktuell ist und was Ihr Team zusätzlich braucht.'],
+  ['Wie viel Arbeit macht das für unser Team?', 'Ihr Team gibt sein Wissen, die Arbeit machen wir. Wir begleiten Abläufe im Betrieb und fragen nach. Ihre Verantwortlichen prüfen die Inhalte und geben sie frei.'],
+  ['Wem gehört das Handbuch?', 'Inhalte und Handbuch gehören Ihrem Haus und lassen sich exportieren. Auf Wunsch liegen sie in Ihrer eigenen Cloud.'],
+  ['Wer hält das Handbuch später aktuell?', 'Sie entscheiden. Sie pflegen selbst oder vereinbaren Betreuung: Wir halten Ihr Handbuch erreichbar, gesichert und geschützt. Mit der Pflege halten wir zusätzlich die Inhalte aktuell, wenn sich Abläufe ändern.'],
+  ['Sind Videos möglich?', 'Fotos unterstützen die Erklärung von Anfang an. Kurze Videos können als Zusatzleistung ergänzt werden.'],
+  ['Wie können wir die Demo kennenlernen?', 'Die Anwendung für das fiktive Hotel Residenzhof am Main ist geschützt. Fragen Sie über das Kontaktformular einen Demo-Zugang an; wir stimmen ihn persönlich mit Ihnen ab.'],
+];
+---
+<DetailLayout offer area="management" topic="betriebshandbuch"
+  title="Digitales Betriebshandbuch für Hotels & Gastronomie | NextCourse"
+  description="Das Wissen Ihres Hauses an einem Ort: Standards, Anleitungen und Checklisten in einem digitalen Betriebshandbuch. Startklar nach 8 bis 10 Wochen, zum Festpreis."
+  label="Digitales Betriebshandbuch" heading="Wissen, das im Haus bleibt." emphasis="Auch wenn Menschen gehen."
+  lead="Das Wissen, das Ihren Betrieb am Laufen hält, ist längst vorhanden. Es verteilt sich auf Ordner, E-Mails, Laufwerke, Aushänge und vor allem auf die Köpfe einzelner Mitarbeitender. Das digitale Betriebshandbuch führt es an einem zentralen Ort zusammen und macht es für Ihr Team schnell auffindbar."
+  image={handbook} imageAlt="Eine Mitarbeiterin führt Arbeitsanweisungen und Hausstandards in einem digitalen Betriebshandbuch zusammen." caption="Damit Wissen im Haus bleibt."
+  action="Ihr Handbuch besprechen" href="/kontakt/?thema=betriebshandbuch#contactform" secondary={{ label: 'Demo ansehen', href: '#demo' }}
+  facts={['Individuell für Ihr Haus', 'Startklar nach 8 bis 10 Wochen', 'Festpreis vor dem Start']}
+  contactTitle="Welches Wissen soll in Ihrem Haus bleiben?">
+  <nav class="offer-navigation" aria-label="Auf dieser Seite"><a href="#loest">Was es löst</a><a href="#demo">Beispiel & Demo</a><a href="#ablauf">In fünf Schritten</a><a href="#preis">Preis</a><a href="#fragen">Häufige Fragen</a></nav>
+
+  <section class="detail-section" id="loest">
+    <div class="detail-intro"><div><p class="detail-kicker">Individuell für Ihr Haus</p><h2>Was es in Ihrem Haus löst.</h2></div><p>Gemeinsam legen wir fest, welche Bereiche, Abläufe, Zugriffsrechte und Sprachen Sie brauchen. Aus Ihrem Wissen werden klare Anleitungen, Checklisten und Zuständigkeiten. Inhalte lassen sich durchsuchen, aktualisieren und übersetzen.</p></div>
+    <ul class="weg-solve">{loest.map(([problem, loesung]) => <li><strong>{problem}</strong><span>{loesung}</span></li>)}</ul>
+    <div class="weg-callout" style="margin-top:2rem">
+      <p class="weg-callout__lead">Das Ziel nach 8 bis 10 Wochen: Ihr Team findet die wichtigsten Antworten, Standards und Unterlagen in weniger als einer Minute.</p>
+      <p>Gleichzeitig entsteht eine verlässliche Wissensbasis für spätere digitale Anwendungen und den sinnvollen Einsatz von KI.</p>
+    </div>
+  </section>
+
+  <section class="detail-section" id="demo" aria-labelledby="handbook-example-title"><HandbookOfferExample /></section>
+
+  <section class="detail-section" id="ablauf">
+    <div class="offer-process">
+      <div class="detail-intro"><div><p class="detail-kicker">So entsteht Ihr Handbuch</p><h2>In fünf Schritten zu Ihrem Handbuch.<em>Ihr Team gibt sein Wissen. Die Arbeit machen wir.</em></h2></div><p>Vor dem Start kennen Sie Umfang, Zeitplan und Festpreis.</p></div>
+      <Zeitleiste steps={schritte} label="Fünf Schritte zum digitalen Betriebshandbuch" />
+    </div>
+  </section>
+
+  <section class="detail-section" id="ergebnis">
+    <div class="detail-intro"><div><p class="detail-kicker">Das Ergebnis</p><h2>Was nach 8 bis 10 Wochen steht.</h2></div><p>Ihr Handbuch ist einsatzbereit, durchsuchbar und erweiterbar. Inhalte und Handbuch gehören Ihrem Haus und lassen sich exportieren.</p></div>
+    <ul class="weg-stats">
+      <li><strong>Ein System</strong><span>individuell für Ihr Haus</span></li>
+      <li><strong>40 Kerninhalte</strong><span>plus Unterlagen</span></li>
+      <li><strong>Startklar</strong><span>mit Einführung und Pflegeplan</span></li>
+    </ul>
+    <p class="detail-note">Laufende Betreuung und Videos werden separat vereinbart.</p>
+  </section>
+
+  <section class="detail-section" id="preis">
+    <div class="weg-split">
+      <div><p class="detail-kicker">Sie kennen den Preis, bevor es losgeht</p><h2>Festpreis nach Zahl der Abteilungen <em>und Abläufe.</em></h2></div>
+      <div>
+        <p>Bezahlt in einer Summe oder in drei Teilen: zum Start, zur Mitte und nach Ihrer Abnahme. Danach auf Wunsch monatlich in zwei Stufen:</p>
+        <ul class="weg-bullets">
+          <li><strong>Betreuung:</strong> Wir halten Ihr Handbuch erreichbar, gesichert und geschützt.</li>
+          <li><strong>Betreuung und Pflege:</strong> Zusätzlich halten wir die Inhalte aktuell, wenn sich Abläufe ändern.</li>
+        </ul>
+        <p class="detail-note">Für Digitalisierungsprojekte kann eine Förderung wie der Digitalbonus Bayern infrage kommen. <a href="/preise/#foerderung">So prüfen wir das mit Ihnen</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <WegFaq name="faq-handbuch" questions={fragen} />
+</DetailLayout>

@@ -1,0 +1,78 @@
+---
+import DetailLayout from '../layouts/DetailLayout.astro';
+import WegFaq from '../components/WegFaq.astro';
+import training from '../assets/offers/inhouse-schulung.png';
+import '../styles/wege-pages.css';
+
+const themen = ['Service und Gästekommunikation', 'Wein und Getränke', 'Einarbeitung von Aushilfen und Quereinsteigern', 'Prüfungsvorbereitung für Auszubildende', 'KI im Arbeitsalltag', 'Führung für neue Abteilungsleitungen'];
+const projekte = ['Saisonkampagne oder Weinfest-Aktion', 'Weihnachtsgeschenke für Firmenkunden', 'Bankett- und Gästemappe', 'Sommer- oder Mitarbeiterfest', 'KI-Telefonassistent'];
+const fragen: [string, string][] = [
+  ['Brauchen wir einen Schulungsraum?', 'Meist nicht. Wir arbeiten dort, wo die Aufgaben anfallen. Raum, Ausstattung und benötigte Technik klären wir vorab.'],
+  ['Wie lange dauert ein Training?', 'Einen halben oder ganzen Tag, passend zum Schichtplan. Das Gästeblick-Training gibt es einmalig oder laufend.'],
+  ['Was kostet ein Training?', 'Wir rechnen mit einem Tagessatz nach Dauer und Gruppengröße. Das Gästeblick-Training gibt es auch als Monatspaket. Sie erhalten vor der Beauftragung ein schriftliches Angebot.'],
+  ['Ist ein KI-Training eine rechtliche Prüfung?', 'Nein. Unsere KI-Schulungen vermitteln praxisbezogene KI-Kompetenz im Sinne des EU AI Act, mit Chancen, Gefahren und Risiken. Eine Schulung ersetzt keine vollständige rechtliche Prüfung.'],
+  ['Wie wird ein Projekt nach Wunsch abgerechnet?', 'Zum Festpreis nach Umfang. Ziel, Umfang und Meilensteine stehen vor dem Start fest. Fremdkosten wie Druck oder Geschenke stehen separat im Angebot.'],
+];
+---
+<DetailLayout offer area="academy" topic="training"
+  title="Training im Haus und Projekte nach Wunsch | NextCourse"
+  description="Training direkt in Ihrem Hotel oder Restaurant, Gästeblick-Training und Projekte nach Wunsch: von der Saisonkampagne bis zum KI-Telefonassistenten."
+  label="Training und Projekte" heading="Lösungen für Ihr Team." emphasis="Wir kommen und trainieren."
+  lead="Keine Seminarräume und keine Folien von der Stange. Wir kommen zu Ihnen und arbeiten mit Ihrem Team an echten Aufgaben aus Ihrem Haus. Und für die Idee, die seit Monaten in der Schublade liegt, gibt es Projekte nach Wunsch."
+  image={training} imageAlt="Ein Serviceteam übt gemeinsam mit einer Trainerin direkt im eigenen Restaurant." caption="Gemeinsam lernen. Im eigenen Haus."
+  action="Training besprechen" href="/kontakt/?thema=training#contactform" secondary={{ label: 'Themen ansehen', href: '#training' }}
+  facts={['Training im Haus', 'Gästeblick-Training', 'Projekte nach Wunsch']}
+  contactTitle="Was soll Ihr Team sicherer können?">
+  <nav class="offer-navigation" aria-label="Auf dieser Seite"><a href="#training">Training im Haus</a><a href="#gaesteblick">Gästeblick-Training</a><a href="#projekte">Projekte nach Wunsch</a><a href="#fragen">Häufige Fragen</a></nav>
+
+  <section class="detail-section" id="training">
+    <div class="weg-split">
+      <div>
+        <p class="detail-kicker">Training im Haus</p>
+        <h2>Lernen, wo es <em>gebraucht wird.</em></h2>
+        <p>Wir kommen zu Ihnen und arbeiten mit Ihrem Team an echten Aufgaben aus Ihrem Haus. Einen halben oder ganzen Tag, passend zum Schichtplan.</p>
+      </div>
+      <div class="weg-card weg-card--dark">
+        <h3>Themen können sein</h3>
+        <ul class="weg-bullets">{themen.map(t => <li>{t}</li>)}</ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section" id="gaesteblick">
+    <div class="weg-split">
+      <div>
+        <p class="detail-kicker">Gästeblick-Training</p>
+        <h2>Einmalig <em>oder laufend.</em></h2>
+        <p>Erst erleben wir Ihr Haus verdeckt als Gast, im ganz normalen Betrieb. Dann trainieren wir mit Ihrem Team genau die Themen, die dabei aufgefallen sind. Beim nächsten Besuch sehen wir, was angekommen ist.</p>
+      </div>
+      <div class="weg-callout weg-callout--paper">
+        <p class="weg-callout__lead">Die Inhalte dokumentieren wir. Auf Wunsch werden sie Teil Ihres Handbuchs.</p>
+        <p><a class="detail-link" href="/betriebshandbuch/">Zum digitalen Betriebshandbuch <span aria-hidden="true">↗</span></a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-section" id="projekte">
+    <div class="weg-split">
+      <div>
+        <p class="detail-kicker">Projekte nach Wunsch</p>
+        <h2>Die Idee <em>aus der Schublade.</em></h2>
+        <p><strong>Was ist Ihr erfolgversprechendstes Kann-Projekt? Wofür fehlte bislang die Zeit oder das Know-how?</strong></p>
+        <p>Lassen Sie uns über Ihr Projekt sprechen und gemeinsam einen Weg finden, es aus der Schublade auf die Bildfläche zu holen.</p>
+      </div>
+      <div class="weg-card">
+        <h3>Beispielprojekte aus meiner Erfahrung</h3>
+        <ul class="weg-bullets">{projekte.map(p => <li>{p}</li>)}</ul>
+      </div>
+    </div>
+    <div class="weg-callout" style="margin-top:1.5rem">
+      <p class="detail-kicker">KI-Telefonassistent</p>
+      <h3>Was wäre, wenn die Anrufe an der Rezeption bereits zielgerichtet gefiltert würden?</h3>
+      <p>Standardanfragen, etwa zu Check-in-Zeiten, werden direkt beantwortet. Ihr Team hat mehr Zeit für die wichtigen Dinge: die Arbeit am Gast. Aus unserer Erfahrung: schnelle Umsetzung bei vergleichsweise hoher Zeitersparnis.</p>
+      <p><a class="detail-link" href="/kontakt/?thema=telefonassistent#contactform">Lassen Sie uns darüber sprechen <span aria-hidden="true">↗</span></a> · <a class="detail-link" href="/blog/ki-telefonassistent-hotel/">Wo ein guter Ablauf beginnt <span aria-hidden="true">↗</span></a></p>
+    </div>
+  </section>
+
+  <WegFaq name="faq-training" questions={fragen} note="Bei KI-Schulungen: praxisbezogene KI-Kompetenz im Sinne des EU AI Act (Chancen, Gefahren und Risiken). Eine Schulung ersetzt keine vollständige rechtliche Prüfung." />
+</DetailLayout>

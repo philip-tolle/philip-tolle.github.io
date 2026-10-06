@@ -2,7 +2,7 @@
 title: "Telefonassistenz im Hotel: Wo ein guter Ablauf beginnt"
 description: "Wenn das Telefon in der Stoßzeit klingelt, braucht die Rezeption verlässliche Unterstützung. Worauf es bei der Planung eines Telefonassistenten ankommt."
 pubDate: 2026-07-08
-tags: ["KI im Gastgewerbe", "Implementierungsprojekte"]
+tags: ["KI im Gastgewerbe", "Projekte nach Wunsch"]
 cover: ../../assets/blog/telefonassistenz.png
 coverAlt: "Ein Rezeptionsteam betreut Gäste; Telefon, Nachrichten und Reservierungen sind als verbundene Abläufe dargestellt."
 updatedDate: 2026-09-12
@@ -35,10 +35,10 @@ Klären Sie außerdem vor dem Einsatz, welche Daten verarbeitet werden, wer Zugr
 
 Zählen Sie zunächst, wie viele Anliegen das Team heute bearbeitet, wie lange dies dauert und welche Nacharbeit anfällt. Vergleichen Sie nach einer Testphase dieselben Werte. Beachten Sie dabei auch die Qualität der Antworten und Rückmeldungen Ihrer Gäste.
 
-Unser [Zeitbeispiel mit eigenen Eingabewerten](/management/referenzbetrieb/) hilft beim ersten Einordnen. Es ist eine Planungshilfe; ein erreichbarer Effekt lässt sich erst am tatsächlichen Betrieb prüfen.
+Unsere [Rechnung mit eigenen Werten](/#rechnen) hilft beim ersten Einordnen. Es ist eine Planungshilfe; ein erreichbarer Effekt lässt sich erst am tatsächlichen Betrieb prüfen.
 
 ## So kommen Sie zu einer Entscheidung
 
-Wenn Anrufwege und Zuständigkeiten klar sind, lässt sich eine Einführung begrenzen: ein Einsatzbereich, ein Testzeitraum und vereinbarte Kriterien für den Erfolg. Genau so begleiten wir [Implementierungsprojekte](/management/implementierungsprojekte/).
+Wenn Anrufwege und Zuständigkeiten klar sind, lässt sich eine Einführung begrenzen: ein Einsatzbereich, ein Testzeitraum und vereinbarte Kriterien für den Erfolg. Genau so begleiten wir [Projekte nach Wunsch](/training-projekte/#projekte).
 
 [Besprechen wir Ihren Ablauf](/kontakt/?thema=telefonassistent#contactform). Die erste Frage ist, was Ihre Rezeption im Alltag braucht.

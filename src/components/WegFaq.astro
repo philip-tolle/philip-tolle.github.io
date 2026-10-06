@@ -1,0 +1,14 @@
+---
+// Häufige Fragen einer Wege-Seite. Gleicher name-Wert: immer nur eine Antwort offen.
+interface Props { questions: [string, string][]; name: string; title?: string; note?: string; }
+const { questions, name, title = 'Gut zu wissen.', note } = Astro.props;
+---
+<section class="detail-section" id="fragen">
+  <div class="detail-faq offer-faq weg-faq">
+    <div><p class="detail-kicker">Vorab geklärt</p><h2>{title}</h2></div>
+    <div>
+      {questions.map(([q, a]) => <details name={name}><summary>{q}</summary><p>{a}</p></details>)}
+      {note && <p class="detail-note">{note}</p>}
+    </div>
+  </div>
+</section>
