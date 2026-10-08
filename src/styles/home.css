@@ -198,10 +198,3 @@ html.home-theme[data-home-theme=dark] .home-finder :focus-visible{outline:2px so
   .nc-home .home-hero__contact,.nc-home .home-hero__foot{display:none}
   .home-about{transform:none}
 }
-
-/* Ruhige Grundfläche (Designkammer: stile/warmer-minimalismus): Sand statt Coral-Fläche, Coral nur als Akzent. */
-.nc-home .home-faden{z-index:2}
-.nc-home .home-finder{background:var(--nc-paper)}
-.nc-home .home-finder .nc-kicker{color:#c4462b}
-.nc-home :is(.home-finder__card,.home-finder__mobile-card){background:#fff;border:1px solid rgba(18,42,47,.12);box-shadow:0 18px 40px -30px rgba(18,42,47,.45)}
-.nc-home .home-finder__choice[aria-selected=true] .home-finder__marker{box-shadow:0 0 0 4px var(--nc-paper),0 0 0 5px var(--nc-coral)}
