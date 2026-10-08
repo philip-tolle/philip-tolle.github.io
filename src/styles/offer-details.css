@@ -121,3 +121,22 @@
   .detail-page--compact .detail-steps li::before{position:absolute;left:0;top:1.1rem}
   .detail-page--compact #modellrechnung>.detail-intro{padding:1.5rem}
 }
+
+/* Handy-Kurzfassung (08.10.2026): weniger lesen, Details auf Wunsch. Desktop bleibt vollständig. */
+.step-toggle>summary,.package-more>summary{list-style:none}
+.step-toggle>summary::-webkit-details-marker,.package-more>summary::-webkit-details-marker{display:none}
+@media(min-width:600px){.step-toggle>summary,.package-more>summary{pointer-events:none}.package-more>summary{display:none}.package-more>.detail-list{margin-top:0}.package-more>.detail-list li:first-child{border-top:0}}
+@media(max-width:599px){
+  .offer-benefits .detail-row p,.offer-benefits .detail-intro>p,.offer-process .detail-intro>p,.detail-package .package-for{display:none}
+  .offer-benefits .detail-row{padding:1rem 1.1rem}
+  .detail-page--compact .offer-benefits h3{margin:0;font-size:1.05rem}
+  .step-toggle>summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;min-height:44px}
+  .step-toggle>summary::after,.package-more>summary::after{content:'+';font-size:1.3rem;line-height:1}
+  .step-toggle[open]>summary::after,.package-more[open]>summary::after{content:'−'}
+  .detail-page--compact .step-toggle h3{margin:0;font-size:1.05rem}
+  .step-toggle p{margin-top:.5rem!important}
+  .package-more{margin:-1rem 0 1.2rem}
+  .package-more>summary{display:flex;justify-content:space-between;align-items:center;min-height:44px;font-size:.85rem;font-weight:600;cursor:pointer;border-bottom:1px solid var(--detail-rule)}
+  .package-more>.detail-list{margin-top:0}
+  .package-more>.detail-list li:first-child{border-top:0}
+}

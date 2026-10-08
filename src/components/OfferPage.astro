@@ -18,6 +18,12 @@ const demoHref = page.demo === 'handbook' ? '#demo' : page.demo === 'audit' ? '/
   {page.demo === 'mystery' && <section class="detail-section detail-demo" id="demo"><MysteryDemoPreview /></section>}
   {page.demo === 'handbook' && <section class="detail-section" id="demo" aria-labelledby="handbook-example-title"><HandbookOfferExample /></section>}
   <slot />
-  <section class="detail-section" id="ablauf"><div class="offer-process"><div class="detail-intro"><div><p class="detail-kicker">So arbeiten wir zusammen</p><h2>In {stepCount} Schritten<em>in Ihren Alltag.</em></h2></div><p>Leistungen, Rahmen und nächste Schritte sind vor dem Start geklärt.</p></div><ol class="detail-steps">{page.steps.map(step => <li><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol></div></section>
+  <section class="detail-section" id="ablauf"><div class="offer-process"><div class="detail-intro"><div><p class="detail-kicker">So arbeiten wir zusammen</p><h2>In {stepCount} Schritten<em>in Ihren Alltag.</em></h2></div><p>Leistungen, Rahmen und nächste Schritte sind vor dem Start geklärt.</p></div><ol class="detail-steps">{page.steps.map(step => <li><details class="step-toggle" data-mobile-collapse open><summary><h3>{step.title}</h3></summary><p>{step.text}</p></details></li>)}</ol></div></section>
   <section class="detail-section" id="fragen"><div class="detail-faq offer-faq"><div><p class="detail-kicker">Vorab geklärt</p><h2>Gut zu wissen.</h2></div><div>{page.questions.map(([q,a]) => <details><summary>{q}</summary><p>{a}</p></details>)}{page.note && <p class="detail-note">{page.note}</p>}</div></div></section>
 </DetailLayout>
+<script>
+  // Auf dem Handy starten aufklappbare Inhalte geschlossen; ohne JavaScript bleiben sie offen.
+  if (window.matchMedia('(max-width: 599px)').matches) {
+    document.querySelectorAll<HTMLDetailsElement>('details[data-mobile-collapse]').forEach(d => { d.open = false; });
+  }
+</script>
