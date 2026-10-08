@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import Base from './Base.astro';
-import PersonalContact from '../components/PersonalContact.astro';
+import KontaktZeile from '../components/KontaktZeile.astro';
 import '../styles/marketing.css';
 import '../styles/service-pages.css';
 import '../styles/detail-pages.css';
@@ -47,7 +47,6 @@ const hasVisual = Boolean(image || Astro.slots.has('heroVisual'));
       </div>
       <svg class="detail-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44C240 104 420 104 720 48S1200 0 1440 44V100H0Z" /></svg>
     </header>
-    <div class="detail-surface service-surface" data-wave-tone={area === 'academy' ? undefined : 'dark'}><div class="detail-content detail-shell"><slot /></div><svg class="service-surface__end" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44C240 104 420 104 720 48S1200 0 1440 44V100H0Z" /></svg></div>
-    {contact && <PersonalContact topic={topic || undefined} title={contactTitle} waveTone={area === 'academy' ? 'dark' : undefined} />}
+    <div class="detail-surface service-surface" data-wave-tone={area === 'academy' ? undefined : 'dark'}><div class="detail-content detail-shell"><slot />{contact && <KontaktZeile topic={topic || undefined} title={contactTitle} />}</div><svg class="service-surface__end" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44C240 104 420 104 720 48S1200 0 1440 44V100H0Z" /></svg></div>
   </div>
 </Base>

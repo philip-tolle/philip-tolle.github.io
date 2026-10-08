@@ -1,0 +1,20 @@
+---
+// Dezenter Abschluss der Unterseiten: eine Frage und der Weg zum Erstgespräch.
+interface Props { topic?: string; title?: string; }
+const { topic, title = 'Was würde Ihren Alltag leichter machen?' } = Astro.props;
+const href = topic ? `/kontakt/?thema=${encodeURIComponent(topic)}#contactform` : '/kontakt/';
+---
+<aside class="kontakt-zeile" aria-label="Erstgespräch">
+  <p>{title}</p>
+  <a href={href}>Erstgespräch anfragen <span aria-hidden="true">→</span></a>
+</aside>
+
+<style>
+  .kontakt-zeile{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.6rem 2rem;margin:clamp(1.5rem,3vw,2.5rem) 0 1rem;padding-top:1.2rem;border-top:1px solid var(--detail-rule,var(--service-rule,#122a2f30))}
+  .kontakt-zeile p{margin:0;font-weight:600;font-size:clamp(1rem,1.2vw,1.2rem);color:var(--detail-text,var(--service-ink,inherit));max-width:48ch}
+  .kontakt-zeile a{display:inline-flex;align-items:center;gap:.6rem;min-height:44px;font-size:.88rem;font-weight:600;color:var(--detail-text,var(--service-ink,inherit));text-underline-offset:.35em}
+  .kontakt-zeile a span{transition:transform .2s}
+  .kontakt-zeile a:hover span{transform:translateX(3px)}
+  .kontakt-zeile a:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+  @media(prefers-reduced-motion:reduce){.kontakt-zeile a span{transition:none}}
+</style>

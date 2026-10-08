@@ -1,21 +1,37 @@
 ---
+// Persönlicher Abschluss der Startseite: kompakte Visitenkarte statt großem Porträt.
 import { Image } from 'astro:assets';
 import philip from '../assets/philip.png';
-interface Props { topic?: string; title?: string; waveTone?: 'dark'; }
-const { topic, title = 'Was würde Ihren Alltag leichter machen?', waveTone } = Astro.props;
+interface Props { topic?: string; title?: string; }
+const { topic, title = 'Was würde Ihren Alltag leichter machen?' } = Astro.props;
 const href = topic ? `/kontakt/?thema=${encodeURIComponent(topic)}#contactform` : '/kontakt/';
 ---
-<section class="nc-contact nc-shell" aria-labelledby="personal-contact-title" data-wave-tone={waveTone}>
-  <div class="nc-contact__portrait coin reveal" data-tilt>
-    <Image src={philip} alt="Philip Tolle, Gründer von NextCourse" widths={[200, 400]} sizes="200px" width={400} format="webp" loading="lazy" />
-  </div>
-  <div class="nc-contact__copy reveal">
-    <p class="nc-kicker">Persönlich kennenlernen</p>
-    <h2 id="personal-contact-title">{title}</h2>
-    <p class="desktop-overview-copy">Erzählen Sie mir, wo es in Ihrem Haus hakt. Gemeinsam schauen wir, welcher nächste Schritt sinnvoll ist.</p>
-    <p class="mobile-overview-copy">Gemeinsam finden wir den nächsten Schritt für Ihr Haus.</p>
-    <a class="nc-button nc-button--outline" href={href}>Erstgespräch anfragen <span aria-hidden="true">→</span></a>
-    <p class="nc-note">Kostenlos und unverbindlich. Am Telefon oder bei Ihnen im Haus.</p>
-    <p class="nc-contact__signature"><strong>Philip Tolle</strong><span>Ihr Ansprechpartner · Würzburg</span></p>
+<section class="nc-contact nc-shell" aria-labelledby="personal-contact-title">
+  <div class="nc-contact__inner reveal">
+    <div class="nc-contact__copy">
+      <p class="nc-kicker">Persönlich kennenlernen</p>
+      <h2 id="personal-contact-title">{title}</h2>
+      <a class="nc-button" href={href}>Erstgespräch anfragen <span aria-hidden="true">→</span></a>
+      <p class="nc-note">Kostenlos und unverbindlich.</p>
+    </div>
+    <a class="nc-contact__person" href="/ueber/" aria-label="Über Philip Tolle">
+      <Image src={philip} alt="" widths={[120, 240]} sizes="64px" width={240} format="webp" loading="lazy" />
+      <span><strong>Philip Tolle</strong><small>Ihr Ansprechpartner · Würzburg</small></span>
+    </a>
   </div>
 </section>
+
+<style>
+  .nc-contact{padding-block:clamp(3rem,6vw,6rem);text-align:left}
+  .nc-contact__inner{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:2rem clamp(2rem,6vw,6rem);max-width:72rem;margin-inline:auto;padding-top:clamp(1.5rem,3vw,2.5rem);border-top:1px solid #f9f7f333}
+  .nc-contact__copy h2{font-size:clamp(1.7rem,2.6vw,2.6rem);line-height:1.15;max-width:22ch;margin:0 0 1.4rem}
+  .nc-contact__copy .nc-kicker{margin-bottom:.9rem}
+  .nc-contact__copy .nc-note{margin:.7rem 0 0;font-size:.78rem}
+  .nc-contact__person{display:flex;align-items:center;gap:.9rem;color:inherit;text-decoration:none;padding:.5rem .9rem .5rem .5rem;border:1px solid #f9f7f333;border-radius:999px;transition:border-color .2s}
+  .nc-contact__person:hover{border-color:#f9f7f399}
+  .nc-contact__person:focus-visible{outline:2px solid #ff6b4a;outline-offset:4px}
+  .nc-contact__person img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center 28%;flex:none}
+  .nc-contact__person strong{display:block;font-size:.95rem;font-weight:600}
+  .nc-contact__person small{display:block;font-size:.75rem;color:var(--nc-muted)}
+  @media(max-width:699px){.nc-contact__inner{grid-template-columns:1fr;align-items:start;gap:1.6rem}.nc-contact__copy h2{font-size:clamp(1.55rem,6.6vw,1.9rem)}.nc-contact__person{justify-self:start}}
+</style>
