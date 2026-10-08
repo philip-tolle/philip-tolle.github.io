@@ -1,0 +1,74 @@
+---
+// Designkammer: effekte/stapel-karten (Kantenversatz 16, Schrumpfen 6 %, Abdunkeln bis 26 %).
+import ZeitRechner from './ZeitRechner.astro';
+const momente = [
+  { title: 'Die dritte Frage vor zehn Uhr', text: 'Die neue Kraft fragt. Die Rezeptionsleiterin erklärt. Wie jede Woche bei jedem Neuen.', frage: 'Wie viele Stunden fließen in Fragen, die längst beantwortet sind?', kostet: 'die Zeit Ihrer besten Leute.' },
+  { title: 'Führung zwischen Büro und Gast', text: 'Preise, Karten und Aushänge müssen aktuell sein. Oft übernimmt das die Führung.', frage: 'Wie viel Führungszeit bleibt dadurch für Team und Gäste?', kostet: 'Zeit für Führung, Qualität und Gäste.' },
+  { title: 'Die Anfrage, die nie kam', text: 'Gäste und Bewerber entscheiden oft online, ob sie Kontakt aufnehmen.', frage: 'Wie viele Entscheidungen fallen, bevor Sie überhaupt davon erfahren?', kostet: 'Buchungen und Bewerbungen, bevor ein Gespräch beginnt.' },
+  { title: 'Einarbeitung im laufenden Betrieb', text: 'Neue Mitarbeitende lernen mit, wenn gerade Zeit ist. Jeder erklärt etwas anders.', frage: 'Wie schnell arbeitet jemand sicher, wenn Einarbeitung nebenbei läuft?', kostet: 'Zeit, Sicherheit und manchmal gute Mitarbeitende.' },
+  { title: 'Freitag, 15 Uhr', text: 'Drei Anreisen, das Telefon klingelt. Die Reservierung geht zum Nachbarn.', frage: 'Wie viele Anrufe bleiben in einer vollen Woche unbeantwortet?', kostet: 'Umsatz, der nie gebucht wird.' },
+];
+---
+<section class="momente nc-section nc-shell nc-paper" id="momente" aria-labelledby="momente-title" data-wave-tone="dark">
+  <div class="momente__intro reveal">
+    <p class="nc-kicker">Was es heute kostet</p>
+    <h2 id="momente-title">Fünf Momente, die Geld kosten.<em>Nur steht es auf keiner Rechnung.</em></h2>
+  </div>
+  <ol class="momente__stack" data-stack>
+    {momente.map((m, i) => (
+      <li class="momente__card" style={`--i:${i}`}>
+        <span class="momente__shade" aria-hidden="true"></span>
+        <span class="momente__number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+        <div class="momente__body">
+          <h3>{m.title}</h3>
+          <p>{m.text}</p>
+          <p class="momente__frage">{m.frage}</p>
+          <p class="momente__kostet">Kostet: {m.kostet}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+  <ZeitRechner />
+</section>
+
+<script>
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const stack = document.querySelector<HTMLElement>('[data-stack]');
+  if (stack && !motion.matches) {
+    const cards = Array.from(stack.querySelectorAll<HTMLElement>('.momente__card'));
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      cards.forEach((card, i) => {
+        const next = cards[i + 1];
+        if (!next) return;
+        const a = card.getBoundingClientRect();
+        const b = next.getBoundingClientRect();
+        // Wie weit die nächste Karte schon über dieser liegt (0 bis 1).
+        const cover = Math.min(1, Math.max(0, (a.bottom - b.top) / Math.max(1, a.height)));
+        card.style.setProperty('--cover', cover.toFixed(3));
+      });
+    };
+    const request = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request);
+    update();
+  }
+</script>
+
+<style>
+  .momente{background:var(--nc-paper)}
+  .momente__intro{max-width:60rem;margin-bottom:clamp(2rem,4vw,4rem)}
+  .momente__intro h2{color:var(--nc-forest)}
+  .momente__intro h2 em{display:block;font-family:Georgia,'Times New Roman',serif;font-weight:400;font-style:italic;letter-spacing:-.04em;color:#c4462b;font-size:.8em;margin-top:.4rem}
+  .momente__stack{list-style:none;margin:0 auto;padding:0 0 4rem;max-width:62rem;display:grid;gap:clamp(2.5rem,7vh,5rem)}
+  .momente__card{--cover:0;position:sticky;top:calc(6.5rem + var(--i) * 16px);z-index:calc(var(--i) + 1);display:grid;grid-template-columns:clamp(4rem,9vw,7rem) minmax(0,1fr);gap:clamp(1rem,3vw,2.5rem);align-items:start;padding:clamp(1.6rem,3.5vw,3rem);border-radius:16px;background:#fff;border:1px solid #122a2f1f;box-shadow:0 18px 45px -30px #122a2f88;transform:scale(calc(1 - var(--cover) * .06));transform-origin:50% 0;overflow:hidden}
+  .momente__shade{position:absolute;inset:0;background:#122a2f;opacity:calc(var(--cover) * .26);pointer-events:none}
+  .momente__number{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:clamp(2.6rem,5vw,4.4rem);line-height:1;color:#ff6b4a}
+  .momente__body h3{color:var(--nc-forest);margin:0 0 .6rem;font-size:clamp(1.35rem,1.9vw,2.1rem)}
+  .momente__body p{margin:0 0 .6rem;color:#465b60;max-width:58ch}
+  .momente__body .momente__frage{color:var(--nc-forest);font-weight:600}
+  .momente__body .momente__kostet{font-family:Georgia,'Times New Roman',serif;font-style:italic;color:#c4462b;margin:0}
+  @media(max-width:599px){.momente__card{grid-template-columns:1fr;gap:.4rem;top:calc(5.5rem + var(--i) * 12px)}.momente__number{font-size:2.4rem}}
+  @media(prefers-reduced-motion:reduce){.momente__card{transform:none}.momente__shade{display:none}}
+</style>

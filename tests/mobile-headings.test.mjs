@@ -49,7 +49,7 @@ test('mobile layout across page types', {
       await page.goto(base + '/');
       await page.evaluate(() => document.fonts.ready);
       const hero = page.locator('.home-hero');
-      assert.match(await hero.locator('h1').innerText(), /Mehr Zeit für das,\s*was zählt\./);
+      assert.match(await hero.locator('h1').textContent(), /Mehr Zeit für das,\s*was zählt\./, 'full sentence stays available while the words are typed');
       const actions = hero.locator('.home-hero__actions a:visible');
       assert.equal(await actions.count(), 1, `only one primary action at ${width}px`);
       assert.match(await actions.first().innerText(), /Angebote entdecken/);

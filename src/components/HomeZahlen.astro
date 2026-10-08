@@ -1,0 +1,56 @@
+---
+// Drei harte Zahlen statt Adjektive (Designkammer: galerie/stripe, effekte/zahlen-zum-anfassen).
+const zahlen = [
+  { vor: '8–', wert: 10, nach: 'Wochen', text: 'bis Ihr digitales Betriebshandbuch startklar ist', href: '/management/betriebshandbuch/' },
+  { vor: 'unter ', wert: 1, nach: 'Minute', text: 'bis Ihr Team die Antwort im Handbuch findet', href: '/management/betriebshandbuch/' },
+  { vor: '', wert: 30, nach: 'Tage', text: 'Entlastung testen. Der Test endet automatisch.', href: '/operation/30-tage-test/' },
+];
+---
+<section class="home-zahlen nc-section nc-shell nc-paper" aria-label="NextCourse in Zahlen" data-zahlen>
+  <ul class="home-zahlen__list">
+    {zahlen.map(z => (
+      <li class="reveal">
+        <a href={z.href}>
+          <span class="home-zahlen__zahl"><span>{z.vor}</span><span data-ziel={z.wert}>{z.wert}</span> <small>{z.nach}</small></span>
+          <span class="home-zahlen__text">{z.text}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-zahlen]');
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (root && !motion.matches && 'IntersectionObserver' in window) {
+    const nums = Array.from(root.querySelectorAll<HTMLElement>('[data-ziel]')).filter(n => Number(n.dataset.ziel) >= 5 && !n.previousElementSibling?.textContent);
+    nums.forEach(n => { n.textContent = '0'; });
+    const io = new IntersectionObserver(entries => {
+      if (!entries.some(e => e.isIntersecting)) return;
+      io.disconnect();
+      nums.forEach((n, i) => {
+        const ziel = Number(n.dataset.ziel);
+        const start = performance.now() + i * 180;
+        const tick = (now: number) => {
+          const u = Math.min(1, Math.max(0, (now - start) / 1400));
+          n.textContent = String(Math.round(ziel * (1 - Math.pow(1 - u, 3))));
+          if (u < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: .4 });
+    io.observe(root);
+  }
+</script>
+
+<style>
+  .home-zahlen{padding-block:clamp(2.5rem,5vw,5rem)}
+  .home-zahlen__list{list-style:none;margin:0 auto;padding:0;max-width:78rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1rem,3vw,3rem)}
+  .home-zahlen__list a{display:block;height:100%;padding:1.2rem 0 0;border-top:2px solid var(--nc-coral);color:var(--nc-forest);text-decoration:none}
+  .home-zahlen__zahl{display:block;font-family:var(--disp);font-weight:800;letter-spacing:-.045em;font-size:clamp(2.6rem,5.2vw,4.8rem);line-height:1;font-variant-numeric:tabular-nums}
+  .home-zahlen__zahl small{font-size:.42em;letter-spacing:-.02em;font-weight:700}
+  .home-zahlen__text{display:block;margin-top:.6rem;color:#465b60;font-size:.92em;line-height:1.5;max-width:26ch}
+  .home-zahlen__list a:hover .home-zahlen__text{color:var(--nc-forest);text-decoration:underline;text-underline-offset:.3em}
+  .home-zahlen__list a:focus-visible{outline:2px solid var(--nc-forest);outline-offset:4px}
+  @media(max-width:699px){.home-zahlen__list{grid-template-columns:1fr;gap:1.4rem}.home-zahlen__list a{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:1rem;padding-top:.9rem}.home-zahlen__zahl{font-size:2.4rem}.home-zahlen__text{margin:0}}
+</style>
