@@ -31,5 +31,5 @@ const { page } = Astro.props;
   </div>
   <MobileRailControls count={page.journey.steps.length} noun="Angebote" />
   </div>
-  {page.related && <aside class="service-related"><p>{page.related.intro}</p><div>{page.related.links.map(link => <a href={link.href}>{link.label} <span aria-hidden="true">↗</span></a>)}</div></aside>}
+  {page.related && <aside class="service-related">{page.related.intro && <p>{page.related.intro}</p>}<div>{page.related.links.map(link => <a href={link.href}>{link.label} <span aria-hidden="true">↗</span></a>)}</div></aside>}
 </section>

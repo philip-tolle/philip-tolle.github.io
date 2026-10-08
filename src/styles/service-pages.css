@@ -132,7 +132,10 @@ html[data-page-chrome="light"] .noscript-nav{background:#f9f7f3}
 }
 @media(max-width:599px){
   .service-journey .kurs[data-mobile-rail-track]{display:flex;gap:.75rem;overflow-x:auto;padding:.3rem .1rem 1rem}
-  .service-journey .kurs[data-mobile-rail-track] .station{flex:0 0 83%;min-width:0;margin:0;scroll-snap-align:start}
+  .service-journey .kurs[data-mobile-rail-track] .station{flex:0 0 83%;min-width:0;margin:0;scroll-snap-align:start;display:flex;flex-direction:column}
+  .service-journey .kurs[data-mobile-rail-track] .service-mobile-card{flex:1 1 auto;display:flex;flex-direction:column}
+  .service-journey .kurs[data-mobile-rail-track] .service-mobile-card__body{flex:1 1 auto;display:flex;flex-direction:column}
+  .service-journey .kurs[data-mobile-rail-track] .service-mobile-card strong{margin-top:auto}
   .service-journey [data-mobile-rail] .mobile-card-rail__nav{margin-top:.5rem}
   .service-journey .kurs{padding-top:0}
   .service-journey .kurs__line,.service-journey .kurs__pen,.service-journey .station__node,.service-journey .station::after{display:none}

@@ -33,7 +33,7 @@ export interface ServicePageContent {
   image: ImageMetadata; imageAlt: string;
   hero: { heading: string; emphasis: string; description: string; mobileDescription: string; action: string };
   journey: { kicker: string; heading: string; emphasis: string; intro: string; mobileIntro?: string; steps: JourneyStep[]; links?: { label: string; href: string }[] };
-  related?: { intro: string; links: { label: string; href: string }[] };
+  related?: { intro?: string; links: { label: string; href: string }[] };
   contactTitle: string;
 }
 
@@ -83,7 +83,7 @@ export const management: ServicePageContent = {
       },
     ],
   },
-  related: { intro: 'Sie möchten bestehende Aufgaben abgeben oder Mitarbeitende schulen? Dafür gibt es Operation und Academy.', links: [{ label: 'Team schulen mit Academy', href: '/akademie/' }, { label: 'Unterlagen & Kommunikation abgeben', href: '/operation/' }] },
+  related: { links: [{ label: 'Team schulen mit Academy', href: '/akademie/' }, { label: 'Unterlagen & Kommunikation abgeben', href: '/operation/' }] },
   contactTitle: 'Wo braucht Ihr Betrieb mehr Klarheit?',
 };
 
@@ -161,6 +161,6 @@ export const operation: ServicePageContent = {
       },
     ],
   },
-  related: { intro: 'Sie möchten einen Ablauf neu aufbauen oder Ihr Team schulen? Management und Academy ergänzen die laufende Unterstützung.', links: [{ label: 'Abläufe verbessern', href: '/management/' }, { label: 'Team weiterbilden', href: '/akademie/' }] },
+  related: { links: [{ label: 'Abläufe verbessern', href: '/management/' }, { label: 'Team weiterbilden', href: '/akademie/' }] },
   contactTitle: 'Welche Aufgabe würden Sie gern abgeben?',
 };
