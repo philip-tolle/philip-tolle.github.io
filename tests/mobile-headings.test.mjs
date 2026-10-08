@@ -69,33 +69,36 @@ test('mobile layout across page types', {
     assert.match(await page.locator('.home-hero__actions .nc-button').innerText(), /Passende Unterstützung finden/);
     assert.ok(await page.locator('.home-hero__foot').isVisible());
   });
-  await t.test('shared contact ending is compact without losing its topic or conditions', async () => {
+  await t.test('contact ending: compact card on home, slim line with topic on area pages', async () => {
     await page.setViewportSize({ width: 390, height: 844 });
-    const contactPaths = [
-      ['/', '/kontakt/'],
+    await page.goto(base + '/');
+    const contact = page.locator('.nc-contact');
+    await contact.scrollIntoViewIfNeeded();
+    await page.evaluate(() => document.fonts.ready);
+    assert.ok((await contact.boundingBox()).height < 610, 'home: contact ending too tall');
+    assert.ok(await contact.locator('.nc-contact__person img').isVisible());
+    assert.match(await contact.locator('.nc-note').innerText(), /Kostenlos und unverbindlich/);
+    assert.match(await contact.locator('.nc-contact__person').innerText(), /Philip Tolle/);
+    const button = contact.locator('.nc-button');
+    assert.equal(await button.getAttribute('href'), '/kontakt/');
+    assert.ok((await button.boundingBox()).height >= 44);
+    const linePaths = [
       ['/management/', '/kontakt/?thema=management#contactform'],
       ['/akademie/', '/kontakt/?thema=academy#contactform'],
       ['/operation/', '/kontakt/?thema=entlastung#contactform'],
     ];
-    for (const [route, expectedHref] of contactPaths) {
+    for (const [route, expectedHref] of linePaths) {
       await page.goto(base + route);
-      const contact = page.locator('.nc-contact');
-      await contact.scrollIntoViewIfNeeded();
-      await page.evaluate(() => document.fonts.ready);
-      assert.ok((await contact.boundingBox()).height < 610, `${route}: contact ending too tall`);
-      assert.ok(await contact.locator('img').isVisible());
-      assert.match(await contact.locator('.nc-note').innerText(), /Kostenlos und unverbindlich/);
-      assert.match(await contact.locator('.nc-contact__signature').innerText(), /Philip Tolle/);
-      const button = contact.locator('.nc-button');
-      const href = await button.getAttribute('href');
-      assert.equal(href, expectedHref, `${route}: exact contact topic and form anchor must survive`);
-      assert.ok((await button.boundingBox()).height >= 44);
+      assert.equal(await page.locator('.nc-contact').count(), 0, `${route}: portrait block only on the home page`);
+      const link = page.locator('.kontakt-zeile a');
+      await link.scrollIntoViewIfNeeded();
+      assert.equal(await link.getAttribute('href'), expectedHref, `${route}: exact contact topic and form anchor must survive`);
+      assert.ok((await link.boundingBox()).height >= 44);
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
     }
     await page.setViewportSize({ width: 1366, height: 900 });
     await page.goto(base + '/');
-    assert.match(await page.locator('.nc-contact__copy').innerText(), /Erzählen Sie mir, wo es in Ihrem Haus hakt/);
-    assert.ok((await page.locator('.nc-contact__portrait').boundingBox()).width >= 150);
+    assert.ok(await page.locator('.nc-contact__person').isVisible());
   });
   await t.test('important phone headings stay compact', async () => {
     await page.setViewportSize({ width: 390, height: 844 });
