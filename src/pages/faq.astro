@@ -1,5 +1,6 @@
 ---
 import DetailLayout from '../layouts/DetailLayout.astro';
+import MobileRailControls from '../components/MobileRailControls.astro';
 const groups=[
  {id:'unbequem',title:'Die unbequemen Fragen',items:[
  ['Warum ein neues kleines Unternehmen und keine große Beratung?','NextCourse ist neu, die Erfahrung dahinter nicht: Service, Restaurantleitung, Bankett und Ausbildung, in inhabergeführten Häusern wie Ihrem. Große Beratungen sind für Ketten gebaut. Bei uns sprechen Sie mit dem Gründer selbst oder mit einem kleinen Team, nicht mit jemandem, den Sie nach dem Angebot nie wiedersehen.'],
@@ -32,5 +33,5 @@ const schema=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',m
 <script type="application/ld+json" set:html={schema} slot="head"/>
 <nav class="detail-actions" aria-label="Fragen nach Thema">{groups.map(g=><a class="detail-link" href={'#'+g.id}>{g.title} ↓</a>)}</nav>
 {groups.map(g=><section class="detail-section" id={g.id}><div class="detail-faq"><p class="detail-kicker">Ihre Fragen zu NextCourse</p><h2>{g.title}</h2>{g.items.map(([q,a])=><details><summary>{q}</summary><p>{a}</p></details>)}</div></section>)}
-<section class="detail-section"><div class="detail-grid">{[['Betriebshandbuch','/management/betriebshandbuch/'],['Schulung im Haus','/akademie/flying-academy/'],['Fördermöglichkeiten','/akademie/foerderung/']].map(([label,href])=><a class="detail-card detail-link" href={href}>{label} ↗</a>)}</div></section>
+<section class="detail-section" data-mobile-rail><div class="detail-grid" data-mobile-rail-track tabindex="0" aria-label="Weiterführende Themen: horizontal wischen oder mit den Pfeiltasten bewegen">{[['Betriebshandbuch','/management/betriebshandbuch/'],['Schulung im Haus','/akademie/flying-academy/'],['Fördermöglichkeiten','/akademie/foerderung/']].map(([label,href])=><a class="detail-card detail-link" href={href} data-mobile-rail-card>{label} ↗</a>)}</div><MobileRailControls count={3} noun="Themen" /></section>
 </DetailLayout>

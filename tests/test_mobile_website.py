@@ -23,16 +23,28 @@ class PageProbe(HTMLParser):
         self.mobile_service_links = []
         self.desktop_service_links = []
         self.mobile_controls_hidden = {}
+        self.mobile_hero_summary = ""
+        self.in_mobile_hero_summary = False
+        self.tag_sequence = []
+        self.service_rail_cards = 0
+        self.rail_card_count = 0
+        self.rail_control_labels = {}
         self.feed(page.read_text(encoding="utf-8"))
 
     def handle_starttag(self, tag, attributes):
         attrs = dict(attributes)
+        self.tag_sequence.append((tag, attrs))
+        if tag == "article" and "station" in attrs.get("class", "") and "data-mobile-rail-card" in attrs:
+            self.service_rail_cards += 1
+        if "data-mobile-rail-card" in attrs:
+            self.rail_card_count += 1
         if "id" in attrs:
             self.ids.append(attrs["id"])
         self.markers.update(name for name in attrs if name.startswith("data-mobile-"))
-        for control in ("data-mobile-prev", "data-mobile-next"):
+        for control in ("data-mobile-rail-prev", "data-mobile-rail-next"):
             if control in attrs:
                 self.mobile_controls_hidden[control] = "hidden" in attrs
+                self.rail_control_labels[control] = attrs.get("aria-label")
         if tag == "a":
             self.links.append(attrs.get("href"))
             if "data-mobile-service-link" in attrs:
@@ -47,7 +59,9 @@ class PageProbe(HTMLParser):
         if tag == "p" and "data-mobile-copy" in attrs:
             self.current_mobile_copy = attrs["data-mobile-copy"]
             self.mobile_copy[self.current_mobile_copy] = ""
-        if tag == "article" and "data-mobile-service-card" in attrs:
+        if tag == "p" and "data-mobile-hero-summary" in attrs:
+            self.in_mobile_hero_summary = True
+        if tag == "article" and "data-mobile-rail-card" in attrs:
             self.in_mobile_card = True
             self.mobile_card_links.append([])
         elif self.in_mobile_card and tag == "a":
@@ -57,6 +71,7 @@ class PageProbe(HTMLParser):
         if tag == "p":
             self.current_mobile_copy = None
             self.in_mobile_summary = False
+            self.in_mobile_hero_summary = False
         if tag == "article" and self.in_mobile_card:
             self.in_mobile_card = False
 
@@ -65,9 +80,19 @@ class PageProbe(HTMLParser):
             self.mobile_copy[self.current_mobile_copy] += data
         if self.in_mobile_summary:
             self.mobile_summaries[-1] += data
+        if self.in_mobile_hero_summary:
+            self.mobile_hero_summary += data
 
 
 class MobileHomeTests(unittest.TestCase):
+    def test_quiet_mobile_opening_keeps_primary_and_secondary_paths(self):
+        page = PageProbe(ROOT / "dist" / "index.html")
+        self.assertEqual(page.mobile_hero_summary.strip(),
+                         "Für Hotels & Gastronomie in Mainfranken.")
+        self.assertTrue({"#leistungen", "/kontakt/", "/ueber/"}.issubset(page.links))
+        self.assertIn("Wir ordnen Abläufe, schulen Ihr Team und übernehmen laufende Aufgaben.",
+                      (ROOT / "dist" / "index.html").read_text(encoding="utf-8"))
+
     def test_mobile_offer_keyboard_focus_indicator(self):
         """The link focus ring must be inset rather than clipped by its card."""
         css = (ROOT / "src" / "styles" / "home.css").read_text(encoding="utf-8")
@@ -96,16 +121,16 @@ class MobileHomeTests(unittest.TestCase):
         )
         self.assertTrue(
             {
-                "data-mobile-finder",
-                "data-mobile-service-track",
-                "data-mobile-prev",
-                "data-mobile-next",
-                "data-mobile-status",
+                "data-mobile-rail",
+                "data-mobile-rail-track",
+                "data-mobile-rail-prev",
+                "data-mobile-rail-next",
+                "data-mobile-rail-status",
             }.issubset(page.markers)
         )
         self.assertEqual(len(page.ids), len(set(page.ids)))
         self.assertEqual(page.mobile_controls_hidden,
-                         {"data-mobile-prev": True, "data-mobile-next": True})
+                         {"data-mobile-rail-prev": True, "data-mobile-rail-next": True})
 
     def test_concise_home_copy(self):
         """Phone overview copy stays short while the demo path remains available."""
@@ -125,6 +150,46 @@ class MobileHomeTests(unittest.TestCase):
 
 
 class MobileServiceTests(unittest.TestCase):
+    def test_wave_separates_mobile_service_image_from_following_details(self):
+        """The curved color transition must touch the image before the lead/actions."""
+        for route in ("management", "akademie", "operation"):
+            with self.subTest(route=route):
+                tags = PageProbe(ROOT / "dist" / route / "index.html").tag_sequence
+                visual = next(i for i, (_, attrs) in enumerate(tags)
+                              if "service-hero__visual" in attrs.get("class", ""))
+                wave = next(i for i, (_, attrs) in enumerate(tags)
+                            if "service-hero__wave" in attrs.get("class", ""))
+                details = next(i for i, (_, attrs) in enumerate(tags)
+                               if "service-hero__details" in attrs.get("class", ""))
+                self.assertLess(visual, wave)
+                self.assertLess(wave, details)
+
+    def test_operation_question_has_no_repeated_mobile_instruction(self):
+        html = (ROOT / "dist" / "operation" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("in gute Hände geben?", html)
+        self.assertEqual(html.count("Wählen Sie die Aufgabe, die Sie abgeben möchten."), 0)
+
+    def test_image_follows_heading_before_mobile_lead_and_offers_swipe(self):
+        for route, count in (("management", 4), ("akademie", 2), ("operation", 3)):
+            with self.subTest(route=route):
+                page = PageProbe(ROOT / "dist" / route / "index.html")
+                tags = page.tag_sequence
+                h1 = next(i for i, (tag, _) in enumerate(tags) if tag == "h1")
+                visual = next(i for i, (_, attrs) in enumerate(tags)
+                              if "service-hero__visual" in attrs.get("class", ""))
+                lead = next(i for i, (_, attrs) in enumerate(tags) if "data-mobile-hero" in attrs)
+                self.assertLess(h1, visual)
+                self.assertLess(visual, lead)
+                self.assertEqual(page.service_rail_cards, count)
+                self.assertTrue({"data-mobile-rail", "data-mobile-rail-track",
+                                 "data-mobile-rail-status"}.issubset(page.markers))
+                self.assertTrue({"data-mobile-rail-prev": True,
+                                 "data-mobile-rail-next": True}.items() <= page.mobile_controls_hidden.items())
+                self.assertTrue(all(f"format-{step}" in page.ids for step in
+                                    ({"management": ("handbuch", "mystery", "audit", "umsetzung"),
+                                      "akademie": ("ki", "zusammenarbeit"),
+                                      "operation": ("unterlagen", "kommunikation", "aktionen")}.get(route, ()))))
+
     def test_mobile_summaries_and_destinations(self):
         """Each overview exposes short direct cards without changing offer destinations."""
         for route, count in (("management", 4), ("akademie", 2), ("operation", 3)):
@@ -135,7 +200,10 @@ class MobileServiceTests(unittest.TestCase):
                                     for summary in page.mobile_summaries))
                 self.assertEqual(page.mobile_service_links, page.desktop_service_links)
                 self.assertIn("data-mobile-hero", page.markers)
-                self.assertIn("data-mobile-journey-intro", page.markers)
+                if route != "operation":
+                    self.assertIn("data-mobile-journey-intro", page.markers)
+                else:
+                    self.assertNotIn("data-mobile-journey-intro", page.markers)
                 self.assertEqual(len(page.ids), len(set(page.ids)))
 
     def test_supplemental_mobile_copy(self):
@@ -154,3 +222,121 @@ class MobileServiceTests(unittest.TestCase):
         self.assertIn("ohne automatische Verlängerung",
                       operation.mobile_copy.get("operation-trial", ""))
         self.assertIn("Preis auf Anfrage", operation.mobile_copy.get("operation-trial", ""))
+
+
+class MobileDetailTests(unittest.TestCase):
+    def test_image_bearing_detail_pages_put_visual_before_lead(self):
+        for route in ("akademie/ki-grundlagen", "blog/fachkraeftemangel-ki-entlastung", "ueber", "kontakt"):
+            with self.subTest(route=route):
+                page = PageProbe(ROOT / "dist" / route / "index.html")
+                tags = page.tag_sequence
+                h1 = next(i for i, (tag, _) in enumerate(tags) if tag == "h1")
+                visual = next(i for i, (_, attrs) in enumerate(tags)
+                              if "detail-visual" in attrs.get("class", "") or "data-hero-visual" in attrs)
+                lead = next(i for i, (_, attrs) in enumerate(tags) if "detail-lead" in attrs.get("class", ""))
+                self.assertLess(h1, visual)
+                self.assertLess(visual, lead)
+        contact = (ROOT / "dist" / "kontakt" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('action="https://formsubmit.co/kontakt@next-course.de"', contact)
+
+    def test_demo_covers_follow_headings_before_long_leads(self):
+        for route, pdf in (("digital-audit-demo", "/demo/digital-audit/nextcourse-digital-audit-demo.pdf"),
+                           ("mystery-check-demo", "/demo/mystery-check/nextcourse-mystery-check-demo.pdf")):
+            with self.subTest(route=route):
+                page = PageProbe(ROOT / "dist" / route / "index.html")
+                tags = page.tag_sequence
+                h1 = next(i for i, (tag, _) in enumerate(tags) if tag == "h1")
+                cover = next(i for i, (_, attrs) in enumerate(tags) if "mc-demo__cover" in attrs.get("class", ""))
+                lead = next(i for i, (_, attrs) in enumerate(tags) if "mc-demo__lead" in attrs.get("class", ""))
+                self.assertLess(h1, cover)
+                self.assertLess(cover, lead)
+                self.assertIn(pdf, page.links)
+
+    def test_text_only_pages_need_no_placeholder_visual(self):
+        for route in ("impressum", "datenschutz", "404"):
+            path = ROOT / "dist" / ("404.html" if route == "404" else f"{route}/index.html")
+            page = PageProbe(path)
+            self.assertFalse(any("detail-visual" in attrs.get("class", "") or "data-hero-visual" in attrs
+                                 for _, attrs in page.tag_sequence))
+
+
+class MobilePeerRailTests(unittest.TestCase):
+    def test_rail_buttons_have_clear_german_labels(self):
+        page = PageProbe(ROOT / "dist" / "index.html")
+        self.assertEqual(page.rail_control_labels,
+                         {"data-mobile-rail-prev": "Vorherige Karte",
+                          "data-mobile-rail-next": "Nächste Karte"})
+
+    def test_peer_choices_swipe_without_losing_destinations_or_terms(self):
+        cases = (
+            ("blog", 3, ("/blog/fachkraeftemangel-ki-entlastung/",)),
+            ("akademie/flying-academy", 2, ("/akademie/ki-grundlagen/", "/akademie/digitale-zusammenarbeit/")),
+            ("operation/monatspakete", 3, ("/kontakt/?thema=entlastung",)),
+            ("faq", 3, ("/management/betriebshandbuch/", "/akademie/flying-academy/", "/akademie/foerderung/")),
+            ("404", 3, ("/management/", "/akademie/", "/operation/")),
+        )
+        for route, count, targets in cases:
+            with self.subTest(route=route):
+                path = ROOT / "dist" / ("404.html" if route == "404" else f"{route}/index.html")
+                page = PageProbe(path)
+                self.assertEqual(page.rail_card_count, count)
+                self.assertTrue({"data-mobile-rail", "data-mobile-rail-track",
+                                 "data-mobile-rail-status"}.issubset(page.markers))
+                self.assertEqual(page.mobile_controls_hidden,
+                                 {"data-mobile-rail-prev": True, "data-mobile-rail-next": True})
+                for href in targets:
+                    self.assertTrue(any(link and link.startswith(href) for link in page.links), href)
+        packages = (ROOT / "dist" / "operation/monatspakete/index.html").read_text(encoding="utf-8")
+        for term in ("ab 890 €", "ab 1.490 €", "ab 2.690 €", "Einrichtung ab 890 €", "Mindestlaufzeit: sechs Monate"):
+            self.assertIn(term, packages)
+        faq = (ROOT / "dist" / "faq/index.html").read_text(encoding="utf-8")
+        self.assertIn("AZAV-Zulassung ist in Vorbereitung", faq)
+
+
+class MobileFooterTests(unittest.TestCase):
+    def test_mobile_footer_groups_are_closed_accessible_link_lists(self):
+        """Phone visitors should reach every footer destination after opening its group."""
+        class FooterProbe(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.groups = {}
+                self.current = None
+                self.in_summary = False
+                self.label = ""
+                self.open_groups = []
+
+            def handle_starttag(self, tag, attributes):
+                attrs = dict(attributes)
+                if tag == "details" and "footer__mobile-section" in attrs.get("class", ""):
+                    self.current = []
+                    self.label = ""
+                    if "open" in attrs:
+                        self.open_groups.append(True)
+                elif self.current is not None and tag == "summary":
+                    self.in_summary = True
+                elif self.current is not None and tag == "a":
+                    self.current.append(attrs.get("href"))
+
+            def handle_data(self, data):
+                if self.in_summary:
+                    self.label += data
+
+            def handle_endtag(self, tag):
+                if tag == "summary":
+                    self.in_summary = False
+                elif tag == "details" and self.current is not None:
+                    self.groups[self.label.strip()] = self.current
+                    self.current = None
+
+        for route in ("index.html", "operation/index.html", "404.html"):
+            with self.subTest(route=route):
+                probe = FooterProbe()
+                probe.feed((ROOT / "dist" / route).read_text(encoding="utf-8"))
+                self.assertFalse(probe.open_groups)
+                self.assertEqual(probe.groups, {
+                    "Bereiche": ["/management/", "/management/betriebshandbuch/", "/akademie/",
+                                 "/operation/", "/akademie/foerderung/", "/prompt-studio/", "/faq/"],
+                    "Unternehmen": ["/ueber/", "/blog/", "/kontakt/",
+                                    "https://www.linkedin.com/in/philiptolle/"],
+                    "Rechtliches": ["/impressum/", "/datenschutz/"],
+                })

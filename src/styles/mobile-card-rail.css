@@ -1,0 +1,14 @@
+.mobile-card-rail__nav{display:none}
+@media(max-width:599px){
+  [data-mobile-rail]{min-width:0}
+  [data-mobile-rail-track]{display:flex;gap:.75rem;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;min-width:0;padding:.3rem .1rem 1rem;outline-offset:4px}
+  [data-mobile-rail-track]::-webkit-scrollbar{display:none}
+  [data-mobile-rail-card]{flex:0 0 83%;min-width:0;scroll-snap-align:start}
+  :is([data-mobile-rail-card]:is(a,button):focus-visible,[data-mobile-rail-card] :is(a,button):focus-visible){outline:3px solid currentColor;outline-offset:-4px}
+  .mobile-card-rail__nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:.2rem}
+  .mobile-card-rail__nav p{font-size:.8rem;font-weight:600;margin:0}
+  .mobile-card-rail__buttons{display:flex;gap:.5rem}
+  .mobile-card-rail__buttons button{display:grid;place-items:center;width:44px;height:44px;border:1px solid currentColor;border-radius:50%;background:transparent;color:inherit;font:inherit;font-size:1.4rem;cursor:pointer}
+  .mobile-card-rail__buttons button[hidden]{display:none}
+  .mobile-card-rail__buttons button:disabled{opacity:.4;cursor:default}
+}

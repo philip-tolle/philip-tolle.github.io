@@ -1,6 +1,7 @@
 ---
 import DetailLayout from '../layouts/DetailLayout.astro';
+import MobileRailControls from '../components/MobileRailControls.astro';
 ---
 <DetailLayout title="Seite nicht gefunden | NextCourse" description="Diese Adresse wurde nicht gefunden. Hier gelangen Sie zu den Leistungen und zum Kontakt." label="404 · Seite nicht gefunden" heading="Hier geht es" emphasis="auf einem anderen Weg weiter." lead="Diese Adresse gibt es nicht oder sie hat sich geändert. Über unsere Startseite und die drei Leistungsbereiche finden Sie wieder zum passenden Angebot." action="Zur Startseite" href="/" secondary={{label:'Kontakt aufnehmen',href:'/kontakt/'}} contact={false} noindex>
-<section class="detail-section"><div class="detail-grid">{[['Management','Abläufe ordnen und Wissen im Haus halten.','/management/'],['Academy','Können entwickeln und Teams stärken.','/akademie/'],['Operation','Aufgaben abgeben und im Alltag entlasten.','/operation/']].map(([title,text,href])=><a href={href} class="detail-card"><h2>{title}</h2><p>{text}</p><span class="detail-link">Entdecken ↗</span></a>)}</div></section>
+<section class="detail-section" data-mobile-rail><div class="detail-grid" data-mobile-rail-track tabindex="0" aria-label="Passende Bereiche: horizontal wischen oder mit den Pfeiltasten bewegen">{[['Management','Abläufe ordnen und Wissen im Haus halten.','/management/'],['Academy','Können entwickeln und Teams stärken.','/akademie/'],['Operation','Aufgaben abgeben und im Alltag entlasten.','/operation/']].map(([title,text,href])=><a href={href} class="detail-card" data-mobile-rail-card><h2>{title}</h2><p>{text}</p><span class="detail-link">Entdecken ↗</span></a>)}</div><MobileRailControls count={3} noun="Bereiche" /></section>
 </DetailLayout>

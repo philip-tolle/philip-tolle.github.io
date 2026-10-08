@@ -733,6 +733,23 @@ a.offercard:hover .postcard__title{color:var(--facc)}
 .footer__base{border-top:1px solid var(--line);padding-top:1.6rem;
   display:flex;flex-wrap:wrap;gap:.8rem 2rem;justify-content:space-between;
   color:var(--faint);font-size:.85rem}
+.footer__mobile-section{display:none}
+@media(max-width:819px){
+  .footer{padding:2.2rem 0 1.8rem}
+  .footer__grid{gap:0;margin-bottom:1.5rem}
+  .footer__brand{padding-bottom:1.3rem}
+  .footer__desktop-section{display:none}
+  .footer__mobile-section{display:block;border-top:1px solid var(--line)}
+  .footer__mobile-section summary{display:flex;align-items:center;justify-content:space-between;min-height:52px;cursor:pointer;list-style:none;font-size:.78rem;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:var(--faint)}
+  .footer__mobile-section summary::-webkit-details-marker{display:none}
+  .footer__mobile-section summary::after{content:'+';font-size:1.35rem;font-weight:400;line-height:1;color:var(--dim)}
+  .footer__mobile-section[open] summary::after{content:'−'}
+  .footer__mobile-section summary:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+  .footer__mobile-section ul{padding-bottom:.6rem}
+  .footer__mobile-section li{margin:0}
+  .footer__mobile-section a{display:flex;align-items:center;min-height:44px}
+  .footer__base{padding-top:1.2rem}
+}
 
 /* ---------- Glas-Feinschliff ---------- */
 .gangs,.bill,.calc__panel,.portrait{

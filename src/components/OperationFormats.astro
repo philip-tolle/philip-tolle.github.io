@@ -1,14 +1,16 @@
 ---
 interface Props { detail?: boolean; }
+import MobileRailControls from './MobileRailControls.astro';
 const { detail = false } = Astro.props;
 ---
-<section class:list={['operation-formats', detail && 'operation-formats--detail']} id="zusammenarbeit" aria-labelledby="operation-formats-title">
+<section class:list={['operation-formats', detail && 'operation-formats--detail']} id="zusammenarbeit" aria-labelledby="operation-formats-title" data-mobile-rail>
   <header><p class="operation-formats__kicker">Der passende Rahmen</p><h2 id="operation-formats-title">Ihre Aufgabe steht fest.<em>So können wir zusammenarbeiten.</em></h2><p class:list={[!detail && 'desktop-overview-copy']}>Wir klären zuerst, was wir übernehmen. Danach vereinbaren wir Umfang, Termine und die passende Form der Zusammenarbeit.</p>{!detail && <p class="mobile-overview-copy" data-mobile-copy="operation-format">Wir vereinbaren Aufgabe, Umfang und Termine vor dem Start.</p>}</header>
-  <div class="operation-formats__grid">
-    <article id="format-monat"><p class="operation-formats__label">Regelmäßig entlasten</p><h3>Monatspaket</h3><p class:list={[!detail && 'desktop-overview-copy']}>Für laufende Kartenpflege und Social Media. Feste Leistungen, abgestimmte Abgabezeiten und eine direkte Ansprechperson.</p>{!detail && <p class="mobile-overview-copy" data-mobile-copy="operation-month">Laufende Kartenpflege und Social Media mit festen Leistungen, Abgabezeiten und Ansprechperson.</p>}<a href="/operation/monatspakete/#pakete">Pakete ansehen <span aria-hidden="true">↗</span></a></article>
-    <article><p class="operation-formats__label">Ein Vorhaben abschließen</p><h3>Einzelauftrag</h3><p class:list={[!detail && 'desktop-overview-copy']}>Für eine Gästemappe, eine Saisonaktion oder ein Fest. Mit vereinbartem Ergebnis, Termin und Festpreis vor dem Start.</p>{!detail && <p class="mobile-overview-copy" data-mobile-copy="operation-single">Ein Material oder eine Aktion mit Ergebnis, Termin und Festpreis vor dem Start.</p>}<a href="/kontakt/?thema=entlastung&angebot=Einzelauftrag#contactform">Einzelauftrag besprechen <span aria-hidden="true">↗</span></a></article>
-    <article id="format-sprint"><p class="operation-formats__label">Zusammenarbeit kennenlernen</p><h3>30-Tage-Test</h3><p class:list={[!detail && 'desktop-overview-copy']}>Einen Monat lang übernehmen wir eine wiederkehrende Aufgabe vollständig. Zum Festpreis, der Test endet automatisch.</p>{!detail && <p class="mobile-overview-copy" data-mobile-copy="operation-trial">Ein Monat zum Festpreis. Der Test endet automatisch.</p>}<a href="/operation/30-tage-test/">Testumfang ansehen <span aria-hidden="true">↗</span></a></article>
+  <div class="operation-formats__grid" data-mobile-rail-track tabindex="0" aria-label="Zusammenarbeitsformen: horizontal wischen oder mit den Pfeiltasten bewegen">
+    <article id="format-monat" data-mobile-rail-card><p class="operation-formats__label">Regelmäßig entlasten</p><h3>Monatspaket</h3><p class:list={[!detail && 'desktop-overview-copy']}>Für laufende Kartenpflege und Social Media. Feste Leistungen, abgestimmte Abgabezeiten und eine direkte Ansprechperson.</p>{!detail && <p class="mobile-overview-copy" data-mobile-copy="operation-month">Laufende Kartenpflege und Social Media mit festen Leistungen, Abgabezeiten und Ansprechperson.</p>}<a href="/operation/monatspakete/#pakete">Pakete ansehen <span aria-hidden="true">↗</span></a></article>
+    <article data-mobile-rail-card><p class="operation-formats__label">Ein Vorhaben abschließen</p><h3>Einzelauftrag</h3><p class:list={[!detail && 'desktop-overview-copy']}>Für eine Gästemappe, eine Saisonaktion oder ein Fest. Mit vereinbartem Ergebnis, Termin und Festpreis vor dem Start.</p>{!detail && <p class="mobile-overview-copy" data-mobile-copy="operation-single">Ein Material oder eine Aktion mit Ergebnis, Termin und Festpreis vor dem Start.</p>}<a href="/kontakt/?thema=entlastung&angebot=Einzelauftrag#contactform">Einzelauftrag besprechen <span aria-hidden="true">↗</span></a></article>
+    <article id="format-sprint" data-mobile-rail-card><p class="operation-formats__label">Zusammenarbeit kennenlernen</p><h3>30-Tage-Test</h3><p class:list={[!detail && 'desktop-overview-copy']}>Einen Monat lang übernehmen wir eine wiederkehrende Aufgabe vollständig. Zum Festpreis, der Test endet automatisch.</p>{!detail && <p class="mobile-overview-copy" data-mobile-copy="operation-trial">Ein Monat zum Festpreis. Der Test endet automatisch.</p>}<a href="/operation/30-tage-test/">Testumfang ansehen <span aria-hidden="true">↗</span></a></article>
   </div>
+  <MobileRailControls count={3} noun="Formate" />
 </section>
 <style>
   .operation-formats{position:relative;z-index:2;max-width:88rem;width:calc(100% - clamp(2.5rem,9.6vw,20rem));margin:1rem auto 2rem;padding:clamp(1.5rem,3vw,3rem);border-radius:12px;background:#122a2f;color:#f9f7f3;scroll-margin-top:7rem}
@@ -26,4 +28,5 @@ const { detail = false } = Astro.props;
   .operation-formats a:focus-visible{outline:2px solid #ffac94;outline-offset:4px}
   .operation-formats a:hover{color:#ffac94}
   @media(max-width:799px){.operation-formats__grid{grid-template-columns:1fr;gap:1.2rem}.operation-formats article>p{max-width:58ch}.operation-formats a{margin-top:0}}
+  @media(max-width:599px){.operation-formats__grid{display:flex;grid-template-columns:none}.operation-formats article{margin:0}.operation-formats :global(.mobile-card-rail__nav){margin-top:.5rem}}
 </style>

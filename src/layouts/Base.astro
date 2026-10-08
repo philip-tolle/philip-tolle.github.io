@@ -10,6 +10,7 @@ import '@fontsource/inter/latin-400-italic.css';
 import '@fontsource/inter/latin-500-italic.css';
 import '../styles/global.css';
 import '../styles/site-refinements.css';
+import '../styles/mobile-card-rail.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -366,6 +367,10 @@ const serializedJsonLd = JSON.stringify(jsonLd ?? orgSchema).replace(/</g, '\\u0
   /* ---------- Fußzeile: Jahr ---------- */
   const year = document.getElementById('year');
   if (year) { year.textContent = String(new Date().getFullYear()); }
+</script>
+<script>
+  import { initMobileCardRails } from '../scripts/mobile-card-rail';
+  initMobileCardRails();
 </script>
 </body>
 </html>

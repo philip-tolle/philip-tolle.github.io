@@ -23,6 +23,19 @@ npm run build      # Statischer Build nach dist/
 npm run preview    # Build lokal testen
 ```
 
+Für eine feste Handy-Vorschau im breiten Desktop-Fenster zuerst bauen und dann
+zwei lokale Server starten:
+
+```bash
+node node_modules/astro/astro.js build
+node node_modules/astro/astro.js preview --host 127.0.0.1 --port 4322
+node scripts/mobile-preview.mjs
+```
+
+Anschließend `http://127.0.0.1:4323/` öffnen. Die Vorschau zeigt die laufende
+Website in einem 390-Pixel-Rahmen. Das Hilfsskript gehört nicht zu `dist/` und
+wird nicht bei IONOS veröffentlicht.
+
 ## Struktur
 
 - `src/layouts/Base.astro` — Grundgerüst (Head, Fonts, Ambient-Canvas, Header, Footer)

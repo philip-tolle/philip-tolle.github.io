@@ -111,4 +111,14 @@
 @media(max-width:799px){.nc-hero,.nc-handbook-feature,.nc-section__intro,.nc-management-head{grid-template-columns:1fr}.nc-hero{gap:3rem;padding-top:7.5rem;min-height:0}.nc-hero__copy h1{font-size:clamp(3rem,8.7vw,5rem);max-width:14ch}.nc-hero__lead{max-width:48ch!important}.nc-hero .nc-button{font-size:1rem}.nc-hero .nc-textlink{font-size:1rem}.handbook-example{max-width:42rem;justify-self:center}.handbook-example__pages{padding:1.5rem}.handbook-example__page{min-height:0}.handbook-example__page h2{font-size:2rem}.nc-section__intro{gap:1.5rem}.nc-process{gap:1.7rem}.nc-process h3{font-size:1.35rem}.nc-process p{font-size:.9rem}.nc-management-head__aside{max-width:50ch}.nc-product-head .nc-hero{padding-top:0}}
 @media(max-width:599px){.nc-process,.nc-offers{grid-template-columns:1fr}.nc-contact__copy h2{font-size:2.25rem}.nc-process>li{display:grid;grid-template-columns:2.5rem minmax(0,1fr);gap:0 1rem}.nc-process>li::before{grid-row:span 2;width:2.5rem;height:2.5rem;margin-bottom:0}.nc-process h3{font-size:1.5rem}.nc-process p{grid-column:2;font-size:1rem}.handbook-example__pages{padding:1.1rem}.handbook-example__tabs{gap:0}.handbook-example__tabs button{font-size:.75rem;flex:1;padding-inline:.2rem}.handbook-example__page h2{font-size:1.85rem}.handbook-example__page li{gap:.7rem}.nc-section{padding-block:4rem}.nc-handbook-feature h2{max-width:16ch}.nc-product-head h1{font-size:clamp(2.6rem,10.5vw,3.8rem)}.nc-breadcrumb{font-size:.76rem}.nc-pagehead{padding-top:7rem}.nc-button{gap:.7rem;padding-inline:1.2rem}}
 @media(max-width:599px){.desktop-overview-copy{display:none}.mobile-overview-copy{display:block}}
+/* Compact shared contact ending on phones; keep desktop spacing and copy. */
+@media(max-width:599px){
+  .nc-contact{padding-block:2.5rem}
+  .nc-contact__portrait.coin{--coin:96px;margin-bottom:1.25rem}
+  .nc-contact__copy .nc-kicker{margin-bottom:.75rem;font-size:.65rem}
+  .nc-contact__copy h2{font-size:clamp(1.8rem,7.4vw,2rem);margin-bottom:1rem}
+  .nc-contact__copy>p:not(.nc-kicker):not(.nc-note):not(.nc-contact__signature){max-width:32ch;font-size:.94rem;line-height:1.5;margin-bottom:1.25rem}
+  .nc-contact .nc-note{max-width:32ch;margin-top:.75rem;font-size:.75rem;line-height:1.5}
+  .nc-contact__signature{margin-top:1.25rem;font-size:.9rem}
+}
 @media(prefers-reduced-motion:reduce){.nc-page *{animation:none!important;transition:none!important;scroll-behavior:auto!important}.nc-button:hover,.nc-button:hover span{transform:none}}

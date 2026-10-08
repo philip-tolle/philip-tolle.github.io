@@ -18,21 +18,32 @@ interface Props {
 const { title, description, label, heading, emphasis, lead = description, area = 'info', image, imageAlt = '', caption, action, href, secondary, facts = [], contactTitle, contact = true, noindex = false, offer = false } = Astro.props;
 const areas = { management: ['Management', '/management/', 'management'], academy: ['Academy', '/akademie/', 'academy'], operation: ['Operation', '/operation/', 'entlastung'], info: ['Start', '/', ''] };
 const [areaName, areaHref, topic] = areas[area];
+const hasVisual = Boolean(image || Astro.slots.has('heroVisual'));
 ---
 <Base title={title} description={description} lightChrome={area === 'academy'} noindex={noindex}>
   <slot name="head" slot="head" />
   <div class:list={[`nc-page service-page service-page--${area} detail-page detail-page--${area} detail-page--compact`, offer && 'detail-page--offer']}>
     <header class="detail-head" data-wave-tone={area === 'academy' ? 'dark' : undefined}>
       <nav class="detail-breadcrumb detail-shell" aria-label="Brotkrümelnavigation"><a href="/">Start</a>{area !== 'info' && <><span aria-hidden="true">/</span><a href={areaHref}>{areaName}</a></>}<span aria-hidden="true">/</span><span aria-current="page">{label}</span></nav>
-      <div class:list={['detail-hero', 'detail-shell', !image && 'detail-hero--text']}>
-        <div class="detail-hero__copy">
+      <div class:list={['detail-hero', 'detail-shell', !hasVisual && 'detail-hero--text']}>
+        {hasVisual ? <>
+        <div class="detail-hero__intro">
+          <p class="detail-kicker">{area === 'info' ? 'NextCourse' : `NextCourse ${areaName}`} · {label}</p>
+          <h1>{heading}{emphasis && <em>{emphasis}</em>}</h1>
+        </div>
+        {image ? <figure class="detail-visual"><Image src={image} alt={imageAlt} widths={[480,720,1000,1400]} width={1400} sizes="(max-width: 899px) 92vw, 45vw" format="webp" quality={86} loading="eager" fetchpriority="high" />{caption && <figcaption>{caption}</figcaption>}</figure> : <div class="detail-visual-slot" data-hero-visual><slot name="heroVisual" /></div>}
+        <div class="detail-hero__details">
+          <p class="detail-lead">{lead}</p>
+          {(action || secondary) && <div class="detail-actions">{action && <a class="detail-button" href={href || `/kontakt/?thema=${topic}#contactform`}>{action}<span aria-hidden="true">↗</span></a>}{secondary && <a class="detail-link" href={secondary.href}>{secondary.label}<span aria-hidden="true">↓</span></a>}</div>}
+          {facts.length > 0 && <ul class="detail-facts" aria-label="Auf einen Blick">{facts.map(fact => <li>{fact}</li>)}</ul>}
+        </div>
+        </> : <div class="detail-hero__copy">
           <p class="detail-kicker">{area === 'info' ? 'NextCourse' : `NextCourse ${areaName}`} · {label}</p>
           <h1>{heading}{emphasis && <em>{emphasis}</em>}</h1>
           <p class="detail-lead">{lead}</p>
           {(action || secondary) && <div class="detail-actions">{action && <a class="detail-button" href={href || `/kontakt/?thema=${topic}#contactform`}>{action}<span aria-hidden="true">↗</span></a>}{secondary && <a class="detail-link" href={secondary.href}>{secondary.label}<span aria-hidden="true">↓</span></a>}</div>}
           {facts.length > 0 && <ul class="detail-facts" aria-label="Auf einen Blick">{facts.map(fact => <li>{fact}</li>)}</ul>}
-        </div>
-        {image && <figure class="detail-visual"><Image src={image} alt={imageAlt} widths={[480,720,1000,1400]} width={1400} sizes="(max-width: 899px) 92vw, 45vw" format="webp" quality={86} loading="eager" fetchpriority="high" />{caption && <figcaption>{caption}</figcaption>}</figure>}
+        </div>}
       </div>
       <svg class="detail-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44C240 104 420 104 720 48S1200 0 1440 44V100H0Z" /></svg>
     </header>

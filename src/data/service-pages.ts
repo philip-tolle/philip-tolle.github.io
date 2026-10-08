@@ -32,7 +32,7 @@ export interface ServicePageContent {
   id: 'management' | 'academy' | 'operation'; area: string; topic: string; title: string; description: string;
   image: ImageMetadata; imageAlt: string;
   hero: { heading: string; emphasis: string; description: string; mobileDescription: string; action: string };
-  journey: { kicker: string; heading: string; emphasis: string; intro: string; mobileIntro: string; steps: JourneyStep[]; links?: { label: string; href: string }[] };
+  journey: { kicker: string; heading: string; emphasis: string; intro: string; mobileIntro?: string; steps: JourneyStep[]; links?: { label: string; href: string }[] };
   related?: { intro: string; links: { label: string; href: string }[] };
   contactTitle: string;
 }
@@ -127,10 +127,10 @@ export const operation: ServicePageContent = {
   id: 'operation', area: 'Operation', topic: 'entlastung', title: 'Karten, Kommunikation & Aktionen fürs Gastgewerbe | NextCourse',
   description: 'Wir erstellen Karten und Unterlagen, betreuen Gästekommunikation und organisieren Aktionen. Unterstützung für inhabergeführte Hotels und Gastronomie in Mainfranken.',
   image: operationImage, imageAlt: 'Eine Mitarbeiterin übergibt Aufgaben an ihre Ansprechpartnerin im Backoffice.',
-  hero: { heading: 'Aufgaben abgeben.', emphasis: 'Mehr Zeit für Ihr Haus.', description: 'Wir erstellen Ihre Karten und Unterlagen, kümmern uns um Inhalte für Ihre Gäste und organisieren Aktionen. Für Hotels und Gastronomie in Mainfranken – mit einer festen Ansprechperson und klar vereinbarten Aufgaben.', mobileDescription: 'Wir übernehmen Karten, Gästeinhalte und Aktionen – mit klar vereinbarten Aufgaben.', action: 'Aufgaben besprechen' },
+  hero: { heading: 'Aufgaben abgeben.', emphasis: 'Mehr Zeit für Ihr Haus.', description: 'Wir erstellen Ihre Karten und Unterlagen, kümmern uns um Inhalte für Ihre Gäste und organisieren Aktionen. Für inhabergeführte Hotels und Gastronomie in Mainfranken – mit einer festen Ansprechperson und klar vereinbarten Aufgaben.', mobileDescription: 'Wir übernehmen Karten, Gästeinhalte und Aktionen – mit klar vereinbarten Aufgaben.', action: 'Aufgaben besprechen' },
   journey: {
     kicker: 'Diese Aufgaben übernehmen wir.', heading: 'Was möchten Sie', emphasis: 'in gute Hände geben?',
-    intro: 'Die Wochenkarte muss fertig werden, der nächste Beitrag fehlt oder eine Saisonaktion wartet auf Umsetzung? Hier finden Sie die passende Unterstützung für Ihr Anliegen.', mobileIntro: 'Wählen Sie die Aufgabe, die Sie abgeben möchten.',
+    intro: 'Die Wochenkarte muss fertig werden, der nächste Beitrag fehlt oder eine Saisonaktion wartet auf Umsetzung? Hier finden Sie die passende Unterstützung für Ihr Anliegen.',
     steps: [
       {
         id: 'unterlagen', label: 'Karten & Unterlagen', image: operationImages.documents,
