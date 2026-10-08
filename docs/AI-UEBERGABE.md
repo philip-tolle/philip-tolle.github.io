@@ -68,6 +68,15 @@ Wichtige Bereiche:
 - Keine Live-Veröffentlichung, DNS- oder GitHub-Pages-Änderung aus einem allgemeinen
   Entwicklungsauftrag ableiten.
 
+## Letzte Veröffentlichung
+
+Am 08.10.2026 wurde `main` 5acaae9 bei IONOS veröffentlicht (Booklet-Inhalte, gekürzte
+Handyversion, dezente Knöpfe, Kontaktblock nur auf der Startseite). Sicherung davor:
+`/nextcourse-backup-2026-10-08` außerhalb von `/public`. Prompt Studio, Praxis-Hub und
+`.htaccess` blieben unverändert. Beim Entpacken im Webspace Explorer fragt IONOS für jede
+vorhandene Datei einzeln nach; der Ja-Knopf wandert mit der Pfadlänge, daher jede Rückfrage
+prüfen und danach die Live-Prüfsummen vergleichen.
+
 ## Bekannter offener Punkt
 
 Im Footer fehlt weiterhin die endgültige LinkedIn-URL. Sie soll erst ergänzt werden,
