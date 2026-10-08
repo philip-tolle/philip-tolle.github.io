@@ -114,7 +114,10 @@ const serializedJsonLd = JSON.stringify(jsonLd ?? orgSchema).replace(/</g, '\\u0
 
   /* ---------- Ambient-Wellenfeld: historische Bewegung, aktuelle Palette ---------- */
   const ambientCanvas = document.getElementById('ambient') as HTMLCanvasElement | null;
-  if (ambientCanvas) {
+  // Auf Handys und Tablets keine Wellen-Animation: sie zeichnet sonst bei jedem Bild neu und lässt das Scrollen ruckeln.
+  const compactScreen = window.matchMedia('(max-width: 799px), (pointer: coarse)').matches;
+  if (ambientCanvas && compactScreen) { ambientCanvas.remove(); }
+  else if (ambientCanvas) {
     // Continue the original waves across the coloured homepage and service sections.
     const home = document.querySelector<HTMLElement>('.nc-home, .service-page');
     home?.prepend(ambientCanvas);
@@ -185,8 +188,12 @@ const serializedJsonLd = JSON.stringify(jsonLd ?? orgSchema).replace(/</g, '\\u0
         }
 
         ambientTime++;
-        if (!reduced) { requestAnimationFrame(drawAmbient); }
+        if (!reduced && !document.hidden) { requestAnimationFrame(drawAmbient); }
       };
+      // Im Hintergrund-Tab pausieren, beim Zurückkehren fortsetzen.
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && !reduced) requestAnimationFrame(drawAmbient);
+      });
 
       sizeAmbient();
       if (reduced) { ambientTime = 80; drawAmbient(); }
@@ -216,6 +223,15 @@ const serializedJsonLd = JSON.stringify(jsonLd ?? orgSchema).replace(/</g, '\\u0
     });
   });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  /* ---------- Bilder: später geladene Bilder sanft einblenden statt aufploppen ---------- */
+  document.querySelectorAll<HTMLImageElement>('img[loading="lazy"]').forEach((img) => {
+    if (img.complete) return;
+    img.classList.add('img-wait');
+    const done = () => img.classList.remove('img-wait');
+    img.addEventListener('load', done, { once: true });
+    img.addEventListener('error', done, { once: true });
+  });
 
   /* ---------- Header ---------- */
   const header = document.getElementById('header')!;

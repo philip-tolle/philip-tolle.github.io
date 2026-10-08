@@ -17,3 +17,10 @@ body{font-size:clamp(17px,15px + .17vw,21px)}
 :is(.nc-button,.detail-button,.service-hero__button,.handbook-showcase__button,.academy-format__button,.mc-demo__button):hover{opacity:1;background:color-mix(in srgb,currentColor 10%,transparent)!important}
 :is(.nc-button,.detail-button,.service-hero__button,.handbook-showcase__button,.academy-format__button,.mc-demo__button) span{font-size:1em!important;transform:none!important}
 @media(max-width:599px){:is(.nc-button,.detail-button,.service-hero__button,.handbook-showcase__button,.academy-format__button,.mc-demo__button){padding:.5rem 1rem!important;font-size:.82rem!important}}
+
+/* Ruhiger auf dem Handy (08.10.2026): Einblendungen ohne Gleiten, Bilder blenden weich ein. */
+img.img-wait{opacity:0}
+img{transition:opacity .35s ease}
+#ambient{contain:strict}
+@media(max-width:799px),(pointer:coarse){#ambient{display:none}.reveal{transform:none!important;transition:opacity .35s ease!important}}
+@media(prefers-reduced-motion:reduce){img{transition:none}}
