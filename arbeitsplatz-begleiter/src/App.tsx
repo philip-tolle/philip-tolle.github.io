@@ -89,8 +89,15 @@ function Arbeitsplatz({ inhalte, platzId, route, gehe }: ArbeitsplatzProps) {
     html.dir = anzeigeSprache.richtung;
     html.dataset.schrift = einstellungen.schrift;
     html.dataset.kontrast = einstellungen.kontrast ? 'hoch' : 'normal';
-    if (einstellungen.farben === 'automatisch') delete html.dataset.theme;
-    else html.dataset.theme = einstellungen.farben === 'hell' ? 'light' : 'dark';
+    // Nur ein selbst gesetztes Farbschema wieder entfernen – ein vom Browser oder
+    // einer umgebenden Seite gesetztes bleibt bei „Wie das Gerät“ erhalten.
+    if (einstellungen.farben !== 'automatisch') {
+      html.dataset.theme = einstellungen.farben === 'hell' ? 'light' : 'dark';
+      html.dataset.themeVonApp = 'ja';
+    } else if (html.dataset.themeVonApp) {
+      delete html.dataset.theme;
+      delete html.dataset.themeVonApp;
+    }
   }, [anzeigeSprache, einstellungen.schrift, einstellungen.kontrast, einstellungen.farben]);
 
   // Neue Ansicht: alte Hinweise weg.

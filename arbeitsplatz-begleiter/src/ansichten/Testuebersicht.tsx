@@ -18,7 +18,9 @@ export function Testuebersicht({ inhalte }: { inhalte: Inhalte }) {
         {inhalte.arbeitsplaetze.map((p) => (
           <li key={p.id}>
             <a href={adresse({ art: 'start', platzId: p.id })}>{p.name}</a>
-            <span>Adresse für das Tablet: {adresse({ art: 'start', platzId: p.id })}</span>
+            <span>
+              Adresse für das Tablet: {adresse({ art: 'start', platzId: p.id })} (kurz: #{p.id})
+            </span>
           </li>
         ))}
       </ul>

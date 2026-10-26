@@ -13,6 +13,9 @@ const ID = '([a-z0-9][a-z0-9-]*)';
 export function routeLesen(hash: string): Route {
   const pfad = decodeURIComponent(hash.replace(/^#/, '')).replace(/\/+$/, '') || '/';
   if (pfad === '/') return { art: 'uebersicht' };
+  // Kurzform „#bankett“ für Links, in denen nur ein einfacher Anker erlaubt ist.
+  const kurz = pfad.match(new RegExp(`^${ID}$`));
+  if (kurz) return { art: 'start', platzId: kurz[1] };
   let m = pfad.match(new RegExp(`^/platz/${ID}$`));
   if (m) return { art: 'start', platzId: m[1] };
   m = pfad.match(new RegExp(`^/platz/${ID}/anleitung/${ID}/fertig$`));

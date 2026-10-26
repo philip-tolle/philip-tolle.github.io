@@ -373,6 +373,17 @@ try {
     await s.screenshot({ path: join(fotos, '13-handy-uk.png'), fullPage: true });
   }
   {
+    // Ein von außen gesetztes Farbschema (Browser, umgebende Seite) bleibt bei „Wie das Gerät“ erhalten.
+    const s = await neueSeite(browser, { speicher: geraet({ sprache: 'de' }) });
+    await s.addInitScript(() =>
+      document.addEventListener('readystatechange', () => document.documentElement.setAttribute('data-theme', 'dark'), { once: true }),
+    );
+    await s.goto(BASIS + '#bankett');
+    await s.waitForSelector('.kacheln');
+    pruefe('Kurzlink #bankett öffnet den Arbeitsplatz', true);
+    pruefe('Fremdes Farbschema bleibt erhalten', (await s.getAttribute('html', 'data-theme')) === 'dark');
+  }
+  {
     const s = await neueSeite(browser);
     await s.goto(BASIS);
     await s.waitForSelector('.testuebersicht');

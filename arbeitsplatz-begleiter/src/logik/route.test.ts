@@ -13,6 +13,10 @@ describe('routeLesen', () => {
     });
   });
 
+  it('versteht die Kurzform #bankett', () => {
+    expect(routeLesen('#bankett')).toEqual({ art: 'start', platzId: 'bankett' });
+  });
+
   it('lehnt Unsinn ab', () => {
     expect(routeLesen('#/platz/Bankett!')).toEqual({ art: 'unbekannt' });
     expect(routeLesen('#/platz/bankett/anleitung/x/0')).toEqual({ art: 'unbekannt' });
