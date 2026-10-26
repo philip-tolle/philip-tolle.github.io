@@ -1,0 +1,41 @@
+import type { UiSprachdatei } from '../../typen';
+
+export const en: UiSprachdatei = {
+  sprache: 'en',
+  status: 'maschinell',
+  texte: {
+    'sprache.taste': 'Language',
+    'sprache.gruss': 'Hello! Do you want English? Then tap again.',
+    'sprache.nochmalTippen': 'Tap again. Then we start.',
+    'start.frage': 'What do you want to do?',
+    'start.vorstellung':
+      'I am a computer program.\nI help you with your work.\nIf you do not know what to do, {person} will help you.',
+    'start.schritte': { one: '{anzahl} step', other: '{anzahl} steps' },
+    'start.mitlernen': 'Learn German too',
+    'start.leer': 'There are no instructions here yet.',
+    'taste.zurueck': 'Back',
+    'taste.vorlesen': 'Read aloud',
+    'taste.nochmal': 'Again',
+    'taste.weiter': 'Next',
+    'taste.fertig': 'Done',
+    'taste.hilfe': 'Help',
+    'schritt.von': 'Step {n} of {gesamt}',
+    'schritt.nummer': 'Step {n}',
+    'schritt.achtung': 'Caution',
+    'schritt.fragNach': 'Please ask if you are not sure.',
+    'schritt.aufDeutsch': 'In German:',
+    'fertig.titel': 'Done!',
+    'fertig.lob': {
+      one: 'You did the step. Well done!',
+      other: 'You did all {anzahl} steps. Well done!',
+    },
+    'fertig.vonVorne': 'Start again',
+    'fertig.uebersicht': 'To the overview',
+    'fertig.alleSchritte': 'All steps',
+    'hilfe.unterwegs': 'Help is on the way.\n{person} is coming soon.',
+    'hilfe.aufDemWeg': '{person} is on the way to you now.',
+    'hilfe.zurueck': 'Back to the task',
+    'vorlesen.keineStimme': 'This device cannot read this language aloud.',
+    'fehler.nichtGefunden': 'This page does not exist.',
+  },
+};

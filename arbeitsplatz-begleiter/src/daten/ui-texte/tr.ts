@@ -1,0 +1,38 @@
+import type { UiSprachdatei } from '../../typen';
+
+export const tr: UiSprachdatei = {
+  sprache: 'tr',
+  status: 'maschinell',
+  texte: {
+    'sprache.taste': 'Dil',
+    'sprache.gruss': 'Merhaba! Türkçe mi istiyorsun? O zaman bir kez daha dokun.',
+    'sprache.nochmalTippen': 'Bir kez daha dokun. Sonra başlıyoruz.',
+    'start.frage': 'Ne yapmak istiyorsun?',
+    'start.vorstellung':
+      'Ben bir bilgisayar programıyım.\nİşinde sana yardım ediyorum.\nNe yapacağını bilmezsen, {person} sana yardım eder.',
+    'start.schritte': { other: '{anzahl} adım' },
+    'start.mitlernen': 'Almanca da öğren',
+    'start.leer': 'Burada henüz talimat yok.',
+    'taste.zurueck': 'Geri',
+    'taste.vorlesen': 'Dinle',
+    'taste.nochmal': 'Tekrar',
+    'taste.weiter': 'Devam',
+    'taste.fertig': 'Bitti',
+    'taste.hilfe': 'Yardım',
+    'schritt.von': 'Adım {n} / {gesamt}',
+    'schritt.nummer': 'Adım {n}',
+    'schritt.achtung': 'Dikkat',
+    'schritt.fragNach': 'Emin değilsen lütfen sor.',
+    'schritt.aufDeutsch': 'Almancası:',
+    'fertig.titel': 'Bitti!',
+    'fertig.lob': { other: '{anzahl} adımın hepsini yaptın. Çok iyi!' },
+    'fertig.vonVorne': 'Baştan başla',
+    'fertig.uebersicht': 'Listeye dön',
+    'fertig.alleSchritte': 'Tüm adımlar',
+    'hilfe.unterwegs': 'Yardım geliyor.\n{person} birazdan gelecek.',
+    'hilfe.aufDemWeg': '{person} şimdi sana doğru geliyor.',
+    'hilfe.zurueck': 'Göreve dön',
+    'vorlesen.keineStimme': 'Bu cihaz bu dili sesli okuyamıyor.',
+    'fehler.nichtGefunden': 'Bu sayfa yok.',
+  },
+};

@@ -49,6 +49,12 @@ Google-Fonts-CDN, DSGVO-konform.
 
 **Hinweis:** Die npm-Skripte rufen Astro plattformunabhängig direkt über Node auf.
 
+## Weitere Projekte im Repository
+
+- `arbeitsplatz-begleiter/` — eigenständige Web-App (Tablet-Begleiter für Arbeitsanleitungen,
+  siehe dortige README). Eigener Build, **nicht** Teil der Website und nicht für den Webroot
+  `/public/nextcourse` bestimmt.
+
 ## Status und offene Punkte
 
 - [x] Porträt auf „Über“ (weitere Fotos folgen)
