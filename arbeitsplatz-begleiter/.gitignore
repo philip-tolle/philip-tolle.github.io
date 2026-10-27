@@ -1,1 +1,3 @@
 tests/bildschirmfotos/
+# Verbindung zur eigenen Datenbank (nicht geheim, aber je Installation verschieden)
+public/konfiguration.json

@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { BEISPIEL_INHALTE } from '../daten/datenquelle';
+import { beispielInhalte } from '../daten/beispielfassungen';
 import { anleitungFuerAnzeige } from './inhalte';
 import { leseteileFuerSchritt, zeigeDeutsch } from './schrittText';
 
+const platz: Record<string, string> = { 'bankett-eindecken': 'bankett', 'bad-putzen': 'housekeeping-etage-2' };
 const schritt = (anleitung: string, sprache: string, position: number) =>
-  anleitungFuerAnzeige(BEISPIEL_INHALTE, anleitung, sprache)!.schritte[position - 1];
+  anleitungFuerAnzeige(beispielInhalte(platz[anleitung])!, anleitung, sprache)!.schritte[position - 1];
 const fragNach = { text: 'Якщо є сумнів, будь ласка, запитай.', lang: 'uk' };
 
 describe('zeigeDeutsch', () => {

@@ -46,5 +46,6 @@ export const uk: UiSprachdatei = {
     'hilfe.zurueck': 'Назад до завдання',
     'vorlesen.keineStimme': 'Цей пристрій не може озвучити цю мову.',
     'fehler.nichtGefunden': 'Цієї сторінки немає.',
+    'fehler.laden': 'Зараз не вдається завантажити інструкції. Спробуй ще раз трохи пізніше.',
   },
 };

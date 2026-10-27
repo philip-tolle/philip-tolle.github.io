@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
-import type { Inhalte } from '../typen';
+import type { Arbeitsplatz } from '../typen';
 import { adresse } from '../logik/route';
 import { TEST_PIN } from '../geraet/einstellungen';
 
 /** Einstieg für den Test. Später ersetzt durch die Anmeldung zum Anleiter-Bereich. */
-export function Testuebersicht({ inhalte }: { inhalte: Inhalte }) {
+export function Testuebersicht({ arbeitsplaetze }: { arbeitsplaetze: Arbeitsplatz[] }) {
   const ueberschrift = useRef<HTMLHeadingElement>(null);
   useEffect(() => ueberschrift.current?.focus({ preventScroll: true }), []);
   return (
@@ -12,10 +12,10 @@ export function Testuebersicht({ inhalte }: { inhalte: Inhalte }) {
       <h1 ref={ueberschrift} tabIndex={-1}>
         Arbeitsplatz-Begleiter
       </h1>
-      <p className="testuebersicht-unter">Testversion · Phase 1: Mitarbeiter-Ansicht mit Beispieldaten</p>
+      <p className="testuebersicht-unter">Testversion mit Beispieldaten – ohne Datenbank</p>
       <h2>Tablet-Ansicht öffnen</h2>
       <ul className="testuebersicht-plaetze">
-        {inhalte.arbeitsplaetze.map((p) => (
+        {arbeitsplaetze.map((p) => (
           <li key={p.id}>
             <a href={adresse({ art: 'start', platzId: p.id })}>{p.name}</a>
             <span>
@@ -34,6 +34,10 @@ export function Testuebersicht({ inhalte }: { inhalte: Inhalte }) {
         <li>Geräte-Einstellungen: unten auf der Startseite, Test-PIN {TEST_PIN}.</li>
         <li>Der Hilferuf wird noch nicht gesendet. Auf dem Hilfe-Bildschirm kann man die Antwort der Anleiterin nachspielen.</li>
         <li>Die Bilder sind einfache Test-Piktogramme. Die Auswahl aus ARASAAC kommt in Phase 3.</li>
+        <li>
+          Den Anleiter-Bereich gibt es nur mit Datenbank (Supabase). Ohne Datenbank zeigt diese Testversion nur die
+          Tablet-Ansicht.
+        </li>
       </ul>
     </main>
   );

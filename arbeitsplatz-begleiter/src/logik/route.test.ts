@@ -13,6 +13,15 @@ describe('routeLesen', () => {
     });
   });
 
+  it('erkennt den Anleiter-Bereich', () => {
+    expect(routeLesen('#/anleiter')).toEqual({ art: 'anleiter', teile: [] });
+    expect(routeLesen('#/anleiter/anleitungen/3350e16e-5d19-5e0b-a36a-5552dcf8efd4')).toEqual({
+      art: 'anleiter', teile: ['anleitungen', '3350e16e-5d19-5e0b-a36a-5552dcf8efd4'],
+    });
+    expect(adresse({ art: 'anleiter', teile: ['team'] })).toBe('#/anleiter/team');
+    expect(routeLesen('#/anleiter/<x>')).toEqual({ art: 'unbekannt' });
+  });
+
   it('versteht die Kurzform #bankett', () => {
     expect(routeLesen('#bankett')).toEqual({ art: 'start', platzId: 'bankett' });
   });

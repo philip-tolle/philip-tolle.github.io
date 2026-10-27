@@ -8,22 +8,29 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "pruefen": "node tests/oberflaeche.mjs"
+    "pruefen": "node tests/oberflaeche.mjs",
+    "sql": "tsx scripts/sql-erzeugen.ts",
+    "pruefen:datenbank": "node tests/datenbank.mjs",
+    "pruefen:anleiter": "node tests/anleiter.mjs"
   },
   "dependencies": {
     "@fontsource/atkinson-hyperlegible-next": "^5.3.0",
     "@fontsource/noto-sans": "^5.3.0",
     "@fontsource/noto-sans-arabic": "^5.3.0",
     "@fontsource/noto-sans-ethiopic": "^5.3.0",
+    "@supabase/supabase-js": "^2.118.0",
     "lucide-react": "^1.61.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },
   "devDependencies": {
+    "@types/pg": "^8.23.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
     "axe-core": "^4.14.0",
+    "pg": "^8.23.1",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.3",
     "vite": "^8.3.5",
     "vitest": "^5.0.5"

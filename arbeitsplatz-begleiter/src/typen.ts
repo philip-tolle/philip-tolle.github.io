@@ -109,7 +109,8 @@ export type UiTextSchluessel =
   | 'hilfe.aufDemWeg'
   | 'hilfe.zurueck'
   | 'vorlesen.keineStimme'
-  | 'fehler.nichtGefunden';
+  | 'fehler.nichtGefunden'
+  | 'fehler.laden';
 
 export interface UiSprachdatei {
   sprache: string;
@@ -117,13 +118,46 @@ export interface UiSprachdatei {
   texte: Record<UiTextSchluessel, string | Pluraltext>;
 }
 
-/** Alles, was die Mitarbeiter-Ansicht lesen darf (nur freigegebene Inhalte). */
-export interface Inhalte {
+/** Gesamter Datenbestand (Beispieldaten, Anleiter-Bereich). */
+export interface Datenbestand {
   sprachen: Sprache[];
   arbeitsplaetze: Arbeitsplatz[];
   anleitungen: Anleitung[];
   schritte: Schritt[];
   anleitung_sprachen: AnleitungSprache[];
   schritt_uebersetzungen: SchrittUebersetzung[];
+}
+
+/** Ein Schritt in einer freigegebenen Fassung. text = null: keine Übersetzung, Deutsch zeigen. */
+export interface FassungSchritt {
+  id: string;
+  position: number;
+  bild_url: string | null;
+  achtung: boolean;
+  version: number;
+  text_de: string;
+  hinweis_de: string;
+  text: string | null;
+  hinweis: string | null;
+  status: 'freigegeben' | 'maschinell' | 'geprueft' | 'veraltet' | null;
+  basiert_auf_version: number | null;
+}
+
+/** Freigegebene Momentaufnahme einer Anleitung in einer Sprache. Genau das zeigt das Tablet. */
+export interface Fassung {
+  anleitung_id: string;
+  sprache: string;
+  titel: string;
+  titel_de: string;
+  ansprechperson: Ansprechperson;
+  titelbild_url: string | null;
+  schritte: FassungSchritt[];
+}
+
+/** Alles, was ein Tablet lesen darf: nur freigegebene Fassungen seines Arbeitsplatzes. */
+export interface Inhalte {
+  sprachen: Sprache[];
+  arbeitsplatz: Arbeitsplatz;
+  fassungen: Fassung[];
   ui_texte: UiSprachdatei[];
 }

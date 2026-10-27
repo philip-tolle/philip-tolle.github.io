@@ -1,21 +1,20 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { inhalteLaden } from './daten/datenquelle';
+import { Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react';
+import { BEISPIEL_BESTAND } from './daten/beispielfassungen';
+import { konfigurationLaden, platzLaden, type Konfiguration, type Ladeergebnis } from './daten/datenquelle';
 import { QUELLSPRACHE, spracheFinden } from './daten/sprachen';
-import { NOCHMAL_FAKTOR, TEMPO_RATE, useGeraeteeinstellungen } from './geraet/einstellungen';
-import { anleitungFuerAnzeige, verfuegbareSprachen } from './logik/inhalte';
+import { UI_TEXTE } from './daten/ui-texte';
+import { einstellungenAuswerten } from './geraet/einstellungen';
 import { adresse, routeLesen, type Route } from './logik/route';
-import { uebersetzerFuer, type Text } from './logik/texte';
-import type { Inhalte } from './typen';
-import { UmgebungKontext, type HilfeZustand, type Umgebung, type Vorleseauftrag } from './umgebung';
+import { uebersetzerFuer } from './logik/texte';
 import { sprachausgabe } from './vorlesen/sprachausgabe';
-import { Einstellungen } from './ansichten/Einstellungen';
-import { FertigAnsicht } from './ansichten/FertigAnsicht';
-import { HilfeAnsicht } from './ansichten/HilfeAnsicht';
+import { Arbeitsplatz, type PlatzRoute } from './Arbeitsplatz';
 import { NichtGefunden } from './ansichten/NichtGefunden';
-import { SchrittAnsicht } from './ansichten/SchrittAnsicht';
-import { Sprachwahl } from './ansichten/Sprachwahl';
-import { Startseite } from './ansichten/Startseite';
 import { Testuebersicht } from './ansichten/Testuebersicht';
+import { SymbolNochmal } from './komponenten/Symbole';
+import { Taste } from './komponenten/Taste';
+
+// Der Anleiter-Bereich wird erst geladen, wenn ihn jemand öffnet. Tablets laden ihn nie.
+const AnleiterBereich = lazy(() => import('./anleiter/AnleiterBereich'));
 
 function useRoute() {
   const [route, setRoute] = useState<Route>(() => routeLesen(window.location.hash));
@@ -40,205 +39,134 @@ function useRoute() {
   return [route, gehe] as const;
 }
 
+/** Texte für Fehlerseiten in der Sprache, die auf dem Gerät gewählt ist. */
+function geraeteUebersetzer() {
+  let sprache = QUELLSPRACHE;
+  try {
+    sprache = einstellungenAuswerten(localStorage.getItem('arbeitsplatz-begleiter:geraet')).sprache ?? QUELLSPRACHE;
+  } catch {
+    // ohne Speicher: Deutsch
+  }
+  return { t: uebersetzerFuer(sprache, UI_TEXTE), richtung: spracheFinden(sprache)?.richtung ?? 'ltr' };
+}
+
 export function App() {
-  const [inhalte, setInhalte] = useState<Inhalte | null>(null);
+  const [konfiguration, setKonfiguration] = useState<Konfiguration | null | undefined>(undefined);
   const [route, gehe] = useRoute();
 
   useEffect(() => {
-    inhalteLaden().then(setInhalte);
+    konfigurationLaden().then(setKonfiguration);
   }, []);
 
-  if (!inhalte) return null;
-  if (route.art === 'uebersicht') return <Testuebersicht inhalte={inhalte} />;
-  const t = uebersetzerFuer(QUELLSPRACHE, inhalte.ui_texte);
-  const platz = route.art !== 'unbekannt' ? inhalte.arbeitsplaetze.find((p) => p.id === route.platzId) : undefined;
-  if (route.art === 'unbekannt' || !platz) {
-    return <NichtGefunden text={t('fehler.nichtGefunden')} zurueckText={t('taste.zurueck')} ziel={adresse({ art: 'uebersicht' })} />;
-  }
-  return <Arbeitsplatz inhalte={inhalte} platzId={platz.id} route={route} gehe={gehe} />;
-}
-
-interface ArbeitsplatzProps {
-  inhalte: Inhalte;
-  platzId: string;
-  route: Exclude<Route, { art: 'uebersicht' } | { art: 'unbekannt' }>;
-  gehe: (r: Route) => void;
-}
-
-/** Das Tablet an einem Arbeitsplatz. */
-function Arbeitsplatz({ inhalte, platzId, route, gehe }: ArbeitsplatzProps) {
-  const [einstellungen, aendern] = useGeraeteeinstellungen();
-  const [sprachwahlOffen, setSprachwahlOffen] = useState(false);
-  const [einstellungenOffen, setEinstellungenOffen] = useState(false);
-  const [hilfeAnsicht, setHilfeAnsicht] = useState(false);
-  const [hilfe, setHilfe] = useState<HilfeZustand>({ status: 'aus' });
-  const [meldung, setMeldung] = useState<Text | null>(null);
-
-  const platz = inhalte.arbeitsplaetze.find((p) => p.id === platzId)!;
-  const sprachen = useMemo(() => verfuegbareSprachen(inhalte, platzId), [inhalte, platzId]);
-  const sprache = sprachen.find((s) => s.code === einstellungen.sprache) ?? null;
-  const ersterStart = sprache === null;
-  const anzeigeSprache = sprache ?? spracheFinden(QUELLSPRACHE, inhalte.sprachen)!;
-  const t = useMemo(() => uebersetzerFuer(anzeigeSprache.code, inhalte.ui_texte), [anzeigeSprache.code, inhalte.ui_texte]);
-  const rate = TEMPO_RATE[einstellungen.tempo];
-
-  // Sprache, Schreibrichtung und Darstellung gelten für die ganze Seite.
+  // Rückkehr aus dem Anmelde-Link (…?code=…): weiter in den Anleiter-Bereich.
   useEffect(() => {
-    const html = document.documentElement;
-    html.lang = anzeigeSprache.code;
-    html.dir = anzeigeSprache.richtung;
-    html.dataset.schrift = einstellungen.schrift;
-    html.dataset.kontrast = einstellungen.kontrast ? 'hoch' : 'normal';
-    // Nur ein selbst gesetztes Farbschema wieder entfernen – ein vom Browser oder
-    // einer umgebenden Seite gesetztes bleibt bei „Wie das Gerät“ erhalten.
-    if (einstellungen.farben !== 'automatisch') {
-      html.dataset.theme = einstellungen.farben === 'hell' ? 'light' : 'dark';
-      html.dataset.themeVonApp = 'ja';
-    } else if (html.dataset.themeVonApp) {
-      delete html.dataset.theme;
-      delete html.dataset.themeVonApp;
+    if (route.art === 'uebersicht' && new URLSearchParams(window.location.search).has('code')) {
+      gehe({ art: 'anleiter', teile: [] });
     }
-  }, [anzeigeSprache, einstellungen.schrift, einstellungen.kontrast, einstellungen.farben]);
+  }, [route, gehe]);
 
-  // Neue Ansicht: alte Hinweise weg.
-  useEffect(() => setMeldung(null), [route, sprachwahlOffen, hilfeAnsicht]);
+  if (konfiguration === undefined) return null;
 
-  const vorlesen = useCallback(
-    (teile: Vorleseauftrag[], optionen?: { langsam?: boolean }) => {
-      const auftraege = teile.map((teil) => ({
-        id: teil.id,
-        text: teil.text,
-        sprache: spracheFinden(teil.lang, inhalte.sprachen) ?? anzeigeSprache,
-      }));
-      const ergebnis = sprachausgabe.sprich(auftraege, rate * (optionen?.langsam ? NOCHMAL_FAKTOR : 1));
-      // Hinweis nur, wenn die gewählte Sprache selbst nicht vorgelesen werden kann.
-      const eigeneFehlt = auftraege.some((a) => a.sprache.code === anzeigeSprache.code && !sprachausgabe.hatStimme(a.sprache));
-      setMeldung(ergebnis.gesprochen === 0 || eigeneFehlt ? t('vorlesen.keineStimme') : null);
-    },
-    [inhalte.sprachen, anzeigeSprache, rate, t],
-  );
-
-  const hilfeRufen = useCallback(
-    (ort: { anleitungId?: string; position?: number }) => {
-      setHilfe((alt) =>
-        alt.status !== 'aus'
-          ? alt
-          : {
-              status: 'offen',
-              ruf: {
-                arbeitsplatz_id: platzId,
-                anleitung_id: ort.anleitungId ?? null,
-                schritt_position: ort.position ?? null,
-                sprache: anzeigeSprache.code,
-                erstellt_am: new Date().toISOString(),
-              },
-            },
+  switch (route.art) {
+    case 'uebersicht':
+      return konfiguration ? <Einstieg /> : <Testuebersicht arbeitsplaetze={BEISPIEL_BESTAND.arbeitsplaetze} />;
+    case 'anleiter':
+      if (!konfiguration) return <OhneDatenbank />;
+      return (
+        <Suspense fallback={<div className="laden" aria-busy="true" />}>
+          <AnleiterBereich konfiguration={konfiguration} teile={route.teile} gehe={gehe} />
+        </Suspense>
       );
-      setHilfeAnsicht(true);
-    },
-    [platzId, anzeigeSprache.code],
-  );
-
-  const umgebung: Umgebung = {
-    inhalte,
-    platz,
-    sprache: anzeigeSprache,
-    t,
-    einstellungen,
-    aendern,
-    vorlesen,
-    meldung,
-    gehe,
-    sprachwahlOeffnen: () => {
-      sprachausgabe.stopp();
-      setSprachwahlOffen(true);
-    },
-    hilfe,
-    hilfeRufen,
-    einstellungenOeffnen: () => {
-      sprachausgabe.stopp();
-      setEinstellungenOffen(true);
-    },
-  };
-
-  // Hilfe-Text sofort vorlesen, wenn der Hilfe-Bildschirm aufgeht.
-  const hilfeOffenVorher = useRef(false);
-  useEffect(() => {
-    if (hilfeAnsicht && !hilfeOffenVorher.current && einstellungen.autoVorlesen && hilfe.status !== 'aus') {
-      const person = platz.ansprechperson.name_in[anzeigeSprache.code] ?? platz.ansprechperson.name;
-      const text = hilfe.status === 'unterwegs' ? t('hilfe.aufDemWeg', { person }) : t('hilfe.unterwegs', { person });
-      vorlesen([{ id: 'hilfe', ...text }]);
+    case 'unbekannt': {
+      const { t } = geraeteUebersetzer();
+      return <NichtGefunden text={t('fehler.nichtGefunden')} zurueckText={t('taste.zurueck')} ziel={adresse({ art: 'uebersicht' })} />;
     }
-    hilfeOffenVorher.current = hilfeAnsicht;
-  }, [hilfeAnsicht, hilfe.status, einstellungen.autoVorlesen, platz, anzeigeSprache.code, t, vorlesen]);
+    default:
+      return <PlatzLader key={route.platzId} route={route} gehe={gehe} />;
+  }
+}
 
-  // Escape schließt Sprachwahl, Hilfe-Bildschirm und Einstellungen (Tastatur, Schalter).
+/** Lädt die freigegebenen Inhalte des Arbeitsplatzes und zeigt dann das Tablet. */
+function PlatzLader({ route, gehe }: { route: PlatzRoute; gehe: (r: Route) => void }) {
+  const [ergebnis, setErgebnis] = useState<Ladeergebnis | null>(null);
+  const geladenAm = useRef(0);
+  const aufStartseite = useRef(route.art === 'start');
+  aufStartseite.current = route.art === 'start';
+
+  const laden = useCallback(() => {
+    geladenAm.current = Date.now();
+    platzLaden(route.platzId).then((neu) =>
+      // Ein Fehler beim Nachladen ersetzt nie Inhalte, die schon da sind.
+      setErgebnis((alt) => (neu.status === 'fehler' && alt?.status === 'da' ? alt : neu)),
+    );
+  }, [route.platzId]);
+
+  useEffect(laden, [laden]);
+
+  // Neue Freigaben kommen auf der Startseite an – nie mitten in einer Anleitung.
   useEffect(() => {
-    const taste = (e: KeyboardEvent) => {
-      if (e.key !== 'Escape') return;
-      if (einstellungenOffen) setEinstellungenOffen(false);
-      else if (sprachwahlOffen && !ersterStart) setSprachwahlOffen(false);
-      else if (hilfeAnsicht) setHilfeAnsicht(false);
+    if (route.art === 'start' && Date.now() - geladenAm.current > 60_000) laden();
+  }, [route, laden]);
+  useEffect(() => {
+    const aufgewacht = () => {
+      if (document.visibilityState === 'visible' && aufStartseite.current && Date.now() - geladenAm.current > 60_000) laden();
     };
-    window.addEventListener('keydown', taste);
-    return () => window.removeEventListener('keydown', taste);
-  }, [einstellungenOffen, sprachwahlOffen, ersterStart, hilfeAnsicht]);
+    document.addEventListener('visibilitychange', aufgewacht);
+    return () => document.removeEventListener('visibilitychange', aufgewacht);
+  }, [laden]);
 
-  let inhalt: React.ReactNode;
-  if (ersterStart || sprachwahlOffen) {
-    inhalt = (
-      <Sprachwahl
-        sprachen={sprachen}
-        uiTexte={inhalte.ui_texte}
-        rate={rate}
-        aktuelle={sprache}
-        onWahl={(code) => {
-          aendern({ sprache: code, ...(code === QUELLSPRACHE ? { mitlernen: false } : {}) });
-          setSprachwahlOffen(false);
-        }}
-        onZurueck={ersterStart ? undefined : () => setSprachwahlOffen(false)}
-      />
-    );
-  } else if (einstellungenOffen) {
-    inhalt = <Einstellungen onSchliessen={() => setEinstellungenOffen(false)} />;
-  } else if (hilfeAnsicht) {
-    inhalt = (
-      <HilfeAnsicht
-        onZurueck={() => {
-          sprachausgabe.stopp();
-          setHilfeAnsicht(false);
-        }}
-        test={{
-          unterwegs: () => setHilfe((alt) => (alt.status === 'aus' ? alt : { ...alt, status: 'unterwegs' })),
-          erledigt: () => {
-            setHilfe({ status: 'aus' });
-            setHilfeAnsicht(false);
-          },
-        }}
-      />
-    );
-  } else if (route.art === 'start') {
-    inhalt = <Startseite />;
-  } else {
-    const anleitung = anleitungFuerAnzeige(inhalte, route.anleitungId, anzeigeSprache.code);
-    const passt =
-      anleitung &&
-      inhalte.anleitungen.find((a) => a.id === anleitung.id)?.arbeitsplaetze.includes(platzId) &&
-      (route.art === 'fertig' || route.position <= anleitung.schritte.length);
-    if (!anleitung || !passt) {
-      inhalt = (
-        <NichtGefunden
-          text={t('fehler.nichtGefunden')}
-          zurueckText={t('taste.zurueck')}
-          ziel={adresse({ art: 'start', platzId })}
-        />
-      );
-    } else if (route.art === 'fertig') {
-      inhalt = <FertigAnsicht anleitung={anleitung} />;
-    } else {
-      inhalt = <SchrittAnsicht anleitung={anleitung} position={route.position} />;
+  if (!ergebnis) return <div className="laden" aria-busy="true" />;
+  if (ergebnis.status !== 'da') {
+    const { t, richtung } = geraeteUebersetzer();
+    if (ergebnis.status === 'unbekannt') {
+      return <NichtGefunden text={t('fehler.nichtGefunden')} zurueckText={t('taste.zurueck')} ziel={adresse({ art: 'uebersicht' })} />;
     }
+    const meldung = t('fehler.laden');
+    return (
+      <main className="nicht-gefunden" dir={richtung}>
+        <h1 lang={meldung.lang}>{meldung.text}</h1>
+        <Taste symbol={<SymbolNochmal />} text={t('taste.nochmal')} onClick={laden} />
+      </main>
+    );
   }
+  return (
+    <Arbeitsplatz
+      inhalte={ergebnis.inhalte}
+      datenstand={{ quelle: ergebnis.quelle, stand: ergebnis.stand }}
+      route={route}
+      gehe={gehe}
+    />
+  );
+}
 
-  return <UmgebungKontext.Provider value={umgebung}>{inhalt}</UmgebungKontext.Provider>;
+/** Startseite mit Datenbank: Weg zum Anleiter-Bereich. Tablets öffnen direkt ihre Arbeitsplatz-Adresse. */
+function Einstieg() {
+  return (
+    <main className="testuebersicht" lang="de" dir="ltr">
+      <h1>Arbeitsplatz-Begleiter</h1>
+      <p className="testuebersicht-unter">Anleitungen Schritt für Schritt, in Leichter Sprache und vielen Sprachen.</p>
+      <ul className="testuebersicht-plaetze">
+        <li>
+          <a href={adresse({ art: 'anleiter', teile: [] })}>Zum Anleiter-Bereich</a>
+          <span>Anmelden mit deiner E-Mail-Adresse</span>
+        </li>
+      </ul>
+      <p>Tablets am Arbeitsplatz öffnen die Adresse ihres Arbeitsplatzes. Du findest sie im Anleiter-Bereich unter „Arbeitsplätze“.</p>
+    </main>
+  );
+}
+
+function OhneDatenbank() {
+  return (
+    <main className="testuebersicht" lang="de" dir="ltr">
+      <h1>Anleiter-Bereich</h1>
+      <p>
+        Diese Testversion ist noch nicht mit einer Datenbank verbunden. Der Anleiter-Bereich braucht Supabase. Die
+        Einrichtung steht in <code>arbeitsplatz-begleiter/supabase/EINRICHTUNG.md</code>.
+      </p>
+      <p>
+        <a href={adresse({ art: 'uebersicht' })}>Zur Testübersicht</a>
+      </p>
+    </main>
+  );
 }

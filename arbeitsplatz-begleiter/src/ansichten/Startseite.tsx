@@ -12,11 +12,8 @@ import { leseteileFuerSchritt } from '../logik/schrittText';
 
 export function Startseite() {
   const u = useUmgebung();
-  const { inhalte, platz, sprache, t, einstellungen } = u;
-  const anleitungen = useMemo(
-    () => anleitungenFuerPlatz(inhalte, platz.id, sprache.code),
-    [inhalte, platz.id, sprache.code],
-  );
+  const { inhalte, platz, sprache, t, einstellungen, datenstand } = u;
+  const anleitungen = useMemo(() => anleitungenFuerPlatz(inhalte, sprache.code), [inhalte, sprache.code]);
   const frage = t('start.frage');
   const vorstellung = t('start.vorstellung', { person: personName(platz.ansprechperson, sprache.code) });
   const mitlernenMoeglich = sprache.code !== 'de';
@@ -93,7 +90,12 @@ export function Startseite() {
         <button type="button" className="fuss-taste" onClick={u.einstellungenOeffnen}>
           <SymbolEinstellungen groesse={22} /> Einstellungen
         </button>
-        <span>Testversion · Bilder: eigene Test-Piktogramme</span>
+        <span>
+          {datenstand.quelle === 'beispiel' && 'Testversion mit Beispieldaten'}
+          {datenstand.quelle === 'datenbank' && 'Verbunden'}
+          {datenstand.quelle === 'zwischenspeicher' &&
+            `Keine Verbindung – letzter Stand vom ${new Date(datenstand.stand ?? '').toLocaleString('de-DE', { dateStyle: 'short', timeStyle: 'short' })}`}
+        </span>
       </footer>
     </div>
   );

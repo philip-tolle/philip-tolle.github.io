@@ -8,36 +8,53 @@ Vorlesefunktion.
 eigenen Build und wird **nicht** mit der Website bei IONOS veröffentlicht. Eine
 Veröffentlichung braucht eine eigene, ausdrückliche Freigabe.
 
-## Stand: Phase 1 – Mitarbeiter-Ansicht mit Beispieldaten
+## Stand: Phase 2 – Datenbank, Login, Anleiter-Bereich
 
-Fertig:
+**Phase 1 (Mitarbeiter-Ansicht):** Sprachwahl ohne Flaggen (2 Berührungen), Rechts-nach-links,
+„Deutsch mitlernen“, Schritt-Ansicht mit Nochmal | Weiter | Hilfe, Vorlesen mit Gerätestimmen,
+ungeprüfte Sicherheitsschritte mit deutschem Satz, Fertig- und Hilfe-Bildschirm,
+Geräte-Einstellungen hinter PIN (Test-PIN `1234`).
 
-- Sprachwahl ohne Flaggen: 1. Berührung liest einen Gruß vor, 2. Berührung bestätigt.
-  Es erscheinen nur Sprachen mit freigegebener Anleitung an diesem Arbeitsplatz.
-- Rechts-nach-links für Arabisch (ganze Ansicht gespiegelt, Pfeile gespiegelt, Bilder und
-  Zahlen nicht).
-- „Deutsch mitlernen“: deutscher Satz klein darunter, Vorlesen erst Muttersprache, dann Deutsch.
-- Schritt-Ansicht mit Nochmal | Weiter | Hilfe, Fortschrittspunkten, Vorlesen mit Gerätestimmen.
-- Ungeprüfte Sicherheitsschritte: Achtung-Symbol, deutscher Satz, „Bitte frag nach …“.
-- Fertig-Bildschirm, Hilfe-Bildschirm (Hilferuf wird noch nicht gesendet, Antwort der
-  Anleiterin lässt sich im Testkasten nachspielen).
-- Geräte-Einstellungen hinter PIN (Test-PIN `1234`): Vorlesetempo, Schriftgröße, Farben,
-  automatisches Vorlesen, hoher Kontrast.
-- Beispieldaten: 2 Arbeitsplätze, 2 Anleitungen, Übersetzungen und Oberflächentexte in
-  Englisch, Ukrainisch, Arabisch und Türkisch mit Rückübersetzung (Status „maschinell“).
+**Phase 2 (dieser Stand):**
 
-Noch nicht enthalten (folgende Phasen): Datenbank und Login, KI-Funktionen, Anleiter-Bereich,
-ARASAAC-Piktogramme, echte Hilferufe, Gesprächshilfe, Vorlesen über den Server.
+- Datenbank in Supabase mit Zugriffsregeln (Row Level Security). Einrichtung:
+  [`supabase/EINRICHTUNG.md`](supabase/EINRICHTUNG.md).
+- Anleiter-Bereich unter `#/anleiter`: Anmeldung per E-Mail-Code (ohne Passwort), nur für
+  eingeladene Personen. Rollen „Anleiter:in“ und „Sprachpate“.
+- Anleitungen anlegen und bearbeiten: Angaben, Arbeitsplätze, Zielsprachen, Schritte
+  (Satz, Hinweis, Bildwort, Sicherheit), Schritte verschieben, einfügen, löschen,
+  Mediopunkt-Taste, Hinweise zu langen Sätzen und Wörtern, Vorschau wie auf dem Tablet.
+- „Deutsch freigeben“: Das Tablet zeigt nur freigegebene Fassungen. Änderungen danach
+  erreichen das Tablet erst mit der nächsten Freigabe.
+- Ändert sich ein deutscher Schritt, werden seine Übersetzungen „veraltet“. Die Tablets
+  zeigen bis zur neuen Freigabe die alte Sprachfassung.
+- Liste mit Stand je Sprache, z. B. „Deutsch ✓ · Englisch ✓ · Ukrainisch: veraltet“.
+- Arbeitsplätze mit Tablet-Adresse, angebotenen Sprachen und Ansprechperson.
+- Team: einladen, Rolle ändern, entfernen (mindestens eine Anleiterin bleibt immer).
+- Seite „So geht die App mit Daten um“.
+- Das Tablet lädt seine Inhalte aus der Datenbank und merkt sich den letzten Stand.
+  Fällt die Verbindung aus, laufen Schritt-Ansicht, Vorlesen und Hilfe weiter.
+- Ohne `konfiguration.json` läuft die App als Testversion mit Beispieldaten.
+
+Noch nicht enthalten: KI-Funktionen (Phase 3–6), Bildauswahl und Fotos (Phase 3),
+Übersetzen und Prüfansicht für Sprachpaten (Phase 4), echte Hilferufe (Phase 6).
 
 ## Befehle
 
 ```bash
-npm install        # einmalig
-npm run dev        # Entwicklungs-Server, z. B. http://localhost:5173/#/platz/bankett
-npm test           # Regeln prüfen (Sprachen, Freigaben, Vorlesen, Adressen)
-npm run build      # Typprüfung und Build nach dist/
-npm run pruefen    # Oberflächen-Prüfung im Browser (nach dem Build)
+npm install               # einmalig
+npm run dev               # Entwicklungs-Server, z. B. http://localhost:5173/#/platz/bankett
+npm test                  # Regeln prüfen (Sprachen, Freigaben, Vorlesen, Adressen, Lesbarkeit)
+npm run build             # Typprüfung und Build nach dist/
+npm run pruefen           # Tablet-Ansicht im Browser prüfen (Testversion, nach dem Build)
+npm run sql               # SQL-Dateien aus den App-Daten erzeugen (Sprachliste, Beispieldaten)
+npm run pruefen:datenbank # Datenbank, Zugriffsregeln und Funktionen gegen echtes Postgres prüfen
+npm run pruefen:anleiter  # Anleiter-Bereich und Tablet mit Datenbank im Browser prüfen
 ```
+
+Für die beiden Datenbank-Prüfungen müssen die Postgres-Programme installiert sein
+(z. B. `/usr/lib/postgresql/16/bin`). Die Prüfungen starten eine eigene, temporäre
+Datenbank und ahmen davor das Nötigste von Supabase nach (`tests/hilfen/`).
 
 `npm run pruefen` bedient die App automatisch in allen Testsprachen und prüft u. a.
 Tastengrößen (88 × 88 px), Textkontrast 7:1 (axe-core), Rechts-nach-links, Schriften,
@@ -47,7 +64,10 @@ Vorlese-Reihenfolge und Handy-Breite. Bildschirmfotos landen in `tests/bildschir
 
 - `src/typen.ts` – Datentypen nach dem Datenmodell des Lastenhefts
 - `src/daten/` – Sprachliste, Beispieldaten, Oberflächentexte je Sprache, Datenquelle
-  (Phase 2 tauscht nur `datenquelle.ts` gegen die Datenbank)
+  (Datenbank, Zwischenspeicher, Testversion)
+- `src/Arbeitsplatz.tsx` – das Tablet an einem Arbeitsplatz
+- `src/anleiter/` – Anleiter-Bereich (wird nur geladen, wenn ihn jemand öffnet)
+- `supabase/` – Datenbank: Migrationen, Einrichtung in einer Datei, Beispieldaten, Anleitung
 - `src/logik/` – reine Regeln mit Tests: was freigegeben ist, was angezeigt und vorgelesen wird
 - `src/vorlesen/` – Gerätestimmen (Web Speech API), austauschbar gegen einen Server-Dienst
 - `src/geraet/` – Geräte-Einstellungen (nur auf dem Gerät gespeichert, keine Nutzungsdaten)
@@ -55,6 +75,18 @@ Vorlese-Reihenfolge und Handy-Breite. Bildschirmfotos landen in `tests/bildschir
 - `public/bilder/beispiel/` – eigene Test-Piktogramme (SVG)
 
 ## Entscheidungen
+
+- **Freigabe als Momentaufnahme**: „Deutsch freigeben“ speichert die Fassung, die das Tablet
+  zeigt. Jede Sprache hat ihre eigene freigegebene Fassung mit dem deutschen Bezugstext.
+  So kann eine Anleiterin weiterarbeiten, ohne dass Mitarbeitende Halbfertiges sehen.
+- **Zugriff nur über Datenbank-Funktionen**: Das Tablet ruft genau eine Funktion auf
+  (`platz_inhalte`) und sieht nur Freigegebenes seines Arbeitsplatzes. Der Anleiter-Bereich
+  nutzt Funktionen, die Rolle und Eingaben prüfen. Darunter schützen Zugriffsregeln (RLS)
+  jede Tabelle, auch gegen direkte Anfragen.
+- **Anmeldung per Code statt Link**: Ein Code funktioniert auch, wenn die E-Mail auf dem
+  Handy und die App auf dem Laptop offen ist.
+- **Konfiguration zur Laufzeit** (`konfiguration.json`): Dieselbe gebaute App läuft als
+  Testversion oder mit Datenbank – je nachdem, ob die Datei daneben liegt.
 
 - **Adressen mit `#`** (`…/#/platz/bankett`): funktionieren auf jedem Webspace ohne
   Server-Einstellungen.

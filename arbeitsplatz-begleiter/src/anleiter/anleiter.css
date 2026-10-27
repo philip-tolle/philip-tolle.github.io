@@ -1,0 +1,632 @@
+/* Anleiter-Bereich: ruhige Arbeitsoberfläche für Laptop und Handy.
+   Nutzt die Farb-Tokens der App (app.css) und ergänzt Statusfarben (Text mindestens 4,5:1). */
+
+:root {
+  --al-ok: #0f5f27;
+  --al-ok-flaeche: #e3f3e7;
+  --al-warnung: #7a4300;
+  --al-warnung-flaeche: #fff1d6;
+  --al-gefahr: #a12900;
+  --al-gefahr-flaeche: #ffe6da;
+  --al-offen-flaeche: #ececef;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --al-ok: #8be0a2;
+    --al-ok-flaeche: #16301e;
+    --al-warnung: #ffcf7a;
+    --al-warnung-flaeche: #3a2a0c;
+    --al-gefahr: #ffab8f;
+    --al-gefahr-flaeche: #3b1608;
+    --al-offen-flaeche: #2a2d33;
+  }
+}
+
+:root[data-theme='dark'] {
+  --al-ok: #8be0a2;
+  --al-ok-flaeche: #16301e;
+  --al-warnung: #ffcf7a;
+  --al-warnung-flaeche: #3a2a0c;
+  --al-gefahr: #ffab8f;
+  --al-gefahr-flaeche: #3b1608;
+  --al-offen-flaeche: #2a2d33;
+}
+
+.al,
+.al-anmeldung,
+.al-vorschau {
+  font-family: var(--schrift-latein);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.al {
+  min-height: 100dvh;
+}
+
+.al-kopf {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+  padding: 10px max(16px, env(safe-area-inset-left, 0px)) 10px max(16px, env(safe-area-inset-right, 0px));
+  background: var(--flaeche);
+  border-bottom: 2px solid var(--linie);
+}
+
+.al-marke {
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.al-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 100%;
+}
+
+.al-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 4px 14px;
+  border-radius: 10px;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.al-nav a[aria-current='page'] {
+  background: var(--text);
+  color: var(--flaeche);
+  font-weight: 700;
+}
+
+.al-konto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-inline-start: auto;
+  color: var(--text-leise);
+  font-size: 16px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.al-inhalt {
+  width: 100%;
+  max-width: 980px;
+  margin-inline: auto;
+  padding: 20px max(16px, env(safe-area-inset-left, 0px)) 32px max(16px, env(safe-area-inset-right, 0px));
+}
+
+.al-inhalt + .al-inhalt {
+  padding-top: 0;
+}
+
+.al-seitenkopf {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.al-seitenkopf h1 {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.al h2 {
+  margin: 28px 0 10px;
+  font-size: 22px;
+}
+
+.al-leise {
+  color: var(--text-leise);
+  font-size: 16px;
+}
+
+.al-leer {
+  padding: 24px;
+  border: 2px dashed var(--rand);
+  border-radius: 14px;
+  text-align: center;
+}
+
+/* Knöpfe */
+
+.al-knopf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 48px;
+  padding: 8px 18px;
+  border: 2px solid var(--rand);
+  border-radius: 12px;
+  background: var(--flaeche);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 17px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.al-knopf:hover:not(:disabled) {
+  background: var(--taste-neutral);
+}
+
+.al-knopf:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.al-knopf--haupt {
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--flaeche);
+}
+
+.al-knopf--haupt:hover:not(:disabled) {
+  background: var(--text-leise);
+  border-color: var(--text-leise);
+}
+
+.al-knopf--leise {
+  border-color: transparent;
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.al-knopf--klein {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 4px 12px;
+  font-size: 16px;
+}
+
+.al-knopf--punkt {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.al-knopf--gefahr {
+  border-color: var(--al-gefahr);
+  background: var(--al-gefahr);
+  color: var(--flaeche);
+}
+
+.al-knopf--gefahr-leise {
+  border-color: var(--al-gefahr);
+  color: var(--al-gefahr);
+}
+
+.al-knopfreihe {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Formulare */
+
+.al-formular {
+  display: grid;
+  gap: 16px;
+}
+
+.al-feld {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.al-feld > label,
+.al-feld > span {
+  font-weight: 700;
+}
+
+.al input:not([type='checkbox']):not([type='radio']),
+.al textarea,
+.al-anmeldung input {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 2px solid var(--rand);
+  border-radius: 10px;
+  background: var(--flaeche);
+  color: var(--text);
+  font: inherit;
+}
+
+.al textarea {
+  resize: vertical;
+}
+
+.al-feld-mit-taste {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.al-feld-mit-taste > input,
+.al-feld-mit-taste > textarea {
+  flex: 1;
+  min-width: 0;
+}
+
+.al-auswahlgruppe {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 12px 16px;
+  border: 2px solid var(--linie);
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.al-auswahlgruppe legend {
+  padding: 0 6px;
+  font-weight: 700;
+}
+
+.al-check {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.al-check input {
+  width: 22px;
+  height: 22px;
+  flex: none;
+}
+
+.al-check--gross {
+  font-weight: 700;
+}
+
+.al-sprachgitter {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+  gap: 0 16px;
+}
+
+.al-marke-klein {
+  display: inline-block;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--al-warnung-flaeche);
+  color: var(--al-warnung);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Listen und Karten */
+
+.al-liste {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.al-karte {
+  display: grid;
+  gap: 8px;
+  padding: 16px 18px;
+  border: 2px solid var(--linie);
+  border-radius: 14px;
+  background: var(--flaeche);
+  min-width: 0;
+}
+
+.al-karte h2,
+.al-karte h3 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.al-karte h2 a {
+  color: var(--text);
+}
+
+.al-karte p {
+  margin: 0;
+}
+
+.al-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.al-status-eintrag {
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.al-status--ok {
+  background: var(--al-ok-flaeche);
+  color: var(--al-ok);
+}
+
+.al-status--offen {
+  background: var(--al-offen-flaeche);
+  color: var(--text);
+}
+
+.al-status--warnung {
+  background: var(--al-warnung-flaeche);
+  color: var(--al-warnung);
+}
+
+/* Meldungen */
+
+.al-meldung-stelle:empty {
+  display: none;
+}
+
+.al-meldung {
+  margin: 8px 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border-inline-start: 6px solid currentColor;
+}
+
+.al-meldung--fehler {
+  background: var(--al-gefahr-flaeche);
+  color: var(--al-gefahr);
+}
+
+.al-meldung--ok {
+  background: var(--al-ok-flaeche);
+  color: var(--al-ok);
+}
+
+.al-meldung--warnung {
+  background: var(--al-warnung-flaeche);
+  color: var(--al-warnung);
+}
+
+.al-rueckfrage {
+  display: grid;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 2px solid var(--al-gefahr);
+  border-radius: 12px;
+  background: var(--al-gefahr-flaeche);
+}
+
+.al-rueckfrage p {
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Bearbeiten */
+
+.al-statusband {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.al-abschnitt {
+  display: grid;
+  gap: 16px;
+  margin: 0 0 24px;
+  padding: 18px;
+  border: 2px solid var(--linie);
+  border-radius: 14px;
+  background: var(--flaeche);
+  min-width: 0;
+}
+
+.al-abschnitt > legend {
+  padding: 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.al-abschnitt > h2 {
+  margin: 0;
+}
+
+.al-abschnitt > p {
+  margin: 0;
+}
+
+.al-schritte {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.al-schritt {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 2px solid var(--rand);
+  border-radius: 12px;
+}
+
+.al-schritt--achtung {
+  border-color: #000000;
+  box-shadow: inset 6px 0 0 var(--achtung);
+}
+
+.al-schritt-kopf {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.al-schritt-kopf h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 20px;
+}
+
+.al-achtung {
+  padding: 2px 10px;
+  border: 2px solid #000000;
+  border-radius: 999px;
+  background: var(--achtung);
+  color: #000000;
+  font-size: 15px;
+}
+
+.al-schritt-inhalt {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 600px) {
+  .al-schritt-inhalt {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .al-schritt-bild {
+    width: 120px;
+  }
+}
+
+.al-schritt-felder {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.al-reihe {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 20px;
+}
+
+.al-reihe > .al-feld {
+  flex: 1 1 220px;
+}
+
+.al-lesbar {
+  margin: 0;
+  padding: 8px 12px 8px 28px;
+  border-radius: 10px;
+  background: var(--al-warnung-flaeche);
+  color: var(--al-warnung);
+  font-size: 16px;
+}
+
+.al-aktionsleiste {
+  position: sticky;
+  bottom: 0;
+  z-index: 4;
+  display: grid;
+  gap: 6px;
+  padding: 12px 0 calc(12px + env(safe-area-inset-bottom, 0px));
+  background: var(--flaeche);
+  border-top: 2px solid var(--linie);
+}
+
+.al-aktionsleiste p {
+  margin: 0;
+}
+
+.al-speicherstand {
+  flex: 1 1 100%;
+  font-weight: 700;
+}
+
+@media (min-width: 700px) {
+  .al-speicherstand {
+    flex: 1 1 auto;
+  }
+}
+
+/* Anmeldung */
+
+.al-anmeldung {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+  padding: 48px max(16px, env(safe-area-inset-left, 0px)) 48px max(16px, env(safe-area-inset-right, 0px));
+}
+
+.al-anmeldung h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.al-anmeldung p {
+  margin: 0;
+}
+
+/* Datenschutz */
+
+.al-text {
+  max-width: 70ch;
+}
+
+.al-text li {
+  margin-bottom: 8px;
+}
+
+/* Vorschau */
+
+.al-vorschau-leiste {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 10px 16px;
+  background: var(--text);
+  color: var(--flaeche);
+}
+
+.al-vorschau-leiste .al-knopf--haupt {
+  border-color: var(--flaeche);
+  background: var(--flaeche);
+  color: var(--text);
+}
+
+.al-vorschau .ansicht {
+  min-height: calc(100dvh - 68px);
+}
+
+.laden {
+  min-height: 100dvh;
+}

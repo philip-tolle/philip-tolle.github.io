@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { useUmgebung } from '../umgebung';
-import { personName } from '../logik/inhalte';
+import { ansprechpersonFuer, personName } from '../logik/inhalte';
 import { zeilen } from '../logik/texte';
 import { SymbolHilfe } from './Symbole';
 import { Taste } from './Taste';
@@ -19,8 +19,11 @@ interface Props {
  * „Hilfe“ steht immer an derselben Stelle und hat immer dieselbe Farbe.
  */
 export function Tastenleiste({ erste, zweite, anleitungId, position }: Props) {
-  const { t, hilfe, hilfeRufen, platz, sprache } = useUmgebung();
-  const person = personName(platz.ansprechperson, sprache.code);
+  const { t, hilfe, hilfeRufen, inhalte, sprache } = useUmgebung();
+  const person = personName(
+    ansprechpersonFuer(inhalte, hilfe.status === 'aus' ? (anleitungId ?? null) : hilfe.ruf.anleitung_id),
+    sprache.code,
+  );
   const status =
     hilfe.status === 'unterwegs'
       ? t('hilfe.aufDemWeg', { person })

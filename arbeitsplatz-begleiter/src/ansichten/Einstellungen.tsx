@@ -113,7 +113,7 @@ export function Einstellungen({ onSchliessen }: { onSchliessen: () => void }) {
     );
   }
 
-  const sprachen = verfuegbareSprachen(inhalte, platz.id);
+  const sprachen = verfuegbareSprachen(inhalte);
 
   return (
     <div className="ansicht ansicht--einstellungen" lang="de" dir="ltr">

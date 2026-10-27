@@ -34,5 +34,6 @@ export const tr: UiSprachdatei = {
     'hilfe.zurueck': 'Göreve dön',
     'vorlesen.keineStimme': 'Bu cihaz bu dili sesli okuyamıyor.',
     'fehler.nichtGefunden': 'Bu sayfa yok.',
+    'fehler.laden': 'Talimatlar şu anda yüklenemiyor. Birazdan tekrar dene.',
   },
 };

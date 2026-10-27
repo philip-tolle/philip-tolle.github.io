@@ -50,5 +50,6 @@ export const ar: UiSprachdatei = {
     'hilfe.zurueck': 'رجوع إلى المهمة',
     'vorlesen.keineStimme': 'هذا الجهاز لا يستطيع قراءة هذه اللغة بصوت عالٍ.',
     'fehler.nichtGefunden': 'هذه الصفحة غير موجودة.',
+    'fehler.laden': 'لا يمكن تحميل التعليمات الآن. حاول مرة أخرى بعد قليل.',
   },
 };

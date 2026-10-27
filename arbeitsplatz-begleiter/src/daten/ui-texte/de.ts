@@ -39,5 +39,6 @@ export const de: UiSprachdatei = {
     'hilfe.zurueck': 'Zurück zur Aufgabe',
     'vorlesen.keineStimme': 'Dieses Gerät kann diese Sprache nicht vorlesen.',
     'fehler.nichtGefunden': 'Diese Seite gibt es nicht.',
+    'fehler.laden': 'Die Anleitungen können gerade nicht geladen werden. Versuch es gleich noch einmal.',
   },
 };

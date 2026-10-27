@@ -37,5 +37,6 @@ export const en: UiSprachdatei = {
     'hilfe.zurueck': 'Back to the task',
     'vorlesen.keineStimme': 'This device cannot read this language aloud.',
     'fehler.nichtGefunden': 'This page does not exist.',
+    'fehler.laden': 'The instructions cannot be loaded right now. Try again in a moment.',
   },
 };

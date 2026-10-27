@@ -17,6 +17,12 @@ export type HilfeZustand =
   | { status: 'aus' }
   | { status: 'offen' | 'unterwegs'; ruf: Hilferuf };
 
+/** Woher die Inhalte kommen. „zwischenspeicher“: Datenbank gerade nicht erreichbar, letzter Stand. */
+export interface Datenstand {
+  quelle: 'datenbank' | 'zwischenspeicher' | 'beispiel';
+  stand?: string;
+}
+
 export interface Vorleseauftrag {
   id: string;
   text: string;
@@ -25,6 +31,7 @@ export interface Vorleseauftrag {
 
 export interface Umgebung {
   inhalte: Inhalte;
+  datenstand: Datenstand;
   platz: Arbeitsplatz;
   sprache: Sprache;
   t: Uebersetzer;

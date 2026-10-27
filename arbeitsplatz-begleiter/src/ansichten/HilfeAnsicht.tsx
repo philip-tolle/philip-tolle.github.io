@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useUmgebung } from '../umgebung';
-import { personName } from '../logik/inhalte';
+import { ansprechpersonFuer, personName } from '../logik/inhalte';
 import { zeilen } from '../logik/texte';
 import { Kopfzeile } from '../komponenten/Kopfzeile';
 import { Meldung } from '../komponenten/Meldung';
@@ -16,7 +16,9 @@ interface Props {
 export function HilfeAnsicht({ onZurueck, test }: Props) {
   const u = useUmgebung();
   const { t, hilfe, platz, sprache, inhalte, einstellungen } = u;
-  const person = personName(platz.ansprechperson, sprache.code);
+  const ruf = hilfe.status === 'aus' ? null : hilfe.ruf;
+  const ansprechperson = ansprechpersonFuer(inhalte, ruf?.anleitung_id ?? null);
+  const person = personName(ansprechperson, sprache.code);
   const text = hilfe.status === 'unterwegs' ? t('hilfe.aufDemWeg', { person }) : t('hilfe.unterwegs', { person });
   const ersterStatus = useRef(hilfe.status);
 
@@ -28,8 +30,7 @@ export function HilfeAnsicht({ onZurueck, test }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hilfe.status]);
 
-  const ruf = hilfe.status === 'aus' ? null : hilfe.ruf;
-  const anleitung = ruf?.anleitung_id ? inhalte.anleitungen.find((a) => a.id === ruf.anleitung_id) : undefined;
+  const anleitung = ruf?.anleitung_id ? inhalte.fassungen.find((f) => f.anleitung_id === ruf.anleitung_id) : undefined;
 
   return (
     <div className="ansicht ansicht--hilfe">
@@ -64,10 +65,10 @@ export function HilfeAnsicht({ onZurueck, test }: Props) {
             </ul>
             <div className="testkasten-tasten">
               <button type="button" onClick={test.unterwegs} disabled={hilfe.status === 'unterwegs'}>
-                {platz.ansprechperson.name} drückt „Bin unterwegs“
+                {ansprechperson.name} drückt „Bin unterwegs“
               </button>
               <button type="button" onClick={test.erledigt}>
-                {platz.ansprechperson.name} drückt „Erledigt“
+                {ansprechperson.name} drückt „Erledigt“
               </button>
             </div>
           </section>
