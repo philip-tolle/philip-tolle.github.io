@@ -1,3 +1,4 @@
 tests/bildschirmfotos/
-# Verbindung zur eigenen Datenbank (nicht geheim, aber je Installation verschieden)
+# Verbindung zur eigenen Datenbank: kommt erst beim Veröffentlichen neben index.html
+/konfiguration.json
 public/konfiguration.json

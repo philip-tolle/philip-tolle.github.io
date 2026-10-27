@@ -103,3 +103,18 @@ Schema `public`, Funktion `hook_konto_pruefen` → speichern.
 - `einrichtung.sql` – alle Migrationen in einer Datei (zum Einfügen im SQL Editor)
 - `seed.sql` – Beispieldaten
 - Erzeugt werden `einrichtung.sql`, `seed.sql` und die Sprachliste mit `npm run sql`.
+
+## Stand der Einrichtung (27.10.2026)
+
+- Supabase-Projekt „arbeitsplatz-begleiter“ in Frankfurt (eu-central-1), kostenloser Tarif.
+- Grundlage Teil 1 und 2 über den Supabase-Connector eingespielt (Migrationen
+  `grundlage_1_tabellen`, `grundlage_2_regeln_und_funktionen`). Der Rest – Funktionen zum
+  Löschen, Rechte, Sprachliste und Beispieldaten – per SQL Editor, weil Supabase dafür eine
+  Bestätigung verlangt, die über den Connector nicht ankam. Zusammen entspricht das genau
+  `einrichtung.sql` und `seed.sql` (lokal geprüft).
+- Erste Anleiterin ist eingeladen.
+- Die Verbindungsdatei `konfiguration.json` liegt nur lokal (nicht in Git) und kommt beim
+  Veröffentlichen neben `index.html`.
+- Noch offen: E-Mail-Vorlage mit Code, Adresse der App (Site URL), eigener E-Mail-Versand,
+  optional der Hook für „nur Eingeladene“.
+
